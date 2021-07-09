@@ -1,5 +1,6 @@
-import { ITrackEntity } from '../../core/entities/ITrackEntity';
-import ILibraryRepository from '../../core/repositories/ILibraryRepository';
+import { ITrackEntity } from '../../../core/entities/ITrackEntity';
+import ILibraryRepository from '../../../core/repositories/ILibraryRepository';
+import models from '../models';
 
 export default class Library implements ILibraryRepository {
   private fakeDB: Record<number, ITrackEntity> = {};
@@ -12,6 +13,7 @@ export default class Library implements ILibraryRepository {
       id++;
     }
     console.log(this.fakeDB);
+    models.User.model.create({ id: 0, name: '' })
     return Promise.resolve();
   }
 }
