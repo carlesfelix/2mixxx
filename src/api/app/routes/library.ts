@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { importLibraryCtrl } from '../controllers/library.controller';
+import { importLibraryCtrl, searchCtrl } from '../controllers/library.controller';
 import { uploadFileMemoryHOM } from '../middlewares/upload-file.mid';
 
 const libraryRoute = Router();
@@ -16,6 +16,11 @@ libraryRoute.post(
     acceptedMimeTypes: ['text/xml']
   }).single('itunes'),
   importLibraryCtrl
+);
+
+libraryRoute.get(
+  '/search',
+  searchCtrl
 );
 
 export default libraryRoute;

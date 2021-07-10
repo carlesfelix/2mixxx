@@ -1,19 +1,30 @@
+import { Op } from 'sequelize';
 import { ITrackEntity } from '../../../core/entities/ITrackEntity';
 import ILibraryRepository from '../../../core/repositories/ILibraryRepository';
+import { instanceToJson } from '../helpers';
 import models from '../models';
 
 export default class Library implements ILibraryRepository {
-  private fakeDB: Record<number, ITrackEntity> = {};
-  importLibraryFromItunes(songs: ITrackEntity[]): Promise<void> {
-    let id = Date.now();
-    for (const song of songs) {
-      this.fakeDB[id] = {
-        id, ...song
-      };
-      id++;
-    }
-    console.log(this.fakeDB);
-    models.User.model.create({ id: 0, name: '' })
-    return Promise.resolve();
+  async importTracks(tracks: ITrackEntity[]): Promise<void> {
+    await models.Track.model.destroy({
+      truncate: true
+    });
+    await models.Track.model.bulkCreate(tracks);
+  }
+  async searchTracks(query: string): Promise<ITrackEntity[]> {
+    const tracks = await models.Track.model.findAll({
+      where: {
+        [Op.or]: {
+          name: {
+            [Op.substring]: query
+          },
+          artist: {
+            [Op.substring]: query
+          }
+        },
+      },
+      limit: 8
+    });
+    return instanceToJson<ITrackEntity>(tracks) as ITrackEntity[];
   }
 }

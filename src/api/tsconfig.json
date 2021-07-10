@@ -2,6 +2,6 @@
   "extends": "../../tsconfig.json",
   "files": ["./index.ts"],
   "compilerOptions": {
-    "outDir": "../../dist.api"
+    "outDir": "../../dist/dist.api"
   }
 }

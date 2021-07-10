@@ -1,5 +1,4 @@
-
-
+import environment from '../../../environment';
 import sequelizeConnection from '../sequelize.connection';
 import trackModel from './track.model';
 import userModel from './user.model';
@@ -14,5 +13,11 @@ Object.values(models).forEach(modelDef => {
     modelDef.associate(models);
   }
 });
+
+if (environment.NODE_ENV === 'development') {
+  Object.values(models).forEach(modelDef => {
+    modelDef.model.sync();
+  });
+}
 
 export default models;
