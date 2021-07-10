@@ -1,7 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import { IModelDefinitionFn } from "./types";
 
-export interface ITrackModel {
+interface ITrackModel {
   id?: number;
 }
 
