@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "build:api": "tsc --build ./src/api/tsconfig.build.json",
+    "build:api": "tsc --build ./src/api/tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts"
   },

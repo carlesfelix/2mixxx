@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "files": ["./index.ts"],
-  "buildOptions": {
-    "outdir": "../../dist.api"
+  "compilerOptions": {
+    "outDir": "../../dist.api"
   }
 }
