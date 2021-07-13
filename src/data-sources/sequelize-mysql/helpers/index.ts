@@ -1,11 +1,12 @@
-import { Model } from "sequelize/types";
+import { Model } from 'sequelize/types';
 
-export function instanceToJson<T>(instance: Model<T> | Model<T>[] | null): T | T[] | null {
+export function instanceToJson<T>(instance: Model<T> | null): T | null {
   if (!instance) {
     return null;
   }
-  if (instance instanceof Array) {
-    return instance.map<T>(instanceItem => instanceItem.get());
-  }
   return instance.get();
+}
+
+export function instancesToJson<T>(instances: Model<T>[]): T[] {
+  return instances.map<T>(instanceItem => instanceItem.get());
 }

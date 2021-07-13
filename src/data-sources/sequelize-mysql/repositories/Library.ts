@@ -1,7 +1,7 @@
 import { Op } from 'sequelize';
 import { ITrackEntity } from '../../../core/entities/ITrackEntity';
 import ILibraryRepository from '../../../core/repositories/ILibraryRepository';
-import { instanceToJson } from '../helpers';
+import { instancesToJson } from '../helpers';
 import models from '../models';
 
 export default class Library implements ILibraryRepository {
@@ -21,10 +21,10 @@ export default class Library implements ILibraryRepository {
           artist: {
             [Op.substring]: query
           }
-        },
+        }
       },
       limit: 8
     });
-    return instanceToJson<ITrackEntity>(tracks) as ITrackEntity[];
+    return instancesToJson<ITrackEntity>(tracks);
   }
 }
