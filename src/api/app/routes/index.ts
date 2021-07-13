@@ -1,15 +1,16 @@
 import { Router } from 'express';
+import { genericErrorMid, notFoundErrorMid } from '../middlewares/errors.mid';
 import libraryRoute from './library';
 
-const routes = Router();
+const api = Router();
 
-routes.get('/', (req, res) => {
+api.get('/', (req, res) => {
   res.status(200).json({ msg: 'Api works!' });
 });
 
-routes.use(
-  '/library',
-  libraryRoute
-);
+api.use('/library', libraryRoute);
 
-export default routes;
+api.use(notFoundErrorMid);
+api.use(genericErrorMid);
+
+export default api;

@@ -1,11 +1,12 @@
-import { NextFunction, Request, Response } from "express";
-import importXmlInteractor from "../../../core/interactors/library/import-xml.interactor";
-import searchTrackInteractor from "../../../core/interactors/library/search-track.interactor";
+import { NextFunction, Request, Response } from 'express';
+import responseMessages from '../constants/response-messages';
+import importXmlInteractor from '../../../core/interactors/library/import-xml.interactor';
+import searchTrackInteractor from '../../../core/interactors/library/search-track.interactor';
 
 export function importLibraryCtrl(req: Request, res: Response, next: NextFunction): void {
   const { file } = req;
 	if (!file) {
-		res.status(400).json({ msg: 'Bad request, file not found!' });
+    next(responseMessages.ERR_BAD_REQUEST);
 		return;
 	}
 	importXmlInteractor(file.buffer, 'utf8').then((result) => {
