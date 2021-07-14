@@ -1,6 +1,8 @@
 import { Router } from 'express';
+import { query } from 'express-validator';
 import { importLibraryCtrl, searchCtrl } from '../controllers/library.controller';
 import { uploadFileMemoryHOM } from '../middlewares/upload-file.mid';
+import { validationErrorMid } from '../middlewares/validation.mid';
 
 const libraryRoute = Router();
 
@@ -20,6 +22,8 @@ libraryRoute.post(
 
 libraryRoute.get(
   '/search',
+  [query('query').optional().isString().isLength({ min: 3 })],
+  validationErrorMid,
   searchCtrl
 );
 
