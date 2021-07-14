@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { ErrorFormatter, validationResult } from 'express-validator';
 import responseErrors from '../constants/response-messages';
 
-export function validatorErrorMid(req: Request, res: Response, next: NextFunction): void {
+export function validationErrorMid(req: Request, res: Response, next: NextFunction): void {
   const errorFormatter: ErrorFormatter = ({ location, msg, param }) => (
     `${location}[${param}]: ${msg}`
   );
