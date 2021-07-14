@@ -16,7 +16,7 @@ Object.values(models).forEach(modelDef => {
 
 if (environment.NODE_ENV === 'development') {
   Object.values(models).forEach(modelDef => {
-    modelDef.model.sync();
+    modelDef.model.sync({ force: true });
   });
 }
 

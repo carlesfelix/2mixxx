@@ -1,16 +1,16 @@
-export type IMessageCode = 'ERR_GENERIC' | 
+export type IErrorCode = 'ERR_GENERIC' | 
 'ERR_NOT_FOUND' | 'ERR_DUPLICATED_ENTRIES' |
 'ERR_UNAUTHORIZED' | 'ERR_BAD_REQUEST' | 'UnauthorizedError';
 
-export interface IResponseMessage {
+export interface IResponseError {
   statusCode: number;
   msg: string;
-  code: IMessageCode;
+  code: IErrorCode;
 }
 
-export type IResponseMessages = Record<IMessageCode, IResponseMessage>;
+export type IResponseErrors = Record<IErrorCode, IResponseError>;
 
-const messages: IResponseMessages = {
+const responseErrors: IResponseErrors = {
   ERR_GENERIC: {
     statusCode: 500,
     msg: 'Something went wrong',
@@ -43,4 +43,4 @@ const messages: IResponseMessages = {
   }
 };
 
-export default messages;
+export default responseErrors;
