@@ -1,6 +1,6 @@
-/dist
-/dist.*
-/node_modules
-*.env
 .DS_STORE
-/.data
+*.env
+node_modules
+dist
+
+/backend/.data
