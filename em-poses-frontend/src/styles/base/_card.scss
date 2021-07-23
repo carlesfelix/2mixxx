@@ -1,0 +1,11 @@
+@use '../utils/variables';
+
+.card {
+  border-radius: 3px;
+  &.card-primary {
+    border: solid 1px;
+    box-shadow: 1px 1px 0.5rem 0 transparentize($color: variables.$c-primary--900, $amount: 0.75);
+    border-color: variables.$c-primary--900;
+    background-color: variables.$c-primary--50;
+  }
+}

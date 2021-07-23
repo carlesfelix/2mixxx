@@ -1,0 +1,14 @@
+@use '../../../../styles/utils/mixings';
+
+div.SongRequestQueue {
+  div.queue-item {
+    margin-top: 0.75rem;
+    @include mixings.min-md {
+      margin-top: 1rem;
+    }
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  
+}

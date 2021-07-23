@@ -1,0 +1,35 @@
+@use '../../styles/utils/variables';
+@use '../../styles/utils/mixings';
+
+div.PageLayout {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+  div.toolbar-container {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  div.nav-container {
+    grid-column: 1;
+    grid-row: 2;
+    border-bottom: solid 1px variables.$c-secondary--100;
+    box-shadow: 1px 1px 0.5rem 0 transparentize($color: variables.$c-primary--100, $amount: 0.75);
+  }
+  div.page-container {
+    overflow: auto;
+    grid-column: 1;
+    grid-row: 3;
+    padding: 0.75rem;
+    @include mixings.min-md {
+      padding: 1.25rem;
+    }
+  }
+  div.nav-container, div.page-container {
+    div.limit-container {
+      width: 100%;
+      max-width: variables.$min-md;
+      margin: 0 auto;
+    }
+  }
+}

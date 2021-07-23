@@ -1,0 +1,15 @@
+@use '../utils/variables';
+
+html {
+  height: 100%;
+  body {
+    margin: 0;
+    min-width: variables.$min-xs;
+    height: 100%;
+    background-color: variables.$c-primary--50;
+    div#root {
+      height: 100%;
+    }
+  }
+}
+

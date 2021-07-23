@@ -1,0 +1,42 @@
+// BREAKPOINTS
+$min-xs: 300px;
+$min-sm: 576px;
+$min-md: 768px;
+$min-lg: 992px;
+$min-xl: 1200px;
+
+// COLORS
+$c-primary--base: #456990;
+$c-secondary--base: #95B3B9;
+$c-danger--base: #F45B69;
+
+$c-primary--50: #fff;
+$c-primary--100: lighten($c-primary--base, 20%);
+$c-primary--200: lighten($c-primary--base, 15%);
+$c-primary--300: lighten($c-primary--base, 10%);
+$c-primary--400: lighten($c-primary--base, 5%);
+$c-primary--500: $c-primary--base;
+$c-primary--600: darken($c-primary--base, 5%);
+$c-primary--700: darken($c-primary--base, 10%);
+$c-primary--800: darken($c-primary--base, 15%);
+$c-primary--900: darken($c-primary--base, 20%);
+
+$c-secondary--100: lighten($c-secondary--base, 20%);
+$c-secondary--200: lighten($c-secondary--base, 15%);
+$c-secondary--300: lighten($c-secondary--base, 10%);
+$c-secondary--400: lighten($c-secondary--base, 5%);
+$c-secondary--500: $c-secondary--base;
+$c-secondary--600: darken($c-secondary--base, 5%);
+$c-secondary--700: darken($c-secondary--base, 10%);
+$c-secondary--800: darken($c-secondary--base, 15%);
+$c-secondary--900: darken($c-secondary--base, 20%);
+
+$c-danger--100: lighten($c-danger--base, 20%);
+$c-danger--200: lighten($c-danger--base, 15%);
+$c-danger--300: lighten($c-danger--base, 10%);
+$c-danger--400: lighten($c-danger--base, 5%);
+$c-danger--500: $c-danger--base;
+$c-danger--600: darken($c-danger--base, 5%);
+$c-danger--700: darken($c-danger--base, 10%);
+$c-danger--800: darken($c-danger--base, 15%);
+$c-danger--900: darken($c-danger--base, 20%);

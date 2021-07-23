@@ -1,0 +1,11 @@
+@use '../utils/variables';
+
+.btn {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 3px;
+  &.btn-primary {
+    background-color: variables.$c-primary--500;
+    color: variables.$c-primary--50;
+  }
+}

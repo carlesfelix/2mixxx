@@ -1,11 +1,13 @@
+import PageLayout from './components/PageLayout';
+import HomePage from './pages/HomePage';
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        
-      </header>
+      <PageLayout toolbarTitle="Song requests">
+        <HomePage />
+      </PageLayout>
     </div>
   );
 }

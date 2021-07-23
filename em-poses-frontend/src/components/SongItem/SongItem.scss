@@ -1,0 +1,37 @@
+div.SongItem {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  align-items: center;
+  div.thumbnail-container {
+    height: 4rem;
+    padding: 0.25rem;
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  div.info-container {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    div.song-name, div.song-artist {
+      padding: 0.25rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      span {
+        white-space: nowrap;
+      }
+    }
+    div.song-name {
+      span {
+        font-weight: bold;
+      }
+    }
+    div.song-artist {
+      span {
+        font-size: 0.85rem;
+        margin-top: 0.35rem;
+      }
+    }
+  }
+}

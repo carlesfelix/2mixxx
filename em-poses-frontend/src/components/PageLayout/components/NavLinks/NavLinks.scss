@@ -1,0 +1,19 @@
+@use '../../../../styles/utils/variables';
+
+div.NavLinks {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  overflow: hidden;
+  padding: 0.25rem;
+  a.nav-link {
+    border-bottom: solid 0.15rem;
+    border-color: transparent;
+    padding: 0.5rem;
+    cursor: pointer;
+    &.nav-link--active {
+      border-color: variables.$c-primary--900;
+    }
+  }
+}
