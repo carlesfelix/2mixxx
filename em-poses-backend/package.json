@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon",
+    "start:api": "nodemon --exec \"ts-node ./src/api/index.ts\"",
+    "start:socket": "nodemon --exec \"ts-node ./src/socket/index.ts\"",
     "build:api": "tsc --build ./src/api/tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts"
@@ -36,6 +37,7 @@
     "multer": "1.4.2",
     "mysql2": "2.2.5",
     "plist": "3.0.2",
-    "sequelize": "6.6.2"
+    "sequelize": "6.6.2",
+    "socket.io": "4.1.3"
   }
 }
