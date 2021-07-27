@@ -13,6 +13,7 @@ div.PageLayout {
   div.nav-container {
     grid-column: 1;
     grid-row: 2;
+    background-color: variables.$c-primary--50;
     border-bottom: solid 1px variables.$c-secondary--100;
     box-shadow: 1px 1px 0.5rem 0 transparentize($color: variables.$c-primary--100, $amount: 0.75);
   }
