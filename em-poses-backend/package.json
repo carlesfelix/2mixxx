@@ -7,6 +7,7 @@
     "start:api": "nodemon --exec \"ts-node ./src/api/index.ts\"",
     "start:socket": "nodemon --exec \"ts-node ./src/socket/index.ts\"",
     "build:api": "tsc --build ./src/api/tsconfig.json",
+    "build:socket": "tsc --build ./src/socket/tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts"
   },
