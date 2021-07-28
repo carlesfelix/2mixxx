@@ -5,6 +5,7 @@ import './SongRequestQueue.scss';
 type Props = {
   songList: ITrack[]
 };
+
 export default function SongRequestQueue(props: Props) {
   const { songList } = props;
   return (

@@ -1,23 +1,26 @@
 import { ReactNode } from 'react';
-import NavButtons from './components/NavLinks';
+import IAppRoute from '../../models/IAppRoute.model';
+import NavLinks from './components/NavLinks';
 import Toolbar from './components/Toolbar';
 import './PageLayout.scss';
 
 type Props = {
-  children: ReactNode,
-  toolbarTitle: string,
-  toolbarLink?: string,
+  children: ReactNode;
+  toolbarTitle: string;
+  toolbarLink?: string;
+  routes: IAppRoute[];
 };
+
 export default function PageLayout(props: Props) {
-  const { children, toolbarTitle } = props;
+  const { children, toolbarTitle, toolbarLink, routes } = props;
   return (
     <div className="PageLayout">
       <div className="toolbar-container">
-        <Toolbar title={toolbarTitle} />
+        <Toolbar title={toolbarTitle} link={toolbarLink} />
       </div>
       <div className="nav-container">
         <div className="limit-container">
-          <NavButtons></NavButtons>
+          <NavLinks routes={routes}></NavLinks>
         </div>
       </div>
       <div className="page-container">

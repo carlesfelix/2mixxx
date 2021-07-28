@@ -5,7 +5,7 @@ type Props = {
   link?: string;
 };
 export default function Toolbar(props: Props) {
-  const { title, link } = props;
+  const { title } = props;
   return (
     <nav className="Toolbar">
       <span>
