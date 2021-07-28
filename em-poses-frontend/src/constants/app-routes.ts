@@ -1,6 +1,9 @@
 import { faCog, faListAlt, faPaperPlane, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import IAppRoute from '../models/IAppRoute.model';
+import AdminPage from '../pages/AdminPage';
 import HomePage from '../pages/HomePage';
+import MakeASongRequestPage from '../pages/MakeASongRequestPage';
+import RecommendSongPage from '../pages/RecommendSongPage';
 import SongRequestsPage from '../pages/SongRequestsPage';
 
 const appRoutes: IAppRoute[] = [
@@ -25,7 +28,7 @@ const appRoutes: IAppRoute[] = [
     route: {
       path: '/make-a-song-request',
       toolbarTitle: 'Make a song request',
-      component: HomePage
+      component: MakeASongRequestPage
     }
   },
   {
@@ -37,7 +40,7 @@ const appRoutes: IAppRoute[] = [
     route: {
       path: '/recommend-song',
       toolbarTitle: 'Recomend song',
-      component: HomePage
+      component: RecommendSongPage
     }
   },
   {
@@ -49,7 +52,7 @@ const appRoutes: IAppRoute[] = [
     route: {
       path: '/admin',
       toolbarTitle: 'Admin',
-      component: HomePage
+      component: AdminPage
     }
   },
   {
