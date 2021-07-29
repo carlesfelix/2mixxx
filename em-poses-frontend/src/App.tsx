@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PageLayout from './components/PageLayout';
 import appRoutes from './constants/app-routes';
@@ -13,7 +13,9 @@ function App() {
             appRoutes.map((appRoute, iAppRoute) => (
               <Route path={appRoute.route.path} key={iAppRoute}>
                 <PageLayout toolbarTitle={appRoute.route.toolbarTitle} routes={appRoutes}>
-                  {createElement(appRoute.route.component)}
+                  <Suspense fallback={false}>
+                    <appRoute.route.Component />
+                  </Suspense>
                 </PageLayout>
               </Route>
             ))

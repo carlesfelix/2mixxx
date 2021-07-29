@@ -1,11 +1,11 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { FunctionComponent } from 'react';
+import { LazyExoticComponent } from 'react';
 
 export default interface IAppRoute {
   route: {
     path: string;
     toolbarTitle: string;
-    component: FunctionComponent;
+    Component: LazyExoticComponent<() => JSX.Element>;
   };
   navLink?: {
     to: string;

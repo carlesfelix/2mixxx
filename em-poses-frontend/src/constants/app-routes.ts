@@ -1,10 +1,12 @@
 import { faCog, faListAlt, faPaperPlane, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { lazy } from 'react';
 import IAppRoute from '../models/IAppRoute.model';
-import AdminPage from '../pages/AdminPage';
-import HomePage from '../pages/HomePage';
-import MakeASongRequestPage from '../pages/MakeASongRequestPage';
-import RecommendSongPage from '../pages/RecommendSongPage';
-import SongRequestsPage from '../pages/SongRequestsPage';
+
+const AdminPage = lazy(() => import('../pages/AdminPage'));
+const HomePage = lazy(() => import('../pages/HomePage'));
+const MakeASongRequestPage = lazy(() => import('../pages/MakeASongRequestPage'));
+const RecommendSongPage = lazy(() => import('../pages/RecommendSongPage'));
+const SongRequestsPage = lazy(() => import('../pages/SongRequestsPage'));
 
 const appRoutes: IAppRoute[] = [
   {
@@ -16,7 +18,7 @@ const appRoutes: IAppRoute[] = [
     route: {
       path: '/song-requests',
       toolbarTitle: 'Song requests',
-      component: SongRequestsPage
+      Component: SongRequestsPage
     }
   },
   {
@@ -28,7 +30,7 @@ const appRoutes: IAppRoute[] = [
     route: {
       path: '/make-a-song-request',
       toolbarTitle: 'Make a song request',
-      component: MakeASongRequestPage
+      Component: MakeASongRequestPage
     }
   },
   {
@@ -40,7 +42,7 @@ const appRoutes: IAppRoute[] = [
     route: {
       path: '/recommend-song',
       toolbarTitle: 'Recomend song',
-      component: RecommendSongPage
+      Component: RecommendSongPage
     }
   },
   {
@@ -52,14 +54,14 @@ const appRoutes: IAppRoute[] = [
     route: {
       path: '/admin',
       toolbarTitle: 'Admin',
-      component: AdminPage
+      Component: AdminPage
     }
   },
   {
     route: {
       path: '/',
       toolbarTitle: 'Home',
-      component: HomePage
+      Component: HomePage
     }
   }
 ];
