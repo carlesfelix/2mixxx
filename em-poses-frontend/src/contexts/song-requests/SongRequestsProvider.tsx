@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import SongRequestsContext from './SongRequestsContext';
-import songRequestsReducer from './SongRequestsReducer';
+import songRequestsReducer from './songRequestsReducer';
 import { SongRequestsProviderProps } from './types';
 
 export default function SongRequestsProvider(props: SongRequestsProviderProps) {
