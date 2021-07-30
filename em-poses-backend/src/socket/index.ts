@@ -9,7 +9,12 @@ import app from './app/namespaces';
 
 const httpServer = http.createServer();
 
-const io = new Server(httpServer);
+const io = new Server(httpServer, {
+  cors: {
+    allowedHeaders: ['Authorization'],
+    origin: 'http://localhost:3000'
+  }
+});
 
 app(io);
 

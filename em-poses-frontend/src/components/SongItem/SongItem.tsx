@@ -11,7 +11,7 @@ export default function SongItem(props: Props) {
   const { track } = props;
   const { name, artist } = track;
   return (
-    <div className="SongItem card card-primary">
+    <div className="SongItem">
       <div className="thumbnail-container">
         <FontAwesomeIcon icon={faCompactDisc} />
       </div>
