@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import PageLayout from './components/PageLayout';
@@ -7,9 +7,14 @@ import { SocketsProvider } from './contexts/sockets';
 
 import './App.scss';
 
-const socket = io('ws://localhost:3002/song-requests');
+const socket = io('ws://localhost:3002/song-requests')
 
 function App() {
+  useEffect(() => {
+    return () => {
+      socket.disconnect();
+    }
+  }, []);
   return (
     <div className="App">
       <SocketsProvider songRequestsSocket={socket}>
