@@ -1,15 +1,14 @@
 import { lazy } from 'react';
 import IAppRoute from '../models/IAppRoute.model';
 
-const AdminPage = lazy(() => import('../pages/AdminPage'));
+const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 const HomePage = lazy(() => import('../pages/HomePage'));
 const RoomPage = lazy(() => import('../pages/RoomPage'));
 
 const appRoutes: IAppRoute[] = [
   {
-    path: '/admin',
-    toolbarTitle: 'Admin',
-    Component: AdminPage,
+    path: '/dashboard',
+    Component: DashboardPage,
     toolbarLinkBack: '/'
   },
   {

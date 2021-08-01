@@ -15,7 +15,9 @@ export default function HomePage() {
         </button>
       </form>
       <div className="login-link-container">
-        <NavLink to="/admin">Enter as registered user</NavLink>
+        <NavLink to="/dashboard">
+          Enter as registered user
+        </NavLink>
       </div>
     </div>
   );
