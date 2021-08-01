@@ -1,0 +1,18 @@
+@use '../../../styles/utils/variables';
+
+label.FormField {
+  label.field-label, div.field-children, span.field-error-message {
+    display: block;
+  }
+  label.field-label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+  }
+  span.field-error-message {
+    font-size: 0.8rem;
+    margin-top: 0.125rem;
+    color: variables.$c-danger--500;
+  }
+}

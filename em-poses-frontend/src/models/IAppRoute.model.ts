@@ -1,16 +1,11 @@
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { LazyExoticComponent } from 'react';
+import IAppLink from './IAppLink.model';
 
 export default interface IAppRoute {
-  route: {
-    path: string;
-    toolbarTitle: string;
-    Component: LazyExoticComponent<() => JSX.Element>;
-  };
-  navLink?: {
-    to: string;
-    icon: IconDefinition;
-    label: string;
-  };
+  path: string;
+  toolbarTitle?: string;
+  toolbarLinkBack?: string;
+  Component: LazyExoticComponent<() => JSX.Element>;
   permission?: string;
+  links?: IAppLink[];
 }

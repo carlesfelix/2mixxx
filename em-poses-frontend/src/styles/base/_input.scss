@@ -1,0 +1,7 @@
+@use '../utils/variables';
+
+.input {
+  padding: 0.5rem;
+  border-radius: 3px;
+  border: 1px solid variables.$c-primary--800;
+}

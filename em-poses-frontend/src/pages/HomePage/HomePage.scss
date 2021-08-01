@@ -1,3 +1,17 @@
 div.HomePage {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  form.choose-room {
+    padding: 2rem 1rem;
+    margin: 1rem;
+  }
+  div.login-link-container {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.8rem;
+  }
 }

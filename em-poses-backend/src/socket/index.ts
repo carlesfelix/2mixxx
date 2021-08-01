@@ -12,7 +12,7 @@ const httpServer = http.createServer();
 const io = new Server(httpServer, {
   cors: {
     allowedHeaders: ['Authorization'],
-    origin: 'http://localhost:3000'
+    origin: environment.SOCKET_CORS_ORIGIN
   }
 });
 
