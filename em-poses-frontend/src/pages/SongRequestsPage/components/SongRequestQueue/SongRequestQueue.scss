@@ -3,6 +3,10 @@
 div.SongRequestQueue {
   div.queue-item {
     margin-top: 0.75rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr;
+    align-items: center;
     @include mixings.min-md {
       margin-top: 1rem;
     }
