@@ -34,6 +34,7 @@ const SongRequests: INamespaceDef = {
   onConnection: (nsp, socket) => {
     console.log('onConnection');
     socket.join('room');
+    console.log(socket.handshake.auth)
     socket.on('getAllSongRequests', res => {
       res(songs);
     });
