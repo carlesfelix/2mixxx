@@ -7,6 +7,16 @@ div.HomePage {
   form.choose-room {
     padding: 2rem 1rem;
     margin: 1rem;
+    div.form-content {
+      display: flex;
+      align-items: flex-end;
+      .room-code-input {
+        flex-grow: 1;
+      }
+      button.submit-room-btn {
+        margin-left: 0.5rem;
+      }
+    }
   }
   div.login-link-container {
     position: absolute;

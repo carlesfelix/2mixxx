@@ -1,6 +1,7 @@
 @use '../../../styles/utils/variables';
 
 label.FormField {
+  display: inline-block;
   label.field-label, div.field-children, span.field-error-message {
     display: block;
   }

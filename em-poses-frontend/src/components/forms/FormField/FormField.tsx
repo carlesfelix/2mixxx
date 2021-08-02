@@ -5,16 +5,23 @@ import './FormField.scss';
 type Props = {
   label: string;
   errorMessage?: string;
-  children: ReactNode
+  invalid: boolean;
+  children: ReactNode;
+  className?: string;
 };
 
 export default function FormField(props: Props) {
-  const { label, errorMessage, children } = props;
-  const fieldChildrenClassnames = classnames('field-children', {
-    'field-error': !!errorMessage
+  const { label, errorMessage, children, invalid, className = '' } = props;
+  
+  const formFieldClassnames = classnames('FormField', {
+    [className]: !!className
   });
+  const fieldChildrenClassnames = classnames('field-children', {
+    'field-invalid': invalid
+  });
+
   return (
-    <label className="FormField">
+    <label className={formFieldClassnames}>
       <label className="field-label">{label}</label>
       <div className={fieldChildrenClassnames}>
         {children}

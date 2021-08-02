@@ -4,7 +4,7 @@ export default function DashboardPage() {
   return (
     <div className="DashboardPage">
       <Toolbar title="Dashboard" linkBack="/" />
-      Admin page
+      Dashboard page
     </div>
   );
 }
