@@ -4,6 +4,7 @@
   border: none;
   padding: 0.5rem;
   border-radius: 3px;
+  cursor: pointer;
   &.btn-primary {
     background-color: variables.$c-primary--500;
     color: variables.$c-primary--50;
