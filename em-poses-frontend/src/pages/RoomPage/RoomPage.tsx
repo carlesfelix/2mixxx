@@ -42,9 +42,7 @@ export default function RoomPage() {
               </Route>
             ))
           }
-          {
-            <Route path={url} render={() => <Redirect to={`${url}/song-requests`} />} />
-          }
+          <Route path={url} render={() => <Redirect to={`${url}/song-requests`} />} />
         </Switch>
       </SocketsProvider>
     </div>
