@@ -32,9 +32,11 @@ export default function HomePage() {
               }
             }}
           />
-          <button className="btn btn-primary submit-room-btn" type="submit">
-            Enter
-          </button>
+          <div className="form-actions">
+            <button className="btn btn-primary submit-room-btn" type="submit">
+              Enter
+            </button>
+          </div>
         </div>
       </form>
       <div className="login-link-container">

@@ -5,17 +5,21 @@ div.HomePage {
   justify-content: center;
   height: 100%;
   form.choose-room {
-    padding: 2rem 1rem;
+    padding: 0 1rem;
     margin: 1rem;
     div.form-content {
-      display: flex;
-      align-items: flex-end;
       .room-code-input {
         flex-grow: 1;
+        width: 100%;
       }
-      button.submit-room-btn {
-        margin-left: 0.5rem;
+      div.form-actions {
+        text-align: center;
+        margin: 1.5rem;
+        button.submit-room-btn {
+          min-width: 150px;
+        }
       }
+      
     }
   }
   div.login-link-container {

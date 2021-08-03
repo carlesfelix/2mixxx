@@ -3,9 +3,12 @@
 .input {
   padding: 0.5rem;
   border-radius: 3px;
-  border: 1px solid variables.$c-primary--800;
+  border: 1px solid variables.$c-secondary--500;
   width: 100%;
   box-sizing: border-box;
+  &:focus-within {
+    outline: 1px variables.$c-primary--500 auto;
+  }
 }
 
 .field-invalid {
