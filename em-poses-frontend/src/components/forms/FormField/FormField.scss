@@ -2,10 +2,10 @@
 
 label.FormField {
   display: inline-block;
-  label.field-label, div.field-children, span.field-error-message {
+  span.field-label, div.field-children, span.field-error-message {
     display: block;
   }
-  label.field-label {
+  span.field-label {
     font-size: 0.8rem;
     font-weight: bold;
     text-transform: uppercase;

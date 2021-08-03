@@ -22,7 +22,7 @@ export default function FormField(props: Props) {
 
   return (
     <label className={formFieldClassnames}>
-      <label className="field-label">{label}</label>
+      <span className="field-label">{label}</span>
       <div className={fieldChildrenClassnames}>
         {children}
       </div>

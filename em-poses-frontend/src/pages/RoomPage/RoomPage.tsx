@@ -20,7 +20,7 @@ const songRequestsSocket = io(`${environment.REACT_APP_SOCKET_BASE_URI}/song-req
 export default function RoomPage() {
   const { url, params } = useRouteMatch<{ id: string }>();
   const { id: roomId } = params;
-  const roomPageRoutes = getRoomRoutes(url);
+  const roomRoutes = getRoomRoutes(url);
   useEffect(() => {
     songRequestsSocket.connect();
     return () => {
@@ -32,9 +32,9 @@ export default function RoomPage() {
       <SocketsProvider songRequestsSocket={songRequestsSocket}>
         <Switch>
           {
-            roomPageRoutes.map((roomPageRoute, iRoomPageRoute) => (
+            roomRoutes.map((roomPageRoute, iRoomPageRoute) => (
               <Route path={`${url}${roomPageRoute.path}`} key={iRoomPageRoute} exact={roomPageRoute.exact}>
-                <PageLayout toolbarTitle={roomPageRoute.toolbarTitle} routes={roomPageRoutes} links={roomPageRoute.links} toolbarLinkBack={roomPageRoute.toolbarLinkBack}>
+                <PageLayout toolbarTitle={roomPageRoute.toolbarTitle} routes={roomRoutes} links={roomPageRoute.links} toolbarLinkBack={roomPageRoute.toolbarLinkBack}>
                   <Suspense fallback={false}>
                     <roomPageRoute.Component />
                   </Suspense>
