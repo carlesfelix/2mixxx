@@ -28,25 +28,25 @@ export default function RoomPage() {
     }
   }, [ roomId ]);
   return (
-      <div className="RoomPage">
-        <SocketsProvider songRequestsSocket={songRequestsSocket}>
-          <Switch>
-            {
-              roomPageRoutes.map((roomPageRoute, iRoomPageRoute) => (
-                <Route path={`${url}${roomPageRoute.path}`} key={iRoomPageRoute}>
-                  <PageLayout toolbarTitle={roomPageRoute.toolbarTitle} routes={roomPageRoutes} links={roomPageRoute.links} toolbarLinkBack={roomPageRoute.toolbarLinkBack}>
-                    <Suspense fallback={false}>
-                      <roomPageRoute.Component />
-                    </Suspense>
-                  </PageLayout>
-                </Route>
-              ))
-            }
-            {
-              <Route path={url} render={() => <Redirect to={`${url}/song-requests`} />} />
-            }
-          </Switch>
-        </SocketsProvider>
-      </div>
+    <div className="RoomPage">
+      <SocketsProvider songRequestsSocket={songRequestsSocket}>
+        <Switch>
+          {
+            roomPageRoutes.map((roomPageRoute, iRoomPageRoute) => (
+              <Route path={`${url}${roomPageRoute.path}`} key={iRoomPageRoute} exact={roomPageRoute.exact}>
+                <PageLayout toolbarTitle={roomPageRoute.toolbarTitle} routes={roomPageRoutes} links={roomPageRoute.links} toolbarLinkBack={roomPageRoute.toolbarLinkBack}>
+                  <Suspense fallback={false}>
+                    <roomPageRoute.Component />
+                  </Suspense>
+                </PageLayout>
+              </Route>
+            ))
+          }
+          {
+            <Route path={url} render={() => <Redirect to={`${url}/song-requests`} />} />
+          }
+        </Switch>
+      </SocketsProvider>
+    </div>
   );
 }
