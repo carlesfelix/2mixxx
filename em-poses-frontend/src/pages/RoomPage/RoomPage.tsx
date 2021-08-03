@@ -1,17 +1,18 @@
 import { Suspense, useEffect } from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import PageLayout from '../../components/PageLayout';
 import { SocketsProvider } from '../../contexts/sockets';
 import environment from '../../environment';
-import { getRoomPageRoutes } from './helpers/room-page-routes';
+import { getRoomRoutes } from '../../helpers/app-routes';
 
 const songRequestsSocket = io(`${environment.REACT_APP_SOCKET_BASE_URI}/song-requests`, {
   autoConnect: false,
   forceNew: true,
   auth: (cb) => {
     cb({
-      room: `token -> ${Date.now()}`
+      room: `token -> ${Date.now()}`,
+      token: ''
     })
   }
 });
@@ -19,13 +20,12 @@ const songRequestsSocket = io(`${environment.REACT_APP_SOCKET_BASE_URI}/song-req
 export default function RoomPage() {
   const { url, params } = useRouteMatch<{ id: string }>();
   const { id: roomId } = params;
-  const roomPageRoutes = getRoomPageRoutes(url);
+  const roomPageRoutes = getRoomRoutes(url);
   useEffect(() => {
     songRequestsSocket.connect();
     return () => {
       songRequestsSocket.disconnect();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ roomId ]);
   return (
       <div className="RoomPage">
@@ -41,6 +41,9 @@ export default function RoomPage() {
                   </PageLayout>
                 </Route>
               ))
+            }
+            {
+              <Route path={url} render={() => <Redirect to={`${url}/song-requests`} />} />
             }
           </Switch>
         </SocketsProvider>

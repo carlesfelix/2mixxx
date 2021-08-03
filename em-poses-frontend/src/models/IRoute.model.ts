@@ -1,11 +1,12 @@
 import { LazyExoticComponent } from 'react';
-import IAppLink from './IAppLink.model';
+import ILink from './ILink.model';
 
-export default interface IAppRoute {
+export default interface IRoute {
   path: string;
   toolbarTitle?: string;
   toolbarLinkBack?: string;
   Component: LazyExoticComponent<() => JSX.Element>;
   permission?: string;
-  links?: IAppLink[];
+  links?: ILink[];
+  exact?: boolean;
 }

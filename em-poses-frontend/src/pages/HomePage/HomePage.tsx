@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import ControlledInput from '../../components/forms/ControlledInput';
+import LoginButton from '../../components/LoginButton';
 import './HomePage.scss';
 
 export default function HomePage() {
@@ -40,9 +41,7 @@ export default function HomePage() {
         </div>
       </form>
       <div className="login-link-container">
-        <NavLink to="/dashboard">
-          Enter as registered user
-        </NavLink>
+        <LoginButton />
       </div>
     </div>
   );

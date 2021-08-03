@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
-import IAppLink from '../../../../models/IAppLink.model';
+import ILink from '../../../../models/ILink.model';
 import './NavLinks.scss';
 
 type Props = {
-  links: IAppLink[]
+  links: ILink[]
 };
 export default function NavLinks(props: Props) {
   const { links } = props;
