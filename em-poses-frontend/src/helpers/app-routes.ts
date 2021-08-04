@@ -1,17 +1,20 @@
-import { appRoutes, roomRoutes } from '../constants/routes';
 import IRoute from '../models/IRoute.model';
 
-export function getAppRoutes(permissions?: string[]): IRoute[] {
-  return appRoutes.filter(({ permission }) => {
+type GetRoutesProps = {
+  routes: IRoute[];
+  permissions?: string[];
+  parentUrl?: string;
+};
+export function getRoutes(props: GetRoutesProps): IRoute[] {
+  const { routes, permissions, parentUrl = '' } = props;
+  const allowedRoutes = routes.filter((route) => {
+    const { permission } = route;
     if (!permissions) {
-      return !permission
+      return !permission;
     }
     return !!permission && permissions.includes(permission);
   });
-}
-
-export function getRoomRoutes(parentUrl: string = ''): IRoute[] {
-  return roomRoutes.map(roomRoute => {
+  return allowedRoutes.map(roomRoute => {
     const mappedLinks = roomRoute.links ? (
       roomRoute.links.map(roomLink => ({
         ...roomLink,
@@ -20,9 +23,8 @@ export function getRoomRoutes(parentUrl: string = ''): IRoute[] {
     ) : undefined;
     return {
       ...roomRoute,
-      links: mappedLinks
+      links: mappedLinks,
+      path: `${parentUrl}${roomRoute.path}`
     }
   });
 }
-
-export default getAppRoutes;
