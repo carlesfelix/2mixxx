@@ -1,47 +1,60 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { guestPermissions, permissions } from './constants/permissions';
 import { guestAppRoutes, registeredAppRoutes } from './constants/routes';
+import { useGuestAuth } from './contexts/guest-auth';
 import { getRoutes } from './helpers/app-routes';
+import IRoute from './models/IRoute.model';
 import './App.scss';
 
 function App() {
-  const { isAuthenticated, getIdTokenClaims, isLoading } = useAuth0();
-  const userType = 'guest';
-  const routes = userType === 'guest' ? guestAppRoutes : registeredAppRoutes;
-  const p = Object.values(userType === 'guest' ? guestPermissions : permissions);
-  const appRoutes = getRoutes({
-    routes,
-    permissions: isAuthenticated ? p : undefined
-  });
-  useEffect(() => {
-    if (isAuthenticated && !isLoading) {
-      getIdTokenClaims().then(token => {
-        console.log('entra', token);
-      })
+  const { state: guestAuthState } = useGuestAuth();
+  const { isAuthenticated, isLoading } = useAuth0();
+
+  function getAppRoutes(): IRoute[] {
+    if (!isLoading) {
+      if (isAuthenticated) {
+        return getRoutes({
+          routes: registeredAppRoutes,
+          permissions: Object.values(permissions)
+        });
+      }
     }
-  }, [isLoading, isAuthenticated, getIdTokenClaims]);
+    if (!guestAuthState.inProgress) {
+      if (guestAuthState.token) {
+        return getRoutes({
+          routes: guestAppRoutes,
+          permissions: Object.values(guestPermissions)
+        });
+      }
+    }
+    return getRoutes({
+      routes: guestAppRoutes
+    });
+  }
   function getRedirectPath(): string {
-    if (!isAuthenticated) {
-      return '/';
+    if (isAuthenticated) {
+      return '/dashboard';
     }
-    if (userType === 'guest') {
+    if (guestAuthState.token) {
       return '/app';
     }
-    return '/dashboard';
+    return '/';
   }
-  if (isLoading) {
+
+  if (isLoading || guestAuthState.inProgress) {
     return <p>Login...</p>
   }
+
   return (
     <div className="App">
       <Switch>
         {
-          appRoutes.map((appRoute, IRoute) => (
-            <Route path={appRoute.path} key={IRoute} exact={appRoute.exact}>
+          getAppRoutes().map((route, IRoute) => (
+            <Route path={route.path} key={IRoute} exact={route.exact}>
               <Suspense fallback={false}>
-                <appRoute.Component />
+                <route.Component />
               </Suspense>
             </Route>
           ))

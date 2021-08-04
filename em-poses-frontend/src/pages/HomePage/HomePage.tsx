@@ -1,15 +1,15 @@
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
 import ControlledInput from '../../components/forms/ControlledInput';
 import LoginButton from '../../components/LoginButton';
+import { registerGuestUserAction, useGuestAuth } from '../../contexts/guest-auth';
 import './HomePage.scss';
 
 export default function HomePage() {
-  const { push } = useHistory();
+  const { dispatch } = useGuestAuth();
   const { control, handleSubmit } = useForm({ mode: 'onChange' });
   function submitHandler(data: { roomCode: string }): void {
     const { roomCode } = data;
-    push(`/rooms/${roomCode}`);
+    registerGuestUserAction(dispatch, roomCode);
   }
   return (
     <div className="HomePage">

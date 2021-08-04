@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import { GuestAuthProvider } from './contexts/guest-auth';
 import environment from './environment';
 import reportWebVitals from './reportWebVitals';
 import './index.scss';
@@ -14,9 +15,11 @@ ReactDOM.render(
       clientId={environment.REACT_APP_AUTH0_CLIENT_ID}
       redirectUri={window.location.origin}
     >
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <GuestAuthProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </GuestAuthProvider>
     </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')
