@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSockets } from '../../contexts/sockets';
-import { ITrack } from '../../models/ITrack';
+import Song from '../../types/Song';
 import SongRequestQueue from './components/SongRequestQueue';
 import updateSongsFromSocket from './helpers/updateSongsFromSocket';
 
 export default function SongRequestsPage() {
   const { songRequestsSocket } = useSockets();
-  const [ songs, setSongs ] = useState<ITrack[]>([]);
+  const [ songs, setSongs ] = useState<Song[]>([]);
   const [ deleteInProgress, setDeleteInProgress ] = useState<boolean>(false);
   const [ fetchInProgress, setFetchInProgress ] = useState<boolean>(false);
   useEffect(() => {
@@ -21,19 +21,19 @@ export default function SongRequestsPage() {
     setFetchInProgress(true);
     songRequestsSocket.emit('getAllSongRequests', getAllSongRequestsACK);
   }
-  function getAllSongRequestsACK(songList: ITrack[]): void {
+  function getAllSongRequestsACK(songList: Song[]): void {
     setSongs(songList);
     setFetchInProgress(false);
   }
-  function deleteSongHandler(song: ITrack): void {
+  function deleteSongHandler(song: Song): void {
     deleteSongRequest(song);
   }
-  function deleteSongRequest(song: ITrack): void {
+  function deleteSongRequest(song: Song): void {
     setDeleteInProgress(true);
     const { id } = song;
     songRequestsSocket.emit('deleteSongRequest', { id }, () => {
       setDeleteInProgress(false);
-      setSongs((old: ITrack[]) => old.filter(({ id: songId }) => id !== songId));
+      setSongs((old: Song[]) => old.filter(({ id: songId }) => id !== songId));
     });
   }
 

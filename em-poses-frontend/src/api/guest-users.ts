@@ -1,6 +1,6 @@
-import { IGuestToken } from '../models/IGuestToken';
+import GuestToken from '../types/GuestToken';
 
-export async function registerGuestUser(room: string): Promise<IGuestToken> {
+export async function registerGuestUser(room: string): Promise<GuestToken> {
   return new Promise(resolve => {
     const ts = Date.now();
     setTimeout(() => {

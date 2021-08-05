@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import ILink from '../../models/ILink.model';
-import IRoute from '../../models/IRoute.model';
+import AppLink from '../../types/AppLink';
+import AppRoute from '../../types/AppRoute';
 import NavLinks from './components/NavLinks';
 import Toolbar from '../Toolbar';
 import './PageLayout.scss';
@@ -9,8 +9,8 @@ type Props = {
   children: ReactNode;
   toolbarTitle?: string;
   toolbarLinkBack?: string;
-  routes: IRoute[];
-  links?: ILink[];
+  routes: AppRoute[];
+  links?: AppLink[];
 };
 
 export default function PageLayout(props: Props) {

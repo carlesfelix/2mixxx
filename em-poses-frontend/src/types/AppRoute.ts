@@ -1,12 +1,14 @@
 import { LazyExoticComponent } from 'react';
-import ILink from './ILink.model';
+import AppLink from './AppLink';
 
-export default interface IRoute {
+type AppRoute = {
   path: string;
   toolbarTitle?: string;
   toolbarLinkBack?: string;
   Component: LazyExoticComponent<() => JSX.Element>;
   permission?: string;
-  links?: ILink[];
+  links?: AppLink[];
   exact?: boolean;
-}
+};
+
+export default AppRoute;

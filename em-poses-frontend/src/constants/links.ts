@@ -1,7 +1,7 @@
 import { faListAlt, faPaperPlane, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import ILink from '../models/ILink.model';
+import AppLink from '../types/AppLink';
 
-export const roomLinks: ILink[] = [
+export const roomLinks: AppLink[] = [
   {
     to: '/song-requests',
     icon: faListAlt,

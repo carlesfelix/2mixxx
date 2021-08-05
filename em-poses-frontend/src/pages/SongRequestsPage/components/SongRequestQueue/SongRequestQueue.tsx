@@ -1,16 +1,16 @@
 import { MouseEventHandler } from 'react';
 import SongItem from '../../../../components/SongItem';
-import { ITrack } from '../../../../models/ITrack';
+import Song from '../../../../types/Song';
 import './SongRequestQueue.scss';
 
 type Props = {
-  songs: ITrack[];
-  onDeleteSong: (song: ITrack) => void;
+  songs: Song[];
+  onDeleteSong: (song: Song) => void;
 };
 
 export default function SongRequestQueue(props: Props) {
   const { songs, onDeleteSong } = props;
-  function deleteSongHandler(song: ITrack): MouseEventHandler<HTMLButtonElement> {
+  function deleteSongHandler(song: Song): MouseEventHandler<HTMLButtonElement> {
     return () => {
       onDeleteSong(song);
     };

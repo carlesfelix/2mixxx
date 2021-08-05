@@ -1,10 +1,10 @@
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ITrack } from '../../models/ITrack';
+import Song from '../../types/Song';
 import './SongItem.scss';
 
 type Props = {
-  track: ITrack;
+  track: Song;
 };
 
 export default function SongItem(props: Props) {

@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import IRoute from '../models/IRoute.model';
+import AppRoute from '../types/AppRoute';
 import { roomLinks } from './links';
 import { guestPermissions, permissions } from './permissions';
 
@@ -11,7 +11,7 @@ const MakeASongRequestPage = lazy(() => import('../pages/MakeASongRequestPage'))
 const RecommendSongPage = lazy(() => import('../pages/RecommendSongPage'));
 const SongRequestsPage = lazy(() => import('../pages/SongRequestsPage'));
 
-export const registeredAppRoutes: IRoute[] = [
+export const registeredAppRoutes: AppRoute[] = [
   {
     path: '/dashboard',
     Component: DashboardPage,
@@ -34,7 +34,7 @@ export const registeredAppRoutes: IRoute[] = [
   }
 ];
 
-export const guestAppRoutes: IRoute[] = [
+export const guestAppRoutes: AppRoute[] = [
   {
     path: '/app',
     toolbarTitle: 'Room',
@@ -50,7 +50,7 @@ export const guestAppRoutes: IRoute[] = [
   }
 ];
 
-export const roomRoutes: IRoute[] = [
+export const roomRoutes: AppRoute[] = [
   {
     path: '/song-requests',
     toolbarTitle: 'Song requests',

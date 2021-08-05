@@ -1,13 +1,13 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Socket } from 'socket.io-client';
-import { ITrack } from '../../../models/ITrack';
+import Song from '../../../types/Song';
 
-export default function updateSongsFromSocket(socket: Socket, setSongs: Dispatch<SetStateAction<ITrack[]>>): () => void {
-  function addSongRequestHandler(song: ITrack): void {
+export default function updateSongsFromSocket(socket: Socket, setSongs: Dispatch<SetStateAction<Song[]>>): () => void {
+  function addSongRequestHandler(song: Song): void {
     setSongs(old => [ ...old, song ]);
   }
   function deleteSongRequestHandler({ id }: { id: number }): void {
-    setSongs((old: ITrack[]) => old.filter(({ id: songId }) => id !== songId));
+    setSongs((old: Song[]) => old.filter(({ id: songId }) => id !== songId));
   }
   socket.on('onAddSongRequest', addSongRequestHandler);
   socket.on('onDeleteSongRequest', deleteSongRequestHandler);

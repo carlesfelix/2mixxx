@@ -1,11 +1,11 @@
-import IRoute from '../models/IRoute.model';
+import AppRoute from '../types/AppRoute';
 
 type GetRoutesProps = {
-  routes: IRoute[];
+  routes: AppRoute[];
   permissions?: string[];
   parentUrl?: string;
 };
-export function getRoutes(props: GetRoutesProps): IRoute[] {
+export function getRoutes(props: GetRoutesProps): AppRoute[] {
   const { routes, permissions, parentUrl = '' } = props;
   const allowedRoutes = routes.filter((route) => {
     const { permission } = route;

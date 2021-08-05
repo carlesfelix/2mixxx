@@ -5,14 +5,14 @@ import { guestPermissions, permissions } from './constants/permissions';
 import { guestAppRoutes, registeredAppRoutes } from './constants/routes';
 import { useGuestAuth } from './contexts/guest-auth';
 import { getRoutes } from './helpers/app-routes';
-import IRoute from './models/IRoute.model';
+import AppRoute from './types/AppRoute';
 import './App.scss';
 
 function App() {
   const { state: guestAuthState } = useGuestAuth();
   const { isAuthenticated, isLoading } = useAuth0();
 
-  function getAppRoutes(): IRoute[] {
+  function getAppRoutes(): AppRoute[] {
     if (!isLoading) {
       if (isAuthenticated) {
         return getRoutes({
@@ -51,8 +51,8 @@ function App() {
     <div className="App">
       <Switch>
         {
-          getAppRoutes().map((route, IRoute) => (
-            <Route path={route.path} key={IRoute} exact={route.exact}>
+          getAppRoutes().map((route, AppRoute) => (
+            <Route path={route.path} key={AppRoute} exact={route.exact}>
               <Suspense fallback={false}>
                 <route.Component />
               </Suspense>
