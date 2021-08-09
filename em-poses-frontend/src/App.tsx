@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { guestPermissions, permissions } from './constants/permissions';
 import { guestAppRoutes, registeredAppRoutes } from './constants/routes';
@@ -7,40 +7,40 @@ import { useGuestAuth } from './contexts/guest-auth';
 import { getRoutes } from './helpers/app-routes';
 import AppRoute from './types/AppRoute';
 import './App.scss';
+import { getGuestToken } from './services/guest-auth';
+import GuestToken from './types/GuestToken';
 
 function App() {
   const { state: guestAuthState } = useGuestAuth();
   const { isAuthenticated, isLoading } = useAuth0();
+  const [ guestToken, setGuestToken ] = useState<GuestToken | null>(null);
+  const registeredLogged = !isLoading && isAuthenticated;
+  const guestLogged = !guestAuthState.inProgress && guestAuthState.isAuthenticated;
+  useEffect(() => {
+    if (registeredLogged) {
+      console.log('Registered authenticated');
+    } else if (guestLogged) {
+      console.log('Guest authenticated', getGuestToken());
+    }
+  }, [ registeredLogged, guestLogged ]);
 
-  function getAppRoutes(): AppRoute[] {
-    if (!isLoading) {
-      if (isAuthenticated) {
-        return getRoutes({
-          routes: registeredAppRoutes,
-          permissions: Object.values(permissions)
-        });
-      }
-    }
-    if (!guestAuthState.inProgress) {
-      if (guestAuthState.token) {
-        return getRoutes({
-          routes: guestAppRoutes,
-          permissions: Object.values(guestPermissions)
-        });
-      }
-    }
-    return getRoutes({
-      routes: guestAppRoutes
+  let appRoutes: AppRoute[];
+  let redirectPath: string;
+  if (registeredLogged) {
+    appRoutes = getRoutes({
+      routes: registeredAppRoutes,
+      permissions: Object.values(permissions)
     });
-  }
-  function getRedirectPath(): string {
-    if (isAuthenticated) {
-      return '/dashboard';
-    }
-    if (guestAuthState.token) {
-      return '/app';
-    }
-    return '/';
+    redirectPath = '/dashboard';
+  } else if (guestLogged) {
+    appRoutes = getRoutes({
+      routes: guestAppRoutes,
+      permissions: Object.values(guestPermissions)
+    });
+    redirectPath = '/app';
+  } else {
+    appRoutes = getRoutes({ routes: guestAppRoutes });
+    redirectPath = '/';
   }
 
   if (isLoading || guestAuthState.inProgress) {
@@ -51,7 +51,7 @@ function App() {
     <div className="App">
       <Switch>
         {
-          getAppRoutes().map((route, AppRoute) => (
+          appRoutes.map((route, AppRoute) => (
             <Route path={route.path} key={AppRoute} exact={route.exact}>
               <Suspense fallback={false}>
                 <route.Component />
@@ -59,7 +59,7 @@ function App() {
             </Route>
           ))
         }
-        <Route render={() => <Redirect to={getRedirectPath()} />} />
+        <Route render={() => <Redirect to={redirectPath} />} />
       </Switch>
     </div>
   );

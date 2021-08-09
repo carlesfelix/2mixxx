@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
 import ControlledInput from '../../components/forms/ControlledInput';
 import LoginButton from '../../components/LoginButton';
-import { registerGuestUserAction, useGuestAuth } from '../../contexts/guest-auth';
+import { useGuestAuth } from '../../contexts/guest-auth';
+import { registerGuestUserAction } from '../../contexts/guest-auth';
 import './HomePage.scss';
 
 export default function HomePage() {

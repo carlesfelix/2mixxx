@@ -5,19 +5,19 @@ function guestAuthReducer(state: State, action: Action): State {
     case 'registerInProgress':
       return {
         error: null,
-        token: undefined,
+        isAuthenticated: false,
         inProgress: true
       };
     case 'registerSuccess':
       return {
         error: null,
-        token: action.payload.token,
+        isAuthenticated: action.payload.isAuthenticated,
         inProgress: false
       };
     case 'registerError':
       return {
         error: action.payload.error,
-        token: undefined,
+        isAuthenticated: false,
         inProgress: false
       };
     default:
