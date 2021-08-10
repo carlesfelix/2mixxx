@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import AppRoute from '../types/AppRoute';
 import { roomLinks } from './links';
-import { guestPermissions, permissions } from './permissions';
+import { guestPermissions, registeredPermissions } from './permissions';
 
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 const HomePage = lazy(() => import('../pages/HomePage'));
@@ -16,7 +16,7 @@ export const registeredAppRoutes: AppRoute[] = [
     path: '/dashboard',
     Component: DashboardPage,
     toolbarLinkBack: '/',
-    permission: permissions.PAGE_DASHBOARD,
+    permission: registeredPermissions.PAGE_DASHBOARD,
     exact: true
   },
   {
@@ -24,7 +24,7 @@ export const registeredAppRoutes: AppRoute[] = [
     toolbarTitle: 'Room',
     Component: RoomByIdPage,
     toolbarLinkBack: '/',
-    permission: permissions.PAGE_ROOM_BY_ID
+    permission: registeredPermissions.PAGE_ROOM_BY_ID
   },
   {
     path: '/',

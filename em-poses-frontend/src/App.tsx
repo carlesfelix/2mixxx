@@ -1,49 +1,49 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { guestPermissions, permissions } from './constants/permissions';
 import { guestAppRoutes, registeredAppRoutes } from './constants/routes';
 import { useGuestAuth } from './contexts/guest-auth';
+import { getGuestMeAction, getRegisteredMeAction, useMe } from './contexts/me';
 import { getRoutes } from './helpers/app-routes';
 import AppRoute from './types/AppRoute';
 import './App.scss';
-import { getGuestToken } from './services/guest-auth';
-import GuestToken from './types/GuestToken';
 
 function App() {
   const { state: guestAuthState } = useGuestAuth();
   const { isAuthenticated, isLoading } = useAuth0();
-  const [ guestToken, setGuestToken ] = useState<GuestToken | null>(null);
+  const { state: meState, dispatch: meDispatch } = useMe();
+
   const registeredLogged = !isLoading && isAuthenticated;
   const guestLogged = !guestAuthState.inProgress && guestAuthState.isAuthenticated;
+
   useEffect(() => {
     if (registeredLogged) {
-      console.log('Registered authenticated');
+      getRegisteredMeAction(meDispatch);
     } else if (guestLogged) {
-      console.log('Guest authenticated', getGuestToken());
+      getGuestMeAction(meDispatch);
     }
-  }, [ registeredLogged, guestLogged ]);
+  }, [ registeredLogged, guestLogged, meDispatch ]);
 
-  let appRoutes: AppRoute[];
-  let redirectPath: string;
-  if (registeredLogged) {
-    appRoutes = getRoutes({
-      routes: registeredAppRoutes,
-      permissions: Object.values(permissions)
-    });
-    redirectPath = '/dashboard';
-  } else if (guestLogged) {
-    appRoutes = getRoutes({
-      routes: guestAppRoutes,
-      permissions: Object.values(guestPermissions)
-    });
-    redirectPath = '/app';
-  } else {
+  let appRoutes: AppRoute[] = [];
+  let redirectPath: string = '';
+  if (!meState.user) {
     appRoutes = getRoutes({ routes: guestAppRoutes });
     redirectPath = '/';
+  } else if (meState.user.type === 'registered') {
+    appRoutes = getRoutes({
+      routes: registeredAppRoutes,
+      permissions: meState.user.permissions
+    });
+    redirectPath = '/dashboard';
+  } else if (meState.user.type === 'guest') {
+    appRoutes = getRoutes({
+      routes: guestAppRoutes,
+      permissions: meState.user.permissions
+    });
+    redirectPath = '/app';
   }
 
-  if (isLoading || guestAuthState.inProgress) {
+  if (isLoading || guestAuthState.inProgress || meState.inProgress) {
     return <p>Login...</p>
   }
 
