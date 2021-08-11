@@ -4,7 +4,6 @@ import Routes from './components/Routes';
 import { guestAppRoutes, registeredAppRoutes } from './constants/routes';
 import { useGuestAuth } from './contexts/guest-auth';
 import { getGuestMeAction, getRegisteredMeAction, useMe } from './contexts/me';
-import { getRoutes } from './helpers/app-routes';
 import AppRoute from './types/AppRoute';
 import './App.scss';
 
@@ -24,23 +23,15 @@ function App() {
     }
   }, [ registeredLogged, guestLogged, meDispatch ]);
 
-  let appRoutes: AppRoute[] = [];
-  let redirectPath: string = '';
-  if (!meState.user) {
-    appRoutes = getRoutes({ routes: guestAppRoutes });
-    redirectPath = '/';
-  } else if (meState.user.type === 'registered') {
-    appRoutes = getRoutes({
-      routes: registeredAppRoutes,
-      permissions: meState.user.permissions
-    });
-    redirectPath = '/dashboard';
-  } else if (meState.user.type === 'guest') {
-    appRoutes = getRoutes({
-      routes: guestAppRoutes,
-      permissions: meState.user.permissions
-    });
-    redirectPath = '/app';
+  let appRoutes: AppRoute[] = guestAppRoutes;
+  let redirectPath: string = '/';
+  if (meState.user) {
+    if (meState.user.type === 'registered') {
+      appRoutes = registeredAppRoutes;
+      redirectPath = '/dashboard';
+    } else {
+      redirectPath = '/app';
+    }
   }
 
   if (
@@ -52,7 +43,10 @@ function App() {
 
   return (
     <div className="App">
-      <Routes routes={appRoutes} fallbackPath={redirectPath} />
+      <Routes
+        routes={appRoutes} fallbackPath={redirectPath}
+        permissions={meState.user?.permissions}
+      />
     </div>
   );
 }

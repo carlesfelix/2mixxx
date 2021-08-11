@@ -3,7 +3,6 @@ import { io } from 'socket.io-client';
 import { roomRoutes } from '../../constants/routes';
 import { SocketsProvider } from '../../contexts/sockets';
 import environment from '../../environment';
-import { getRoutes } from '../../helpers/app-routes';
 import Routes from '../Routes';
 
 const songRequestsSocket = io(`${environment.REACT_APP_SOCKET_BASE_URI}/song-requests`, {
@@ -23,10 +22,6 @@ type Props = {
 }
 export default function RoomView(props: Props) {
   const { parentUrl } = props;
-  const routes = getRoutes({
-    parentUrl,
-    routes: roomRoutes
-  });
   useEffect(() => {
     songRequestsSocket.connect();
     return () => {
@@ -36,7 +31,10 @@ export default function RoomView(props: Props) {
   return (
     <div className="RoomView">
       <SocketsProvider songRequestsSocket={songRequestsSocket}>
-        <Routes routes={routes} fallbackPath={`${parentUrl}/song-requests`} />
+        <Routes
+          routes={roomRoutes} fallbackPath={`${parentUrl}/song-requests`}
+          parentUrl={parentUrl}
+        />
       </SocketsProvider>
     </div>
   );

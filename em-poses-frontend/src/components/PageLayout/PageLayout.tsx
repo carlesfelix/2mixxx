@@ -9,10 +9,11 @@ type Props = {
   toolbarTitle?: string;
   toolbarLinkBack?: string;
   links?: AppLink[];
+  parentUrl?: string;
 };
 
 export default function PageLayout(props: Props) {
-  const { children, toolbarTitle, toolbarLinkBack, links } = props;
+  const { children, toolbarTitle, toolbarLinkBack, links, parentUrl = '' } = props;
   return (
     <div className="PageLayout">
       <div className="toolbar-container">
@@ -22,7 +23,7 @@ export default function PageLayout(props: Props) {
         !!links && (
           <div className="nav-container">
             <div className="limit-container">
-              <NavLinks links={links}></NavLinks>
+              <NavLinks links={links} parentUrl={parentUrl}></NavLinks>
             </div>
           </div>
         )
