@@ -9,6 +9,7 @@ type AppRoute = {
   permission?: string;
   links?: AppLink[];
   exact?: boolean;
+  layout?: boolean;
 };
 
 export default AppRoute;

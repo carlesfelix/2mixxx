@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { Suspense, useEffect } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { useEffect } from 'react';
+import Routes from './components/Routes';
 import { guestAppRoutes, registeredAppRoutes } from './constants/routes';
 import { useGuestAuth } from './contexts/guest-auth';
 import { getGuestMeAction, getRegisteredMeAction, useMe } from './contexts/me';
@@ -43,24 +43,16 @@ function App() {
     redirectPath = '/app';
   }
 
-  if (isLoading || guestAuthState.inProgress || meState.inProgress) {
+  if (
+    (isLoading || guestAuthState.inProgress || meState.inProgress) || 
+    (!meState.user && (registeredLogged || guestLogged))
+  ) {
     return <p>Login...</p>
   }
 
   return (
     <div className="App">
-      <Switch>
-        {
-          appRoutes.map((route, AppRoute) => (
-            <Route path={route.path} key={AppRoute} exact={route.exact}>
-              <Suspense fallback={false}>
-                <route.Component />
-              </Suspense>
-            </Route>
-          ))
-        }
-        <Route render={() => <Redirect to={redirectPath} />} />
-      </Switch>
+      <Routes routes={appRoutes} fallbackPath={redirectPath} />
     </div>
   );
 }

@@ -1,0 +1,17 @@
+@use '../../../../styles/utils/mixings';
+
+a.DashboardLink {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  @include mixings.min-md {
+    padding: 1.75rem 1rem;
+  }
+  span.dashboard-link__label {
+    flex-grow: 1;
+  }
+  span.dashboard-link__icon {
+    width: auto;
+  }
+}

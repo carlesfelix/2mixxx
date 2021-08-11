@@ -1,15 +1,13 @@
 import { ReactNode } from 'react';
 import AppLink from '../../types/AppLink';
-import AppRoute from '../../types/AppRoute';
-import NavLinks from './components/NavLinks';
 import Toolbar from '../Toolbar';
+import NavLinks from './components/NavLinks';
 import './PageLayout.scss';
 
 type Props = {
   children: ReactNode;
   toolbarTitle?: string;
   toolbarLinkBack?: string;
-  routes: AppRoute[];
   links?: AppLink[];
 };
 

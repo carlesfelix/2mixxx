@@ -4,6 +4,9 @@ import { roomLinks } from './links';
 import { guestPermissions, registeredPermissions } from './permissions';
 
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
+const RoomsDashboardPage = lazy(() => import('../pages/RoomsDashboardPage'));
+const LibrariesDashboardPage = lazy(() => import('../pages/LibrariesDashboardPage'));
+const UsersDashboardPage = lazy(() => import('../pages/UsersDashboardPage'));
 const HomePage = lazy(() => import('../pages/HomePage'));
 const RoomPage = lazy(() => import('../pages/RoomPage'));
 const RoomByIdPage = lazy(() => import('../pages/RoomByIdPage'));
@@ -20,11 +23,33 @@ export const registeredAppRoutes: AppRoute[] = [
     exact: true
   },
   {
+    path: '/dashboard/rooms',
+    Component: RoomsDashboardPage,
+    toolbarLinkBack: '/dashboard',
+    permission: registeredPermissions.PAGE_DASHBOARD,
+    exact: true
+  },
+  {
+    path: '/dashboard/libraries',
+    Component: LibrariesDashboardPage,
+    toolbarLinkBack: '/dashboard',
+    permission: registeredPermissions.PAGE_DASHBOARD,
+    exact: true
+  },
+  {
+    path: '/dashboard/users',
+    Component: UsersDashboardPage,
+    toolbarLinkBack: '/dashboard',
+    permission: registeredPermissions.PAGE_DASHBOARD,
+    exact: true
+  },
+  {
     path: '/rooms/:id',
     toolbarTitle: 'Room',
     Component: RoomByIdPage,
     toolbarLinkBack: '/',
-    permission: registeredPermissions.PAGE_ROOM_BY_ID
+    permission: registeredPermissions.PAGE_ROOM_BY_ID,
+    layout: false
   },
   {
     path: '/',
@@ -40,7 +65,8 @@ export const guestAppRoutes: AppRoute[] = [
     toolbarTitle: 'Room',
     Component: RoomPage,
     toolbarLinkBack: '/',
-    permission: guestPermissions.PAGE_ROOM
+    permission: guestPermissions.PAGE_ROOM,
+    layout: false
   },
   {
     path: '/',
