@@ -1,5 +1,5 @@
 import { parse, PlistValue } from 'plist';
-import { ITrackEntity } from '../entities/ITrackEntity';
+import { ISongEntity } from '../entities/ISongEntity';
 
 export function pListFileToJson(fileBuffer: Buffer, encoding: BufferEncoding): Promise<PlistValue> {
   try {
@@ -13,54 +13,34 @@ export function pListToJson(xml: string): PlistValue {
   return parse(xml);
 }
 
-export async function getTracksFromItunesXml(fileBuffer: Buffer, encoding: BufferEncoding): Promise<ITrackEntity[]> {
-  const parsedTracks: ITrackEntity[] = [];
+export async function getTracksFromItunesXml(fileBuffer: Buffer, encoding: BufferEncoding): Promise<ISongEntity[]> {
   const pListValue = await pListFileToJson(fileBuffer, encoding);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const fieldKeys: any = {
-    'Track ID': 'track_id',
-    'Size': 'size',
-    'Total Time': 'total_time',
-    'Year': 'year',
-    'Date Modified': 'date_modified',
-    'Date Added': 'date_added',
-    'Bit Rate': 'bit_rate',
-    'Sample Rate': 'sample_rate',
-    'Persistent ID': 'persistent_id',
-    'Track Type': 'track_type',
-    'Name': 'name',
-    'Artist': 'artist',
-    'Genre': 'genre',
-    'Kind': 'kind',
-    'Comments': 'comments',
-    'Work': 'work'
-  };
 
-  if (typeof pListValue === 'object' && 'Tracks' in pListValue) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const tracks: any = pListValue.Tracks;
+  const library = pListValue.valueOf();
+  
+  if (typeof library === 'object' && 'Tracks' in library) {
+    const { Tracks: tracks } = library;
     if (typeof tracks === 'object') {
-      for (const trackKey in tracks) {
-        const trackItem: Record<string, unknown> = tracks[trackKey];
+      const trackIds = Object.keys(tracks);
+      return trackIds.map(trackId => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const parsedTrack: any = {};
-        if (typeof trackItem === 'object') {
-          for (const fieldKey in fieldKeys) {
-            const fieldKeyValue = fieldKeys[fieldKey];
-            if (fieldKey in trackItem) {
-              parsedTrack[fieldKeyValue] = trackItem[fieldKey];
-            }
-          }
-          parsedTracks.push(parsedTrack);
-        } else {
-          Promise.reject();
+        const track = tracks[trackId] as any;
+        if (
+          typeof track === 'object' &&
+          typeof track.Name === 'string' &&
+          (
+            typeof track.Artist === 'string' ||
+            typeof track.Artist === 'undefined'
+          )
+        ) {
+          return {
+            title: track.Name,
+            artist: track.Artist
+          };
         }
-      }
-    } else {
-      Promise.reject();
+        throw new Error();
+      });
     }
-  } else {
-    Promise.reject();
   }
-  return parsedTracks;
+  throw new Error();
 }

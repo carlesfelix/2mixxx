@@ -1,7 +1,7 @@
-import Library from '../../data-sources/sequelize-mysql/repositories/Library';
+import Song from '../../data-sources/sequelize-mysql/repositories/Song';
 
 const dataSourcesConfig = {
-  library: new Library()
+  song: new Song()
 };
 
 export default dataSourcesConfig;

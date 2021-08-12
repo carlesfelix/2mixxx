@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import { query } from 'express-validator';
-import { importLibraryCtrl, searchCtrl } from '../controllers/library.controller';
+import { importSongsFromItunesCtrl, searchSongsCtrl } from '../controllers/library-songs';
 import { catchRequestHandlerErrorMid } from '../middlewares/errors.mid';
 import { getUploadFileMemoryMid } from '../middlewares/upload-file.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
 
-const libraryRoute = Router();
+const librarySongs = Router({ mergeParams: true });
 
-libraryRoute.post(
+librarySongs.post(
   '/import',
   catchRequestHandlerErrorMid(
     getUploadFileMemoryMid({
@@ -20,14 +20,14 @@ libraryRoute.post(
       acceptedMimeTypes: ['application/xml']
     }).single('itunes')
   ),
-  importLibraryCtrl
+  importSongsFromItunesCtrl
 );
 
-libraryRoute.get(
-  '/search',
-  [query('query').optional().isString().isLength({ min: 3 })],
+librarySongs.get(
+  '/',
+  [ query('query').optional().isString().isLength({ min: 3 }) ],
   validationErrorMid,
-  searchCtrl
+  searchSongsCtrl
 );
 
-export default libraryRoute;
+export default librarySongs;
