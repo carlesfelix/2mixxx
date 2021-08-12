@@ -13,7 +13,13 @@ export function pListToJson(xml: string): PlistValue {
   return parse(xml);
 }
 
-export async function getTracksFromItunesXml(fileBuffer: Buffer, encoding: BufferEncoding): Promise<ISongEntity[]> {
+type GetTracksFromItunesXmlProps = {
+  fileBuffer: Buffer;
+  encoding: BufferEncoding;
+  libraryId: string;
+};
+export async function getTracksFromItunesXml(props: GetTracksFromItunesXmlProps): Promise<ISongEntity[]> {
+  const { fileBuffer, encoding, libraryId } = props;
   const pListValue = await pListFileToJson(fileBuffer, encoding);
 
   const library = pListValue.valueOf();
@@ -35,7 +41,8 @@ export async function getTracksFromItunesXml(fileBuffer: Buffer, encoding: Buffe
         ) {
           return {
             title: track.Name,
-            artist: track.Artist
+            artist: track.Artist,
+            libraryId
           };
         }
         throw new Error();

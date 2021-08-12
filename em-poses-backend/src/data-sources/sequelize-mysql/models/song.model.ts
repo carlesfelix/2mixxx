@@ -30,12 +30,18 @@ const modelDefinition: IModelDefinitionFn<ISongEntity> = sequelize => {
       allowNull: true,
       type: DataTypes.STRING,
       field: 'artist'
+    },
+    libraryId: {
+      allowNull: false,
+      type: DataTypes.UUID,
+      field: 'libraryId'
     }
   }, { tableName: 'Songs' });
   return {
     model: SongModel,
-    associate: s => {
-      console.log('Track associate', s.User.model.getTableName())
+    associate: models => {
+      models.Library.model.hasMany(SongModel, { foreignKey: 'libraryId' });
+      SongModel.belongsTo(models.Library.model, { foreignKey: 'libraryId' });
     },
   };
 };

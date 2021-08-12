@@ -7,9 +7,11 @@ type Props = {
   mimetype: BufferEncoding;
   libraryId: string;
 };
-const interactorFn = (libraryRepo: ISongRepository) => async (props: Props): Promise<void> => {
+const interactorFn = (songRepo: ISongRepository) => async (props: Props): Promise<void> => {
   const { fileBuffer, mimetype, libraryId } = props;
-  const itunesTracks = await getTracksFromItunesXml(fileBuffer, mimetype);
-  return libraryRepo.importSongsToLibrary(libraryId, itunesTracks);
+  const itunesTracks = await getTracksFromItunesXml({
+    fileBuffer, encoding: mimetype, libraryId
+  });
+  await songRepo.importSongsToLibrary(itunesTracks);
 };
 export default interactorFn(dataSourcesConfig.song);

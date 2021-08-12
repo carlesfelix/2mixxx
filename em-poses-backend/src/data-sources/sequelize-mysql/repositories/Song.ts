@@ -5,18 +5,18 @@ import { instancesToJson } from '../helpers';
 import models from '../models';
 
 export default class Song implements ISongRepository {
-  removeSongsFromLibrary(libraryId: string): Promise<void> {
-    throw new Error('Method not implemented.');
-  }
-  async importSongsToLibrary(libraryId: string, tracks: ISongEntity[]): Promise<void> {
+  async removeSongsFromLibrary(libraryId: string): Promise<void> {
     await models.Song.model.destroy({
-      truncate: true
+      where: { libraryId }
     });
+  }
+  async importSongsToLibrary(tracks: ISongEntity[]): Promise<void> {
     await models.Song.model.bulkCreate(tracks);
   }
-  async searchSongsFromLibrary(library: string, query: string): Promise<ISongEntity[]> {
+  async searchSongsFromLibrary(libraryId: string, query: string): Promise<ISongEntity[]> {
     const tracks = await models.Song.model.findAll({
       where: {
+        libraryId,
         [Op.or]: {
           title: {
             [Op.substring]: query

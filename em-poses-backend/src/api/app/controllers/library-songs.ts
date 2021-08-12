@@ -4,8 +4,13 @@ import importFromItunes from '../../../core/interactors/songs/importFromItunes';
 import searchSongsFromLibrary from '../../../core/interactors/songs/searchSongsFromLibrary';
 import responseErrors from '../constants/response-messages';
 
-export function importSongsFromItunesCtrl(req: Request, res: Response, next: NextFunction): void {
-  const { file } = req;
+export function importSongsFromItunesCtrl(
+  req: Request<{ libraryId: string }>,
+  res: Response<void>,
+  next: NextFunction
+): void {
+  const { file, params } = req;
+  const { libraryId } = params;
 	if (!file) {
     next({
       responseError: responseErrors.ERR_BAD_REQUEST,
@@ -14,7 +19,7 @@ export function importSongsFromItunesCtrl(req: Request, res: Response, next: Nex
 		return;
 	}
   const { buffer: fileBuffer } = file;
-	importFromItunes({ fileBuffer, mimetype: 'utf8', libraryId: '' }).then((result) => {
+	importFromItunes({ fileBuffer, mimetype: 'utf8', libraryId }).then((result) => {
     res.status(200).json(result);
   }).catch((err) => {
     next({ responseError: responseErrors.ERR_GENERIC, details: err });

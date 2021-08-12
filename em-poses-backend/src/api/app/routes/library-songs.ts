@@ -5,9 +5,9 @@ import { catchRequestHandlerErrorMid } from '../middlewares/errors.mid';
 import { getUploadFileMemoryMid } from '../middlewares/upload-file.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
 
-const librarySongs = Router({ mergeParams: true });
+const librarySongsRouter = Router({ mergeParams: true });
 
-librarySongs.post(
+librarySongsRouter.post(
   '/import',
   catchRequestHandlerErrorMid(
     getUploadFileMemoryMid({
@@ -23,11 +23,11 @@ librarySongs.post(
   importSongsFromItunesCtrl
 );
 
-librarySongs.get(
+librarySongsRouter.get(
   '/',
   [ query('query').optional().isString().isLength({ min: 3 }) ],
   validationErrorMid,
   searchSongsCtrl
 );
 
-export default librarySongs;
+export default librarySongsRouter;
