@@ -1,7 +1,7 @@
-import { registerGuestUser } from '../../api/guest-users';
-import { GUEST_TOKEN_KEY } from '../../constants/local-storage-keys';
-import { decodeToken } from '../../helpers/jwt';
-import GuestToken, { GuestTokenPayload } from '../../types/GuestToken';
+import { registerGuestUser } from '../api/guest-users';
+import { GUEST_TOKEN_KEY } from '../constants/local-storage-keys';
+import { decodeToken } from '../helpers/jwt';
+import GuestToken, { GuestTokenPayload } from '../types/GuestToken';
 
 let guestToken: GuestToken | null;
 let expiresAtLocal = 0;

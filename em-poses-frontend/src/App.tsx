@@ -4,24 +4,34 @@ import Routes from './components/Routes';
 import { guestAppRoutes, registeredAppRoutes } from './constants/routes';
 import { useGuestAuth } from './contexts/guest-auth';
 import { getGuestMeAction, getRegisteredMeAction, useMe } from './contexts/me';
+import { getGuestToken } from './services/guest-auth';
+import { setGuestTokenFn, setRegisteredTokenFn } from './services/http-auth';
 import AppRoute from './types/AppRoute';
 import './App.scss';
 
 function App() {
   const { state: guestAuthState } = useGuestAuth();
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading, getIdTokenClaims } = useAuth0();
   const { state: meState, dispatch: meDispatch } = useMe();
 
   const registeredLogged = !isLoading && isAuthenticated;
   const guestLogged = !guestAuthState.inProgress && guestAuthState.isAuthenticated;
 
   useEffect(() => {
+    let removeToken: () => void;
     if (registeredLogged) {
       getRegisteredMeAction(meDispatch);
+      removeToken = setRegisteredTokenFn(getIdTokenClaims);
     } else if (guestLogged) {
       getGuestMeAction(meDispatch);
+      removeToken = setGuestTokenFn(getGuestToken);
     }
-  }, [ registeredLogged, guestLogged, meDispatch ]);
+    return () => {
+      if (removeToken) {
+        removeToken();
+      }
+    }
+  }, [ registeredLogged, guestLogged, meDispatch, getIdTokenClaims ]);
 
   let appRoutes: AppRoute[] = guestAppRoutes;
   let redirectPath: string = '/';

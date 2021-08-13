@@ -7,7 +7,10 @@ import { GuestAuthProvider } from './contexts/guest-auth';
 import { MeProvider } from './contexts/me';
 import environment from './environment';
 import reportWebVitals from './reportWebVitals';
+import http from './services/http';
 import './index.scss';
+
+http.setBaseUrl(environment.REACT_APP_API_BASE_URL);
 
 ReactDOM.render(
   <React.StrictMode>
