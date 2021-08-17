@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode, useState } from 'react';
+import { MouseEventHandler, ReactNode, useEffect, useState } from 'react';
 import OptionItem from '../../types/OptionItem';
 import Popover from '../Popover';
 import './OverlayMenu.scss';
@@ -18,6 +18,11 @@ export default function OverlayMenu(props: Props) {
     buttonClassName = 'btn default-btn-menu', minWidth
   } = props;
   const [ open, setOpen ] = useState<boolean>(false);
+  useEffect(() => {
+    return () => {
+      setOpen(false);
+    };
+  }, [])
   function clickHandler(): void {
     setOpen(old => !old);
   }
