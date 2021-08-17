@@ -1,0 +1,40 @@
+@use '../../styles/utils/variables';
+
+div.OverlayMenu {
+  button.default-btn-menu {
+    padding: 0.25rem;
+  }
+}
+
+div.OverlayMenu__content {
+  div.overlay-menu-content {
+    padding: 0.25rem 0;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      li {
+        button {
+          border-radius: 0;
+          padding-left: 0.75rem;
+          padding-right: 0.75rem;
+          width: 100%;
+          &:hover {
+            background-color: transparentize($color: variables.$c-secondary--300, $amount: 0.7);
+          }
+        }
+        &:first-child {
+          button {
+            padding-top: 0.75rem;
+          }
+        }
+        &:last-child {
+          button {
+            padding-bottom: 0.75rem;
+          }
+        }
+      }
+    }
+  }
+}

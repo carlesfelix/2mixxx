@@ -1,0 +1,21 @@
+@use '../../../../styles/utils/variables';
+
+div.LibraryItem {
+  padding: 3rem;
+  padding: 3rem 1rem;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  span.library-title {
+    white-space: nowrap;
+  }
+  span.library-menu {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    span.library-menu-btn {
+      color: variables.$c-secondary--900;
+    }
+  }
+}

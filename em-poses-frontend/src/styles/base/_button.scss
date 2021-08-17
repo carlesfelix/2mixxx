@@ -2,9 +2,10 @@
 
 .btn {
   border: none;
-  padding: 0.5rem;
   border-radius: 3px;
   cursor: pointer;
+  background: none;
+  padding: 0.5rem;
   &.btn-primary {
     background-color: variables.$c-primary--500;
     color: variables.$c-primary--50;

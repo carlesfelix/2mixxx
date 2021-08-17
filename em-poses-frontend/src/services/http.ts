@@ -4,15 +4,15 @@ function get<T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse
   return axios.get<T>(url, config);
 }
 
-function post<T, K = any>(url: string, data: K, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+function post<T>(url: string, data: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
   return axios.post<T>(url, data, config);
 }
 
-function put<T, K = any>(url: string, data: K, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+function put<T>(url: string, data: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
   return axios.put<T>(url, data, config);
 }
 
-function patch<T, K = any>(url: string, data: K, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+function patch<T>(url: string, data: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
   return axios.patch<T>(url, data, config);
 }
 

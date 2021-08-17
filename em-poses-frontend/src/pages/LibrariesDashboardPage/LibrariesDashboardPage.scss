@@ -1,0 +1,8 @@
+@use '../../styles/utils/variables';
+
+div.LibrariesDashboardPage {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(variables.$min-xs, 1fr));
+  gap: 1rem;
+  justify-content: center;
+}
