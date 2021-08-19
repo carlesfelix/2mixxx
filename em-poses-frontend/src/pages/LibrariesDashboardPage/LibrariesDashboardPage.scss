@@ -1,8 +1,17 @@
 @use '../../styles/utils/variables';
 
 div.LibrariesDashboardPage {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(variables.$min-xs, 1fr));
-  gap: 1rem;
-  justify-content: center;
+  div.libraries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(variables.$min-xs, 1fr));
+    gap: 1rem;
+    justify-content: center;
+  }
+  div.libraries-actions {
+    text-align: center;
+    margin: 2rem 0;
+    button {
+      min-width: 14rem;
+    }
+  }
 }

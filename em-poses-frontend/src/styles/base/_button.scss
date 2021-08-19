@@ -6,6 +6,12 @@
   cursor: pointer;
   background: none;
   padding: 0.5rem;
+  > * {
+    margin-left: 0.3rem;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
   &.btn-primary {
     background-color: variables.$c-primary--500;
     color: variables.$c-primary--50;
