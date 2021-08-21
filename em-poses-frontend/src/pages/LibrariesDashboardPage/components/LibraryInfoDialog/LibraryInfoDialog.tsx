@@ -18,7 +18,7 @@ export default function LibraryInfoDialog(props: Props) {
   const { control, handleSubmit, reset } = useForm();
   const [ submitProgress, setSubmitProgress ] = useState<boolean>(false);
   useEffect(() => {
-    reset(value);
+    reset(value || {});
   }, [ isOpen, value, reset ]);
   function submitHandler(library: Library): void {
     if (value){
@@ -41,9 +41,9 @@ export default function LibraryInfoDialog(props: Props) {
   }
   const actions: ButtonHTMLAttributes<HTMLButtonElement>[] = [];
   if (value) {
-    actions.push({ children: 'Create' });
-  } else {
     actions.push({ children: 'Save changes' });
+  } else {
+    actions.push({ children: 'Create' });
   }
   return (
     <Dialog
@@ -75,5 +75,5 @@ export default function LibraryInfoDialog(props: Props) {
         />
       </form>
     </Dialog>
-  )
+  );
 }

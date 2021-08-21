@@ -18,4 +18,10 @@
     box-shadow: 1px 1px 0.5rem 0 transparentize($color: variables.$c-primary--500, $amount: 0.75);
     font-weight: bold;
   }
+  &.btn-danger {
+    background-color: variables.$c-danger--500;
+    color: variables.$c-primary--50;
+    box-shadow: 1px 1px 0.5rem 0 transparentize($color: variables.$c-danger--500, $amount: 0.75);
+    font-weight: bold;
+  }
 }

@@ -1,8 +1,9 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import { getAllLibraries } from '../../api/libraries';
+import { deleteLibraryById, getAllLibraries } from '../../api/libraries';
 import AsyncLayout from '../../components/AsyncLayout';
+import ConfirmDialog from '../../components/ConfirmDialog';
 import AsyncState from '../../types/AsyncState';
 import Library from '../../types/Library';
 import LibraryInfoDialog from './components/LibraryInfoDialog';
@@ -16,6 +17,9 @@ export default function LibrariesDashboardPage() {
   const [ libraryInfoDialog, setLibraryInfoDialog ] = useState<{
     isOpen: boolean, value?: Library
   }>({ isOpen: false });
+  const [ confirmDeleteDialog, setConfirmDeleteDialog ] = useState<{
+    data?: Library, isOpen: boolean, inProgress: boolean
+  }>({ isOpen: false, inProgress: false });
   useEffect(() => {
     getAllLibraries().then(data => {
       setLibraries({ inProgress: false, error: null, data });
@@ -44,7 +48,24 @@ export default function LibrariesDashboardPage() {
     setLibraryInfoDialog({ isOpen: true, value: library });
   }
   function startDeleteHandler(library: Library): void {
-    // setLibraryInfoDialog({ isOpen: true, value: library });
+    setConfirmDeleteDialog({ data: library, isOpen: true, inProgress: false });
+  }
+  function rejectedDeleteHandler(): void {
+    setConfirmDeleteDialog({ isOpen: false, inProgress: false });
+  }
+  function confirmedDeleteHandler(library?: Library): void {
+    if (library) {
+      setConfirmDeleteDialog({ isOpen: true, inProgress: true });
+      deleteLibraryById(library.id!).then(() => {
+        setConfirmDeleteDialog({ isOpen: false, inProgress: false });
+        setLibraries(old => ({
+          ...old,
+          data: old.data.filter(({ id }) => id !== library.id)
+        }));
+      }).catch(() => {
+        setConfirmDeleteDialog({ isOpen: true, inProgress: false });
+      });
+    }
   }
   return (
     <div className="LibrariesDashboardPage">
@@ -71,6 +92,12 @@ export default function LibrariesDashboardPage() {
         onCreate={createHandler} onEdit={editHandler}
         isOpen={libraryInfoDialog.isOpen}
         value={libraryInfoDialog.value} onClose={libraryInfoCloseHandler}
+      />
+      <ConfirmDialog<Library>
+        message="The library and all its songs will be deleted"
+        isOpen={confirmDeleteDialog.isOpen} onRejected={rejectedDeleteHandler}
+        onConfirmed={confirmedDeleteHandler} data={confirmDeleteDialog.data}
+        inProgress={confirmDeleteDialog.inProgress}
       />
     </div>
   );
