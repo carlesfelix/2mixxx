@@ -1,7 +1,7 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import { createLibrary, getAllLibraries } from '../../api/libraries';
+import { getAllLibraries } from '../../api/libraries';
 import AsyncLayout from '../../components/AsyncLayout';
 import AsyncState from '../../types/AsyncState';
 import Library from '../../types/Library';
@@ -14,9 +14,8 @@ export default function LibrariesDashboardPage() {
     inProgress: true, error: null, data: []
   });
   const [ libraryInfoDialog, setLibraryInfoDialog ] = useState<{
-    isOpen: boolean, value?: Library, submitProgress: boolean
-  }>({ isOpen: false, submitProgress: false });
-
+    isOpen: boolean, value?: Library
+  }>({ isOpen: false });
   useEffect(() => {
     getAllLibraries().then(data => {
       setLibraries({ inProgress: false, error: null, data });
@@ -25,17 +24,27 @@ export default function LibrariesDashboardPage() {
     });
   }, []);
   function addNewLibraryHandler(): void {
-    setLibraryInfoDialog({ isOpen: true, submitProgress: false });
+    setLibraryInfoDialog({ isOpen: true });
   }
-  function submitCreateHandler(library: Library): void {
-    setLibraryInfoDialog(old => ({ ...old, submitProgress: true }));
-    createLibrary(library).then(data => {
-      setLibraries(old => ({ ...old, data: [ ...old.data, data ] }));
-      setLibraryInfoDialog({ isOpen: false, submitProgress: false });
-    });
+  function createHandler(library: Library): void {
+    setLibraries(old => ({ ...old, data: [ ...old.data, library ] }));
+    setLibraryInfoDialog({ isOpen: false });
+  }
+  function editHandler(library: Library): void {
+    setLibraries(old => ({
+      ...old,
+      data: old.data.map(libraryData => library.id === libraryData.id ? library : libraryData)
+    }));
+    setLibraryInfoDialog({ isOpen: false });
   }
   function libraryInfoCloseHandler(): void {
-    setLibraryInfoDialog({ isOpen: false, submitProgress: false });
+    setLibraryInfoDialog({ isOpen: false });
+  }
+  function startEditHandler(library: Library): void {
+    setLibraryInfoDialog({ isOpen: true, value: library });
+  }
+  function startDeleteHandler(library: Library): void {
+    // setLibraryInfoDialog({ isOpen: true, value: library });
   }
   return (
     <div className="LibrariesDashboardPage">
@@ -43,7 +52,11 @@ export default function LibrariesDashboardPage() {
         <div className="libraries-grid">
           {
             libraries.data.map((library) => (
-              <LibraryItem key={library.id} library={library} />
+              <LibraryItem
+                key={library.id} library={library}
+                onStartDelete={startDeleteHandler}
+                onStartEdit={startEditHandler}
+              />
             ))
           }
         </div>
@@ -55,9 +68,9 @@ export default function LibrariesDashboardPage() {
         </div>
       </AsyncLayout>
       <LibraryInfoDialog
-        onSubmit={submitCreateHandler} isOpen={libraryInfoDialog.isOpen}
+        onCreate={createHandler} onEdit={editHandler}
+        isOpen={libraryInfoDialog.isOpen}
         value={libraryInfoDialog.value} onClose={libraryInfoCloseHandler}
-        submitProgress={libraryInfoDialog.submitProgress}
       />
     </div>
   );

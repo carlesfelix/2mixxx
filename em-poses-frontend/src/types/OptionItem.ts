@@ -1,6 +1,7 @@
 type OptionItem = {
   label: string;
-  value: string | number;
+  onSelected?: () => void;
+  data?: unknown;
 };
 
 export default OptionItem;

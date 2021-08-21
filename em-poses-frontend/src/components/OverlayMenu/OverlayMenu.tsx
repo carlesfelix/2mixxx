@@ -5,7 +5,6 @@ import './OverlayMenu.scss';
 
 type Props = {
   items: OptionItem[];
-  onSelected?: (selectedOptionValue: OptionItem['value']) => void;
   align?: 'center' | 'end' | 'start';
   children: ReactNode;
   buttonClassName?: string;
@@ -14,7 +13,7 @@ type Props = {
 
 export default function OverlayMenu(props: Props) {
   const {
-    items, onSelected, align = 'end', children,
+    items, align = 'end', children,
     buttonClassName = 'btn default-btn-menu', minWidth
   } = props;
   const [ open, setOpen ] = useState<boolean>(false);
@@ -29,20 +28,20 @@ export default function OverlayMenu(props: Props) {
   function clickOutsideHandler(): void {
     setOpen(false);
   }
-  function selectItemHandler(selectedOptionValue: OptionItem['value']): MouseEventHandler<HTMLButtonElement> {
+  function selectItemHandler(selectedItem: OptionItem): MouseEventHandler<HTMLButtonElement> {
     return () => {
-      onSelected && onSelected(selectedOptionValue);
       setOpen(false);
+      selectedItem.onSelected && selectedItem.onSelected();
     };
   }
   const content = (
     <div className="overlay-menu-content">
       <ul className="card card-secondary" style={{ minWidth }}>
         {
-          items.map(({ label, value }) => (
-            <li key={value}>
-              <button onClick={selectItemHandler(value)} className="btn">
-                {label}
+          items.map((item, iItem) => (
+            <li key={iItem}>
+              <button onClick={selectItemHandler(item)} className="btn" type="button">
+                {item.label}
               </button>
             </li>
           ))
