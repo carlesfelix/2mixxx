@@ -14,5 +14,6 @@
 .field-invalid {
   .input {
     border-color: variables.$c-danger--500;
+    outline-color: variables.$c-danger--500;
   }
 }

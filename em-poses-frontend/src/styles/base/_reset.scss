@@ -7,6 +7,9 @@ html {
     min-width: variables.$min-xs;
     height: 100%;
     background-color: variables.$c-secondary--100;
+    div {
+      box-sizing: border-box;
+    }
     div#root {
       height: 100%;
     }

@@ -1,0 +1,14 @@
+@use '../../../../styles/utils/variables';
+
+.LibraryInfoDialog {
+  min-width: variables.$min-xs;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  div.library-info-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

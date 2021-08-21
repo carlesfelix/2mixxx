@@ -1,0 +1,29 @@
+@use '../../styles/utils/variables';
+
+div.Dialog {
+  display: flex;
+  flex-direction: column;
+  div.Dialog__header {
+    padding: 1.25rem 1.5rem;
+    position: relative;
+    h2 {
+      margin: 0;
+    }
+    button.close-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: variables.$c-primary--900;
+    }
+  }
+  div.Dialog__content {
+    flex-grow: 1;
+    overflow: auto;
+    padding: 1.25rem;
+  }
+  div.Dialog__footer {
+    padding: 0.75rem;
+    border-top: solid 1px variables.$c-secondary--400;
+    margin-top: 1.25rem;
+  }
+}

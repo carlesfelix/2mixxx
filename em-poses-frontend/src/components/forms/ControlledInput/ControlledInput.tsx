@@ -1,13 +1,14 @@
 import { InputHTMLAttributes, ReactNode } from 'react';
 import { Control, Controller, ControllerRenderProps, FieldValues, UseControllerProps } from 'react-hook-form';
 import FormField from '../FormField';
+import InputText from '../inputs/InputText';
 
 type Field = { type: 'inputText', props?: InputHTMLAttributes<HTMLInputElement> } |
 { type: 'select', props?: InputHTMLAttributes<HTMLSelectElement> };
   
 type Props = {
   control: Control<FieldValues>;
-  defaultValue: unknown;
+  defaultValue?: unknown;
   rules?: UseControllerProps['rules'];
   label: string;
   name: string;
@@ -20,17 +21,24 @@ export default function ControlledInput(props: Props) {
     control, defaultValue, rules, name,
     label, field, className
   } = props;
-  
+
   function getComponent(controllerRenderProps: ControllerRenderProps<FieldValues>): ReactNode {
+    const { value, onChange, onBlur, name } = controllerRenderProps;
     switch(field.type) {
       case 'inputText':
-        return <input className="input" type="text" {...field.props} {...controllerRenderProps} />;
+        return (
+          <InputText value={value} onChange={onChange} onBlur={onBlur}
+            name={name} extraProps={field.props}
+          />
+        );
       case 'select':
         return <select {...field.props} {...controllerRenderProps} />;
       default:
         throw new Error(`fieldType does not exists`);
     }
   }
+  const isRequired = !!(rules && rules.required && (typeof rules.required === 'string' ||
+    (typeof rules.required === 'object' && rules.required.value)));
   
   return (
     <Controller
@@ -38,14 +46,13 @@ export default function ControlledInput(props: Props) {
       control={control}
       defaultValue={defaultValue}
       rules={rules}
-      render={({ field, fieldState }) => {
-        let errorMessage;
-        if (fieldState.isDirty && fieldState.isTouched && fieldState.invalid && fieldState.error && fieldState.error.message) {
-          errorMessage = fieldState.error.message;
-        }
+      render={({ field: renderField, fieldState }) => {
         return (
-          <FormField className={className} errorMessage={errorMessage} label={label} invalid={fieldState.invalid}>
-            {getComponent(field)}
+          <FormField
+            className={className} errorMessage={fieldState.error?.message} label={label}
+            invalid={fieldState.invalid} required={isRequired}
+          >
+            {getComponent(renderField)}
           </FormField>
         );
       }}

@@ -10,6 +10,14 @@ label.FormField {
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 0.15rem;
+    &.field-label--required {
+      &::after {
+        content: "*";
+        display: inline-block;
+        margin-left: 0.1rem;
+        font-weight: bold;
+      }
+    }
   }
   span.field-error-message {
     font-size: 0.8rem;

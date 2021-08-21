@@ -1,10 +1,11 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import { getAllLibraries, createLibrary } from '../../api/libraries';
+import { createLibrary, getAllLibraries } from '../../api/libraries';
 import AsyncLayout from '../../components/AsyncLayout';
 import AsyncState from '../../types/AsyncState';
 import Library from '../../types/Library';
+import LibraryInfoDialog from './components/LibraryInfoDialog';
 import LibraryItem from './components/LibraryItem';
 import './LibrariesDashboardPage.scss';
 
@@ -12,6 +13,10 @@ export default function LibrariesDashboardPage() {
   const [ libraries, setLibraries ] = useState<AsyncState<Library[]>>({
     inProgress: true, error: null, data: []
   });
+  const [ libraryInfoDialog, setLibraryInfoDialog ] = useState<{
+    isOpen: boolean, value?: Library, submitProgress: boolean
+  }>({ isOpen: false, submitProgress: false });
+
   useEffect(() => {
     getAllLibraries().then(data => {
       setLibraries({ inProgress: false, error: null, data });
@@ -20,9 +25,17 @@ export default function LibrariesDashboardPage() {
     });
   }, []);
   function addNewLibraryHandler(): void {
-    createLibrary({ title: 'test', createdAt: '', updatedAt: '', id: '' }).then(data => {
+    setLibraryInfoDialog({ isOpen: true, submitProgress: false });
+  }
+  function submitCreateHandler(library: Library): void {
+    setLibraryInfoDialog(old => ({ ...old, submitProgress: true }));
+    createLibrary(library).then(data => {
       setLibraries(old => ({ ...old, data: [ ...old.data, data ] }));
+      setLibraryInfoDialog({ isOpen: false, submitProgress: false });
     });
+  }
+  function libraryInfoCloseHandler(): void {
+    setLibraryInfoDialog({ isOpen: false, submitProgress: false });
   }
   return (
     <div className="LibrariesDashboardPage">
@@ -41,6 +54,11 @@ export default function LibrariesDashboardPage() {
           </button>
         </div>
       </AsyncLayout>
+      <LibraryInfoDialog
+        onSubmit={submitCreateHandler} isOpen={libraryInfoDialog.isOpen}
+        value={libraryInfoDialog.value} onClose={libraryInfoCloseHandler}
+        submitProgress={libraryInfoDialog.submitProgress}
+      />
     </div>
   );
 }
