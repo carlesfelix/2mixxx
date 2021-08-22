@@ -1,3 +1,4 @@
+import { literal } from 'sequelize';
 import { ILibraryEntity } from '../../../core/entities/ILibraryEntity';
 import ILibraryRepository from '../../../core/repositories/ILibraryRepository';
 import { instancesToJson, instanceToJson } from '../helpers';
@@ -5,7 +6,21 @@ import models from '../models';
 
 export default class Library implements ILibraryRepository {
   async getLibraries(): Promise<ILibraryEntity[]> {
-    const libraries = await models.Library.model.findAll();
+    const libraries = await models.Library.model.findAll({
+      attributes: {
+        include: [
+          [
+            literal(`(
+              SELECT COUNT(*)
+              FROM Songs AS Song
+              WHERE
+                Song.libraryId = Library.id
+            )`),
+            'songs'
+          ]
+        ]
+      }
+    });
     return instancesToJson<ILibraryEntity>(libraries);
   }
   async getLibraryById(libraryId: string): Promise<ILibraryEntity | null> {
