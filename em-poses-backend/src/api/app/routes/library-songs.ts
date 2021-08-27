@@ -17,7 +17,7 @@ librarySongsRouter.post(
         files: 1,
         parts: 1
       },
-      acceptedMimeTypes: ['application/xml']
+      acceptedMimeTypes: ['application/xml', 'text/xml']
     }).single('itunes')
   ),
   importSongsFromItunesCtrl

@@ -27,10 +27,16 @@ export default function ConfirmDialog<T = any>(props: Props<T>) {
       className="ConfirmDialog"
       footer={
         <div className="confirm-dialog-footer">
-          <button className="btn btn-secondary" type="button" onClick={rejectedHandler}>
+          <button
+            className="btn btn-secondary" type="button"
+            disabled={inProgress} onClick={rejectedHandler}
+          >
             Cancel
           </button>
-          <button className="btn btn-danger" type="button" onClick={confirmedHandler}>
+          <button
+            className="btn btn-danger" type="button"
+            disabled={inProgress}  onClick={confirmedHandler}
+          >
             Continue
           </button>
         </div>

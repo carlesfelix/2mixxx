@@ -5,14 +5,14 @@ import { ReactNode } from 'react';
 
 type Props = {
   inProgress: boolean;
-  error: Error | null | boolean;
+  error?: Error | null | boolean;
   children: ReactNode;
-  errorMessage: string;
+  errorMessage?: string;
   className?: string;
 };
 
 export default function AsyncLayout(props: Props) {
-  const { error, inProgress, children, errorMessage, className = '' } = props;
+  const { error = '', inProgress, children, errorMessage, className = '' } = props;
   const rootClassName = classNames('AsyncLayout', {
     [className]: !!className
   });

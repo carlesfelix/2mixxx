@@ -11,8 +11,12 @@ export async function createLibrary(library: Library): Promise<Library> {
   return data;
 }
 
-export async function importSongsToLibrary(libraryId: string, formData: FormData): Promise<void> {
-  await http.post<void>(`/libraries/${libraryId}/songs/import`, formData);
+export async function importSongsToLibrary(libraryId: string, file: File, onUploadProgress: (event: any) => void): Promise<void> {
+  const formData = new FormData();
+  formData.append('itunes', file, file.name);
+  await http.post<void>(`/libraries/${libraryId}/songs/import`, formData, {
+    onUploadProgress
+  });
 }
 
 export async function getLibraryById(libraryId: string): Promise<Library> {
@@ -24,7 +28,7 @@ export async function deleteLibraryById(libraryId: string): Promise<void> {
   await http.delete<void>(`/libraries/${libraryId}`);
 }
 
-export async function updateLibraryById(libraryId: string, library: Library): Promise<Library> {
-  const { data } = await http.put<Library>(`/libraries/${libraryId}`, library);
+export async function updateLibraryById(library: Library): Promise<Library> {
+  const { data } = await http.put<Library>(`/libraries/${library.id!}`, library);
   return data;
 }
