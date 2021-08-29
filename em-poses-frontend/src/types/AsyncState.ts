@@ -1,6 +1,6 @@
 type AsyncState<T> = {
   inProgress: boolean;
-  error: Error | null;
+  error: Error | null | boolean;
   data: T;
 };
 

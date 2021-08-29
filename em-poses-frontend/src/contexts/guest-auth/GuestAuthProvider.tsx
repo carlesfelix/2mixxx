@@ -4,7 +4,7 @@ import GuestAuthContext from './GuestAuthContext';
 import guestAuthReducer from './guestAuthReducer';
 import { GuestAuthProviderProps } from './types';
 
-export default function SocketsProvider(props: GuestAuthProviderProps) {
+export default function GuestAuthProvider(props: GuestAuthProviderProps) {
   const { children } = props;
   const [ state, dispatch ] = useReducer(guestAuthReducer, {
     isAuthenticated: isAuthenticated(),

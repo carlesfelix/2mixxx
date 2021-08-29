@@ -1,24 +1,22 @@
 import Dialog from '../Dialog';
 import './ConfirmDialog.scss';
 
-type Props<T> = {
+type Props = {
   message: string;
   isOpen: boolean;
-  onRejected?: (data?: T) => void;
-  onConfirmed?: (data?: T) => void;
-  data?: T;
+  onRejected?: () => void;
+  onConfirmed?: () => void;
   inProgress?: boolean;
 };
-export default function ConfirmDialog<T = any>(props: Props<T>) {
+export default function ConfirmDialog(props: Props) {
   const {
-    message, onRejected, onConfirmed, isOpen,
-    data, inProgress = false
+    message, onRejected, onConfirmed, isOpen, inProgress = false
   } = props;
   function rejectedHandler(): void {
-    onRejected && onRejected(data);
+    onRejected && onRejected();
   }
   function confirmedHandler(): void {
-    onConfirmed && onConfirmed(data);
+    onConfirmed && onConfirmed();
   }
   return (
     <Dialog

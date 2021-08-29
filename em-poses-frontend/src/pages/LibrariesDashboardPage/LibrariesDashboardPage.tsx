@@ -1,93 +1,79 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
-import { createLibrary, deleteLibraryById, getAllLibraries, updateLibraryById } from '../../api/libraries';
+import { useEffect } from 'react';
 import AsyncLayout from '../../components/AsyncLayout';
 import ConfirmDialog from '../../components/ConfirmDialog';
-import AsyncState from '../../types/AsyncState';
-import DialogState from '../../types/DialogState';
+import { useGlobalProgress } from '../../contexts/global-progress';
+import { importSongsToLibraryAction } from '../../contexts/global-progress/global-progress.actions';
+import {
+  addLibraryAction, closeAddLibraryDialogAction, closeConfirmDeleteDialogAction,
+  closeEditLibraryDialogAction, deleteLibraryAction, editLibraryAction,
+  getLibrariesAction, openAddLibraryDialogAction, openConfirmDeleteDialogAction,
+  openEditLibraryDialogAction
+} from '../../contexts/libraries';
+import useLibraries from '../../contexts/libraries/useLibraries';
 import Library from '../../types/Library';
 import LibraryInfoDialog from './components/LibraryInfoDialog';
 import LibraryItem from './components/LibraryItem';
 import './LibrariesDashboardPage.scss';
 
 export default function LibrariesDashboardPage() {
-  const [ libraries, setLibraries ] = useState<AsyncState<Library[]>>({
-    inProgress: true, error: null, data: []
-  });
-  const [ libraryInfoDialog, setLibraryInfoDialog ] = useState<DialogState<Library>>({
-    isOpen: false, inProgress: false
-  });
-  const [ confirmDeleteDialog, setConfirmDeleteDialog ] = useState<DialogState<Library>>({
-    isOpen: false, inProgress: false
-  });
+  const { state: globalProgressState, dispatch: globalProgressDispatch } = useGlobalProgress();
+  const { state: libraries, dispatch: librariesDispatch } = useLibraries();
   useEffect(() => {
-    getAllLibraries().then(data => {
-      setLibraries({ inProgress: false, error: null, data });
-    }).catch(error => {
-      setLibraries({ inProgress: false, error, data: [] });
-    });
-  }, []);
+    getLibrariesAction(librariesDispatch);
+  }, [ librariesDispatch ]);
   function openLibraryInfoDialogHandler(): void {
-    setLibraryInfoDialog({ isOpen: true, inProgress: false });
+    openAddLibraryDialogAction(librariesDispatch);
   }
   function addLibrarySubmitHandler(library: Library): void {
-    setLibraryInfoDialog(old => ({ ...old, inProgress: true }));
-    createLibrary(library).then(res => {
-      setLibraries(old => ({ ...old, data: [ ...old.data, res ] }));
-      setLibraryInfoDialog({ isOpen: false, inProgress: false });
-    }).catch(() => {
-      setLibraryInfoDialog(old => ({ ...old, inProgress: false }));
-    });
+    addLibraryAction(librariesDispatch, library);
   }
   function editLibrarySubmitHandler(library: Library): void {
-    setLibraryInfoDialog(old => ({ ...old, inProgress: true }));
-    updateLibraryById(library).then(() => {
-      setLibraries(old => ({
-        ...old,
-        data: old.data.map(libraryData => library.id === libraryData.id ? library : libraryData)
-      }));
-      setLibraryInfoDialog({ isOpen: false, inProgress: false });
-    }).catch(() => {
-      setLibraryInfoDialog(old => ({ ...old, inProgress: false }));
-    });
+    editLibraryAction(librariesDispatch, library);
   }
-  function closeLibraryInfo(): void {
-    setLibraryInfoDialog({ isOpen: false, inProgress: false });
+  function closeAddLibraryDialog(): void {
+    closeAddLibraryDialogAction(librariesDispatch);
+  }
+  function closeEditLibraryDialog(): void {
+    closeEditLibraryDialogAction(librariesDispatch);
   }
   function openEditLibraryDialog(library: Library): void {
-    setLibraryInfoDialog({ isOpen: true, data: library, inProgress: false });
+    openEditLibraryDialogAction(librariesDispatch, library);
   }
   function openConfirmDeleteDialog(library: Library): void {
-    setConfirmDeleteDialog({ data: library, isOpen: true, inProgress: false });
+    openConfirmDeleteDialogAction(librariesDispatch, library);
   }
   function dismissConfirmDeleteDialog(): void {
-    setConfirmDeleteDialog({ isOpen: false, inProgress: false });
+    closeConfirmDeleteDialogAction(librariesDispatch);
   }
-  function confirmedDeleteHandler(library?: Library): void {
-    if (library) {
-      setConfirmDeleteDialog(old => ({ ...old, inProgress: true }));
-      deleteLibraryById(library.id!).then(() => {
-        setConfirmDeleteDialog({ isOpen: false, inProgress: false });
-        setLibraries(old => ({
-          ...old,
-          data: old.data.filter(({ id }) => id !== library.id)
-        }));
-      }).catch(() => {
-        setConfirmDeleteDialog(old => ({ ...old, inProgress: false }));
-      });
-    }
+  function confirmedDeleteHandler(): void {
+    deleteLibraryAction(librariesDispatch, libraries.confirmDeleteDialog.data?.id!);
+  }
+  function deleteSongsHandler(library: Library): void {
+
+  }
+  function getImportSongsToLibraryProgressId(libraryId: string): string {
+    return `importSongsToLibrary${libraryId}`;
+  }
+  function importSongsHandler(library: Library, file: File): void {
+    importSongsToLibraryAction(globalProgressDispatch, {
+      file, libraryId: library.id!, progressId: getImportSongsToLibraryProgressId(library.id!)
+    });
   }
   return (
     <div className="LibrariesDashboardPage">
-      <AsyncLayout error={libraries.error} inProgress={libraries.inProgress} errorMessage="Error">
+      <AsyncLayout error={libraries.libraries.error} inProgress={libraries.libraries.inProgress} errorMessage="Error">
         <div className="libraries-grid">
           {
-            libraries.data.map((library) => (
+            libraries.libraries.data.map((library) => (
               <LibraryItem
                 key={library.id} library={library}
                 onStartDelete={openConfirmDeleteDialog}
                 onStartEdit={openEditLibraryDialog}
+                onDeleteSongs={deleteSongsHandler}
+                onImportSongs={importSongsHandler}
+                importProgress={globalProgressState[getImportSongsToLibraryProgressId(library.id!)]}
               />
             ))
           }
@@ -100,14 +86,18 @@ export default function LibrariesDashboardPage() {
         </div>
       </AsyncLayout>
       <LibraryInfoDialog
-        state={libraryInfoDialog} onCreate={addLibrarySubmitHandler}
-        onEdit={editLibrarySubmitHandler} onClose={closeLibraryInfo}
+        state={libraries.addLibraryDialog} onSubmit={addLibrarySubmitHandler}
+        onClose={closeAddLibraryDialog}
       />
-      <ConfirmDialog<Library>
+      <LibraryInfoDialog
+        state={libraries.editLibraryDialog} onSubmit={editLibrarySubmitHandler}
+        onClose={closeEditLibraryDialog}
+      />
+      <ConfirmDialog
         message="The library and all its songs will be deleted"
-        isOpen={confirmDeleteDialog.isOpen} onRejected={dismissConfirmDeleteDialog}
-        onConfirmed={confirmedDeleteHandler} data={confirmDeleteDialog.data}
-        inProgress={confirmDeleteDialog.inProgress}
+        isOpen={libraries.confirmDeleteDialog.isOpen}
+        inProgress={libraries.confirmDeleteDialog.inProgress}
+        onRejected={dismissConfirmDeleteDialog} onConfirmed={confirmedDeleteHandler}
       />
     </div>
   );

@@ -7,13 +7,12 @@ import Library from '../../../../types/Library';
 import './LibraryInfoDialog.scss';
 
 type Props = {
-  onCreate: (value: Library) => void;
-  onEdit: (value: Library) => void;
+  onSubmit: (value: Library) => void;
   onClose: () => void;
-  state: DialogState<Library>
+  state: DialogState<Library | undefined>
 };
 export default function LibraryInfoDialog(props: Props) {
-  const { state, onCreate, onEdit, onClose } = props;
+  const { state, onSubmit, onClose } = props;
   const { inProgress, data, isOpen } = state;
   const { control, handleSubmit, reset } = useForm();
 
@@ -21,7 +20,7 @@ export default function LibraryInfoDialog(props: Props) {
     reset(data || {});
   }, [ isOpen, data, reset ]);
   function submitHandler(library: Library): void {
-    data ? onEdit(library) : onCreate(library);
+    onSubmit(library);
   }
   const actions: ButtonHTMLAttributes<HTMLButtonElement>[] = [];
   if (data) {

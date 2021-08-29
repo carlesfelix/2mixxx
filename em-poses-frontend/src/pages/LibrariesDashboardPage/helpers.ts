@@ -12,9 +12,6 @@ export function getLibraryMenu(props: GetLibraryMenuProps): OptionItem[] {
       onSelected: onEditInfo
     },
     {
-      label: 'Manage songs',
-    },
-    {
       label: 'Delete library',
       onSelected: onDeleteLibrary
     }
