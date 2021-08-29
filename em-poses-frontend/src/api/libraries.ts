@@ -11,12 +11,13 @@ export async function createLibrary(library: Library): Promise<Library> {
   return data;
 }
 
-export async function importSongsToLibrary(libraryId: string, file: File, onUploadProgress: (event: any) => void): Promise<void> {
+export async function importSongsToLibrary(libraryId: string, file: File, onUploadProgress: (event: any) => void): Promise<Library> {
   const formData = new FormData();
   formData.append('itunes', file, file.name);
-  await http.post<void>(`/libraries/${libraryId}/songs/import`, formData, {
+  const { data } = await http.post<Library>(`/libraries/${libraryId}/songs/import`, formData, {
     onUploadProgress
   });
+  return data;
 }
 
 export async function getLibraryById(libraryId: string): Promise<Library> {

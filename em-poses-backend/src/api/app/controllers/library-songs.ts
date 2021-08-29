@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { ILibraryEntity } from '../../../core/entities/ILibraryEntity';
 import { ISongEntity } from '../../../core/entities/ISongEntity';
 import importFromItunes from '../../../core/interactors/songs/importFromItunes';
 import searchSongsFromLibrary from '../../../core/interactors/songs/searchSongsFromLibrary';
@@ -6,7 +7,7 @@ import responseErrors from '../constants/response-messages';
 
 export function importSongsFromItunesCtrl(
   req: Request<{ libraryId: string }>,
-  res: Response<void>,
+  res: Response<ILibraryEntity | null>,
   next: NextFunction
 ): void {
   const { file, params } = req;

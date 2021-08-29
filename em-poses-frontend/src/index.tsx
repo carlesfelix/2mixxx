@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import { GlobalProgressProvider } from './contexts/global-progress';
 import { GuestAuthProvider } from './contexts/guest-auth';
 import LibrariesProvider from './contexts/libraries/LibrariesProvider';
 import { MeProvider } from './contexts/me';
@@ -24,11 +23,9 @@ ReactDOM.render(
       <GuestAuthProvider>
         <MeProvider>
           <BrowserRouter>
-            <GlobalProgressProvider>
-              <LibrariesProvider>
-                <App />
-              </LibrariesProvider>
-            </GlobalProgressProvider>
+            <LibrariesProvider>
+              <App />
+            </LibrariesProvider>
           </BrowserRouter>
         </MeProvider>
       </GuestAuthProvider>

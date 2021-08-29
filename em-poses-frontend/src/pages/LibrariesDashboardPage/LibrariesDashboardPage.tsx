@@ -3,14 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect } from 'react';
 import AsyncLayout from '../../components/AsyncLayout';
 import ConfirmDialog from '../../components/ConfirmDialog';
-import { useGlobalProgress } from '../../contexts/global-progress';
-import { importSongsToLibraryAction } from '../../contexts/global-progress/global-progress.actions';
 import {
   addLibraryAction, closeAddLibraryDialogAction, closeConfirmDeleteDialogAction,
   closeEditLibraryDialogAction, deleteLibraryAction, editLibraryAction,
   getLibrariesAction, openAddLibraryDialogAction, openConfirmDeleteDialogAction,
   openEditLibraryDialogAction
 } from '../../contexts/libraries';
+import { importSongsToLibraryAction } from '../../contexts/libraries/libraries.actions';
 import useLibraries from '../../contexts/libraries/useLibraries';
 import Library from '../../types/Library';
 import LibraryInfoDialog from './components/LibraryInfoDialog';
@@ -18,7 +17,6 @@ import LibraryItem from './components/LibraryItem';
 import './LibrariesDashboardPage.scss';
 
 export default function LibrariesDashboardPage() {
-  const { state: globalProgressState, dispatch: globalProgressDispatch } = useGlobalProgress();
   const { state: libraries, dispatch: librariesDispatch } = useLibraries();
   useEffect(() => {
     getLibrariesAction(librariesDispatch);
@@ -53,13 +51,8 @@ export default function LibrariesDashboardPage() {
   function deleteSongsHandler(library: Library): void {
 
   }
-  function getImportSongsToLibraryProgressId(libraryId: string): string {
-    return `importSongsToLibrary${libraryId}`;
-  }
   function importSongsHandler(library: Library, file: File): void {
-    importSongsToLibraryAction(globalProgressDispatch, {
-      file, libraryId: library.id!, progressId: getImportSongsToLibraryProgressId(library.id!)
-    });
+    importSongsToLibraryAction({ dispatch: librariesDispatch, libraryId: library.id!, file });
   }
   return (
     <div className="LibrariesDashboardPage">
@@ -73,7 +66,7 @@ export default function LibrariesDashboardPage() {
                 onStartEdit={openEditLibraryDialog}
                 onDeleteSongs={deleteSongsHandler}
                 onImportSongs={importSongsHandler}
-                importProgress={globalProgressState[getImportSongsToLibraryProgressId(library.id!)]}
+                importProgress={libraries.importProgress[library.id!]}
               />
             ))
           }

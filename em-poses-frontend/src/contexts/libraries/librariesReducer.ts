@@ -113,6 +113,34 @@ export default function librariesReducer(state: State, action: Action): State {
         ...state,
         confirmDeleteDialog: { ...state.confirmDeleteDialog, inProgress: false }
       };
+    case 'importSongsToLibraryInProgress':
+      return {
+        ...state,
+        importProgress: {
+          ...state.importProgress,
+          [action.payload.libraryId]: action.payload.progress
+        }
+      };
+    case 'importSongsToLibrarySuccess': {
+      const { [action.payload.library.id!]: _, ...importProgress } = state.importProgress;
+      return {
+        ...state,
+        libraries: {
+          ...state.libraries,
+          data: state.libraries.data.map(library => {
+            if (library.id === action.payload.library.id) {
+              return action.payload.library;
+            }
+            return library;
+          })
+        },
+        importProgress
+      };
+    }
+    case 'importSongsToLibraryError': {
+      const { [action.payload.libraryId]: _, ...importProgress } = state.importProgress;
+      return { ...state, importProgress };
+    }
     default:
       return state;
   }

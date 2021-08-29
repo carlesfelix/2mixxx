@@ -9,7 +9,8 @@ export default function LibrariesProvider(props: LibrariesProviderProps) {
     libraries: { data: [], inProgress: true, error: false },
     addLibraryDialog: { inProgress: false, isOpen: false },
     editLibraryDialog: { inProgress: false, isOpen: false },
-    confirmDeleteDialog: { inProgress: false, isOpen: false }
+    confirmDeleteDialog: { inProgress: false, isOpen: false },
+    importProgress: {}
   });
   const value = { state, dispatch };
   return (

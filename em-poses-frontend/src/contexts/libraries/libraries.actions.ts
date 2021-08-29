@@ -1,4 +1,4 @@
-import { createLibrary, deleteLibraryById, getAllLibraries, updateLibraryById } from '../../api/libraries';
+import { createLibrary, deleteLibraryById, getAllLibraries, importSongsToLibrary, updateLibraryById } from '../../api/libraries';
 import Library from '../../types/Library';
 import { Dispatch } from './types';
 
@@ -63,5 +63,27 @@ export async function deleteLibraryAction(dispatch: Dispatch, libraryId: string)
     dispatch({ type: 'deleteLibrarySuccess' })
   } catch {
     dispatch({ type: 'deleteLibraryError' });
+  }
+}
+
+type ImportSongsToLibraryActionProps = {
+  dispatch: Dispatch;
+  libraryId: string;
+  file: File;
+}
+export async function importSongsToLibraryAction(props: ImportSongsToLibraryActionProps): Promise<void> {
+  const { dispatch, libraryId, file } = props;
+  dispatch({ type: 'importSongsToLibraryInProgress', payload: { libraryId, progress: 0 } });
+  try {
+    const library = await importSongsToLibrary(libraryId, file, (event: ProgressEvent) => {
+      const { total, loaded } = event;
+      dispatch({
+        type: 'importSongsToLibraryInProgress',
+        payload: { libraryId, progress: Math.round(loaded / total * 100) }
+      });
+    });
+    dispatch({ type: 'importSongsToLibrarySuccess', payload: { library } });
+  } catch {
+    dispatch({ type: 'importSongsToLibraryError', payload: { libraryId } });
   }
 }
