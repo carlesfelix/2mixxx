@@ -4,6 +4,7 @@ import { genericErrorMid, notFoundErrorMid } from '../middlewares/errors.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
 import librariesRouter from './libraries';
 import librarySongsRouter from './library-songs';
+import registeredUsersRouter from './registered-users';
 
 const api = Router();
 
@@ -19,6 +20,8 @@ api.use(
   validationErrorMid,
   librarySongsRouter
 );
+
+api.use('/registered-users', registeredUsersRouter);
 
 api.use(notFoundErrorMid);
 api.use(genericErrorMid);

@@ -57,7 +57,7 @@ export default class Library implements ILibraryRepository {
     });
     return destroyCount;
   }
-  async updateLibrary(libraryId: string,library: ILibraryEntity): Promise<number> {
+  async updateLibrary(libraryId: string, library: ILibraryEntity): Promise<number> {
     const [ updateNumber ] = await models.Library.model.update(library, {
       where: {
         id: libraryId
