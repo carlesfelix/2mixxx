@@ -1,21 +1,39 @@
 @use '../../../../styles/utils/variables';
 
 div.LibraryItem {
-  padding: 3rem;
-  padding: 3rem 1rem;
   text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
   position: relative;
-  span.library-title {
-    white-space: nowrap;
-  }
-  span.library-menu {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    span.library-menu-btn {
-      color: variables.$c-secondary--900;
+  display: flex;
+  flex-direction: column;
+  height: 12rem;
+  div.library-header {
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    span.title {
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      span {
+        white-space: nowrap;
+        font-weight: bold;
+      }
     }
+    span.library-menu {
+      span.library-menu-btn {
+        color: variables.$c-secondary--900;
+      }
+    }
+  }
+  div.library-actions {
+    padding: 1rem 0.5rem;
+    flex-grow: 1;
+  }
+  div.library-footer {
+    background-color: variables.$c-primary--500;
+    color: variables.$c-primary--50;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    text-align: end;
   }
 }

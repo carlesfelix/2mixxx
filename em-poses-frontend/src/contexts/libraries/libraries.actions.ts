@@ -1,4 +1,4 @@
-import { createLibrary, deleteLibraryById, getAllLibraries, importSongsToLibrary, updateLibraryById } from '../../api/libraries';
+import { createLibrary, deleteLibraryById, deleteSongsFromLibrary, getAllLibraries, importSongsToLibrary, updateLibraryById } from '../../api/libraries';
 import Library from '../../types/Library';
 import { Dispatch } from './types';
 
@@ -85,5 +85,15 @@ export async function importSongsToLibraryAction(props: ImportSongsToLibraryActi
     dispatch({ type: 'importSongsToLibrarySuccess', payload: { library } });
   } catch {
     dispatch({ type: 'importSongsToLibraryError', payload: { libraryId } });
+  }
+}
+
+export async function deleteSongsFromLibraryAction(dispatch: Dispatch, libraryId: string): Promise<void> {
+  dispatch({ type: 'deleteSongsFromLibraryInProgress', payload: { libraryId } });
+  try {
+    await deleteSongsFromLibrary(libraryId);
+    dispatch({ type: 'deleteSongsFromLibrarySuccess', payload: { libraryId } });
+  } catch {
+    dispatch({ type: 'deleteSongsFromLibraryError', payload: { libraryId } });
   }
 }

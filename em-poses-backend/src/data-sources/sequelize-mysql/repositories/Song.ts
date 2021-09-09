@@ -5,8 +5,8 @@ import { instancesToJson } from '../helpers';
 import models from '../models';
 
 export default class Song implements ISongRepository {
-  async removeSongsFromLibrary(libraryId: string): Promise<void> {
-    await models.Song.model.destroy({
+  removeSongsFromLibrary(libraryId: string): Promise<number> {
+    return models.Song.model.destroy({
       where: { libraryId }
     });
   }

@@ -23,13 +23,17 @@ export type Action = { type: 'getLibrariesInProgress' } |
 { type: 'deleteLibraryError' } |
 { type: 'importSongsToLibraryInProgress', payload: { libraryId: string, progress: number } } |
 { type: 'importSongsToLibrarySuccess', payload: { library: Library } } |
-{ type: 'importSongsToLibraryError', payload: { libraryId: string } };
+{ type: 'importSongsToLibraryError', payload: { libraryId: string } } |
+{ type: 'deleteSongsFromLibraryInProgress', payload: { libraryId: string } } |
+{ type: 'deleteSongsFromLibrarySuccess', payload: { libraryId: string } } |
+{ type: 'deleteSongsFromLibraryError', payload: { libraryId: string } };
 export type State = {
   libraries: AsyncState<Library[]>;
   addLibraryDialog: DialogState<undefined>;
   editLibraryDialog: DialogState<Library>;
   confirmDeleteDialog: DialogState<Library>;
   importProgress: { [id: string]: number };
+  deleteInProgress: { [id: string]: boolean };
 };
 export type Dispatch = (action: Action) => void;
 export type LibrariesProviderProps = { children: ReactNode };

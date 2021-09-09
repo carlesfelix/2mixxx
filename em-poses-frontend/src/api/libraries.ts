@@ -33,3 +33,7 @@ export async function updateLibraryById(library: Library): Promise<Library> {
   const { data } = await http.put<Library>(`/libraries/${library.id!}`, library);
   return data;
 }
+
+export async function deleteSongsFromLibrary(libraryId: string): Promise<void> {
+  await http.delete<void>(`/libraries/${libraryId}/songs`);
+}

@@ -1,0 +1,11 @@
+div.LibraryItemActions {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  button {
+    width: 75%;
+    max-width: 12rem;
+  }
+}

@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { ILibraryEntity } from '../../../core/entities/ILibraryEntity';
 import { ISongEntity } from '../../../core/entities/ISongEntity';
 import importFromItunes from '../../../core/interactors/songs/importFromItunes';
+import removeSongsFromLibrary from '../../../core/interactors/songs/removeSongsFromLibrary';
 import searchSongsFromLibrary from '../../../core/interactors/songs/searchSongsFromLibrary';
 import responseErrors from '../constants/response-messages';
 
@@ -41,6 +42,19 @@ export function searchSongsCtrl(
   searchSongsFromLibrary({ libraryId, query }).then(tracks => {
     res.status(200).json(tracks);
   }).catch((err) => {
+    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+  });
+}
+
+export function deleteSongsFromLibraryCtrl(
+  req: Request<{ libraryId: string }>,
+  res: Response<ISongEntity[]>,
+  next: NextFunction
+): void {
+  const { params: { libraryId } } = req;
+  removeSongsFromLibrary(libraryId).then(() => {
+    res.status(200).json();
+  }).catch(err => {
     next({ responseError: responseErrors.ERR_GENERIC, details: err });
   });
 }

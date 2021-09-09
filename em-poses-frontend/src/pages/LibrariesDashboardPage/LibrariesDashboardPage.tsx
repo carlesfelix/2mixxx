@@ -9,7 +9,7 @@ import {
   getLibrariesAction, openAddLibraryDialogAction, openConfirmDeleteDialogAction,
   openEditLibraryDialogAction
 } from '../../contexts/libraries';
-import { importSongsToLibraryAction } from '../../contexts/libraries/libraries.actions';
+import { deleteSongsFromLibraryAction, importSongsToLibraryAction } from '../../contexts/libraries/libraries.actions';
 import useLibraries from '../../contexts/libraries/useLibraries';
 import Library from '../../types/Library';
 import LibraryInfoDialog from './components/LibraryInfoDialog';
@@ -49,7 +49,7 @@ export default function LibrariesDashboardPage() {
     deleteLibraryAction(librariesDispatch, libraries.confirmDeleteDialog.data?.id!);
   }
   function deleteSongsHandler(library: Library): void {
-
+    deleteSongsFromLibraryAction(librariesDispatch, library.id!);
   }
   function importSongsHandler(library: Library, file: File): void {
     importSongsToLibraryAction({ dispatch: librariesDispatch, libraryId: library.id!, file });
@@ -67,6 +67,7 @@ export default function LibrariesDashboardPage() {
                 onDeleteSongs={deleteSongsHandler}
                 onImportSongs={importSongsHandler}
                 importProgress={libraries.importProgress[library.id!]}
+                deleteSongsInProgress={libraries.deleteInProgress[library.id!]}
               />
             ))
           }

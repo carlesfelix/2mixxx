@@ -4,6 +4,7 @@ import { ChangeEventHandler, useRef } from 'react';
 import OverlayMenu from '../../../../components/OverlayMenu';
 import Library from '../../../../types/Library';
 import { getLibraryMenu } from '../../helpers';
+import LibraryActions from '../LibraryItemActions';
 import './LibraryItem.scss';
 
 type Props = {
@@ -13,11 +14,12 @@ type Props = {
   onImportSongs: (library: Library, file: File) => void;
   onDeleteSongs: (library: Library) => void;
   importProgress?: number;
+  deleteSongsInProgress?: boolean;
 };
 export default function LibraryItem(props: Props) {
   const {
     library, onStartDelete, onStartEdit, onDeleteSongs, onImportSongs,
-    importProgress
+    importProgress, deleteSongsInProgress = false
   } = props;
   const { title } = library;
   const fileRef = useRef<HTMLInputElement>(null);
@@ -52,29 +54,33 @@ export default function LibraryItem(props: Props) {
   }
   return (
     <div className="card card-primary LibraryItem">
-      <span className="library-title">
-        {title}
-      </span>
-      {importProgress}%
-      {
-        library.songs ? (
-          <button className="btn btn-danger" onClick={deleteSongsHandler}>
-            Delete songs
-          </button>
-        ) : (
-          <button className="btn btn-primary" onClick={importSongsHandler}>
-            Import songs
-          </button>
-        )
-      }
-      <input type="file" accept=".xml" style={{ display: 'none' }} ref={fileRef} onChange={changeFileInputHandler()} />
-      <span className="library-menu">
-        <OverlayMenu items={libraryMenu}>
-          <span className="library-menu-btn">
-            <FontAwesomeIcon icon={faEllipsisV} />
+      <div className="library-header">
+        <span className="title">
+          <span>
+            {title}
           </span>
-        </OverlayMenu>
-      </span>
+        </span>
+        <span className="library-menu">
+          <OverlayMenu items={libraryMenu}>
+            <span className="library-menu-btn">
+              <FontAwesomeIcon icon={faEllipsisV} />
+            </span>
+          </OverlayMenu>
+        </span>
+      </div>
+      <div className="library-actions">
+        <LibraryActions
+          songs={library.songs}
+          onDeleteSongs={deleteSongsHandler}
+          onImportSongs={importSongsHandler}
+          importProgress={importProgress}
+          deleteSongsInProgress={deleteSongsInProgress}
+        />
+      </div>
+      <div className="library-footer">
+        {library.songs ? library.songs : 'Empty'}
+      </div>
+      <input type="file" accept=".xml" style={{ display: 'none' }} ref={fileRef} onChange={changeFileInputHandler()} />
     </div>
   );
 }
