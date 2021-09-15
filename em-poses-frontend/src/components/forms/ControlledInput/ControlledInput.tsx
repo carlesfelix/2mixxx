@@ -1,10 +1,11 @@
 import { InputHTMLAttributes, ReactNode } from 'react';
 import { Control, Controller, ControllerRenderProps, FieldValues, UseControllerProps } from 'react-hook-form';
 import FormField from '../FormField';
+import Dropdown, { DropdownExtraProps } from '../inputs/Dropdown/Dropdown';
 import InputText from '../inputs/InputText';
 
 type Field = { type: 'inputText', props?: InputHTMLAttributes<HTMLInputElement> } |
-{ type: 'select', props?: InputHTMLAttributes<HTMLSelectElement> };
+{ type: 'dropdown', props: DropdownExtraProps };
   
 type Props = {
   control: Control<FieldValues>;
@@ -31,8 +32,9 @@ export default function ControlledInput(props: Props) {
             name={name} extraProps={field.props}
           />
         );
-      case 'select':
-        return <select {...field.props} {...controllerRenderProps} />;
+      case 'dropdown':
+        return <Dropdown value={value} onChange={onChange} onBlur={onBlur}
+          name={name} extraProps={field.props} />;
       default:
         throw new Error(`fieldType does not exists`);
     }

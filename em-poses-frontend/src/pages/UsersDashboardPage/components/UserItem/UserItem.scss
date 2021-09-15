@@ -1,0 +1,19 @@
+div.UserItem {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  span.user-field:not(:first-child) {
+    margin-left: 1rem;
+  }
+  span.user-email {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    span {
+      white-space: nowrap;
+    }
+  }
+  span.user-role {
+    flex-grow: 1;
+    text-align: end;
+  }
+}
