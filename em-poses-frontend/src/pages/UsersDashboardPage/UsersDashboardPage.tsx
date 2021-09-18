@@ -1,8 +1,9 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import { createUser, getAllUsers, updateUser } from '../../api/registered-users';
+import { createUser, deleteUser, getAllUsers, updateUser } from '../../api/registered-users';
 import AsyncLayout from '../../components/AsyncLayout';
+import ConfirmDialog from '../../components/ConfirmDialog';
 import AsyncState from '../../types/AsyncState';
 import DialogState from '../../types/DialogState';
 import RegisteredUser from '../../types/RegisteredUser';
@@ -18,6 +19,9 @@ export default function UsersDashboardPage() {
     inProgress: false, isOpen: false
   });
   const [ editUserFormDialog, setEditUserFormDialog ] = useState<DialogState<RegisteredUser>>({
+    inProgress: false, isOpen: false
+  });
+  const [ confirmDeleteUserDialog, setConfirmDeleteUserDialog ] = useState<DialogState<RegisteredUser>>({
     inProgress: false, isOpen: false
   });
   useEffect(() => {
@@ -65,6 +69,27 @@ export default function UsersDashboardPage() {
       setEditUserFormDialog(old => ({ ...old, inProgress: false }));
     });
   }
+  function openConfirmDeleteUserDialogHandler(user: RegisteredUser): void {
+    setConfirmDeleteUserDialog({ isOpen: true, inProgress: false, data: user });
+  }
+  function dismissConfirmDeleteUserDialogHandler(): void {
+    setConfirmDeleteUserDialog({ isOpen: false, inProgress: false });
+  }
+  function confirmDeleteUserDialogHandler(): void {
+    const { data } = confirmDeleteUserDialog;
+    setConfirmDeleteUserDialog(old => ({ ...old, inProgress: true }));
+    if (data) {
+      deleteUser(data.id!).then(() => {
+        setConfirmDeleteUserDialog({ isOpen: false, inProgress: false });
+        setUsers(old => ({
+          ...old,
+          data: old.data.filter(({ id }) => id !== data.id)
+        }));
+      }).catch(() => {
+        setConfirmDeleteUserDialog(old => ({ ...old, inProgress: false }));
+      });
+    }
+  }
   return (
     <div className="UsersDashboardPage">
       <AsyncLayout inProgress={users.inProgress}>
@@ -73,7 +98,8 @@ export default function UsersDashboardPage() {
             users.data.map(user => (
               <UserItem
                 key={user.id} user={user} className="user-item"
-                onDelete={() => {}} onEdit={openEditUserFormDialogHandler}
+                onDelete={openConfirmDeleteUserDialogHandler}
+                onEdit={openEditUserFormDialogHandler}
               />
             ))
           }
@@ -92,6 +118,13 @@ export default function UsersDashboardPage() {
       <UserFormDialog
         state={editUserFormDialog} onClose={closeEditUserFormDialogHandler}
         onSubmit={submitEditUserFormDialogHandler}
+      />
+      <ConfirmDialog
+        message="User will be deleted"
+        isOpen={confirmDeleteUserDialog.isOpen}
+        inProgress={confirmDeleteUserDialog.inProgress}
+        onRejected={dismissConfirmDeleteUserDialogHandler}
+        onConfirmed={confirmDeleteUserDialogHandler}
       />
     </div>
   );
