@@ -1,7 +1,10 @@
 import { Router } from 'express';
-import { body, param } from 'express-validator';
+import { body, param, query } from 'express-validator';
 import { registeredUserRoles } from '../../../core/constants/user-roles';
-import { createUserCtrl, deleteUserCtrl, getAllUsersCtrl, updateUserCtrl } from '../controllers/registered-users';
+import {
+  createUserCtrl, deleteUserCtrl, getAllUsersCtrl,
+  updateUserCtrl, userEmailExistsCtrl
+} from '../controllers/registered-users';
 import { validationErrorMid } from '../middlewares/validation.mid';
 
 const registeredUsersRouter = Router();
@@ -37,6 +40,13 @@ registeredUsersRouter.put(
   ],
   validationErrorMid,
   updateUserCtrl
+);
+
+registeredUsersRouter.get(
+  '/exists',
+  [ query('email').isEmail() ],
+  validationErrorMid,
+  userEmailExistsCtrl
 );
 
 export default registeredUsersRouter;

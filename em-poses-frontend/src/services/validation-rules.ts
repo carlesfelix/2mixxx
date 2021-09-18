@@ -1,7 +1,7 @@
 import { ValidateResult, ValidationRule } from 'react-hook-form';
 
-function required(): ValidationRule<boolean> {
-  return { value: true, message: 'This field is mandatory' };
+function required(value: boolean = true): ValidationRule<boolean> {
+  return { value, message: 'This field is mandatory' };
 };
 function min(value: number): ValidationRule<number> {
   return { value, message: 'minRule' };

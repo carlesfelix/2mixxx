@@ -3,17 +3,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import OverlayMenu from '../../../../components/OverlayMenu';
 import RegisteredUser from '../../../../types/RegisteredUser';
-import { userOptions } from '../../constants';
+import { getUserOptions } from '../../helpers';
 import './UserItem.scss';
 
 type Props = {
   user: RegisteredUser;
   className?: string;
+  onEdit: (user: RegisteredUser) => void;
+  onDelete: (user: RegisteredUser) => void;
 };
 
 export default function UserItem(props: Props) {
-  const { user, className = '' } = props;
+  const { user, className = '', onEdit, onDelete } = props;
   const rootClassNames = classNames('UserItem card card-primary', { [className]: !!className });
+  const userOptions = getUserOptions({
+    onDelete: deleteHandler,
+    onEdit: editHandler
+  });
+
+  function deleteHandler(): void {
+    onDelete(user);
+  }
+  function editHandler(): void {
+    onEdit(user);
+  }
   return (
     <div className={rootClassNames}>
       <span className="user-icon user-field">

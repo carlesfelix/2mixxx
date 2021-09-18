@@ -4,6 +4,7 @@ import Dialog from '../../../../components/Dialog';
 import ControlledInput from '../../../../components/forms/ControlledInput';
 import DialogState from '../../../../types/DialogState';
 import Library from '../../../../types/Library';
+import { getLibraryInfoFormValidation } from '../../helpers';
 import './LibraryInfoDialog.scss';
 
 type Props = {
@@ -15,7 +16,7 @@ export default function LibraryInfoDialog(props: Props) {
   const { state, onSubmit, onClose } = props;
   const { inProgress, data, isOpen } = state;
   const { control, handleSubmit, reset } = useForm();
-
+  const libraryInfoFormValidation = getLibraryInfoFormValidation();
   useEffect(() => {
     reset(data || {});
   }, [ isOpen, data, reset ]);
@@ -54,7 +55,7 @@ export default function LibraryInfoDialog(props: Props) {
           control={control}
           label="Title"
           name="title"
-          rules={{ required: { message: 'This field is mandatory', value: true } }}
+          rules={libraryInfoFormValidation.title}
         />
       </form>
     </Dialog>

@@ -25,4 +25,11 @@ export default class RegisteredUser implements IRegisteredUserRepository {
     return deleteCount;
   }
 
+  async getUserByEmail(email: string): Promise<IRegisteredUserEntity | null> {
+    const user = await models.RegisteredUser.model.findOne({
+      where: { email }, limit: 1
+    });
+    return instanceToJson<IRegisteredUserEntity>(user);
+  }
+
 }

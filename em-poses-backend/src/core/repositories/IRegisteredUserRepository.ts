@@ -5,4 +5,5 @@ export default interface IRegisteredUserRepository {
   updateUser(userId: string, user: IRegisteredUserEntity): Promise<number>;
   getAllUsers(): Promise<IRegisteredUserEntity[]>;
   deleteUser(userId: string): Promise<number>;
+  getUserByEmail(email: string): Promise<IRegisteredUserEntity | null>;
 }

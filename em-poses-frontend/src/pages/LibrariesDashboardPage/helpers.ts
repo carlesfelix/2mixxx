@@ -1,3 +1,6 @@
+import validationRules from '../../services/validation-rules';
+import FormValidation from '../../types/FormValidation';
+import Library from '../../types/Library';
 import OptionItem from '../../types/OptionItem';
 
 type GetLibraryMenuProps = {
@@ -18,3 +21,9 @@ export function getLibraryMenu(props: GetLibraryMenuProps): OptionItem[] {
   ];
   return libraryMenu;
 }
+
+export const getLibraryInfoFormValidation: FormValidation<Partial<Library>> = () => {
+  return {
+    title: { required: validationRules.required() }
+  };
+};

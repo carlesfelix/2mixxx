@@ -4,6 +4,7 @@ import createUserInteractor from '../../../core/interactors/registered-users/cre
 import deleteUserInteractor from '../../../core/interactors/registered-users/deleteUser';
 import getAllUsersInteractor from '../../../core/interactors/registered-users/getAllUsers';
 import updateUserInteractor from '../../../core/interactors/registered-users/updateUser';
+import userEmailExistsInteractor from '../../../core/interactors/registered-users/userEmailExists';
 import responseErrors from '../constants/response-messages';
 
 export function createUserCtrl(
@@ -59,6 +60,20 @@ export function updateUserCtrl(
   ).then(() => {
     res.status(200).json();
   }).catch((err) => {
+    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+  });
+}
+
+export function userEmailExistsCtrl(
+  req: Request<unknown, unknown, unknown, { email: string }>,
+  res: Response<{ exists: boolean }>,
+  next: NextFunction
+): void {
+  const { query } = req;
+  const { email } = query;
+  userEmailExistsInteractor(email).then(data => {
+    res.status(200).json(data);
+  }).catch(err => {
     next({ responseError: responseErrors.ERR_GENERIC, details: err });
   });
 }
