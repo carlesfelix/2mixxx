@@ -1,24 +1,24 @@
 import { ValidateResult, ValidationRule } from 'react-hook-form';
 
-function required(message?: string): ValidationRule<boolean> {
-  return { value: true, message: message || 'This field is mandatory' };
+function required(): ValidationRule<boolean> {
+  return { value: true, message: 'This field is mandatory' };
 };
-function min(value: number, message?: string): ValidationRule<number> {
-  return { value, message: message || 'minRule' };
+function min(value: number): ValidationRule<number> {
+  return { value, message: 'minRule' };
 }
-function max(value: number, message?: string): ValidationRule<number> {
-  return { value, message: message || 'maxRule' };
+function max(value: number): ValidationRule<number> {
+  return { value, message: 'maxRule' };
 }
-function minLength(value: number, message?: string): ValidationRule<number> {
-  return { value, message: message || 'minLengthRule' };
+function minLength(value: number): ValidationRule<number> {
+  return { value, message: 'minLengthRule' };
 }
-function maxLength(value: number, message?: string): ValidationRule<number> {
-  return { value, message: message || 'maxLengthRule' };
+function maxLength(value: number): ValidationRule<number> {
+  return { value, message: 'maxLengthRule' };
 }
-function email(message?: string): ValidationRule<RegExp> {
+function email(): ValidationRule<RegExp> {
   return {
     value: /^([a-z0-9._]+@+[a-z0-9_]+\.\w{2,3})$/i,
-    message: message || 'Invalid email format'
+    message: 'Invalid email format'
   };
 }
 
