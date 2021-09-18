@@ -3,11 +3,14 @@ import ControlledInput from '../../components/forms/ControlledInput';
 import LoginButton from '../../components/LoginButton';
 import { useGuestAuth } from '../../contexts/guest-auth';
 import { registerGuestUserAction } from '../../contexts/guest-auth';
+import useFormValidation from './hooks/useFormValidation';
+
 import './HomePage.scss';
 
 export default function HomePage() {
   const { dispatch } = useGuestAuth();
-  const { control, handleSubmit } = useForm({ mode: 'onChange' });
+  const { control, handleSubmit } = useForm<{ roomCode?: string }>({ mode: 'onChange' });
+  const formValidation = useFormValidation(control);
   function submitHandler(data: { roomCode: string }): void {
     const { roomCode } = data;
     registerGuestUserAction(dispatch, roomCode);
@@ -27,12 +30,7 @@ export default function HomePage() {
               type: 'inputText',
               props: { autoComplete: 'off' }
             }}
-            rules={{
-              required: {
-                message: 'This field is mandatory',
-                value: true
-              }
-            }}
+            rules={formValidation.roomCode}
           />
           <div className="form-actions">
             <button className="btn btn-primary submit-room-btn" type="submit">

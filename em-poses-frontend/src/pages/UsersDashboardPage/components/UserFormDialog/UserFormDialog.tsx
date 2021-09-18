@@ -4,6 +4,7 @@ import Dialog from '../../../../components/Dialog';
 import ControlledInput from '../../../../components/forms/ControlledInput';
 import DialogState from '../../../../types/DialogState';
 import RegisteredUser from '../../../../types/RegisteredUser';
+import useFormValidation from './useFormValidation';
 import './UserFormDialog.scss';
 
 type Props = {
@@ -12,15 +13,22 @@ type Props = {
   onSubmit: (user: RegisteredUser) => void;
 };
 
+const defaultValues: Partial<RegisteredUser> = {
+  role: 2
+};
+
 export default function UserFormDialog(props: Props) {
   const { state, onClose, onSubmit } = props;
   const { inProgress, isOpen, data } = state;
-  const { handleSubmit, control, reset } = useForm();
+  const formHook = useForm<Partial<RegisteredUser>>({ mode: 'onBlur' });
+  const { handleSubmit, control, reset } = formHook;
   
   useEffect(() => {
-    reset(data || {});
+    reset(data || defaultValues);
   }, [ isOpen, data, reset ]);
 
+  const userFormRules = useFormValidation(control, defaultValues);
+  
   function submitHandler(user: RegisteredUser): void {
     onSubmit(user);
   }
@@ -47,15 +55,15 @@ export default function UserFormDialog(props: Props) {
           control={control}
           label="Email"
           name="email"
-          rules={{ required: { message: 'This field is mandatory', value: true } }}
+          rules={userFormRules.email}
         />
         <ControlledInput
           field={{ type: 'dropdown', props: { options: [ { label: 'Admin', value: 1 }, {label: 'DJ', value: 2 } ] } }}
           control={control}
-          defaultValue={2}
+          defaultValue={defaultValues.role}
           label="Role"
           name="role"
-          rules={{ required: { message: 'This field is mandatory', value: true } }}
+          rules={userFormRules.role}
         />
       </form>
     </Dialog>
