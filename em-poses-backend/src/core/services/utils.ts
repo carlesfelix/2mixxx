@@ -1,3 +1,4 @@
+import { customAlphabet } from 'nanoid';
 import { parse, PlistValue } from 'plist';
 import { ISongEntity } from '../entities/ISongEntity';
 
@@ -50,4 +51,10 @@ export async function getTracksFromItunesXml(props: GetTracksFromItunesXmlProps)
     }
   }
   throw new Error();
+}
+
+export function getRandomCode(): string {
+  const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const nanoid = customAlphabet(alphabet, 6);
+  return nanoid();
 }

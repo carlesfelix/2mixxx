@@ -5,6 +5,7 @@ import { validationErrorMid } from '../middlewares/validation.mid';
 import librariesRouter from './libraries';
 import librarySongsRouter from './library-songs';
 import registeredUsersRouter from './registered-users';
+import roomsRouter from './rooms';
 
 const api = Router();
 
@@ -22,6 +23,8 @@ api.use(
 );
 
 api.use('/registered-users', registeredUsersRouter);
+
+api.use('/rooms', roomsRouter)
 
 api.use(notFoundErrorMid);
 api.use(genericErrorMid);

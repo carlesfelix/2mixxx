@@ -23,7 +23,7 @@ export function createLibraryCtrl(
 
 export function deleteLibraryCtrl(
   req: Request<{ id: string }>,
-  res: Response<ILibraryEntity>,
+  res: Response,
   next: NextFunction
 ): void {
   const { params } = req;
