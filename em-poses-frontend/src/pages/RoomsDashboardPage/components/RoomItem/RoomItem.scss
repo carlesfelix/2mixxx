@@ -1,0 +1,17 @@
+@use '../../../../styles/utils/variables';
+
+div.RoomItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  span.room-code {
+    flex-grow: 1;
+    margin-left: 0.5rem;
+  }
+  span.room-menu {
+    span.room-menu-btn {
+      color: variables.$c-secondary--900;
+    }
+  }
+}
