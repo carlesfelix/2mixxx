@@ -5,4 +5,6 @@ export default interface IRoomsRepository {
   deleteRoom(roomId: string): Promise<number>;
   getRoomById(roomId: string): Promise<IRoomEntity | null>;
   getAllRooms(): Promise<IRoomEntity[]>;
+  addLibraryToRoom(roomId: string, libraryId: string): Promise<void>;
+  deleteLibraryFromRoom(roomId: string, libraryId: string): Promise<number>;
 }

@@ -4,6 +4,18 @@ import { instancesToJson, instanceToJson } from '../helpers';
 import models from '../models';
 
 export default class Room implements IRoomsRepository {
+  async addLibraryToRoom(roomId: string, libraryId: string): Promise<void> {
+    await models.LibraryRoom.model.create({
+      libraryId, roomId
+    });
+  }
+  async deleteLibraryFromRoom(roomId: string, libraryId: string): Promise<number> {
+    const deleteCount = await models.LibraryRoom.model.destroy({
+      where: { libraryId, roomId },
+      limit: 1
+    });
+    return deleteCount;
+  }
   async createRoom(room: IRoomEntity): Promise<IRoomEntity> {
     const data = await models.Room.model.create(room);
     return instanceToJson<IRoomEntity>(data) as IRoomEntity;

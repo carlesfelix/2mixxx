@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { param } from 'express-validator';
-import { createRoomCtrl, deleteRoomCtrl, getAllRoomsCtrl, getRoomByIdCtrl } from '../controllers/rooms';
+import { body, param } from 'express-validator';
+import { addLibraryToRoomCtrl, createRoomCtrl, deleteLibraryFromRoomCtrl, deleteRoomCtrl, getAllRoomsCtrl, getRoomByIdCtrl } from '../controllers/rooms';
 import { validationErrorMid } from '../middlewares/validation.mid';
 
 const roomsRouter = Router();
@@ -24,6 +24,26 @@ roomsRouter.delete(
   [ param('roomId').isUUID() ],
   validationErrorMid,
   deleteRoomCtrl
+);
+
+roomsRouter.post(
+  '/:roomId/libraries',
+  [
+    param('roomId').isUUID(),
+    body('libraryId').isUUID()
+  ],
+  validationErrorMid,
+  addLibraryToRoomCtrl
+);
+
+roomsRouter.delete(
+  '/:roomId/libraries/:libraryId',
+  [
+    param('roomId').isUUID(),
+    param('libraryId').isUUID()
+  ],
+  validationErrorMid,
+  deleteLibraryFromRoomCtrl
 );
 
 export default roomsRouter;
