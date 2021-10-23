@@ -3,8 +3,7 @@ import { body, param } from 'express-validator';
 import {
   addLibraryToRoomCtrl, createRoomCtrl,
   deleteLibraryFromRoomCtrl, deleteRoomCtrl,
-  getAllRoomsCtrl, getLibrariesFromRoomCtrl,
-  getRoomByIdCtrl
+  getAllRoomsCtrl, getRoomByIdCtrl
 } from '../controllers/rooms';
 import { validationErrorMid } from '../middlewares/validation.mid';
 
@@ -41,12 +40,6 @@ roomsRouter.post(
   addLibraryToRoomCtrl
 );
 
-roomsRouter.get(
-  '/:roomId/libraries',
-  [ param('roomId').isUUID() ],
-  validationErrorMid,
-  getLibrariesFromRoomCtrl
-);
 
 roomsRouter.delete(
   '/:roomId/libraries/:libraryId',
