@@ -5,6 +5,7 @@ import createRoom from "../../../core/interactors/rooms/createRoom";
 import deleteLibraryFromRoom from "../../../core/interactors/rooms/deleteLibraryFromRoom";
 import deleteRoom from "../../../core/interactors/rooms/deleteRoom";
 import getAllRooms from "../../../core/interactors/rooms/getAllRooms";
+import getLibrariesFromRoom from "../../../core/interactors/rooms/getLibrariesFromRoom";
 import getRoomById from "../../../core/interactors/rooms/getRoomById";
 import responseErrors from "../constants/response-messages";
 
@@ -65,6 +66,20 @@ export function addLibraryToRoomCtrl(
   const { libraryId } = body;
   addLibraryToRoom(roomId, libraryId).then(() => {
     res.status(200).json();
+  }).catch(err => {
+    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+  });
+}
+
+export function getLibrariesFromRoomCtrl(
+  req: Request<{ roomId: string }>,
+  res: Response<IRoomEntity>,
+  next: NextFunction
+): void {
+  const { params } = req;
+  const { roomId } = params;
+  getLibrariesFromRoom(roomId).then(data => {
+    res.json(data);
   }).catch(err => {
     next({ responseError: responseErrors.ERR_GENERIC, details: err });
   });

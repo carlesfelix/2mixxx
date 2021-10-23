@@ -31,7 +31,18 @@ const modelDefinition: IModelDefinitionFn<ILibraryRoomEntity> = sequelize => {
     model: LibraryRoomModel,
     associate: models => {
       models.Library.model.belongsToMany(models.Room.model, {
-        through: LibraryRoomModel
+        uniqueKey: 'libraryId',
+        through: models.LibraryRoom.model,
+        foreignKey: 'libraryId',
+        otherKey: 'roomId',
+        as: 'rooms'
+      });
+      models.Room.model.belongsToMany(models.Library.model, {
+        uniqueKey: 'roomId',
+        through: models.LibraryRoom.model,
+        foreignKey: 'roomId',
+        otherKey: 'libraryId',
+        as: 'libraries'
       });
     }
   };

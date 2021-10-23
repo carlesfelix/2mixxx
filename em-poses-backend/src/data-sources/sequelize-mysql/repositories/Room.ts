@@ -4,6 +4,20 @@ import { instancesToJson, instanceToJson } from '../helpers';
 import models from '../models';
 
 export default class Room implements IRoomsRepository {
+  async getLibrariesFromRoom(roomId: string): Promise<IRoomEntity | null> {
+    const data = await models.Room.model.findOne({
+      where: { id: roomId },
+      limit: 1,
+      include: [
+        {
+          model: models.Library.model,
+          as: 'libraries',
+          through: { attributes: [] }
+        }
+      ]
+    });
+    return instanceToJson<IRoomEntity>(data);
+  }
   async addLibraryToRoom(roomId: string, libraryId: string): Promise<void> {
     await models.LibraryRoom.model.create({
       libraryId, roomId
