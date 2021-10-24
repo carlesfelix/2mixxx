@@ -34,7 +34,7 @@ export const registeredAppRoutes: AppRoute[] = [
     path: '/dashboard/rooms/:roomId/libraries',
     Component: ManageRoomLibrariesPage,
     toolbarLinkBack: '/dashboard/rooms',
-    toolbarTitle: 'Manage libraries of room',
+    toolbarTitle: 'Manage room\'s libraries',
     permission: registeredPermissions.PAGE_DASHBOARD,
     exact: true
   },
