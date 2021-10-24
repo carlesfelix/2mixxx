@@ -35,7 +35,7 @@ export default function RoomItem(props: Props) {
   return (
     <div className="card card-primary RoomItem">
       <span className="room-icon">
-      <FontAwesomeIcon icon={faDoorOpen} />
+        <FontAwesomeIcon icon={faDoorOpen} />
       </span>
       <span className="room-code">
         { room.code }

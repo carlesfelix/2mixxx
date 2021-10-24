@@ -1,11 +1,15 @@
 import { InputHTMLAttributes, ReactNode } from 'react';
 import { Control, Controller, ControllerRenderProps, FieldValues, UseControllerProps } from 'react-hook-form';
 import FormField from '../FormField';
+import Checkbox, { CheckboxExtraProps } from '../inputs/Checkbox/Checkbox';
 import Dropdown, { DropdownExtraProps } from '../inputs/Dropdown/Dropdown';
 import InputText from '../inputs/InputText';
+import MultiselectBox, { MultiselectBoxExtraProps } from '../inputs/MultiselectBox/MultiselectBox';
 
 type Field = { type: 'inputText', props?: InputHTMLAttributes<HTMLInputElement> } |
-{ type: 'dropdown', props: DropdownExtraProps };
+{ type: 'dropdown', props: DropdownExtraProps } |
+{ type: 'checkbox', props: CheckboxExtraProps } |
+{ type: 'multiselectBox', props: MultiselectBoxExtraProps };
   
 type Props = {
   control: Control<FieldValues>;
@@ -28,13 +32,32 @@ export default function ControlledInput(props: Props) {
     switch(field.type) {
       case 'inputText':
         return (
-          <InputText value={value} onChange={onChange} onBlur={onBlur}
+          <InputText
+            value={value} onChange={onChange} onBlur={onBlur}
             name={name} extraProps={field.props}
           />
         );
       case 'dropdown':
-        return <Dropdown value={value} onChange={onChange} onBlur={onBlur}
-          name={name} extraProps={field.props} />;
+        return (
+          <Dropdown
+            value={value} onChange={onChange} onBlur={onBlur}
+            name={name} extraProps={field.props}
+          />
+        );
+      case 'checkbox':
+        return (
+          <Checkbox
+            value={value} onChange={onChange} onBlur={onBlur}
+            name={name} extraProps={field.props}
+          />
+        );
+      case 'multiselectBox':
+        return (
+          <MultiselectBox
+            value={value} onChange={onChange} onBlur={onBlur}
+            name={name} extraProps={field.props}
+          />
+        );
       default:
         throw new Error(`fieldType does not exists`);
     }

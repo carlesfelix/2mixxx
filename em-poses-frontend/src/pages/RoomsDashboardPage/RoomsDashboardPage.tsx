@@ -1,6 +1,7 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { createRoom, deleteRoom, getAllRooms } from '../../api/rooms';
 import AsyncLayout from '../../components/AsyncLayout';
 import ConfirmDialog from '../../components/ConfirmDialog';
@@ -11,6 +12,7 @@ import RoomItem from './components/RoomItem';
 import './RoomsDashboardPage.scss';
 
 export default function RoomsDashboardPage() {
+  const { push } = useHistory();
   const [ rooms, setRooms ] = useState<AsyncState<Room[]>>({
     data: [], inProgress: true, error: false
   });
@@ -36,7 +38,7 @@ export default function RoomsDashboardPage() {
     });
   }
   function manageLibrariesMenuHandler(room: Room): void {
-
+    push(`/dashboard/rooms/${room.id}/libraries`);
   }
   function manageModeradorsMenuHandler(room: Room): void {
 

@@ -1,0 +1,47 @@
+@use '../../../../styles/utils/variables';
+
+label.Checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+  span.checkbox-label {
+    flex-grow: 1;
+  }
+  &:not(.Checkbox--reverse) {
+    .checkbox-element {
+      &:not(:first-child) {
+        margin-left: 0.25rem;
+      }
+    }
+  }
+  &.Checkbox--reverse {
+    flex-direction: row-reverse;
+    .checkbox-element {
+      &:not(:last-child) {
+        margin-left: 0.25rem;
+      }
+    }
+  }
+  input.checkbox-input-native {
+    display: none;
+  }
+  span.checkbox-input {
+    border-radius: 0.2rem;
+    border: solid 2px variables.$c-primary--700;
+    display: inline-flex;
+    svg.checkbox-input__checked {
+      visibility: hidden;
+      color: variables.$c-primary--50;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+  input.checkbox-input-native[type=checkbox]:checked + span.checkbox-input {
+    background-color: variables.$c-primary--600;
+    svg.checkbox-input__checked {
+      visibility: visible;
+    }
+  }
+}

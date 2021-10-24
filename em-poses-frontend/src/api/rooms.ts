@@ -14,3 +14,16 @@ export async function createRoom(): Promise<Room> {
 export async function deleteRoom(id: string): Promise<void> {
   await http.delete(`/rooms/${id}`);
 }
+
+export async function getRoomById(roomId: string): Promise<Room> {
+  const { data } = await http.get<Room>(`/rooms/${roomId}`);
+  return data;
+}
+
+export async function addLibraryToRoom(roomId: string, libraryId: string): Promise<void> {
+  await http.post(`/rooms/${roomId}/libraries`, { libraryId });
+}
+
+export async function deleteLibraryFromRoom(roomId: string, libraryId: string): Promise<void> {
+  await http.delete(`/rooms/${roomId}/libraries/${libraryId}`);
+}

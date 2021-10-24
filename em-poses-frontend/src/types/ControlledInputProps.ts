@@ -1,8 +1,8 @@
 type ControlledInputProps<Value, ExtraProps = any> = {
   onChange: (value: Value) => void;
-  onBlur: () => void;
+  onBlur?: () => void;
   value: Value;
-  name: string;
+  name?: string;
   extraProps: ExtraProps;
   className?: string;
 };
