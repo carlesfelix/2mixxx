@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { ILibraryEntity } from '../../../core/entities/ILibraryEntity';
+import LibraryEntity from '../../../core/types/LibraryEntity';
 import createLibrary from '../../../core/interactors/libraries/createLibrary';
 import deleteLibrary from '../../../core/interactors/libraries/deleteLibrary';
 import getLibraries from '../../../core/interactors/libraries/getLibraries';
@@ -8,8 +8,8 @@ import updateLibrary from '../../../core/interactors/libraries/updateLibrary';
 import responseErrors from '../constants/response-messages';
 
 export function createLibraryCtrl(
-  req: Request<unknown, unknown, ILibraryEntity>,
-  res: Response<ILibraryEntity>,
+  req: Request<unknown, unknown, LibraryEntity>,
+  res: Response<LibraryEntity>,
   next: NextFunction
 ): void {
   const { body } = req;
@@ -41,7 +41,7 @@ export function deleteLibraryCtrl(
 
 export function updateLibraryCtrl(
   req: Request<{ id: string }>,
-  res: Response<ILibraryEntity>,
+  res: Response<LibraryEntity>,
   next: NextFunction
 ): void {
   const { body, params } = req;
@@ -60,7 +60,7 @@ export function updateLibraryCtrl(
 
 export function getLibraryByIdCtrl(
   req: Request<{ id: string }>,
-  res: Response<ILibraryEntity>,
+  res: Response<LibraryEntity>,
   next: NextFunction
 ): void {
   const { params } = req;
@@ -79,7 +79,7 @@ export function getLibraryByIdCtrl(
 
 export function getLibrariesCtrl(
   _: Request,
-  res: Response<ILibraryEntity[]>,
+  res: Response<LibraryEntity[]>,
   next: NextFunction
 ): void {
   getLibraries().then(libraries => {

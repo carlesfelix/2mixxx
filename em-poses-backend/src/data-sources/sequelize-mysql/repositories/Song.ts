@@ -1,5 +1,5 @@
 import { Op } from 'sequelize';
-import { ISongEntity } from '../../../core/entities/ISongEntity';
+import SongEntity from '../../../core/types/SongEntity';
 import ISongRepository from '../../../core/repositories/ISongRepository';
 import { instancesToJson } from '../helpers';
 import models from '../models';
@@ -10,10 +10,10 @@ export default class Song implements ISongRepository {
       where: { libraryId }
     });
   }
-  async importSongsToLibrary(tracks: ISongEntity[]): Promise<void> {
+  async importSongsToLibrary(tracks: SongEntity[]): Promise<void> {
     await models.Song.model.bulkCreate(tracks);
   }
-  async searchSongsFromLibrary(libraryId: string, query: string): Promise<ISongEntity[]> {
+  async searchSongsFromLibrary(libraryId: string, query: string): Promise<SongEntity[]> {
     const tracks = await models.Song.model.findAll({
       where: {
         libraryId,
@@ -28,6 +28,6 @@ export default class Song implements ISongRepository {
       },
       limit: 8
     });
-    return instancesToJson<ISongEntity>(tracks);
+    return instancesToJson<SongEntity>(tracks);
   }
 }

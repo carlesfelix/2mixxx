@@ -1,4 +1,4 @@
-import { ILibraryEntity } from '../entities/ILibraryEntity';
+import { ILibraryEntity } from '../types/LibraryEntity';
 
 export default interface ILibraryRepository {
   createLibrary(library: ILibraryEntity): Promise<ILibraryEntity>;

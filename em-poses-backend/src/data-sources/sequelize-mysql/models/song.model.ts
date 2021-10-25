@@ -1,9 +1,9 @@
 import { DataTypes, Model, UUIDV4 } from 'sequelize';
-import { ISongEntity } from '../../../core/entities/ISongEntity';
+import SongEntity from '../../../core/types/SongEntity';
 import { IModelDefinitionFn } from './types';
 
-const modelDefinition: IModelDefinitionFn<ISongEntity> = sequelize => {
-  const SongModel = sequelize.define<Model<ISongEntity>>('Song', {
+const modelDefinition: IModelDefinitionFn<SongEntity> = sequelize => {
+  const SongModel = sequelize.define<Model<SongEntity>>('Song', {
     id: {
       allowNull: false,
       primaryKey: true,

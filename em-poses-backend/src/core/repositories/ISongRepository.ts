@@ -1,4 +1,4 @@
-import { ISongEntity } from '../entities/ISongEntity';
+import { ISongEntity } from '../types/SongEntity';
 
 export default interface ISongRepository {
   importSongsToLibrary(tracks: ISongEntity[]): Promise<void>;

@@ -1,6 +1,6 @@
 import { literal } from 'sequelize';
 import { Literal } from 'sequelize/types/lib/utils';
-import { ILibraryEntity } from '../../../core/entities/ILibraryEntity';
+import LibraryEntity from '../../../core/types/LibraryEntity';
 import ILibraryRepository from '../../../core/repositories/ILibraryRepository';
 import { instancesToJson, instanceToJson } from '../helpers';
 import models from '../models';
@@ -14,7 +14,7 @@ export default class Library implements ILibraryRepository {
         Song.libraryId = Library.id
     )`);
   }
-  async getLibraries(): Promise<ILibraryEntity[]> {
+  async getLibraries(): Promise<LibraryEntity[]> {
     const libraries = await models.Library.model.findAll({
       attributes: {
         include: [
@@ -25,9 +25,9 @@ export default class Library implements ILibraryRepository {
         ]
       }
     });
-    return instancesToJson<ILibraryEntity>(libraries);
+    return instancesToJson<LibraryEntity>(libraries);
   }
-  async getLibraryById(libraryId: string): Promise<ILibraryEntity | null> {
+  async getLibraryById(libraryId: string): Promise<LibraryEntity | null> {
     const library = await models.Library.model.findOne({
       where: {
         id: libraryId
@@ -42,11 +42,11 @@ export default class Library implements ILibraryRepository {
       },
       limit: 1
     });
-    return instanceToJson<ILibraryEntity>(library);
+    return instanceToJson<LibraryEntity>(library);
   }
-  async createLibrary(library: ILibraryEntity): Promise<ILibraryEntity> {
+  async createLibrary(library: LibraryEntity): Promise<LibraryEntity> {
     const createdLibrary = await models.Library.model.create(library);
-    return instanceToJson<ILibraryEntity>(createdLibrary) as ILibraryEntity;
+    return instanceToJson<LibraryEntity>(createdLibrary) as LibraryEntity;
   }
   async deleteLibrary(libraryId: string): Promise<number> {
     const destroyCount = await models.Library.model.destroy({
@@ -57,7 +57,7 @@ export default class Library implements ILibraryRepository {
     });
     return destroyCount;
   }
-  async updateLibrary(libraryId: string, library: ILibraryEntity): Promise<number> {
+  async updateLibrary(libraryId: string, library: LibraryEntity): Promise<number> {
     const [ updateNumber ] = await models.Library.model.update(library, {
       where: {
         id: libraryId

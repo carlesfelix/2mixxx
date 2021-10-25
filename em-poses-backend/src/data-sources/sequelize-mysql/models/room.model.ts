@@ -1,9 +1,9 @@
 import { DataTypes, Model, UUIDV4 } from 'sequelize';
-import IRoomEntity from '../../../core/entities/IRoomEntity';
+import RoomEntity from '../../../core/types/RoomEntity';
 import { IModelDefinitionFn } from './types';
 
-const modelDefinition: IModelDefinitionFn<IRoomEntity> = sequelize => {
-  const RoomModel = sequelize.define<Model<IRoomEntity>>('Room', {
+const modelDefinition: IModelDefinitionFn<RoomEntity> = sequelize => {
+  const RoomModel = sequelize.define<Model<RoomEntity>>('Room', {
     id: {
       allowNull: false,
       primaryKey: true,

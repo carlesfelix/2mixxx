@@ -1,8 +1,8 @@
 import dataSourcesConfig from '../../constants/data-sources.config';
-import { ILibraryEntity } from '../../entities/ILibraryEntity';
+import LibraryEntity from '../../types/LibraryEntity';
 import ILibraryRepository from '../../repositories/ILibraryRepository';
 
-const interactorFn = (libraryRepo: ILibraryRepository) => (libraryId: string, library: ILibraryEntity): Promise<number> => {
+const interactorFn = (libraryRepo: ILibraryRepository) => (libraryId: string, library: LibraryEntity): Promise<number> => {
   return libraryRepo.updateLibrary(libraryId, library);
 };
 export default interactorFn(dataSourcesConfig.library);

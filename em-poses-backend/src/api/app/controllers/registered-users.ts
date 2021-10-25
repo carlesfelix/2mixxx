@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import IRegisteredUserEntity from '../../../core/entities/IRegisteredUserEntity';
+import RegisteredUserEntity from '../../../core/types/RegisteredUserEntity';
 import createUserInteractor from '../../../core/interactors/registered-users/createUser';
 import deleteUserInteractor from '../../../core/interactors/registered-users/deleteUser';
 import getAllUsersInteractor from '../../../core/interactors/registered-users/getAllUsers';
@@ -8,8 +8,8 @@ import userEmailExistsInteractor from '../../../core/interactors/registered-user
 import responseErrors from '../constants/response-messages';
 
 export function createUserCtrl(
-  req: Request<unknown, unknown, IRegisteredUserEntity>,
-  res: Response<IRegisteredUserEntity>,
+  req: Request<unknown, unknown, RegisteredUserEntity>,
+  res: Response<RegisteredUserEntity>,
   next: NextFunction
 ): void {
   const { body } = req;
@@ -37,7 +37,7 @@ export function deleteUserCtrl(
 
 export function getAllUsersCtrl(
   req: Request,
-  res: Response<IRegisteredUserEntity[]>,
+  res: Response<RegisteredUserEntity[]>,
   next: NextFunction
 ): void {
   getAllUsersInteractor().then(users => {
@@ -48,8 +48,8 @@ export function getAllUsersCtrl(
 }
 
 export function updateUserCtrl(
-  req: Request<{ userId: string }, unknown, IRegisteredUserEntity>,
-  res: Response<IRegisteredUserEntity>,
+  req: Request<{ userId: string }, unknown, RegisteredUserEntity>,
+  res: Response<RegisteredUserEntity>,
   next: NextFunction
 ): void {
   const { body, params } = req;

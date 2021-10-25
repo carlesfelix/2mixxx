@@ -1,9 +1,9 @@
 import { DataTypes, Model, UUIDV4 } from 'sequelize';
-import LibraryEntity from '../../../core/types/LibraryEntity';
+import RoomUserEntity from '../../../core/types/RoomUserEntity';
 import { IModelDefinitionFn } from './types';
 
-const modelDefinition: IModelDefinitionFn<LibraryEntity> = sequelize => {
-  const LibraryModel = sequelize.define<Model<LibraryEntity>>('Library', {
+const modelDefinition: IModelDefinitionFn<RoomUserEntity> = sequelize => {
+  const RoomUserModel = sequelize.define<Model<RoomUserEntity>>('RoomUser', {
     id: {
       allowNull: false,
       primaryKey: true,
@@ -21,15 +21,13 @@ const modelDefinition: IModelDefinitionFn<LibraryEntity> = sequelize => {
       type: DataTypes.DATE,
       field: 'updatedAt'
     },
-    title: {
+    roomId: {
       allowNull: false,
-      type: DataTypes.STRING,
-      field: 'title'
+      type: DataTypes.UUID,
+      field: 'roomId'
     }
-  }, { tableName: 'Libraries' });
-  return {
-    model: LibraryModel
-  };
+  }, { tableName: 'RoomUsers' });
+  return { model: RoomUserModel };
 };
 
 export default modelDefinition;

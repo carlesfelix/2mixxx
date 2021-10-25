@@ -1,9 +1,9 @@
 import { DataTypes, Model, UUIDV4 } from 'sequelize';
-import IRegisteredUserEntity from '../../../core/entities/IRegisteredUserEntity';
+import RegisteredUserEntity from '../../../core/types/RegisteredUserEntity';
 import { IModelDefinitionFn } from './types';
 
-const modelDefinition: IModelDefinitionFn<IRegisteredUserEntity> = sequelize => {
-  const RegisteredUserModel = sequelize.define<Model<IRegisteredUserEntity>>('RegisteredUser', {
+const modelDefinition: IModelDefinitionFn<RegisteredUserEntity> = sequelize => {
+  const RegisteredUserModel = sequelize.define<Model<RegisteredUserEntity>>('RegisteredUser', {
     id: {
       allowNull: false,
       primaryKey: true,

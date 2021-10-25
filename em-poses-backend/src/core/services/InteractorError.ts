@@ -1,6 +1,8 @@
 enum ErrorCode {
   ENTITY_NOT_FOUND = 'ENTITY_NOT_FOUND',
-  GENERIC = 'GENERIC'
+  GENERIC = 'GENERIC',
+  UNAUTHORIZED = 'UNAUTHORIZED',
+  ACCESS_DENIED = 'ACCESS_DENIED'
 }
 export default class InteractorError extends Error {
   static Codes = ErrorCode;

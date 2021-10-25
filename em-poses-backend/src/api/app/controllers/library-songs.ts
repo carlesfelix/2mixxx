@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { ILibraryEntity } from '../../../core/entities/ILibraryEntity';
-import { ISongEntity } from '../../../core/entities/ISongEntity';
+import LibraryEntity from '../../../core/types/LibraryEntity';
+import SongEntity from '../../../core/types/SongEntity';
 import importFromItunes from '../../../core/interactors/songs/importFromItunes';
 import removeSongsFromLibrary from '../../../core/interactors/songs/removeSongsFromLibrary';
 import searchSongsFromLibrary from '../../../core/interactors/songs/searchSongsFromLibrary';
@@ -8,7 +8,7 @@ import responseErrors from '../constants/response-messages';
 
 export function importSongsFromItunesCtrl(
   req: Request<{ libraryId: string }>,
-  res: Response<ILibraryEntity | null>,
+  res: Response<LibraryEntity | null>,
   next: NextFunction
 ): void {
   const { file, params } = req;
@@ -35,7 +35,7 @@ export function searchSongsCtrl(
     unknown,
     { query: string }
   >,
-  res: Response<ISongEntity[]>,
+  res: Response<SongEntity[]>,
   next: NextFunction
 ): void {
   const { query: { query }, params: { libraryId } } = req;
@@ -48,7 +48,7 @@ export function searchSongsCtrl(
 
 export function deleteSongsFromLibraryCtrl(
   req: Request<{ libraryId: string }>,
-  res: Response<ISongEntity[]>,
+  res: Response<SongEntity[]>,
   next: NextFunction
 ): void {
   const { params: { libraryId } } = req;

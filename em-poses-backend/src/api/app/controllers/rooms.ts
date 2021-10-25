@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import IRoomEntity from "../../../core/entities/IRoomEntity";
+import RoomEntity from "../../../core/types/RoomEntity";
 import addLibraryToRoom from "../../../core/interactors/rooms/addLibraryToRoom";
 import createRoom from "../../../core/interactors/rooms/createRoom";
 import deleteLibraryFromRoom from "../../../core/interactors/rooms/deleteLibraryFromRoom";
@@ -9,7 +9,7 @@ import getRoomById from "../../../core/interactors/rooms/getRoomById";
 import responseErrors from "../constants/response-messages";
 
 export function getAllRoomsCtrl(
-  req: Request, res: Response<IRoomEntity[]>, next: NextFunction
+  req: Request, res: Response<RoomEntity[]>, next: NextFunction
 ): void {
   getAllRooms().then(data => {
     res.status(200).json(data)
@@ -20,7 +20,7 @@ export function getAllRoomsCtrl(
 
 export function getRoomByIdCtrl(
   req: Request<{ roomId: string }>,
-  res: Response<IRoomEntity>, next: NextFunction
+  res: Response<RoomEntity>, next: NextFunction
 ): void {
   const { params } = req;
   const { roomId } = params;
@@ -32,7 +32,7 @@ export function getRoomByIdCtrl(
 }
 
 export function createRoomCtrl(
-  req: Request, res: Response<IRoomEntity>,
+  req: Request, res: Response<RoomEntity>,
   next: NextFunction
 ): void {
   createRoom().then(data => {

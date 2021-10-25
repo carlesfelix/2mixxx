@@ -1,9 +1,9 @@
 import { DataTypes, Model } from "sequelize";
-import ILibraryRoomEntity from "../../../core/entities/ILibraryRoomEntity";
+import LibraryRoomEntity from "../../../core/types/LibraryRoomEntity";
 import { IModelDefinitionFn } from "./types";
 
-const modelDefinition: IModelDefinitionFn<ILibraryRoomEntity> = sequelize => {
-  const LibraryRoomModel = sequelize.define<Model<ILibraryRoomEntity>>('LibraryRoom', {
+const modelDefinition: IModelDefinitionFn<LibraryRoomEntity> = sequelize => {
+  const LibraryRoomModel = sequelize.define<Model<LibraryRoomEntity>>('LibraryRoom', {
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,

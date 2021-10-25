@@ -1,11 +1,13 @@
 import { Router } from 'express';
 import { param } from 'express-validator';
 import { genericErrorMid, notFoundErrorMid } from '../middlewares/errors.mid';
+import { userAuthMid } from '../middlewares/user-auth.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
 import librariesRouter from './libraries';
 import librarySongsRouter from './library-songs';
 import registeredUsersRouter from './registered-users';
 import roomsRouter from './rooms';
+import roomUsers from './room-users';
 
 const api = Router();
 
@@ -24,7 +26,9 @@ api.use(
 
 api.use('/registered-users', registeredUsersRouter);
 
-api.use('/rooms', roomsRouter)
+api.use('/rooms', roomsRouter);
+
+api.use('/room-users', roomUsers);
 
 api.use(notFoundErrorMid);
 api.use(genericErrorMid);
