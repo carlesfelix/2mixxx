@@ -17,7 +17,7 @@ export default class ApiError<Details = undefined> extends Error {
   details: Details | undefined;
   constructor(statusCode: StatusCodeEnum, details?: Details | undefined) {
     super(apiErrorMessages[statusCode]);
-    this.name = 'InteractorError';
+    this.name = 'ApiError';
     this.statusCode = statusCode;
     this.details = details;
   }
