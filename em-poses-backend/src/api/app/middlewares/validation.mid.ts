@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { ErrorFormatter, validationResult } from 'express-validator';
-import responseErrors from '../constants/response-messages';
+import ApiError, { StatusCodeEnum } from '../services/ApiError';
 
 export function validationErrorMid(req: Request, res: Response, next: NextFunction): void {
   const errorFormatter: ErrorFormatter = ({ location, msg, param }) => (
@@ -8,8 +8,7 @@ export function validationErrorMid(req: Request, res: Response, next: NextFuncti
   );
   const errors = validationResult(req).formatWith(errorFormatter);
   if (!errors.isEmpty()) {
-    next({ responseError: responseErrors.ERR_BAD_REQUEST, details: errors.array() });
-    return;
+    throw new ApiError(StatusCodeEnum.BadRequest, errors.array());
   }
   next();
 }

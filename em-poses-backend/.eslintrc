@@ -11,5 +11,8 @@
   ],
   "overrides": [
     { "files":["*.js"], "parser": "node" }
-  ]
+  ],
+  "rules": {
+    "@typescript-eslint/no-non-null-assertion": "off"
+  }
 }

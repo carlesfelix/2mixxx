@@ -3,10 +3,18 @@ export const registeredUserRoles = {
   DJ: 2
 };
 
-export const permissions = {};
+export const permissions = {
+  SONGS_SEARCH: 'SONGS_SEARCH'
+};
 
-export const guestPermissions = [];
+export const roomUserPermissions = [
+  permissions.SONGS_SEARCH
+];
 
-export const adminPermissions = [];
+export const adminPermissions = [
 
-export const djPermissions = [];
+];
+
+export const djPermissions = [
+
+];

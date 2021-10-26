@@ -1,11 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
-import LibraryEntity from '../../../core/types/LibraryEntity';
 import createLibrary from '../../../core/interactors/libraries/createLibrary';
 import deleteLibrary from '../../../core/interactors/libraries/deleteLibrary';
 import getLibraries from '../../../core/interactors/libraries/getLibraries';
 import getLibraryById from '../../../core/interactors/libraries/getLibraryById';
 import updateLibrary from '../../../core/interactors/libraries/updateLibrary';
-import responseErrors from '../constants/response-messages';
+import LibraryEntity from '../../../core/types/LibraryEntity';
 
 export function createLibraryCtrl(
   req: Request<unknown, unknown, LibraryEntity>,
@@ -17,7 +16,7 @@ export function createLibraryCtrl(
   createLibrary({ title }).then(library => {
     res.status(200).json(library);
   }).catch(err => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
 
@@ -28,14 +27,10 @@ export function deleteLibraryCtrl(
 ): void {
   const { params } = req;
   const { id } = params;
-  deleteLibrary(id).then(deleteCount => {
-    if (deleteCount) {
-      res.status(200).json();
-      return;
-    }
-    next({ responseError: responseErrors.ERR_NOT_FOUND });
+  deleteLibrary(id).then(() => {
+    res.status(200).json();
   }).catch(err => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
 
@@ -47,14 +42,10 @@ export function updateLibraryCtrl(
   const { body, params } = req;
   const { title } = body;
   const { id } = params;
-  updateLibrary(id, { title }).then(updateCount => {
-    if (updateCount) {
-      res.status(200).json();
-      return;
-    }
-    next({ responseError: responseErrors.ERR_NOT_FOUND });
+  updateLibrary(id, { title }).then(() => {
+    res.status(200).json();
   }).catch(err => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
 
@@ -66,16 +57,11 @@ export function getLibraryByIdCtrl(
   const { params } = req;
   const { id } = params;
   getLibraryById(id).then(library => {
-    if (library) {
-      res.status(200).json(library);
-      return;
-    }
-    next({ responseError: responseErrors.ERR_NOT_FOUND });
+    res.status(200).json(library);
   }).catch(err => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
-
 
 export function getLibrariesCtrl(
   _: Request,
@@ -85,6 +71,6 @@ export function getLibrariesCtrl(
   getLibraries().then(libraries => {
     res.status(200).json(libraries);
   }).catch(err => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }

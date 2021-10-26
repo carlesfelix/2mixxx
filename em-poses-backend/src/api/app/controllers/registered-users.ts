@@ -17,7 +17,7 @@ export function createUserCtrl(
   createUserInteractor({ email, role }).then(createdUser => {
     res.status(200).json(createdUser);
   }).catch((err) => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
 
@@ -31,7 +31,7 @@ export function deleteUserCtrl(
   deleteUserInteractor(userId).then(() => {
     res.status(200).json();
   }).catch((err) => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
 
@@ -43,7 +43,7 @@ export function getAllUsersCtrl(
   getAllUsersInteractor().then(users => {
     res.status(200).json(users);
   }).catch((err) => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
 
@@ -60,7 +60,7 @@ export function updateUserCtrl(
   ).then(() => {
     res.status(200).json();
   }).catch((err) => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
 
@@ -74,6 +74,6 @@ export function userEmailExistsCtrl(
   userEmailExistsInteractor(email).then(data => {
     res.status(200).json(data);
   }).catch(err => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }

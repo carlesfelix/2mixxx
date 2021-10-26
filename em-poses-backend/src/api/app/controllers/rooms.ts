@@ -1,12 +1,11 @@
 import { NextFunction, Request, Response } from "express";
-import RoomEntity from "../../../core/types/RoomEntity";
 import addLibraryToRoom from "../../../core/interactors/rooms/addLibraryToRoom";
 import createRoom from "../../../core/interactors/rooms/createRoom";
 import deleteLibraryFromRoom from "../../../core/interactors/rooms/deleteLibraryFromRoom";
 import deleteRoom from "../../../core/interactors/rooms/deleteRoom";
 import getAllRooms from "../../../core/interactors/rooms/getAllRooms";
 import getRoomById from "../../../core/interactors/rooms/getRoomById";
-import responseErrors from "../constants/response-messages";
+import RoomEntity from "../../../core/types/RoomEntity";
 
 export function getAllRoomsCtrl(
   req: Request, res: Response<RoomEntity[]>, next: NextFunction
@@ -14,7 +13,7 @@ export function getAllRoomsCtrl(
   getAllRooms().then(data => {
     res.status(200).json(data)
   }).catch(err => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
 
@@ -27,7 +26,7 @@ export function getRoomByIdCtrl(
   getRoomById(roomId).then(data => {
     res.status(200).json(data);
   }).catch(err => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
 
@@ -38,7 +37,7 @@ export function createRoomCtrl(
   createRoom().then(data => {
     res.status(200).json(data);
   }).catch(err => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
 
@@ -51,7 +50,7 @@ export function deleteRoomCtrl(
   deleteRoom(roomId).then(() => {
     res.status(200).json();
   }).catch(err => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
 
@@ -66,10 +65,9 @@ export function addLibraryToRoomCtrl(
   addLibraryToRoom(roomId, libraryId).then(() => {
     res.status(200).json();
   }).catch(err => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }
-
 
 export function deleteLibraryFromRoomCtrl(
   req: Request<{ roomId: string, libraryId: string }>,
@@ -81,6 +79,6 @@ export function deleteLibraryFromRoomCtrl(
   deleteLibraryFromRoom(roomId, libraryId).then(() => {
     res.status(200).json();
   }).catch(err => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }

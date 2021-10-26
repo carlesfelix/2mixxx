@@ -13,10 +13,12 @@ export default class Song implements ISongRepository {
   async importSongsToLibrary(tracks: SongEntity[]): Promise<void> {
     await models.Song.model.bulkCreate(tracks);
   }
-  async searchSongsFromLibrary(libraryId: string, query: string): Promise<SongEntity[]> {
+  async searchSongsFromLibraries(libraries: string[], query: string): Promise<SongEntity[]> {
     const tracks = await models.Song.model.findAll({
       where: {
-        libraryId,
+        libraryId: {
+          [Op.in]: libraries
+        },
         [Op.or]: {
           title: {
             [Op.substring]: query
@@ -24,8 +26,9 @@ export default class Song implements ISongRepository {
           artist: {
             [Op.substring]: query
           }
-        }
+        },
       },
+      order: [[ 'libraryId', 'ASC' ]],
       limit: 8
     });
     return instancesToJson<SongEntity>(tracks);

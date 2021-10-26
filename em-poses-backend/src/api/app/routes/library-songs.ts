@@ -1,9 +1,7 @@
 import { Router } from 'express';
-import { query } from 'express-validator';
-import { deleteSongsFromLibraryCtrl, importSongsFromItunesCtrl, searchSongsCtrl } from '../controllers/library-songs';
+import { deleteSongsFromLibraryCtrl, importSongsFromItunesCtrl } from '../controllers/library-songs';
 import { catchRequestHandlerErrorMid } from '../middlewares/errors.mid';
 import { getUploadFileMemoryMid } from '../middlewares/upload-file.mid';
-import { validationErrorMid } from '../middlewares/validation.mid';
 
 const librarySongsRouter = Router({ mergeParams: true });
 
@@ -21,13 +19,6 @@ librarySongsRouter.post(
     }).single('itunes')
   ),
   importSongsFromItunesCtrl
-);
-
-librarySongsRouter.get(
-  '/',
-  [ query('query').optional().isString().isLength({ min: 3 }) ],
-  validationErrorMid,
-  searchSongsCtrl
 );
 
 librarySongsRouter.delete(

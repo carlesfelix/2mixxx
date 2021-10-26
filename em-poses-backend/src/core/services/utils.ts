@@ -1,6 +1,6 @@
 import { customAlphabet } from 'nanoid';
 import { parse, PlistValue } from 'plist';
-import RoomUserEntity from '../types/SongEntity';
+import SongEntity from '../types/SongEntity';
 
 export function pListFileToJson(fileBuffer: Buffer, encoding: BufferEncoding): Promise<PlistValue> {
   try {
@@ -19,7 +19,7 @@ type GetTracksFromItunesXmlProps = {
   encoding: BufferEncoding;
   libraryId: string;
 };
-export async function getTracksFromItunesXml(props: GetTracksFromItunesXmlProps): Promise<RoomUserEntity[]> {
+export async function getTracksFromItunesXml(props: GetTracksFromItunesXmlProps): Promise<SongEntity[]> {
   const { fileBuffer, encoding, libraryId } = props;
   const pListValue = await pListFileToJson(fileBuffer, encoding);
 

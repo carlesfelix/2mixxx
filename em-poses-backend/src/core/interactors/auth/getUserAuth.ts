@@ -1,22 +1,22 @@
-import environment from "../../../environment";
-import dataSourcesConfig from "../../constants/data-sources.config";
-import IRoomUserRepository from "../../repositories/IRoomUserRepository";
-import InteractorError from "../../services/InteractorError";
-import { getBearerToken, verifyToken } from "../../services/jwt";
-import RoomUserEntity from "../../types/RoomUserEntity";
-import UserAuth from "../../types/UserAuth";
+import environment from '../../../environment';
+import dataSourcesConfig from '../../constants/data-sources.config';
+import { roomUserPermissions } from '../../constants/user-roles';
+import IRoomUserRepository from '../../repositories/IRoomUserRepository';
+import InteractorError, { InteractorErrorCodeEnum } from '../../services/InteractorError';
+import { getBearerToken, verifyToken } from '../../services/jwt';
+import UserAuth from '../../types/UserAuth';
 
 const interactorFn = (roomUserRepo: IRoomUserRepository) => async (
-  type: string,
+  userType: string,
   token: string
 ): Promise<UserAuth> => {
   const bearerToken = getBearerToken(token);
 
   if (!bearerToken) {
-    throw new InteractorError(InteractorError.Codes.UNAUTHORIZED);
+    throw new InteractorError(InteractorErrorCodeEnum.UNAUTHORIZED);
   }
   
-  if (type === 'roomUser') {
+  if (userType === 'roomUser') {
     let tokenPayload;
     try {
       tokenPayload = await verifyToken(
@@ -24,26 +24,25 @@ const interactorFn = (roomUserRepo: IRoomUserRepository) => async (
         bearerToken
       );
     } catch {
-      throw new InteractorError(InteractorError.Codes.UNAUTHORIZED);
+      throw new InteractorError(InteractorErrorCodeEnum.UNAUTHORIZED);
     }
     if (!tokenPayload || !tokenPayload.sub) {
-      throw new InteractorError(InteractorError.Codes.GENERIC);
+      throw new InteractorError(InteractorErrorCodeEnum.GENERIC);
     }
-    let roomUser: RoomUserEntity | null = null;
-    try {
-      roomUser = await roomUserRepo.getUserById(tokenPayload.sub);
-    } catch {
-      throw new InteractorError(InteractorError.Codes.GENERIC);
-    }
+    const roomUser = await roomUserRepo.getUserById(tokenPayload.sub);
     if (!roomUser) {
-      throw new InteractorError(InteractorError.Codes.ACCESS_DENIED);
+      throw new InteractorError(InteractorErrorCodeEnum.ACCESS_DENIED);
     }
-    return { type: 'roomUser', user: roomUser };
+    return {
+      type: 'roomUser',
+      user: roomUser,
+      permissions: roomUserPermissions
+    };
   }
-  // if (type === 'user') {
+  // if (userType === 'user') {
 
   // }
-  throw new InteractorError(InteractorError.Codes.UNAUTHORIZED);
+  throw new InteractorError(InteractorErrorCodeEnum.UNAUTHORIZED);
 };
 
 const getUserAuth = interactorFn(dataSourcesConfig.roomUser);

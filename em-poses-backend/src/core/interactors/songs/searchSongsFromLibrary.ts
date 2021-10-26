@@ -1,13 +1,34 @@
 import dataSourcesConfig from '../../constants/data-sources.config';
 import SongEntity from '../../types/SongEntity';
 import ISongRepository from '../../repositories/ISongRepository';
+import { RoomUserAuth } from '../../types/UserAuth';
+import IRoomsRepository from '../../repositories/IRoomsRepository';
+import InteractorError, { InteractorErrorCodeEnum } from '../../services/InteractorError';
 
 type Props = {
-  libraryId: string;
+  userAuth: RoomUserAuth,
   query: string;
 };
-const interactorFn = (libraryRepo: ISongRepository) => async (props: Props): Promise<SongEntity[]> => {
-  const { libraryId, query } = props;
-  return libraryRepo.searchSongsFromLibrary(libraryId, query);
+type Repositories = {
+  libraryRepo: ISongRepository;
+  roomRepo: IRoomsRepository;
+}
+const interactorFn = (repositories: Repositories) => async (props: Props): Promise<SongEntity[]> => {
+  const { libraryRepo, roomRepo } = repositories;
+  const { userAuth, query } = props;
+  const room = await roomRepo.getRoomById(userAuth.user.roomId);
+  if (!room) {
+    throw new InteractorError(InteractorErrorCodeEnum.ENTITY_NOT_FOUND);
+  }
+  const { libraries = [] } = room;
+
+  return libraryRepo.searchSongsFromLibraries(
+    libraries.map(({ id }) => id!),
+    query
+  );
 };
-export default interactorFn(dataSourcesConfig.song);
+export default interactorFn({
+  libraryRepo: dataSourcesConfig.song,
+  roomRepo: dataSourcesConfig.room
+});
+

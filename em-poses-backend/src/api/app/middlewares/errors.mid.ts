@@ -1,18 +1,31 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
-import responseErrors, { IResponseError } from '../constants/response-messages';
+import InteractorError from '../../../core/services/InteractorError';
+import ApiError, { StatusCodeEnum } from '../services/ApiError';
+import { getStatusFromInteractorErrorCode } from '../helpers';
 
-export function notFoundErrorMid(req: Request, res: Response, next: NextFunction): void {
-  next({ responseError: responseErrors.ERR_NOT_FOUND });
+export function notFoundErrorMid(req: Request, res: Response): void {
+  res.status(404).json({ msg: 'Not found' });
 }
 
 export function genericErrorMid(
-  errorData: { responseError: IResponseError, details?: unknown },
+  error: Error,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  req: Express.Request, res: Response, _: NextFunction
+  req: Request, res: Response, _: NextFunction
 ): void {
-  const { responseError, details } = errorData;
-  const { statusCode, code, msg } = responseError;
-  res.status(statusCode).json({ msg, code, details });
+  if (error instanceof InteractorError) {
+    res.status(getStatusFromInteractorErrorCode(error.code)).json({
+      message: error.message,
+      details: error.details
+    });
+    return;
+  }
+  if (error instanceof ApiError) {
+    res.status(error.statusCode).json(error.getHttpResponse());
+    return;
+  }
+  res.status(500).json({
+    message: 'Internal server error'
+  });
 }
 
 export function catchRequestHandlerErrorMid(uploadRequestHandler: RequestHandler): RequestHandler {
@@ -22,9 +35,10 @@ export function catchRequestHandlerErrorMid(uploadRequestHandler: RequestHandler
         next();
         return;
       }
-      genericErrorMid({
-        responseError: responseErrors.ERR_BAD_REQUEST, details: err.message
-      }, req, res, next);
+      genericErrorMid(
+        new ApiError(StatusCodeEnum.BadRequest, err.message),
+        req, res, next
+      );
     });
   }
 }

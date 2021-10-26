@@ -1,7 +1,7 @@
-import { ISongEntity } from '../types/SongEntity';
+import SongEntity from '../types/SongEntity';
 
 export default interface ISongRepository {
-  importSongsToLibrary(tracks: ISongEntity[]): Promise<void>;
+  importSongsToLibrary(tracks: SongEntity[]): Promise<void>;
   removeSongsFromLibrary(libraryId: string): Promise<number>
-  searchSongsFromLibrary(libraryId: string, query: string): Promise<ISongEntity[]>;
+  searchSongsFromLibraries(libraries: string[], query: string): Promise<SongEntity[]>;
 }

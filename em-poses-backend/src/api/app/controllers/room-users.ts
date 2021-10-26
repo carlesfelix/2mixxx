@@ -12,6 +12,6 @@ export function createRoomUserCtrl(
   createRoomUser(roomCode).then(token => {
     res.status(200).json({ token });
   }).catch((err) => {
-    next({ responseError: responseErrors.ERR_GENERIC, details: err });
+    next(err);
   });
 }

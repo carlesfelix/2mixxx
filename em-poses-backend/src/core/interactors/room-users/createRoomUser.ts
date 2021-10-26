@@ -2,7 +2,7 @@ import environment from '../../../environment';
 import dataSourcesConfig from '../../constants/data-sources.config';
 import IRoomsRepository from '../../repositories/IRoomsRepository';
 import IRoomUserRepository from '../../repositories/IRoomUserRepository';
-import InteractorError from '../../services/InteractorError';
+import InteractorError, { InteractorErrorCodeEnum } from '../../services/InteractorError';
 import { createToken } from '../../services/jwt';
 
 type Repositories = {
@@ -13,7 +13,7 @@ const interactorFn = (repositories: Repositories) => async (roomCode: string): P
   const { roomUserRepo, roomRepo } = repositories;
   const room = await roomRepo.getRoomByCode(roomCode);
   if (!room || !room.id) {
-    throw new InteractorError(InteractorError.Codes.UNAUTHORIZED);
+    throw new InteractorError(InteractorErrorCodeEnum.UNAUTHORIZED);
   }
   const { id: roomUserId } = await roomUserRepo.createUser(room.id);
   const token = await createToken(

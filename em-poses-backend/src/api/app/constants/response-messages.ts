@@ -1,45 +1,36 @@
+import InteractorErrorCode from "../../../core/types/InteractorErrorCode";
+
 export type IErrorCode = 'ERR_GENERIC' | 
-'ERR_NOT_FOUND' | 'ERR_DUPLICATED_ENTRIES' |
+'ERR_NOT_FOUND' |
 'ERR_UNAUTHORIZED' | 'ERR_BAD_REQUEST' | 'UnauthorizedError';
 
-export interface IResponseError {
+export type ResponseError = {
   statusCode: number;
   msg: string;
-  code: IErrorCode;
-}
+};
 
-export type IResponseErrors = Record<IErrorCode, IResponseError>;
+export type ResponseErrors = Record<InteractorErrorCode, ResponseError>;
 
-const responseErrors: IResponseErrors = {
-  ERR_GENERIC: {
+const responseErrors: ResponseErrors = {
+  GENERIC: {
     statusCode: 500,
     msg: 'Something went wrong',
-    code: 'ERR_GENERIC'
   },
-  ERR_NOT_FOUND: {
+  ENTITY_NOT_FOUND: {
     statusCode: 404,
-    msg: 'No found',
-    code: 'ERR_NOT_FOUND'
+    msg: 'No found'
   },
-  ERR_DUPLICATED_ENTRIES: {
-    statusCode: 400,
-    msg: 'Duplicated entries don\'t allowed',
-    code: 'ERR_DUPLICATED_ENTRIES'
-  },
-  ERR_UNAUTHORIZED: {
+  UNAUTHORIZED: {
     statusCode: 401,
-    msg: 'Unauthorized!',
-    code: 'ERR_UNAUTHORIZED'
+    msg: 'Unauthorized',
   },
-  ERR_BAD_REQUEST: {
+  ACCESS_DENIED: {
+    statusCode: 403,
+    msg: 'Access denied'
+  },
+  BAD_INPUT: {
     statusCode: 400,
     msg: 'Bad request',
-    code: 'ERR_BAD_REQUEST'
-  },
-  UnauthorizedError: {
-    statusCode: 401,
-    msg: 'Invalid token!',
-    code: 'UnauthorizedError'
   }
 };
 
