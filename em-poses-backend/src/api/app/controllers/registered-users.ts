@@ -5,7 +5,6 @@ import deleteUserInteractor from '../../../core/interactors/registered-users/del
 import getAllUsersInteractor from '../../../core/interactors/registered-users/getAllUsers';
 import updateUserInteractor from '../../../core/interactors/registered-users/updateUser';
 import userEmailExistsInteractor from '../../../core/interactors/registered-users/userEmailExists';
-import responseErrors from '../constants/response-messages';
 
 export function createUserCtrl(
   req: Request<unknown, unknown, RegisteredUserEntity>,

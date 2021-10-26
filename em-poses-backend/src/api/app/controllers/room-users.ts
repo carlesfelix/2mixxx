@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import createRoomUser from '../../../core/interactors/room-users/createRoomUser';
-import responseErrors from '../constants/response-messages';
 
 export function createRoomUserCtrl(
   req: Request<unknown, unknown, { roomCode: string }>,
