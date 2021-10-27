@@ -2,20 +2,25 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
 import Routes from './components/Routes';
 import { guestAppRoutes, registeredAppRoutes } from './constants/routes';
-import { useGuestAuth } from './contexts/guest-auth';
 import { getGuestMeAction, getRegisteredMeAction, useMe } from './contexts/me';
-import { getGuestToken } from './services/guest-auth';
+import { useRoomUser } from './contexts/room-user';
+import { getGuestToken } from './services/room-user-auth';
 import { setGuestTokenFn, setRegisteredTokenFn } from './services/http-auth';
 import AppRoute from './types/AppRoute';
 import './App.scss';
 
 function App() {
-  const { state: guestAuthState } = useGuestAuth();
+  const { state: roomUserState } = useRoomUser();
   const { isAuthenticated, isLoading, getIdTokenClaims } = useAuth0();
   const { state: meState, dispatch: meDispatch } = useMe();
 
   const registeredLogged = !isLoading && isAuthenticated;
-  const guestLogged = !guestAuthState.inProgress && guestAuthState.isAuthenticated;
+  const guestLogged =  !roomUserState.inProgress &&
+    roomUserState.isAuthenticated;
+  const shouldGetMe = !meState.user && (registeredLogged || guestLogged) &&
+    !meState.inProgress && !meState.error;
+  const globalInProgress = isLoading || roomUserState.inProgress ||
+    meState.inProgress || shouldGetMe;
 
   useEffect(() => {
     let removeToken: () => void;
@@ -44,10 +49,7 @@ function App() {
     }
   }
 
-  if (
-    (isLoading || guestAuthState.inProgress || meState.inProgress) || 
-    (!meState.user && (registeredLogged || guestLogged))
-  ) {
+  if (globalInProgress) {
     return <p>Login...</p>
   }
 

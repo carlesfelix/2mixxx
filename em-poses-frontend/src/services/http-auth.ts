@@ -2,13 +2,13 @@ import { IdToken } from '@auth0/auth0-react';
 import GuestToken from '../types/GuestToken';
 import http from './http';
 
-export function setGuestTokenFn(guestTokenCb: () => GuestToken | null): () => void {
+export function setGuestTokenFn(
+  guestTokenCb: () => GuestToken
+): () => void {
   const id = http.addRequestInterceptor(config => {
     const token = guestTokenCb();
-    if (token) {
-      config.headers['Authorization'] = token.__raw;
-      config.headers['Authorization-Type'] = 'Guest';
-    }
+    config.headers['Authorization'] = `Bearer ${token.__raw}`;
+    config.headers['user-type'] = 'roomUser';
     return config;
   });
   return () => http.removeRequestInterceptor(id);
@@ -17,8 +17,8 @@ export function setGuestTokenFn(guestTokenCb: () => GuestToken | null): () => vo
 export function setRegisteredTokenFn(registeredTokenCb: () => Promise<IdToken>): () => void {
   const id = http.addRequestInterceptor(async config => {
     const token = await registeredTokenCb();
-    config.headers['Authorization'] = token.__raw;
-    config.headers['Authorization-Type'] = 'Registered';
+    config.headers['Authorization'] = `Bearer ${token.__raw}`;
+    // config.headers['user-type'] = 'registeredUser';
     return config;
   });
   return () => http.removeRequestInterceptor(id);

@@ -1,20 +1,20 @@
 import { Action, State } from './types';
 
-function guestAuthReducer(state: State, action: Action): State {
+export default function roomUserReducer(state: State, action: Action): State {
   switch (action.type) {
-    case 'registerInProgress':
+    case 'createRoomUserInProgress':
       return {
         error: null,
         isAuthenticated: false,
         inProgress: true
       };
-    case 'registerSuccess':
+    case 'createRoomUserSuccess':
       return {
         error: null,
         isAuthenticated: action.payload.isAuthenticated,
         inProgress: false
       };
-    case 'registerError':
+    case 'createRoomUserError':
       return {
         error: action.payload.error,
         isAuthenticated: false,
@@ -24,5 +24,3 @@ function guestAuthReducer(state: State, action: Action): State {
       return state;
   }
 }
-
-export default guestAuthReducer;

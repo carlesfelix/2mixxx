@@ -1,19 +1,19 @@
 import { useForm } from 'react-hook-form';
 import ControlledInput from '../../components/forms/ControlledInput';
 import LoginButton from '../../components/LoginButton';
-import { useGuestAuth } from '../../contexts/guest-auth';
-import { registerGuestUserAction } from '../../contexts/guest-auth';
+import { useRoomUser } from '../../contexts/room-user';
+import { createRoomUserAction } from '../../contexts/room-user';
 import { getRoomFormValidation } from './helpers';
 
 import './HomePage.scss';
 
 export default function HomePage() {
-  const { dispatch } = useGuestAuth();
+  const { dispatch } = useRoomUser();
   const { control, handleSubmit } = useForm<{ roomCode?: string }>({ mode: 'onChange' });
   const roomFormValidation = getRoomFormValidation();
   function submitHandler(data: { roomCode: string }): void {
     const { roomCode } = data;
-    registerGuestUserAction(dispatch, roomCode);
+    createRoomUserAction(dispatch, roomCode);
   }
   return (
     <div className="HomePage">

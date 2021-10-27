@@ -1,0 +1,18 @@
+import { isAuthenticated, register } from '../../services/room-user-auth';
+import { Dispatch } from './types';
+
+export async function createRoomUserAction(dispatch: Dispatch, room: string): Promise<void> {
+  dispatch({ type: 'createRoomUserInProgress' });
+  try {
+    await register(room);
+    dispatch({
+      type: 'createRoomUserSuccess',
+      payload: { isAuthenticated: isAuthenticated() }
+    });
+  } catch (error) {
+    dispatch({
+      type: 'createRoomUserError',
+      payload: { error }
+    });
+  }
+}

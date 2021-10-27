@@ -1,6 +1,5 @@
 export type GuestTokenPayload = {
-  userId: string;
-  room: string;
+  sub: string;
   exp: number;
   iat: number;
 }

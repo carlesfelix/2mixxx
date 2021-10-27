@@ -3,9 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import { GuestAuthProvider } from './contexts/guest-auth';
 import LibrariesProvider from './contexts/libraries/LibrariesProvider';
 import { MeProvider } from './contexts/me';
+import { RoomUserProvider } from './contexts/room-user';
 import environment from './environment';
 import reportWebVitals from './reportWebVitals';
 import http from './services/http';
@@ -20,7 +20,7 @@ ReactDOM.render(
       clientId={environment.REACT_APP_AUTH0_CLIENT_ID}
       redirectUri={window.location.origin}
     >
-      <GuestAuthProvider>
+      <RoomUserProvider>
         <MeProvider>
           <BrowserRouter>
             <LibrariesProvider>
@@ -28,7 +28,7 @@ ReactDOM.render(
             </LibrariesProvider>
           </BrowserRouter>
         </MeProvider>
-      </GuestAuthProvider>
+      </RoomUserProvider>
     </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')
