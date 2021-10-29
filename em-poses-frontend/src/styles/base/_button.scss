@@ -2,10 +2,11 @@
 
 .btn {
   border: none;
-  border-radius: 3px;
+  border-radius: 0.1875rem;
   cursor: pointer;
   background: none;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
   > * {
     margin-left: 0.3rem;
     &:first-child {
@@ -23,5 +24,8 @@
     color: variables.$c-primary--50;
     box-shadow: 1px 1px 0.5rem 0 transparentize($color: variables.$c-danger--500, $amount: 0.75);
     font-weight: bold;
+  }
+  &.btn-round {
+    border-radius: 1rem;
   }
 }

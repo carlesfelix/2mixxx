@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import PageLayout from '../../components/PageLayout';
 import { useSockets } from '../../contexts/sockets';
 import Song from '../../types/Song';
 import SongRequestQueue from './components/SongRequestQueue';
 import updateSongsFromSocket from './helpers/updateSongsFromSocket';
+import './SongRequestsPage.scss';
 
 export default function SongRequestsPage() {
   const { songRequestsSocket } = useSockets();
@@ -42,6 +44,12 @@ export default function SongRequestsPage() {
     <PageLayout toolbarTitle="Pending songs">
       <div className="SongRequestsPage">
         <SongRequestQueue songs={songs} onDeleteSong={deleteSongHandler} />
+        <Link
+          className="btn btn-primary btn-round btn-make-song-request"
+          to="/app/make-a-song-request"
+        >
+          Make a song request
+        </Link>
       </div>
     </PageLayout>
   );
