@@ -1,9 +1,9 @@
 div.SongRequestsPage {
   position: relative;
+  height: 100%;
   a.btn-make-song-request {
-    // position: absolute;
-    // bottom: 0;
-    // right: 0;
-    position: relative;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
   }
 }

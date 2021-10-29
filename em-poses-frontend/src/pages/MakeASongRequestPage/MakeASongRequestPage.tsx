@@ -1,4 +1,5 @@
-import PageLayout from "../../components/PageLayout";
+import PageLayout from '../../components/PageLayout';
+import './MakeASongRequestPage.scss';
 
 export default function MakeASongRequestPage() {
   return (
