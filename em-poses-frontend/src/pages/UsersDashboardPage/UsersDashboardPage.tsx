@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { createUser, deleteUser, getAllUsers, updateUser } from '../../api/registered-users';
 import AsyncLayout from '../../components/AsyncLayout';
 import ConfirmDialog from '../../components/ConfirmDialog';
+import PageLayout from '../../components/PageLayout';
 import AsyncState from '../../types/AsyncState';
 import DialogState from '../../types/DialogState';
 import RegisteredUser from '../../types/RegisteredUser';
@@ -91,41 +92,43 @@ export default function UsersDashboardPage() {
     }
   }
   return (
-    <div className="UsersDashboardPage">
-      <AsyncLayout inProgress={users.inProgress}>
-        <div className="user-list-container">
-          {
-            users.data.map(user => (
-              <UserItem
-                key={user.id} user={user} className="user-item"
-                onDelete={openConfirmDeleteUserDialogHandler}
-                onEdit={openEditUserFormDialogHandler}
-              />
-            ))
-          }
-        </div>
-        <div className="actions-container">
-          <button className="btn btn-primary" onClick={openNewUserFormDialogHandler}>
-            <FontAwesomeIcon icon={faPlus} />
-            <span>Add new user</span>
-          </button>
-        </div>
-      </AsyncLayout>
-      <UserFormDialog
-        state={newUserFormDialog} onClose={closeUserFormDialogHandler}
-        onSubmit={submitUserFormDialogHandler}
-      />
-      <UserFormDialog
-        state={editUserFormDialog} onClose={closeEditUserFormDialogHandler}
-        onSubmit={submitEditUserFormDialogHandler}
-      />
-      <ConfirmDialog
-        message="User will be deleted"
-        isOpen={confirmDeleteUserDialog.isOpen}
-        inProgress={confirmDeleteUserDialog.inProgress}
-        onRejected={dismissConfirmDeleteUserDialogHandler}
-        onConfirmed={confirmDeleteUserDialogHandler}
-      />
-    </div>
+    <PageLayout toolbarTitle="Users" toolbarLinkBack="/dashboard">
+      <div className="UsersDashboardPage">
+        <AsyncLayout inProgress={users.inProgress}>
+          <div className="user-list-container">
+            {
+              users.data.map(user => (
+                <UserItem
+                  key={user.id} user={user} className="user-item"
+                  onDelete={openConfirmDeleteUserDialogHandler}
+                  onEdit={openEditUserFormDialogHandler}
+                />
+              ))
+            }
+          </div>
+          <div className="actions-container">
+            <button className="btn btn-primary" onClick={openNewUserFormDialogHandler}>
+              <FontAwesomeIcon icon={faPlus} />
+              <span>Add new user</span>
+            </button>
+          </div>
+        </AsyncLayout>
+        <UserFormDialog
+          state={newUserFormDialog} onClose={closeUserFormDialogHandler}
+          onSubmit={submitUserFormDialogHandler}
+        />
+        <UserFormDialog
+          state={editUserFormDialog} onClose={closeEditUserFormDialogHandler}
+          onSubmit={submitEditUserFormDialogHandler}
+        />
+        <ConfirmDialog
+          message="User will be deleted"
+          isOpen={confirmDeleteUserDialog.isOpen}
+          inProgress={confirmDeleteUserDialog.inProgress}
+          onRejected={dismissConfirmDeleteUserDialogHandler}
+          onConfirmed={confirmDeleteUserDialogHandler}
+        />
+      </div>
+    </PageLayout>
   );
 }

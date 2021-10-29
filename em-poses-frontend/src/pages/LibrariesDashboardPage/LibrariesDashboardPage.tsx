@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect } from 'react';
 import AsyncLayout from '../../components/AsyncLayout';
 import ConfirmDialog from '../../components/ConfirmDialog';
+import PageLayout from '../../components/PageLayout';
 import {
   addLibraryAction, closeAddLibraryDialogAction, closeConfirmDeleteDialogAction,
   closeEditLibraryDialogAction, deleteLibraryAction, editLibraryAction,
@@ -55,44 +56,46 @@ export default function LibrariesDashboardPage() {
     importSongsToLibraryAction({ dispatch: librariesDispatch, libraryId: library.id!, file });
   }
   return (
-    <div className="LibrariesDashboardPage">
-      <AsyncLayout error={libraries.libraries.error} inProgress={libraries.libraries.inProgress} errorMessage="Error">
-        <div className="libraries-grid">
-          {
-            libraries.libraries.data.map((library) => (
-              <LibraryItem
-                key={library.id} library={library}
-                onStartDelete={openConfirmDeleteDialog}
-                onStartEdit={openEditLibraryDialog}
-                onDeleteSongs={deleteSongsHandler}
-                onImportSongs={importSongsHandler}
-                importProgress={libraries.importProgress[library.id!]}
-                deleteSongsInProgress={libraries.deleteInProgress[library.id!]}
-              />
-            ))
-          }
-        </div>
-        <div className="libraries-actions">
-          <button className="btn btn-primary" onClick={openLibraryInfoDialogHandler}>
-            <FontAwesomeIcon icon={faPlus} />
-            <span>Add new library</span>
-          </button>
-        </div>
-      </AsyncLayout>
-      <LibraryInfoDialog
-        state={libraries.addLibraryDialog} onSubmit={addLibrarySubmitHandler}
-        onClose={closeAddLibraryDialog}
-      />
-      <LibraryInfoDialog
-        state={libraries.editLibraryDialog} onSubmit={editLibrarySubmitHandler}
-        onClose={closeEditLibraryDialog}
-      />
-      <ConfirmDialog
-        message="The library and all its songs will be deleted"
-        isOpen={libraries.confirmDeleteDialog.isOpen}
-        inProgress={libraries.confirmDeleteDialog.inProgress}
-        onRejected={dismissConfirmDeleteDialog} onConfirmed={confirmedDeleteHandler}
-      />
-    </div>
+    <PageLayout toolbarTitle="Libraries" toolbarLinkBack="/dashboard">
+      <div className="LibrariesDashboardPage">
+        <AsyncLayout error={libraries.libraries.error} inProgress={libraries.libraries.inProgress} errorMessage="Error">
+          <div className="libraries-grid">
+            {
+              libraries.libraries.data.map((library) => (
+                <LibraryItem
+                  key={library.id} library={library}
+                  onStartDelete={openConfirmDeleteDialog}
+                  onStartEdit={openEditLibraryDialog}
+                  onDeleteSongs={deleteSongsHandler}
+                  onImportSongs={importSongsHandler}
+                  importProgress={libraries.importProgress[library.id!]}
+                  deleteSongsInProgress={libraries.deleteInProgress[library.id!]}
+                />
+              ))
+            }
+          </div>
+          <div className="libraries-actions">
+            <button className="btn btn-primary" onClick={openLibraryInfoDialogHandler}>
+              <FontAwesomeIcon icon={faPlus} />
+              <span>Add new library</span>
+            </button>
+          </div>
+        </AsyncLayout>
+        <LibraryInfoDialog
+          state={libraries.addLibraryDialog} onSubmit={addLibrarySubmitHandler}
+          onClose={closeAddLibraryDialog}
+        />
+        <LibraryInfoDialog
+          state={libraries.editLibraryDialog} onSubmit={editLibrarySubmitHandler}
+          onClose={closeEditLibraryDialog}
+        />
+        <ConfirmDialog
+          message="The library and all its songs will be deleted"
+          isOpen={libraries.confirmDeleteDialog.isOpen}
+          inProgress={libraries.confirmDeleteDialog.inProgress}
+          onRejected={dismissConfirmDeleteDialog} onConfirmed={confirmedDeleteHandler}
+        />
+      </div>
+    </PageLayout>
   );
 }

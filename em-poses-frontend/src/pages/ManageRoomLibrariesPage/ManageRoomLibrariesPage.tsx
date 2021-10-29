@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getAllLibraries } from '../../api/libraries';
 import { addLibraryToRoom, deleteLibraryFromRoom, getRoomById } from '../../api/rooms';
 import MultiselectBox from '../../components/forms/inputs/MultiselectBox';
+import PageLayout from '../../components/PageLayout';
 import { defaultRoomDetails } from '../../constants/default-states';
 import AsyncState from '../../types/AsyncState';
 import Library from '../../types/Library';
@@ -69,26 +70,28 @@ export default function ManageRoomLibrariesPage() {
     }));
   }
   return (
-    <div className="ManageRoomLibrariesPage">
-      <div className="card card-primary manage-room-header">
-        <span className="room-icon">
-          <FontAwesomeIcon icon={faDoorOpen} />
-        </span>
-        <span className="room-title">
-          <span>{room.data.code}</span>
-        </span>
+    <PageLayout toolbarTitle="Manage room's libraries" toolbarLinkBack="/dashboard/rooms">
+      <div className="ManageRoomLibrariesPage">
+        <div className="card card-primary manage-room-header">
+          <span className="room-icon">
+            <FontAwesomeIcon icon={faDoorOpen} />
+          </span>
+          <span className="room-title">
+            <span>{room.data.code}</span>
+          </span>
+        </div>
+        <MultiselectBox<Library>
+          extraProps={{
+            onChecked: checkedHandler,
+            items: libraries.data,
+            labelProp: 'title',
+            valueProp: 'id'
+          }}
+          onChange={changeHandler}
+          value={room.data.libraries!.map(({ id }) => id)}
+          className="manage-room-content card card-primary"
+        />
       </div>
-      <MultiselectBox<Library>
-        extraProps={{
-          onChecked: checkedHandler,
-          items: libraries.data,
-          labelProp: 'title',
-          valueProp: 'id'
-        }}
-        onChange={changeHandler}
-        value={room.data.libraries!.map(({ id }) => id)}
-        className="manage-room-content card card-primary"
-      />
-    </div>
+    </PageLayout>
   );
 }

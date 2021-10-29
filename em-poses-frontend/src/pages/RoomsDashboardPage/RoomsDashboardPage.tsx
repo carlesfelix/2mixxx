@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { createRoom, deleteRoom, getAllRooms } from '../../api/rooms';
 import AsyncLayout from '../../components/AsyncLayout';
 import ConfirmDialog from '../../components/ConfirmDialog';
+import PageLayout from '../../components/PageLayout';
 import AsyncState from '../../types/AsyncState';
 import DialogState from '../../types/DialogState';
 import Room from '../../types/Room';
@@ -71,36 +72,38 @@ export default function RoomsDashboardPage() {
     }
   }
   return (
-    <div className="RoomsDashboardPage">
-      <AsyncLayout inProgress={rooms.inProgress} error={rooms.error}>
-        <div className="room-list">
-          {
-            rooms.data.map(room => (
-              <div key={room.id} className="room-item">
-                <RoomItem
-                  room={room}
-                  onDeleteMenu={deleteMenuHandler}
-                  onManageLibrariesMenu={manageLibrariesMenuHandler}
-                  onManageModeradorsMenu={manageModeradorsMenuHandler}
-                />
-              </div>
-            ))
-          }
+    <PageLayout toolbarTitle="Rooms" toolbarLinkBack="/dashboard">
+      <div className="RoomsDashboardPage">
+        <AsyncLayout inProgress={rooms.inProgress} error={rooms.error}>
+          <div className="room-list">
+            {
+              rooms.data.map(room => (
+                <div key={room.id} className="room-item">
+                  <RoomItem
+                    room={room}
+                    onDeleteMenu={deleteMenuHandler}
+                    onManageLibrariesMenu={manageLibrariesMenuHandler}
+                    onManageModeradorsMenu={manageModeradorsMenuHandler}
+                  />
+                </div>
+              ))
+            }
+          </div>
+        </AsyncLayout>
+        <div className="actions-container">
+          <button className="btn btn-primary" onClick={createNewRoomHandler}>
+            <FontAwesomeIcon icon={faPlus} />
+            <span>Create new room</span>
+          </button>
         </div>
-      </AsyncLayout>
-      <div className="actions-container">
-        <button className="btn btn-primary" onClick={createNewRoomHandler}>
-          <FontAwesomeIcon icon={faPlus} />
-          <span>Create new room</span>
-        </button>
+        <ConfirmDialog
+          message="The room will be deleted"
+          isOpen={confirmDeleteDialog.isOpen}
+          inProgress={confirmDeleteDialog.inProgress}
+          onRejected={rejectedConfirmDeleteHandler}
+          onConfirmed={confirmedDeleteHandler}
+        />
       </div>
-      <ConfirmDialog
-        message="The room will be deleted"
-        isOpen={confirmDeleteDialog.isOpen}
-        inProgress={confirmDeleteDialog.inProgress}
-        onRejected={rejectedConfirmDeleteHandler}
-        onConfirmed={confirmedDeleteHandler}
-      />
-    </div>
+    </PageLayout>
   );
 }

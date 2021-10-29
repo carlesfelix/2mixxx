@@ -1,7 +1,11 @@
+import PageLayout from "../../components/PageLayout";
+
 export default function RecommendSongPage() {
   return (
-    <div className="RecommendSongPage">
-      RecommendSongPage
-    </div>
+    <PageLayout toolbarTitle="Suggest a song">
+      <div className="RecommendSongPage">
+        RecommendSongPage
+      </div>
+    </PageLayout>
   );
 }

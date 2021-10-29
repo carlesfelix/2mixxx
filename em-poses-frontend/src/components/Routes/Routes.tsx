@@ -1,6 +1,6 @@
+import { Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import AppRoute from '../../types/AppRoute';
-import PageLayout from '../PageLayout';
 import RouteContent from './components/RouteContent';
 
 type Props = {
@@ -22,26 +22,15 @@ export default function Routes(props: Props) {
     <Switch>
       {
         allowedRoutes.map(({
-          path, exact, Component: PageComponent, layout = true,
-          toolbarTitle, toolbarLinkBack, links
+          path, exact, Component: PageComponent
         }, iRoute) => (
           <Route path={`${parentUrl}${path}`} exact={exact} key={iRoute}>
             {
-              layout ? (
-                <PageLayout
-                  toolbarTitle={toolbarTitle} links={links}
-                  toolbarLinkBack={toolbarLinkBack}
-                  parentUrl={parentUrl}
-                >
-                  <RouteContent>
-                    <PageComponent />
-                  </RouteContent>
-                </PageLayout>
-              ) : (
-                <RouteContent>
+              <RouteContent>
+                <Suspense fallback={false}>
                   <PageComponent />
-                </RouteContent>
-              )
+                </Suspense>
+              </RouteContent>
             }
           </Route>
         ))

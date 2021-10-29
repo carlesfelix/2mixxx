@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PageLayout from '../../components/PageLayout';
 import { useSockets } from '../../contexts/sockets';
 import Song from '../../types/Song';
 import SongRequestQueue from './components/SongRequestQueue';
@@ -38,8 +39,10 @@ export default function SongRequestsPage() {
   }
 
   return (
-    <div className="SongRequestsPage">
-      <SongRequestQueue songs={songs} onDeleteSong={deleteSongHandler} />
-    </div>
+    <PageLayout toolbarTitle="Pending songs">
+      <div className="SongRequestsPage">
+        <SongRequestQueue songs={songs} onDeleteSong={deleteSongHandler} />
+      </div>
+    </PageLayout>
   );
 }
