@@ -44,8 +44,6 @@ function App() {
     if (meState.user.type === 'registered') {
       appRoutes = registeredAppRoutes;
       redirectPath = '/dashboard';
-    } else {
-      redirectPath = '/app';
     }
   }
 

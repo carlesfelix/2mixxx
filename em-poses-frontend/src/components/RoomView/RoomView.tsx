@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import { io } from 'socket.io-client';
-import { roomRoutes } from '../../constants/routes';
 import { SocketsProvider } from '../../contexts/sockets';
 import environment from '../../environment';
-import Routes from '../Routes';
 
 const songRequestsSocket = io(`${environment.REACT_APP_SOCKET_BASE_URI}/song-requests`, {
   autoConnect: false,
@@ -21,7 +19,6 @@ type Props = {
   parentUrl?: string;
 }
 export default function RoomView(props: Props) {
-  const { parentUrl } = props;
   useEffect(() => {
     songRequestsSocket.connect();
     return () => {
@@ -31,10 +28,10 @@ export default function RoomView(props: Props) {
   return (
     <div className="RoomView">
       <SocketsProvider songRequestsSocket={songRequestsSocket}>
-        <Routes
+        {/* <Routes
           routes={roomRoutes} fallbackPath={`${parentUrl}/song-requests`}
           parentUrl={parentUrl}
-        />
+        /> */}
       </SocketsProvider>
     </div>
   );

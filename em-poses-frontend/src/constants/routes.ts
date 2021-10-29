@@ -8,7 +8,6 @@ const ManageRoomLibrariesPage = lazy(() => import('../pages/ManageRoomLibrariesP
 const LibrariesDashboardPage = lazy(() => import('../pages/LibrariesDashboardPage'));
 const UsersDashboardPage = lazy(() => import('../pages/UsersDashboardPage'));
 const HomePage = lazy(() => import('../pages/HomePage'));
-const RoomPage = lazy(() => import('../pages/RoomPage'));
 const RoomByIdPage = lazy(() => import('../pages/RoomByIdPage'));
 const MakeASongRequestPage = lazy(() => import('../pages/MakeASongRequestPage'));
 const RecommendSongPage = lazy(() => import('../pages/RecommendSongPage'));
@@ -58,32 +57,33 @@ export const registeredAppRoutes: AppRoute[] = [
 ];
 
 export const guestAppRoutes: AppRoute[] = [
-  {
-    path: '/app',
-    Component: RoomPage,
-    permission: guestPermissions.PAGE_ROOM,
-  },
+  // {
+  //   path: '/',
+  //   Component: RoomPage,
+  //   permission: guestPermissions.PAGE_ROOM,
+  //   exact: true
+  // },
   {
     path: '/',
-    Component: HomePage,
-    exact: true
-  }
-];
-
-export const roomRoutes: AppRoute[] = [
-  {
-    path: '/song-requests',
     Component: SongRequestsPage,
+    permission: guestPermissions.PAGE_ROOM,
     exact: true
   },
   {
     path: '/make-a-song-request',
     Component: MakeASongRequestPage,
+    permission: guestPermissions.PAGE_ROOM,
     exact: true
   },
   {
     path: '/recommend-song',
     Component: RecommendSongPage,
+    permission: guestPermissions.PAGE_ROOM,
+    exact: true
+  },
+  {
+    path: '/',
+    Component: HomePage,
     exact: true
   }
 ];
