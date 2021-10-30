@@ -12,13 +12,9 @@ export default function PageLayout(props: Props) {
   const { children, toolbarTitle, toolbarLinkBack } = props;
   return (
     <div className="PageLayout">
-      <div className="toolbar-container">
-        <Toolbar title={toolbarTitle} linkBack={toolbarLinkBack} />
-      </div>
+      <Toolbar title={toolbarTitle} linkBack={toolbarLinkBack} />
       <div className="page-container">
-        <div className="limit-container">
-          {children}
-        </div>
+        {children}
       </div>
     </div>
   );

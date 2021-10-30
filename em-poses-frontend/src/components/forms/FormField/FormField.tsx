@@ -4,7 +4,7 @@ import './FormField.scss';
 
 
 type Props = {
-  label: string;
+  label?: string;
   errorMessage?: string;
   invalid: boolean;
   children: ReactNode;
@@ -30,7 +30,11 @@ export default function FormField(props: Props) {
 
   return (
     <label className={formFieldClassName}>
-      <span className={labelClassName}>{label}</span>
+      {
+        !!label && (
+          <span className={labelClassName}>{label}</span>
+        )
+      }
       <div className={fieldChildrenClassName}>
         {children}
       </div>

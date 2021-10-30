@@ -6,7 +6,7 @@ import './DashboardPage.scss';
 export default function DashboardPage() {
   return (
     <PageLayout toolbarTitle="Dashboard">
-      <div className="DashboardPage">
+      <div className="DashboardPage page-content">
         {
           dashboardLinks.map((link, iLink) => (
             <DashboardLink dashboardLink={link} key={iLink} />

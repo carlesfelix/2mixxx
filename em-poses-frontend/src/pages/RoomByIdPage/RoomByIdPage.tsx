@@ -7,7 +7,7 @@ export default function RoomByIdPage() {
   const { id: room } = params;
   return (
     <PageLayout>
-      <div className="RoomByIdPage">
+      <div className="RoomByIdPage page-content">
         <RoomView room={room} parentUrl={parentUrl} />
       </div>
     </PageLayout>

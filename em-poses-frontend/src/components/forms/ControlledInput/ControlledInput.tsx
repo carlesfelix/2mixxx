@@ -15,7 +15,7 @@ type Props = {
   control: Control<FieldValues>;
   defaultValue?: unknown;
   rules?: UseControllerProps['rules'];
-  label: string;
+  label?: string;
   name: string;
   field: Field;
   className?: string;

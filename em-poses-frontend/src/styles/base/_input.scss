@@ -6,8 +6,11 @@
   border: 1px solid variables.$c-secondary--500;
   width: 100%;
   box-sizing: border-box;
+  background-color: rgba($color: variables.$c-secondary--100, $alpha: 0.15);
   &:focus-within {
-    outline: 1px variables.$c-primary--500 auto;
+    border: 1px variables.$c-primary--500 solid;
+    outline: none;
+    background-color: rgba($color: variables.$c-secondary--100, $alpha: 0.1);
   }
 }
 

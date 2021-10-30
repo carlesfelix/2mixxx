@@ -18,7 +18,7 @@ export default function HomePage() {
   }
   return (
     <PageLayout toolbarTitle="Home">
-      <div className="HomePage">
+      <div className="HomePage page-content">
         <form className="card card-primary choose-room" onSubmit={handleSubmit(submitHandler)}>
           <h2>Enter to the room</h2>
           <div className="form-content">

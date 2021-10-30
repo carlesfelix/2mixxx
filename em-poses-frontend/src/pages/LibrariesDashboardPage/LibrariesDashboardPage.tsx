@@ -57,7 +57,7 @@ export default function LibrariesDashboardPage() {
   }
   return (
     <PageLayout toolbarTitle="Libraries" toolbarLinkBack="/dashboard">
-      <div className="LibrariesDashboardPage">
+      <div className="LibrariesDashboardPage page-content">
         <AsyncLayout error={libraries.libraries.error} inProgress={libraries.libraries.inProgress} errorMessage="Error">
           <div className="libraries-grid">
             {

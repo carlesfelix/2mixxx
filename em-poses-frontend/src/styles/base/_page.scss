@@ -1,0 +1,12 @@
+@use '../utils/mixings';
+
+.page-content {
+  padding: 0.75rem;
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  height: 100%;
+  @include mixings.min-md {
+    padding: 1.25rem;
+  }
+}

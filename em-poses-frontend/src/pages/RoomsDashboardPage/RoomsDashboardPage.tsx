@@ -73,7 +73,7 @@ export default function RoomsDashboardPage() {
   }
   return (
     <PageLayout toolbarTitle="Rooms" toolbarLinkBack="/dashboard">
-      <div className="RoomsDashboardPage">
+      <div className="RoomsDashboardPage page-content">
         <AsyncLayout inProgress={rooms.inProgress} error={rooms.error}>
           <div className="room-list">
             {

@@ -93,7 +93,7 @@ export default function UsersDashboardPage() {
   }
   return (
     <PageLayout toolbarTitle="Users" toolbarLinkBack="/dashboard">
-      <div className="UsersDashboardPage">
+      <div className="UsersDashboardPage page-content">
         <AsyncLayout inProgress={users.inProgress}>
           <div className="user-list-container">
             {

@@ -71,7 +71,7 @@ export default function ManageRoomLibrariesPage() {
   }
   return (
     <PageLayout toolbarTitle="Manage room's libraries" toolbarLinkBack="/dashboard/rooms">
-      <div className="ManageRoomLibrariesPage">
+      <div className="ManageRoomLibrariesPage page-content">
         <div className="card card-primary manage-room-header">
           <span className="room-icon">
             <FontAwesomeIcon icon={faDoorOpen} />

@@ -38,7 +38,7 @@ export default function SongRequestsPage() {
 
   return (
     <PageLayout toolbarTitle="Pending songs">
-      <div className="SongRequestsPage">
+      <div className="SongRequestsPage page-content">
         <SongRequestQueue songs={[]} onDeleteSong={() => {}} />
         <Link
           className="btn btn-primary btn-round btn-make-song-request"
