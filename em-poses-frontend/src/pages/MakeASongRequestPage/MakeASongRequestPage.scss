@@ -1,3 +1,30 @@
+@use '../../styles/utils/variables';
+@use '../../styles/utils/mixings';
+
 div.MakeASongRequestPage {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  .sub-toolbar {
+    background-color: variables.$c-primary--50;
+    padding: 0.25rem 0;
+    @include mixings.min-sm {
+      padding: 0.5rem;
+    }
+  }
+  form.search-songs-form {
+    border-bottom: 1px solid variables.$c-secondary--300;
+    .search-input {
+      width: 100%;
+      font-size: 1.5rem;
+    }
+  }
+  div.song-request-content {
+    flex-grow: 1;
+    overflow: auto;
+  }
+  div.song-request-footer {
+    text-align: right;
+    border-top: 1px solid variables.$c-secondary--300;
+  }
 }
