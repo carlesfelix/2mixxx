@@ -1,21 +1,28 @@
+@use '../../styles/utils/mixings';
 div.SongItem {
-  display: grid;
-  grid-template-columns: 4rem 1fr;
+  display: flex;
   align-items: center;
   div.thumbnail-container {
-    height: 4rem;
-    padding: 0.25rem;
+    width: 2.65rem;
+    @include mixings.min-sm {
+      height: 3rem;
+    }
+    @include mixings.min-md {
+      height: 3.5rem;
+    }
     svg {
       height: 100%;
       width: 100%;
     }
   }
   div.info-container {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    flex-grow: 1;
+    margin-left: 0.5rem;
+    width: 0;
+    @include mixings.min-sm {
+      margin-left: 0.75rem;
+    }
     div.song-name, div.song-artist {
-      padding: 0.25rem;
       overflow: hidden;
       text-overflow: ellipsis;
       span {
@@ -25,12 +32,19 @@ div.SongItem {
     div.song-name {
       span {
         font-weight: bold;
+        font-size: 1.1rem;
       }
     }
     div.song-artist {
+      margin-top: 0.1rem;
+      @include mixings.min-sm {
+        margin-top: 0.2rem;
+      }
+      @include mixings.min-md {
+        margin-top: 0.3rem;
+      }
       span {
-        font-size: 0.85rem;
-        margin-top: 0.35rem;
+        font-size: 1rem;
       }
     }
   }

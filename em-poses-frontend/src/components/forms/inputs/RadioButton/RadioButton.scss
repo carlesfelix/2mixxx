@@ -1,0 +1,49 @@
+@use '../../../../styles/utils/variables';
+
+label.RadioButton {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+  span.radio-button-label {
+    flex-grow: 1;
+  }
+  &:not(.RadioButton--reverse) {
+    .radio-button-element {
+      &:not(:first-child) {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  &.radio-button--reverse {
+    flex-direction: row-reverse;
+    .radio-button-element {
+      &:not(:last-child) {
+        margin-left: 0.25rem;
+      }
+    }
+  }
+  input.radio-button-input-native {
+    display: none;
+  }
+  span.radio-button-input {
+    border-radius: 50%;
+    display: inline-flex;
+    border: 0.125rem solid variables.$c-secondary--700;
+    span.radio-button-input__checked {
+      visibility: hidden;
+      border-radius: 50%;
+      background-color: variables.$c-primary--600;
+      margin: 0.1875rem;
+      width: 0.6rem;
+      height: 0.6rem;
+    }
+  }
+  input.radio-button-input-native[type=radio]:checked + span.radio-button-input {
+    border-color: variables.$c-primary--600;
+    span.radio-button-input__checked {
+      visibility: visible;
+    }
+  }
+}

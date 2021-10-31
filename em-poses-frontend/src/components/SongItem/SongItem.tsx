@@ -4,12 +4,12 @@ import Song from '../../types/Song';
 import './SongItem.scss';
 
 type Props = {
-  track: Song;
+  song: Song;
 };
 
 export default function SongItem(props: Props) {
-  const { track } = props;
-  const { name, artist } = track;
+  const { song } = props;
+  const { title, artist } = song;
   return (
     <div className="SongItem">
       <div className="thumbnail-container">
@@ -17,7 +17,7 @@ export default function SongItem(props: Props) {
       </div>
       <div className="info-container">
         <div className="song-name">
-          <span>{name}</span>
+          <span>{title}</span>
         </div>
         {
           !!artist && (

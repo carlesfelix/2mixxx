@@ -1,15 +1,22 @@
 import { InputHTMLAttributes, ReactNode } from 'react';
-import { Control, Controller, ControllerRenderProps, FieldValues, UseControllerProps } from 'react-hook-form';
+import {
+  Control, Controller, ControllerRenderProps,
+  FieldValues, UseControllerProps
+} from 'react-hook-form';
 import FormField from '../FormField';
-import Checkbox, { CheckboxExtraProps } from '../inputs/Checkbox/Checkbox';
-import Dropdown, { DropdownExtraProps } from '../inputs/Dropdown/Dropdown';
+import Checkbox, { CheckboxExtraProps } from '../inputs/Checkbox';
+import Dropdown, { DropdownExtraProps } from '../inputs/Dropdown';
 import InputText from '../inputs/InputText';
-import MultiselectBox, { MultiselectBoxExtraProps } from '../inputs/MultiselectBox/MultiselectBox';
+import MultiselectBox, { MultiselectBoxExtraProps } from '../inputs/MultiselectBox';
+import RadioButton, { RadioButtonExtraProps } from '../inputs/RadioButton';
+import RadioButtonCards, { RadioButtonCardsExtraProps } from '../inputs/RadioButtonCards';
 
 type Field = { type: 'inputText', props?: InputHTMLAttributes<HTMLInputElement> } |
 { type: 'dropdown', props: DropdownExtraProps } |
 { type: 'checkbox', props: CheckboxExtraProps } |
-{ type: 'multiselectBox', props: MultiselectBoxExtraProps };
+{ type: 'multiselectBox', props: MultiselectBoxExtraProps } |
+{ type: 'radioButton', props: RadioButtonExtraProps } |
+{ type: 'radioButtonCards', props: RadioButtonCardsExtraProps };
   
 type Props = {
   control: Control<FieldValues>;
@@ -54,6 +61,20 @@ export default function ControlledInput(props: Props) {
       case 'multiselectBox':
         return (
           <MultiselectBox
+            value={value} onChange={onChange} onBlur={onBlur}
+            name={name} extraProps={field.props}
+          />
+        );
+      case 'radioButton':
+        return (
+          <RadioButton
+            value={value} onChange={onChange} onBlur={onBlur}
+            name={name} extraProps={field.props}
+          />
+        );
+      case 'radioButtonCards':
+        return (
+          <RadioButtonCards
             value={value} onChange={onChange} onBlur={onBlur}
             name={name} extraProps={field.props}
           />

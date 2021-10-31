@@ -12,11 +12,11 @@ div.MakeASongRequestPage {
       padding: 0.5rem;
     }
   }
-  form.search-songs-form {
+  div.search-songs-form {
     border-bottom: 1px solid variables.$c-secondary--300;
     .search-input {
       width: 100%;
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
   }
   div.song-request-content {

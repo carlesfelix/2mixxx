@@ -20,7 +20,7 @@ export default function SongRequestQueue(props: Props) {
       {
         songs.map(song => (
           <div className="queue-item card card-primary" key={song.id}>
-            <SongItem track={song} />
+            <SongItem song={song} />
             <button onClick={deleteSongHandler(song)}>
               Delete
             </button>

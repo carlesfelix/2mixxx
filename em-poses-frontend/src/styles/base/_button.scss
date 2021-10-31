@@ -7,6 +7,11 @@
   background: none;
   padding: 0.5rem 1rem;
   text-decoration: none;
+  &:disabled {
+    opacity: 0.8;
+    cursor: default;
+    user-select: none;
+  }
   > * {
     margin-left: 0.3rem;
     &:first-child {

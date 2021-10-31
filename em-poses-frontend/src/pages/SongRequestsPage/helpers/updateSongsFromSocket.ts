@@ -6,7 +6,7 @@ export default function updateSongsFromSocket(socket: Socket, setSongs: Dispatch
   function addSongRequestHandler(song: Song): void {
     setSongs(old => [ ...old, song ]);
   }
-  function deleteSongRequestHandler({ id }: { id: number }): void {
+  function deleteSongRequestHandler({ id }: { id: string }): void {
     setSongs((old: Song[]) => old.filter(({ id: songId }) => id !== songId));
   }
   socket.on('onAddSongRequest', addSongRequestHandler);

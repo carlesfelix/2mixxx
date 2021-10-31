@@ -1,7 +1,8 @@
+import BaseEntity from './BaseEntity';
+
 type Song = {
-  id: number;
-  name: string;
+  title: string;
   artist?: string;
-};
+} & BaseEntity;
 
 export default Song;
