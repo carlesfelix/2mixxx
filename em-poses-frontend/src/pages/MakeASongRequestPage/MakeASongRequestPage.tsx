@@ -8,6 +8,7 @@ import PageLayout from '../../components/PageLayout';
 import SongItem from '../../components/SongItem';
 import AsyncState from '../../types/AsyncState';
 import Song from '../../types/Song';
+import SongRequestProgressDialog from './components/SongRequestProgressDialog';
 import './MakeASongRequestPage.scss';
 
 export default function MakeASongRequestPage() {
@@ -15,6 +16,9 @@ export default function MakeASongRequestPage() {
   const [ selectedSong, setSelectedSong ] = useState<string>('');
   const [ songs, setSongs ] = useState<AsyncState<Song[]>>({
     data: [], inProgress: false, error: false
+  });
+  const [ requestSent, setRequestSent ] = useState<AsyncState<boolean>>({
+    data: false, inProgress: false, error: false
   });
   const queryTrim = query.trim();
   const [ queryTrimDebounced ] = useDebounce(queryTrim, 500);
@@ -53,6 +57,20 @@ export default function MakeASongRequestPage() {
   }, [ queryTrimDebounced, queryLength ]);
   function radioButtonCardsChangeHandler(itemValue: string): void {
     setSelectedSong(itemValue);
+  }
+  function sendRequestHandler(): void {
+    // setRequestSent({
+    //   data: false, inProgress: true,
+    //   error: false
+    // });
+    setRequestSent({
+      data: true, inProgress: false,
+      error: false
+    });
+    // setRequestSent({
+    //   data: false, inProgress: false,
+    //   error: true
+    // });
   }
   return (
     <PageLayout toolbarTitle="Make a song request" toolbarLinkBack="/">
@@ -103,12 +121,17 @@ export default function MakeASongRequestPage() {
         </div>
         <div className="song-request-footer sub-toolbar">
           <div className="page-content">
-            <button className="btn btn-primary" disabled={!selectedSong}>
+            <button
+              className="btn btn-primary"
+              disabled={!selectedSong || requestSent.inProgress}
+              onClick={sendRequestHandler}
+            >
               Send request
             </button>
           </div>
         </div>
       </div>
+      <SongRequestProgressDialog isOpen={requestSent.data} />
     </PageLayout>
   );
 }

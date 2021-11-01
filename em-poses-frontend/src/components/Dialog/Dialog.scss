@@ -3,6 +3,7 @@
 div.Dialog {
   display: flex;
   flex-direction: column;
+  min-width: variables.$min-xs;
   div.Dialog__header {
     padding: 1.25rem 1.5rem;
     position: relative;
@@ -19,7 +20,7 @@ div.Dialog {
   div.Dialog__content {
     flex-grow: 1;
     overflow: auto;
-    padding: 1.25rem;
+    padding: 1.25rem 1.5rem;
   }
   div.Dialog__footer {
     padding: 0.75rem;
