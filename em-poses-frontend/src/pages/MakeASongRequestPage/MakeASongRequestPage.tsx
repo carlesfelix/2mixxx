@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useDebounce } from 'use-debounce';
 import { searchSongs } from '../../api/songs';
+import AsyncLayout from '../../components/AsyncLayout';
 import InputText from '../../components/forms/inputs/InputText';
 import RadioButtonCards from '../../components/forms/inputs/RadioButtonCards';
 import PageLayout from '../../components/PageLayout';
@@ -14,16 +16,21 @@ export default function MakeASongRequestPage() {
   const [ songs, setSongs ] = useState<AsyncState<Song[]>>({
     data: [], inProgress: false, error: false
   });
+  const queryTrim = query.trim();
+  const [ queryTrimDebounced ] = useDebounce(queryTrim, 500);
+  const queryLength = queryTrimDebounced.length;
+  const noSongs = !songs.data.length;
+  const emptySearch = !queryLength && noSongs;
+  const resultsNotFound = !!queryLength && noSongs;
   useEffect(() => {
-    const queryTrim = query.trim();
     setSelectedSong('');
-    if (queryTrim.length > 2) {
+    if (queryLength > 2) {
       setSongs({
         data: [],
         inProgress: true,
         error: false
       });
-      searchSongs(queryTrim).then(data => {
+      searchSongs(queryTrimDebounced).then(data => {
         setSongs({
           data,
           inProgress: false,
@@ -43,7 +50,7 @@ export default function MakeASongRequestPage() {
         error: false
       });
     }
-  }, [ query ]);
+  }, [ queryTrimDebounced, queryLength ]);
   function radioButtonCardsChangeHandler(itemValue: string): void {
     setSelectedSong(itemValue);
   }
@@ -61,18 +68,38 @@ export default function MakeASongRequestPage() {
           </div>
         </div>
         <div className="page-content song-request-content">
-          <RadioButtonCards
-            onChange={radioButtonCardsChangeHandler}
-            value={selectedSong}
-            extraProps={{
-              items: songs.data.map(song => ({
-                label: (
-                  <SongItem song={song} />
-                ),
-                value: song.id
-              }))
-            }}
-          />
+          <AsyncLayout
+            className="song-request-async"
+            error={songs.error}
+            inProgress={songs.inProgress}
+          >
+            {
+              emptySearch && (
+                <div className="empty-message-container">
+                  <p>Start searching something in order to see results</p>
+                </div>
+              )
+            }
+            {
+              resultsNotFound && (
+                <div className="empty-message-container">
+                  <p>Songs not found</p>
+                </div>
+              )
+            }
+            <RadioButtonCards
+              onChange={radioButtonCardsChangeHandler}
+              value={selectedSong}
+              extraProps={{
+                items: songs.data.map(song => ({
+                  label: (
+                    <SongItem song={song} />
+                  ),
+                  value: song.id
+                }))
+              }}
+            />
+          </AsyncLayout>
         </div>
         <div className="song-request-footer sub-toolbar">
           <div className="page-content">

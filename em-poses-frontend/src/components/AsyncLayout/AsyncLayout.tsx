@@ -2,6 +2,7 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import { ReactNode } from 'react';
+import './AsyncLayout.scss';
 
 type Props = {
   inProgress: boolean;
