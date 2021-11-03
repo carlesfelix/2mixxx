@@ -6,6 +6,7 @@ import InputText from '../../components/forms/inputs/InputText';
 import RadioButtonCards from '../../components/forms/inputs/RadioButtonCards';
 import PageLayout from '../../components/PageLayout';
 import SongItem from '../../components/SongItem';
+import { addSongRequest } from '../../socket/song-requests';
 import AsyncState from '../../types/AsyncState';
 import Song from '../../types/Song';
 import SongRequestProgressDialog from './components/SongRequestProgressDialog';
@@ -59,18 +60,21 @@ export default function MakeASongRequestPage() {
     setSelectedSong(itemValue);
   }
   function sendRequestHandler(): void {
-    // setRequestSent({
-    //   data: false, inProgress: true,
-    //   error: false
-    // });
     setRequestSent({
-      data: true, inProgress: false,
+      data: false, inProgress: true,
       error: false
     });
-    // setRequestSent({
-    //   data: false, inProgress: false,
-    //   error: true
-    // });
+    addSongRequest(selectedSong).then(() => {
+      setRequestSent({
+        data: true, inProgress: false,
+        error: false
+      });
+    }).catch(() => {
+      setRequestSent({
+        data: false, inProgress: false,
+        error: true
+      });
+    });
   }
   return (
     <PageLayout toolbarTitle="Make a song request" toolbarLinkBack="/">
