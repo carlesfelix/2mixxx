@@ -1,25 +1,14 @@
 import { Namespace, Server } from 'socket.io';
+import authMid from '../../middlewares/auth.mid';
+import errorListeners from './listeners/error.listeners';
 import songRequestListeners from './listeners/song-request.listeners';
-import getUserAuth from '../../../../core/interactors/auth/getUserAuth';
+
 function MainNsp(io: Server): Namespace {
   const mainNamespace = io.of('/');
-  mainNamespace.use((socket, next) => {
-    const { auth } = socket.handshake;
-    const { userType, authorization } = auth;
-    if (typeof userType === 'string' && typeof authorization === 'string') {
-      console.log('entra1', userType, authorization)
-      getUserAuth(userType, authorization).then(userAuth => {
-        socket.data.auth = userAuth;
-        next();
-      }).catch(() => {
-        socket.disconnect();
-      });
-    } else {
-      socket.disconnect();
-    }
-  });
+  mainNamespace.use(authMid);
   mainNamespace.on('connection', socket => {
     songRequestListeners(socket);
+    errorListeners(socket);
   });
   console.log('entra')
   // socket.on('deleteSongRequest', (payload, res) => {

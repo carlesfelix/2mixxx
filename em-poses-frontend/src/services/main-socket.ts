@@ -12,6 +12,11 @@ export function connectToMainSocket(
   mainSocket.connect();
 }
 
+mainSocket.on('connect_error', (err) => {
+  console.log(err instanceof Error);
+  console.log(err.message);
+});
+
 export function disconnectToMainSocket(): void {
   mainSocket.disconnect();
   mainSocket.removeAuthInterceptor();

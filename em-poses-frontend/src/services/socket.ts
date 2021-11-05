@@ -42,7 +42,7 @@ export default function socket(uri: string) {
       const { event, payload = {} } = action;
       _socket.emit(event, payload, (ackResponse: SocketAck<Ack>) => {
         console.log('entra', ackResponse)
-        if (ackResponse.error) {
+        if (ackResponse.status === 'FAILED') {
           reject(ackResponse.error);
           return;
         }
