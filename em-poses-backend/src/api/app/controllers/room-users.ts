@@ -11,6 +11,7 @@ export function createRoomUserCtrl(
   createRoomUser(roomCode).then(token => {
     res.status(200).json({ token });
   }).catch((err) => {
+    console.log(err)
     next(err);
   });
 }

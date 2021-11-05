@@ -41,7 +41,6 @@ export default function socket(uri: string) {
     return new Promise((resolve, reject) => {
       const { event, payload = {} } = action;
       _socket.emit(event, payload, (ackResponse: SocketAck<Ack>) => {
-        console.log('entra', ackResponse)
         if (ackResponse.status === 'FAILED') {
           reject(ackResponse.error);
           return;

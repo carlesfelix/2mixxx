@@ -1,5 +1,9 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageLayout from '../../components/PageLayout';
+import { CLIENT__GET_SONG_REQUESTS } from '../../constants/client-socket-actions';
+import { SERVER__NEW_SONG_REQUEST } from '../../constants/server-socket-actions';
+import mainSocket from '../../services/main-socket';
 import SongRequestQueue from './components/SongRequestQueue';
 import './SongRequestsPage.scss';
 
@@ -35,6 +39,16 @@ export default function SongRequestsPage() {
   //     setSongs((old: Song[]) => old.filter(({ id: songId }) => id !== songId));
   //   });
   // }
+  useEffect(() => {
+    setTimeout(() => {
+      mainSocket.on(SERVER__NEW_SONG_REQUEST, res => {
+        console.log(res);
+      });
+      mainSocket.emitWithAck({ event: CLIENT__GET_SONG_REQUESTS }).then(res => {
+        console.log('res', res);
+      }).catch(err => console.log('err', err));
+    }, 5000);
+  }, []);
 
   return (
     <PageLayout toolbarTitle="Pending songs">
