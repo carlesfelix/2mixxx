@@ -1,9 +1,5 @@
-import AckError from './AckError';
+import SocketResponse from './SocketResponse';
 
-type Ack<Data = unknown> = (ackResponse: {
-  error?: AckError;
-  data?: Data;
-  status: 'OK' | 'FAILED'
-}) => void;
+type Ack<Data = unknown> = (ackResponse: SocketResponse<Data>) => void;
 
 export default Ack;

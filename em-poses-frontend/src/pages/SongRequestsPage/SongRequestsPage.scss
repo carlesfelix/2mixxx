@@ -1,8 +1,7 @@
-div.SongRequestsPage {
+.SongRequestsPage {
   position: relative;
-  height: 100%;
   a.btn-make-song-request {
-    position: absolute;
+    position: fixed;
     bottom: 1rem;
     right: 1rem;
   }

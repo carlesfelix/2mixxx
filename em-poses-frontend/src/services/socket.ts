@@ -1,62 +1,32 @@
-import { io } from 'socket.io-client';
-import SocketAck from '../types/SocketAck';
+import { io, Socket } from 'socket.io-client';
 
-export default function socket(uri: string) {
-  let authInterceptor: (() => Promise<object>) | undefined;
-  const _socket = io(uri, {
-    autoConnect: false,
-    auth: cb => {
-      if (authInterceptor) {
-        authInterceptor().then(auth => {
-          cb(auth);
-        }).catch(() => {
-          cb({});
-        });
-      } else {
-        cb({});
-      }
-    }
-  });
-  function connect(): void {
-    _socket.connect();
-  }
-  function disconnect(): void {
-    _socket.disconnect();
-  }
-  function removeAuthInterceptor(): void {
-    authInterceptor = undefined;
-  }
-  function setAuthInterceptor<Auth extends object>(fn: () => Promise<Auth>): void {
-    authInterceptor = fn;
-  }
-  function on<ListenerResponse = any>(
-    event: string,
-    listener: (response: ListenerResponse) => void
-  ): void {
-    _socket.on(event, listener);
-  }
-  function emitWithAck<Ack = any>(
-    action: { event: string, payload?: object }
-  ): Promise<Ack> {
-    return new Promise((resolve, reject) => {
-      const { event, payload = {} } = action;
-      _socket.emit(event, payload, (ackResponse: SocketAck<Ack>) => {
-        if (ackResponse.status === 'FAILED') {
-          reject(ackResponse.error);
-          return;
-        }
-        resolve(ackResponse.data);
-      });
-    });
-  }
-  function emit(
-    action: { event: string, payload?: object }
-  ): void {
-    const { event, payload = {} } = action;
-    _socket.emit(event, payload);
-  }
+type AuthInterceptorFn<AuthData extends object = object> = () => Promise<AuthData>;
+export default function socket(uri: string): {
+  socket: Socket,
+  setAuthInterceptor: (fn: AuthInterceptorFn) => void,
+  removeAuthInterceptor: () => void;
+} {
+  let authInterceptor: AuthInterceptorFn | undefined;
   return {
-    connect, disconnect, setAuthInterceptor,
-    on, emitWithAck, emit, removeAuthInterceptor
+    socket: io(uri, {
+      autoConnect: false,
+      auth: cb => {
+        if (authInterceptor) {
+          authInterceptor().then(authData => {
+            cb(authData);
+          }).catch(() => {
+            cb({});
+          });
+        } else {
+          cb({});
+        }
+      }
+    }),
+    setAuthInterceptor: fn => {
+      authInterceptor = fn;
+    },
+    removeAuthInterceptor: () => {
+      authInterceptor = undefined;
+    }
   };
 }

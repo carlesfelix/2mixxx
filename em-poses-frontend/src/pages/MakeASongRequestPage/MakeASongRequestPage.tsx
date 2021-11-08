@@ -6,7 +6,7 @@ import InputText from '../../components/forms/inputs/InputText';
 import RadioButtonCards from '../../components/forms/inputs/RadioButtonCards';
 import PageLayout from '../../components/PageLayout';
 import SongItem from '../../components/SongItem';
-import { addSongRequest } from '../../socket/song-requests';
+import { emitNewSongRequest } from '../../socket/song-requests/emitters';
 import AsyncState from '../../types/AsyncState';
 import Song from '../../types/Song';
 import SongRequestProgressDialog from './components/SongRequestProgressDialog';
@@ -64,7 +64,7 @@ export default function MakeASongRequestPage() {
       data: false, inProgress: true,
       error: false
     });
-    addSongRequest(selectedSong).then(() => {
+    emitNewSongRequest(selectedSong).then(() => {
       setRequestSent({
         data: true, inProgress: false,
         error: false

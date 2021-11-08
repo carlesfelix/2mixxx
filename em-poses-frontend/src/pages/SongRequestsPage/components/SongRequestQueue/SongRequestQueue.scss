@@ -2,17 +2,24 @@
 
 div.SongRequestQueue {
   div.queue-item {
-    margin-top: 0.75rem;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: 1fr;
+    margin-top: 0.5rem;
+    display: flex;
     align-items: center;
+    @include mixings.min-sm {
+      margin-top: 0.75rem;
+    }
     @include mixings.min-md {
       margin-top: 1rem;
     }
     &:first-child {
       margin-top: 0;
     }
+    .queue-item__song {
+      flex-grow: 1;
+      padding: 0.25rem 0.5rem;
+    }
+    div.queue-item__actions {
+      padding: 0.5rem;
+    }
   }
-  
 }

@@ -9,17 +9,17 @@ export function connectToMainSocket(
   }>
 ): void {
   mainSocket.setAuthInterceptor(tokenFn);
-  mainSocket.connect();
+  mainSocket.socket.connect();
 }
 
-mainSocket.on('connect_error', (err) => {
+mainSocket.socket.on('connect_error', (err) => {
   console.log(err instanceof Error);
   console.log(err.message);
 });
 
 export function disconnectToMainSocket(): void {
-  mainSocket.disconnect();
+  mainSocket.socket.disconnect();
   mainSocket.removeAuthInterceptor();
 }
 
-export default mainSocket;
+export default mainSocket.socket;

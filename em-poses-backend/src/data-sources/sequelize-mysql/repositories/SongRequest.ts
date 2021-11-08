@@ -6,6 +6,7 @@ export default class SongRequest implements ISongRequestRepository {
   async getSongRequestsFromRoom(roomId: string): Promise<SongRequestEntity[]> {
     const data = await models.SongRequest.model.findAll({
       where: { roomId },
+      order: [[ 'createdAt', 'ASC' ]],
       include: [{ model: models.Song.model, as: 'song' }]
     });
     return instancesToJson<SongRequestEntity>(data);

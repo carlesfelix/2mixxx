@@ -1,9 +1,9 @@
 import { StatusCodeEnum } from '../services/SocketError';
 
-type AckError<Details = unknown> = {
+type SocketResponseError = {
   code: StatusCodeEnum;
   message: string;
-  details?: Details;
+  details?: unknown;
 };
 
-export default AckError;
+export default SocketResponseError;
