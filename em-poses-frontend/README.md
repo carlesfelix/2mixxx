@@ -44,3 +44,29 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Environment variables for development
+
+- Create a `.env` file inside of `/frontend` folder with the following environment variables
+
+```
+REACT_APP_SOCKET_BASE_URI=ws://localhost:3002
+REACT_APP_AUTH0_DOMAIN=your_auth0_domain # Your auth0 domain (SPA API)
+REACT_APP_AUTH0_CLIENT_ID=your_auth0_client_id # Your auth0 client id (SPA API)
+REACT_APP_API_BASE_URL=http://localhost:3001/api
+```
+
+- Note: You must have an [auth0](https://auth0.com/) account.
+
+## Environment variables for production
+
+- Create a `.env` file inside of `/frontend` folder with the following environment variables
+
+```
+REACT_APP_SOCKET_BASE_URI=your_socket_server_uri
+REACT_APP_AUTH0_DOMAIN=your_auth0_domain # Your auth0 domain (SPA API)
+REACT_APP_AUTH0_CLIENT_ID=your_auth0_client_id # Your auth0 client id (SPA API)
+REACT_APP_API_BASE_URL=your_api_base_url
+```
+
+- Note: You must have an [auth0](https://auth0.com/) account.
