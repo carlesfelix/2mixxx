@@ -4,9 +4,9 @@
 
 ### 2mixxx consist of two parts
 
-- [Frontend](/frontend)
+- [Frontend](https://github.com/carlesfelix/2mixxx/tree/main/frontend)
 
-- [Backend](/backend)
+- [Backend](https://github.com/carlesfelix/2mixxx/tree/main/backend)
 
 ### Status
 - At the moment 2mixxx is under development. Stay tuned because alpha is coming soon!
