@@ -1,25 +1,32 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageLayout from '../../components/PageLayout';
-import { emitGetSongRequests } from '../../socket/song-requests/emitters';
-import { useNewSongRequest } from '../../socket/song-requests/listeners';
+import { SERVER__NEW_SONG_REQUEST } from '../../constants/server-socket-actions';
+import environment from '../../environment';
+import useSocketConnectionManager from '../../hooks/useSocketConnectionManager';
+import { emitGetSongRequests } from '../../socket/main/emitters';
+import SocketReponse from '../../types/SocketResponse';
 import SongRequest from '../../types/SongRequest';
 import SongRequestQueue from './components/SongRequestQueue';
 import './SongRequestsPage.scss';
 
 export default function SongRequestsPage() {
   const [ songRequests, setSongRequests ] = useState<SongRequest[]>([]);
-  const newSongRequest = useNewSongRequest();
+  const mainSocket = useSocketConnectionManager(environment.REACT_APP_SOCKET_BASE_URI);
   useEffect(() => {
-    if (newSongRequest.data) {
-      setSongRequests(old => [ ...old, newSongRequest.data! ]);
+    function listener(res: SocketReponse<SongRequest>): void {
+      setSongRequests(old => [ ...old, res.data ]);
     }
-  }, [ newSongRequest ]);
-  useEffect(() => {
-    emitGetSongRequests().then(res => {
-      setSongRequests(res.data)
-    }).catch(err => console.log('err', err));
-  }, []);
+    if (mainSocket) {
+      emitGetSongRequests(mainSocket).then(res => {
+        setSongRequests(res.data)
+      }).catch(err => console.log('err', err));
+      mainSocket.on(SERVER__NEW_SONG_REQUEST, listener);
+    }
+    return () => {
+      mainSocket && mainSocket.off(SERVER__NEW_SONG_REQUEST, listener);
+    };
+  }, [ mainSocket ]);
 
   return (
     <PageLayout toolbarTitle="Pending songs" className="SongRequestsPage">

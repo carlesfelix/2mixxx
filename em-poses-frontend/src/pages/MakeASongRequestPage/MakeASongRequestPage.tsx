@@ -6,13 +6,16 @@ import InputText from '../../components/forms/inputs/InputText';
 import RadioButtonCards from '../../components/forms/inputs/RadioButtonCards';
 import PageLayout from '../../components/PageLayout';
 import SongItem from '../../components/SongItem';
-import { emitNewSongRequest } from '../../socket/song-requests/emitters';
+import environment from '../../environment';
+import useSocketConnectionManager from '../../hooks/useSocketConnectionManager';
+import { emitNewSongRequest } from '../../socket/main/emitters';
 import AsyncState from '../../types/AsyncState';
 import Song from '../../types/Song';
 import SongRequestProgressDialog from './components/SongRequestProgressDialog';
 import './MakeASongRequestPage.scss';
 
 export default function MakeASongRequestPage() {
+  const mainSocket = useSocketConnectionManager(environment.REACT_APP_SOCKET_BASE_URI);
   const [ query, setQuery ] = useState<string>('');
   const [ selectedSong, setSelectedSong ] = useState<string>('');
   const [ songs, setSongs ] = useState<AsyncState<Song[]>>({
@@ -60,21 +63,23 @@ export default function MakeASongRequestPage() {
     setSelectedSong(itemValue);
   }
   function sendRequestHandler(): void {
-    setRequestSent({
-      data: false, inProgress: true,
-      error: false
-    });
-    emitNewSongRequest(selectedSong).then(() => {
+    if (mainSocket) {
       setRequestSent({
-        data: true, inProgress: false,
+        data: false, inProgress: true,
         error: false
       });
-    }).catch(() => {
-      setRequestSent({
-        data: false, inProgress: false,
-        error: true
+      emitNewSongRequest(mainSocket, selectedSong).then(() => {
+        setRequestSent({
+          data: true, inProgress: false,
+          error: false
+        });
+      }).catch(() => {
+        setRequestSent({
+          data: false, inProgress: false,
+          error: true
+        });
       });
-    });
+    }
   }
   return (
     <PageLayout toolbarTitle="Make a song request" toolbarLinkBack="/">
