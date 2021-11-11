@@ -3,7 +3,8 @@
 
 name: Build and deploy Node.js app to Azure Web App - app-2mixx-dev-weu-001
 
-AZURE_FUNCTIONAPP_PACKAGE_PATH: './frontend'
+env:
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: './frontend'
 
 on:
   push:
