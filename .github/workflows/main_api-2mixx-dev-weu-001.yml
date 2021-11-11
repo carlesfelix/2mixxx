@@ -18,15 +18,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: azure/login@v1
-        with:
-          creds: '${{ secrets.AZURE_CREDENTIALS }}'
-      - uses: azure/appservice-settings@v1
-        with:
-          app-name: 'api-2mixx-dev-weu-001'
-          mask-inputs: false
-          app-settings-json: '${{ secrets.APP_SETTINGS }}'
-        id: settings
       - uses: actions/checkout@v2
       - name: Set up Node.js version
         uses: actions/setup-node@v1
