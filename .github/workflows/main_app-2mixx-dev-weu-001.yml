@@ -27,7 +27,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-
+      - name: Configure environment variables
+        uses: azure/appservice-settings@v1
+        with:
+          name: node-app
+          path: frontend/build
       - name: npm install and build
         run: |
           npm install
