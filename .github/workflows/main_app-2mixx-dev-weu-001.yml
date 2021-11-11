@@ -27,16 +27,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - name: Configure environment variables
-        uses: azure/appservice-settings@v1
-        with:
-          app-name: node-app
-          mask-inputs: false
-          app-settings-json: '[{ "name": "REACT_APP_API_BASE_URL", "value": "https://api-2mixx-dev-weu-001.azurewebsites.net/api", "slotSetting": false }, { "name": "REACT_APP_AUTH0_CLIENT_ID", "value": "zYDA024SwEGuAXzgRA7jiqpo1mpQHvrW", "slotSetting": false }, { "name": "REACT_APP_AUTH0_DOMAIN", "value": "dev-yhhleh3j.us.auth0.com", "slotSetting": false }, { "name": "REACT_APP_SOCKET_BASE_URI", "value": "wss://socket-2mixx-dev-weu-001.azurewebsites.net", "slotSetting": false }]'
       - name: npm install and build
         run: |
           npm install
           npm run build --if-present
+        env:
+          REACT_APP_SOCKET_BASE_URI: wss://socket-2mixx-dev-weu-001.azurewebsites.net
+          REACT_APP_AUTH0_DOMAIN: dev-yhhleh3j.us.auth0.com
+          REACT_APP_AUTH0_CLIENT_ID: zYDA024SwEGuAXzgRA7jiqpo1mpQHvrW
+          REACT_APP_API_BASE_URL: https://api-2mixx-dev-weu-001.azurewebsites.net/api
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
