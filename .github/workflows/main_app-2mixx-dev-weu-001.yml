@@ -12,6 +12,9 @@ on:
       - main
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: frontend
 
 jobs:
   build:
@@ -25,9 +28,8 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: npm install, build, and test
+      - name: npm install and build
         run: |
-          cd ./frontend
           npm install
           npm run build --if-present
 
@@ -35,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: ./build
+          path: frontend/build
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,6 +51,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app
+          path: frontend/build
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
