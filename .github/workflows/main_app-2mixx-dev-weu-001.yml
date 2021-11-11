@@ -30,8 +30,8 @@ jobs:
       - name: Configure environment variables
         uses: azure/appservice-settings@v1
         with:
-          app-name: 'app-2mixx-dev-weu-001'
-          app-settings-json: '${{ secrets.APP_SETTINGS }}' 
+          app-name: app-2mixx-dev-weu-001
+          app-settings-json: ${{ secrets.APP_SETTINGS }}
       - name: npm install and build
         run: |
           npm install
