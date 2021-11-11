@@ -32,7 +32,7 @@ jobs:
         with:
           app-name: app-2mixx-dev-weu-001
           mask-inputs: false
-          app-settings-json: '[
+          app-settings-json: [
             {
               "name": "REACT_APP_API_BASE_URL",
               "value": "https://api-2mixx-dev-weu-001.azurewebsites.net/api",
@@ -53,7 +53,7 @@ jobs:
               "value": "wss://socket-2mixx-dev-weu-001.azurewebsites.net",
               "slotSetting": false
             }
-          ]'
+          ]
         id: settings
       - name: npm install and build
         run: |
