@@ -9,6 +9,8 @@ on:
       - main
   workflow_dispatch:
 
+AZURE_FUNCTIONAPP_PACKAGE_PATH: './frontend'
+
 jobs:
   build:
     runs-on: ubuntu-latest
