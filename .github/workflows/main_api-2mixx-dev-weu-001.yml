@@ -30,6 +30,11 @@ jobs:
           npm install
           npm run build:api --if-present
 
+      - name: install production dependencies
+        run: |
+          cd ./dist/dist.api
+          npm install --production
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
