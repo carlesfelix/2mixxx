@@ -9,6 +9,10 @@ on:
       - main
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: backend
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,17 +25,21 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: npm install, build, and test
+      - name: npm install and build
         run: |
           npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm run build:socket --if-present
+
+      - name: install production dependencies
+        run: |
+          cd ./dist/dist.socket
+          npm install --production
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: .
+          path: backend/dist/dist.socket
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,7 +52,8 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: node-app
+          name: node-app,
+          path: backend/dist/dist.socket
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
