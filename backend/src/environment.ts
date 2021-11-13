@@ -3,7 +3,7 @@ function env(name: string, defaultValue = ''): string {
 }
 
 export default {
-  API_PORT: +env('API_PORT'),
+  API_PORT: +env('API_PORT', process.env.PORT),
   NODE_ENV: env('NODE_ENV'),
   MYSQL_ROOT_PASSWORD: env('MYSQL_ROOT_PASSWORD'),
   MYSQL_DATABASE: env('MYSQL_DATABASE'),

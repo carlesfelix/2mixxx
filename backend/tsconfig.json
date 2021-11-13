@@ -1,5 +1,8 @@
 {
-  "include": ["./package.json"],
+  "include": ["./package.json", "src/environment.ts"],
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     /* Basic Options */
