@@ -10,6 +10,7 @@ import app from './app/namespaces';
 const httpServer = http.createServer();
 
 const io = new Server(httpServer, {
+  perMessageDeflate: environment.NODE_ENV === 'development',
   cors: {
     allowedHeaders: ['Authorization'],
     origin: environment.SOCKET_CORS_ORIGIN
