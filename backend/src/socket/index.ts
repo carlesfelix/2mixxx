@@ -9,7 +9,9 @@ import app from './app/namespaces';
 
 const httpServer = http.createServer();
 
-const socketSeverOpts: Partial<ServerOptions> = {};
+const socketSeverOpts: Partial<ServerOptions> = {
+  transports: ['websocket']
+};
 if (environment.SOCKET_CORS_ORIGIN) {
   socketSeverOpts.cors = {
     origin: environment.SOCKET_CORS_ORIGIN
