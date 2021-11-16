@@ -3,19 +3,20 @@ import { resolve } from 'path';
 config({ path: resolve(__dirname, '../../.env') });
 
 import http from 'http';
-import { Server } from 'socket.io';
+import { Server, ServerOptions } from 'socket.io';
 import environment from '../environment';
 import app from './app/namespaces';
 
 const httpServer = http.createServer();
 
-const io = new Server(httpServer, {
-  perMessageDeflate: environment.NODE_ENV === 'development',
-  cors: {
-    allowedHeaders: ['Authorization'],
+const socketSeverOpts: Partial<ServerOptions> = {};
+if (environment.SOCKET_CORS_ORIGIN) {
+  socketSeverOpts.cors = {
     origin: environment.SOCKET_CORS_ORIGIN
-  }
-});
+  };
+}
+
+const io = new Server(httpServer, socketSeverOpts);
 
 app(io);
 

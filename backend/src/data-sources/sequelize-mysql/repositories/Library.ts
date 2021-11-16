@@ -9,7 +9,7 @@ export default class Library implements ILibraryRepository {
   private getSongsSubQuery(): Literal {
     return literal(`(
       SELECT COUNT(*)
-      FROM Songs AS Song
+      FROM songs AS Song
       WHERE
         Song.libraryId = Library.id
     )`);
