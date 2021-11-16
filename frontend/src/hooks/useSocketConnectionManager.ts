@@ -13,7 +13,7 @@ export default function useSocketConnectionManager(uri: string): Socket | undefi
     roomUserState.isAuthenticated;
 
   useEffect(() => {
-    const nextSocket = io(uri, { autoConnect: false, transports: ['websocket'] })
+    const nextSocket = io(uri, { autoConnect: false });
     setSocket(nextSocket);
     if (registeredLogged) {
       getIdTokenClaims().then(idToken => {
