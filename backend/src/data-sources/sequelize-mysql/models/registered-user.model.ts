@@ -32,7 +32,7 @@ const modelDefinition: IModelDefinitionFn<RegisteredUserEntity> = sequelize => {
       type: DataTypes.TINYINT,
       field: 'userRole'
     }
-  }, { tableName: 'RegisteredUsers' });
+  }, { tableName: 'registered_users' });
   return { model: RegisteredUserModel };
 };
 

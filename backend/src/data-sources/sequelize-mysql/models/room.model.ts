@@ -33,7 +33,7 @@ const modelDefinition: IModelDefinitionFn<RoomEntity> = sequelize => {
       field: 'allowSongRequests',
       defaultValue: false
     }
-  }, { tableName: 'Rooms' });
+  }, { tableName: 'rooms' });
   return {
     model: RoomModel
   };

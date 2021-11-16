@@ -26,7 +26,7 @@ const modelDefinition: IModelDefinitionFn<LibraryRoomEntity> = sequelize => {
       field: 'libraryId',
       primaryKey: true
     }
-  }, { tableName: 'LibrariesRooms' });
+  }, { tableName: 'libraries_rooms' });
   return {
     model: LibraryRoomModel,
     associate: models => {

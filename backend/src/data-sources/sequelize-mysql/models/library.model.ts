@@ -26,7 +26,7 @@ const modelDefinition: IModelDefinitionFn<LibraryEntity> = sequelize => {
       type: DataTypes.STRING,
       field: 'title'
     }
-  }, { tableName: 'Libraries' });
+  }, { tableName: 'libraries' });
   return {
     model: LibraryModel
   };

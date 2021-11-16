@@ -1,4 +1,4 @@
-CREATE TABLE Rooms (
+CREATE TABLE rooms (
   id char(36) NOT NULL PRIMARY KEY,
   createdAt datetime NOT NULL,
   updatedAt datetime NOT NULL,

@@ -36,7 +36,7 @@ const songRequestModel: IModelDefinitionFn<SongRequestEntity> = sequelize => {
       type: DataTypes.UUID,
       field: 'songId'
     }
-  }, { tableName: 'SongRequests' });
+  }, { tableName: 'song_requests' });
   return {
     model: SongRequestModel,
     associate: models => {

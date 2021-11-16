@@ -11,6 +11,7 @@ export default new Sequelize(
     host: environment.MYSQL_HOST,
     dialect: 'mysql',
     port: environment.MYSQL_PORT,
+    ssl: environment.MYSQL_SSL,
     logging: dbLog
   }
 );

@@ -26,7 +26,7 @@ const modelDefinition: IModelDefinitionFn<RoomUserEntity> = sequelize => {
       type: DataTypes.UUID,
       field: 'roomId'
     }
-  }, { tableName: 'RoomUsers' });
+  }, { tableName: 'room_users' });
   return { model: RoomUserModel };
 };
 
