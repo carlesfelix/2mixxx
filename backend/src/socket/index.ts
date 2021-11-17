@@ -7,7 +7,7 @@ import { Server, ServerOptions } from 'socket.io';
 import environment from '../environment';
 import app from './app/namespaces';
 
-const httpServer = http.createServer();
+const httpServer = http.createServer((_, res) => res.end());
 
 const socketSeverOpts: Partial<ServerOptions> = {};
 
