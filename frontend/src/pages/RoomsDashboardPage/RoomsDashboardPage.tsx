@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { createRoom, deleteRoom, getAllRooms } from '../../api/rooms';
-import AsyncLayout from '../../components/AsyncLayout';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import PageLayout from '../../components/PageLayout';
+import RoomsList from '../../components/RoomsList';
 import AsyncState from '../../types/AsyncState';
 import DialogState from '../../types/DialogState';
 import Room from '../../types/Room';
-import RoomItem from './components/RoomItem';
+import { getRoomItemMenu } from './helpers';
 import './RoomsDashboardPage.scss';
 
 export default function RoomsDashboardPage() {
@@ -19,6 +19,11 @@ export default function RoomsDashboardPage() {
   });
   const [ confirmDeleteDialog, setConfirmDeleteDialog ] = useState<DialogState<Room>>({
     inProgress: false, isOpen: false
+  });
+  const menu = getRoomItemMenu({
+    onDeleteRoom: deleteRoomMenuHandler,
+    onManageLibraries: manageLibrariesMenuHandler,
+    onManageModerators: manageModeratorsMenuHandler
   });
   useEffect(() => {
     getAllRooms().then(data => {
@@ -32,7 +37,7 @@ export default function RoomsDashboardPage() {
       setRooms(old => ({ ...old, data: [ data, ...old.data ] }))
     });
   }
-  function deleteMenuHandler(room: Room): void {
+  function deleteRoomMenuHandler(room: Room): void {
     setConfirmDeleteDialog({
       inProgress: false, isOpen: true,
       data: room
@@ -41,7 +46,7 @@ export default function RoomsDashboardPage() {
   function manageLibrariesMenuHandler(room: Room): void {
     push(`/dashboard/rooms/${room.id}/libraries`);
   }
-  function manageModeradorsMenuHandler(room: Room): void {
+  function manageModeratorsMenuHandler(room: Room): void {
     push(`/dashboard/rooms/${room.id}/moderators`);
   }
   function rejectedConfirmDeleteHandler(): void {
@@ -73,37 +78,24 @@ export default function RoomsDashboardPage() {
   }
   return (
     <PageLayout toolbarTitle="Rooms" toolbarLinkBack="/dashboard">
-      <div className="RoomsDashboardPage page-content">
-        <AsyncLayout inProgress={rooms.inProgress} error={rooms.error}>
-          <div className="room-list">
-            {
-              rooms.data.map(room => (
-                <div key={room.id} className="room-item">
-                  <RoomItem
-                    room={room}
-                    onDeleteMenu={deleteMenuHandler}
-                    onManageLibrariesMenu={manageLibrariesMenuHandler}
-                    onManageModeradorsMenu={manageModeradorsMenuHandler}
-                  />
-                </div>
-              ))
-            }
-          </div>
-        </AsyncLayout>
-        <div className="actions-container">
-          <button className="btn btn-primary" onClick={createNewRoomHandler}>
-            <FontAwesomeIcon icon={faPlus} />
-            <span>Create new room</span>
-          </button>
-        </div>
-        <ConfirmDialog
-          message="The room will be deleted"
-          isOpen={confirmDeleteDialog.isOpen}
-          inProgress={confirmDeleteDialog.inProgress}
-          onRejected={rejectedConfirmDeleteHandler}
-          onConfirmed={confirmedDeleteHandler}
-        />
+      <RoomsList
+        rooms={rooms}
+        menu={menu}
+        className="RoomsDashboardPage page-content"
+      />
+      <div className="actions-container">
+        <button className="btn btn-primary" onClick={createNewRoomHandler}>
+          <FontAwesomeIcon icon={faPlus} />
+          <span>Create new room</span>
+        </button>
       </div>
+      <ConfirmDialog
+        message="The room will be deleted"
+        isOpen={confirmDeleteDialog.isOpen}
+        inProgress={confirmDeleteDialog.inProgress}
+        onRejected={rejectedConfirmDeleteHandler}
+        onConfirmed={confirmedDeleteHandler}
+      />
     </PageLayout>
   );
 }

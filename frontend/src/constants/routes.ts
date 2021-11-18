@@ -13,8 +13,15 @@ const MakeASongRequestPage = lazy(() => import('../pages/MakeASongRequestPage'))
 const RecommendSongPage = lazy(() => import('../pages/RecommendSongPage'));
 const SongRequestsPage = lazy(() => import('../pages/SongRequestsPage'));
 const ManageRoomModeratorsPage = lazy(() => import('../pages/ManageRoomModeratorsPage'));
+const ModerateRoomsPage = lazy(() => import('../pages/ModerateRoomsPage'));
 
 export const registeredAppRoutes: AppRoute[] = [
+  {
+    path: '/moderate/rooms',
+    Component: ModerateRoomsPage,
+    permission: registeredPermissions.PAGE_DASHBOARD,
+    exact: true
+  },
   {
     path: '/dashboard',
     Component: DashboardPage,

@@ -1,9 +1,10 @@
 import OptionItem from '../../types/OptionItem';
+import Room from '../../types/Room';
 
 type GetRoomItemMenuProps = {
-  onManageLibraries: () => void;
-  onManageModerators: () => void;
-  onDeleteRoom: () => void;
+  onManageLibraries: (room: Room) => void;
+  onManageModerators: (room: Room) => void;
+  onDeleteRoom: (room: Room) => void;
 };
 export function getRoomItemMenu(props: GetRoomItemMenuProps): OptionItem[] {
   const {

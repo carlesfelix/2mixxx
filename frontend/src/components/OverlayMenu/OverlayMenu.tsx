@@ -3,18 +3,20 @@ import OptionItem from '../../types/OptionItem';
 import Popover from '../Popover';
 import './OverlayMenu.scss';
 
-type Props = {
+type Props<Data = any> = {
   items: OptionItem[];
   align?: 'center' | 'end' | 'start';
   children: ReactNode;
   buttonClassName?: string;
   minWidth?: string;
+  data?: Data;
 };
 
-export default function OverlayMenu(props: Props) {
+export default function OverlayMenu<Data = any>(props: Props<Data>) {
   const {
     items, align = 'end', children,
-    buttonClassName = 'btn default-btn-menu', minWidth
+    buttonClassName = 'btn default-btn-menu',
+    minWidth, data
   } = props;
   const [ open, setOpen ] = useState<boolean>(false);
   useEffect(() => {
@@ -31,7 +33,7 @@ export default function OverlayMenu(props: Props) {
   function selectItemHandler(selectedItem: OptionItem): MouseEventHandler<HTMLButtonElement> {
     return () => {
       setOpen(false);
-      selectedItem.onSelected && selectedItem.onSelected();
+      selectedItem.onSelected && selectedItem.onSelected(data);
     };
   }
   const content = (
