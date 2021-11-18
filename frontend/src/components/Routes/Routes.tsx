@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import LoadingPage from '../../pages/LoadingPage';
 import AppRoute from '../../types/AppRoute';
 import RouteContent from './components/RouteContent';
 
@@ -27,7 +28,7 @@ export default function Routes(props: Props) {
           <Route path={`${parentUrl}${path}`} exact={exact} key={iRoute}>
             {
               <RouteContent>
-                <Suspense fallback={false}>
+                <Suspense fallback={<LoadingPage />}>
                   <PageComponent />
                 </Suspense>
               </RouteContent>
