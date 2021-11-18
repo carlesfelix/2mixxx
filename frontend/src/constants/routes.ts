@@ -12,6 +12,7 @@ const RoomByIdPage = lazy(() => import('../pages/RoomByIdPage'));
 const MakeASongRequestPage = lazy(() => import('../pages/MakeASongRequestPage'));
 const RecommendSongPage = lazy(() => import('../pages/RecommendSongPage'));
 const SongRequestsPage = lazy(() => import('../pages/SongRequestsPage'));
+const ManageRoomModeratorsPage = lazy(() => import('../pages/ManageRoomModeratorsPage'));
 
 export const registeredAppRoutes: AppRoute[] = [
   {
@@ -29,6 +30,12 @@ export const registeredAppRoutes: AppRoute[] = [
   {
     path: '/dashboard/rooms/:roomId/libraries',
     Component: ManageRoomLibrariesPage,
+    permission: registeredPermissions.PAGE_DASHBOARD,
+    exact: true
+  },
+  {
+    path: '/dashboard/rooms/:roomId/moderators',
+    Component: ManageRoomModeratorsPage,
     permission: registeredPermissions.PAGE_DASHBOARD,
     exact: true
   },

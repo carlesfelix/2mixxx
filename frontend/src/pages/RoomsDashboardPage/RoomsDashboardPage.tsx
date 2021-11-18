@@ -42,7 +42,7 @@ export default function RoomsDashboardPage() {
     push(`/dashboard/rooms/${room.id}/libraries`);
   }
   function manageModeradorsMenuHandler(room: Room): void {
-
+    push(`/dashboard/rooms/${room.id}/moderators`);
   }
   function rejectedConfirmDeleteHandler(): void {
     setConfirmDeleteDialog({
