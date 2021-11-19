@@ -8,7 +8,7 @@ import PageLayout from '../../components/PageLayout';
 import SongItem from '../../components/SongItem';
 import environment from '../../environment';
 import useSocketConnectionManager from '../../hooks/useSocketConnectionManager';
-import { emitNewSongRequest } from '../../socket/main/emitters';
+import { emitNewSongRequest } from '../../socket/emitters';
 import AsyncState from '../../types/AsyncState';
 import Song from '../../types/Song';
 import SongRequestProgressDialog from './components/SongRequestProgressDialog';

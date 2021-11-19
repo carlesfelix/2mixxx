@@ -1,4 +1,4 @@
-import { Socket } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import addSongRequest from '../../../../../core/interactors/song-request/add-song-request';
 import getSongRequestsFromRoomInteractor from '../../../../../core/interactors/song-request/get-song-requests-from-room';
 import SongRequestEntity from '../../../../../core/types/SongRequestEntity';
@@ -7,9 +7,9 @@ import { StatusCodeEnum } from '../../../services/SocketError';
 import Ack from '../../../types/Ack';
 import SocketResponse from '../../../types/SocketResponse';
 import { UserSchema, userSchema } from '../../schemas/song-request.schemas';
-import { SERVER__NEW_SONG_REQUEST } from '../constants/server-actions';
+import { SERVER__NEW_SONG_REQUEST } from '../../../constants/server-actions';
 
-export function addSongRequestHandler(socket: Socket): (
+export function addSongRequestHandler(io: Server, socket: Socket): (
   payload: { songId: string },
   ack: Ack
 ) => Promise<void> {
@@ -28,11 +28,11 @@ export function addSongRequestHandler(socket: Socket): (
       const { songId } = value as UserSchema;
       try {
         const {
-          songId: newSongId, roomId,
+          id, roomId,
           createdAt, updatedAt, song
         } = await addSongRequest(songId, socket.data.auth);
         const data = {
-          id: newSongId, createdAt, updatedAt,
+          id, createdAt, updatedAt,
           song
         };
         const response: SocketResponse<SongRequestEntity> = {
@@ -40,6 +40,9 @@ export function addSongRequestHandler(socket: Socket): (
           data
         };
         socket.to(roomId!).emit(SERVER__NEW_SONG_REQUEST, response);
+        io.of(`/moderate-rooms/${roomId}`).to(roomId!).emit(
+          SERVER__NEW_SONG_REQUEST, response
+        );
         sendAck(ack, response); 
       } catch (err) {
         sendAck(ack, { status: 'FAILED' });
@@ -51,7 +54,7 @@ export function addSongRequestHandler(socket: Socket): (
 export function getSongRequestsHandler(socket: Socket): (ack: Ack) => Promise<void> {
   return async ack => {
     try {
-      const data = await getSongRequestsFromRoomInteractor(socket.data.auth);
+      const data = await getSongRequestsFromRoomInteractor(socket.data.auth.user.roomId);
       sendAck(ack, { status: 'OK', data });
     } catch {
       sendAck(ack, { status: 'FAILED' });
