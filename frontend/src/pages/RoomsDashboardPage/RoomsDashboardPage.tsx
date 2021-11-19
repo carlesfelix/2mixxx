@@ -77,17 +77,23 @@ export default function RoomsDashboardPage() {
     }
   }
   return (
-    <PageLayout toolbarTitle="Rooms" toolbarLinkBack="/dashboard">
-      <RoomsList
-        rooms={rooms}
-        menu={menu}
-        className="RoomsDashboardPage page-content"
-      />
-      <div className="actions-container">
-        <button className="btn btn-primary" onClick={createNewRoomHandler}>
-          <FontAwesomeIcon icon={faPlus} />
-          <span>Create new room</span>
-        </button>
+    <PageLayout
+      toolbarTitle="Rooms"
+      toolbarLinkBack="/dashboard"
+      className="RoomsDashboardPage"
+    >
+      <div className="page-content">
+        <RoomsList
+          rooms={rooms}
+          menu={menu}
+        />
+        <div className="actions-container">
+          <button className="btn btn-primary"
+            onClick={createNewRoomHandler}>
+            <FontAwesomeIcon icon={faPlus} />
+            <span>Create new room</span>
+          </button>
+        </div>
       </div>
       <ConfirmDialog
         message="The room will be deleted"

@@ -22,7 +22,7 @@ div.MakeASongRequestPage {
   div.song-request-content {
     flex-grow: 1;
     overflow: auto;
-    .song-request-async, div.empty-message-container {
+    div.empty-message-container {
       height: 100%;
     }
     div.empty-message-container {

@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import ControlledInputProps from '../../../../types/ControlledInputProps';
+import AsyncLayout from '../../../AsyncLayout';
 import Checkbox from '../Checkbox';
 import './MultiselectBox.scss';
 
@@ -9,6 +10,9 @@ export type MultiselectBoxExtraProps<Item = any> = {
   labelPosition?: 'left' | 'right';
   items: Item[];
   onChecked?: (item: Item, checked: boolean) => void;
+  inProgress?: boolean;
+  error?: Error | null | boolean;
+  errorMessage?: string;
 };
 type MultiselectBoxProps<Item> = ControlledInputProps<any[], MultiselectBoxExtraProps<Item>>;
 export default function MultiselectBox<Item = any>(props: MultiselectBoxProps<Item>) {
@@ -18,7 +22,9 @@ export default function MultiselectBox<Item = any>(props: MultiselectBoxProps<It
   } = props;
   const {
     items, labelProp, valueProp,
-    labelPosition, onChecked
+    labelPosition, onChecked,
+    inProgress, error,
+    errorMessage
   } = extraProps;
   const multiselectBoxClassName = classNames('MultiselectBox', {
     [className]: !!className
@@ -38,20 +44,26 @@ export default function MultiselectBox<Item = any>(props: MultiselectBoxProps<It
   }
   return (
     <div className={multiselectBoxClassName} onBlur={blurHandler}>
-      {
-        items.map((item, iItem) => (
-          <Checkbox
-            key={iItem}
-            extraProps={{
-              label: item[labelProp],
-              labelPosition
-            }}
-            onChange={changeHandler(item)}
-            value={value.includes(item[valueProp])}
-            className="checkbox-option"
-          />
-        ))
-      }
+      <AsyncLayout
+        inProgress={inProgress}
+        error={error}
+        errorMessage={errorMessage}
+      >
+        {
+          items.map((item, iItem) => (
+            <Checkbox
+              key={iItem}
+              extraProps={{
+                label: item[labelProp],
+                labelPosition
+              }}
+              onChange={changeHandler(item)}
+              value={value.includes(item[valueProp])}
+              className="checkbox-option"
+            />
+          ))
+        }
+      </AsyncLayout>
     </div>
   );
 }

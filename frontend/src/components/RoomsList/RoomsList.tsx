@@ -21,7 +21,6 @@ export default function RoomsList(props: Props) {
       <AsyncLayout
         inProgress={rooms.inProgress}
         error={rooms.error}
-        className="rooms-list-async"
       >
         <>
           {

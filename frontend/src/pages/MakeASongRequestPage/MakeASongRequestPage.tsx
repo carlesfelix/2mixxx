@@ -96,7 +96,6 @@ export default function MakeASongRequestPage() {
         </div>
         <div className="page-content song-request-content">
           <AsyncLayout
-            className="song-request-async"
             error={songs.error}
             inProgress={songs.inProgress}
           >

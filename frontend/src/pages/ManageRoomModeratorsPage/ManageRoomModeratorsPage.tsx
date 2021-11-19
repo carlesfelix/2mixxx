@@ -70,7 +70,13 @@ export default function ManageRoomModeratorsPage() {
     }));
   }
   return (
-    <PageLayout toolbarTitle="Manage room's moderators" toolbarLinkBack="/dashboard/rooms">
+    <PageLayout
+      toolbarTitle="Manage room's moderators"
+      toolbarLinkBack="/dashboard/rooms"
+      inProgress={room.inProgress}
+      error={room.error}
+      errorMessage="Room cannot be loaded :("
+    >
       <div className="ManageRoomModeratorsPage page-content">
         <div className="card card-primary manage-room-header">
           <span className="room-icon">
@@ -85,7 +91,10 @@ export default function ManageRoomModeratorsPage() {
             onChecked: checkedHandler,
             items: registeredUsers.data,
             labelProp: 'email',
-            valueProp: 'id'
+            valueProp: 'id',
+            inProgress: registeredUsers.inProgress,
+            error: registeredUsers.error,
+            errorMessage: 'Users cannot be loaded :('
           }}
           onChange={changeHandler}
           value={room.data.moderators!.map(({ id }) => id)}
