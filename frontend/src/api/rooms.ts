@@ -27,3 +27,11 @@ export async function addLibraryToRoom(roomId: string, libraryId: string): Promi
 export async function deleteLibraryFromRoom(roomId: string, libraryId: string): Promise<void> {
   await http.delete(`/rooms/${roomId}/libraries/${libraryId}`);
 }
+
+export async function addModeratorToRoom(roomId: string, registeredUserId: string): Promise<void> {
+  await http.post(`/rooms/${roomId}/moderators`, { registeredUserId });
+}
+
+export async function deleteModeratorFromRoom(roomId: string, registeredUserId: string): Promise<void> {
+  await http.delete(`/rooms/${roomId}/moderators/${registeredUserId}`);
+}

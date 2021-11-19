@@ -3,16 +3,6 @@
 div.RoomsDashboardPage {
   height: 100%;
   position: relative;
-  div.room-list {
-    div.room-item {
-      &:not(:first-child) {
-        margin-top: 0.75rem;
-        @include mixings.min-md {
-          margin-top: 1rem;
-        }
-      }
-    }
-  }
   div.actions-container {
     text-align: center;
     margin: 1.5rem;

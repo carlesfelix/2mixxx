@@ -1,0 +1,12 @@
+@use '../../styles/utils/mixings';
+
+.RoomsList {
+  div.room-item {
+    &:not(:first-child) {
+      margin-top: 0.75rem;
+      @include mixings.min-md {
+        margin-top: 1rem;
+      }
+    }
+  }
+}

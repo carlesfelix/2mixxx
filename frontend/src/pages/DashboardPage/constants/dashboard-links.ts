@@ -2,6 +2,11 @@ import { DashboardLink } from '../types';
 
 const dashboardLinks: DashboardLink[] = [
   {
+    label: 'Moderate rooms',
+    to: '/moderate/rooms',
+    className: 'dashboard-item'
+  },
+  {
     label: 'Manage rooms',
     to: '/dashboard/rooms',
     className: 'dashboard-item'

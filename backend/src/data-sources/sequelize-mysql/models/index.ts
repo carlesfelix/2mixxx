@@ -6,6 +6,7 @@ import roomModel from './room.model';
 import songModel from './song.model';
 import roomUserModel from './room-user.model';
 import songRequestModel from './song-request.model';
+import roomModeratorModel from './room-moderator.model';
 
 const models = {
   Song: songModel(sequelizeConnection),
@@ -14,7 +15,8 @@ const models = {
   Room: roomModel(sequelizeConnection),
   LibraryRoom: libraryRoomModel(sequelizeConnection),
   RoomUser: roomUserModel(sequelizeConnection),
-  SongRequest: songRequestModel(sequelizeConnection)
+  SongRequest: songRequestModel(sequelizeConnection),
+  RoomModerator: roomModeratorModel(sequelizeConnection)
 };
 
 Object.values(models).forEach(modelDef => {

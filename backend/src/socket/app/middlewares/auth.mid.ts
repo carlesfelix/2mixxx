@@ -13,6 +13,6 @@ export default function authMid(socket: Socket, next: (error?: Error) => void): 
       });
     }
   } else {
-    next();
+    next(new Error('Token required!'));
   }
 }

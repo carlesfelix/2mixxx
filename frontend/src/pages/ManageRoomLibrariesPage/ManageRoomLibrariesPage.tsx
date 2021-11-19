@@ -70,7 +70,13 @@ export default function ManageRoomLibrariesPage() {
     }));
   }
   return (
-    <PageLayout toolbarTitle="Manage room's libraries" toolbarLinkBack="/dashboard/rooms">
+    <PageLayout
+      toolbarTitle="Manage room's libraries"
+      toolbarLinkBack="/dashboard/rooms"
+      inProgress={room.inProgress}
+      error={room.error}
+      errorMessage="Room cannot be loaded :("
+    >
       <div className="ManageRoomLibrariesPage page-content">
         <div className="card card-primary manage-room-header">
           <span className="room-icon">

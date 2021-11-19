@@ -1,4 +1,5 @@
 @use '../../../../styles/utils/mixings';
+@use '../../../../styles/utils/variables';
 
 div.SongRequestQueue {
   div.queue-item {
@@ -20,6 +21,16 @@ div.SongRequestQueue {
     }
     div.queue-item__actions {
       padding: 0.5rem;
+      .btn-delete-song {
+        color: variables.$c-danger--500;
+        font-size: 1.25rem;
+      }
     }
+  }
+  div.queue-empty {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

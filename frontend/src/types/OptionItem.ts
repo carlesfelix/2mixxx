@@ -1,7 +1,6 @@
-type OptionItem = {
+type OptionItem<Data = any> = {
   label: string;
-  onSelected?: () => void;
-  data?: unknown;
+  onSelected?: (data?: Data) => void;
 };
 
 export default OptionItem;

@@ -4,6 +4,7 @@ import Routes from './components/Routes';
 import { guestAppRoutes, registeredAppRoutes } from './constants/routes';
 import { getGuestMeAction, getRegisteredMeAction, useMe } from './contexts/me';
 import { useRoomUser } from './contexts/room-user';
+import LoadingPage from './pages/LoadingPage';
 import { setGuestTokenFn, setRegisteredTokenFn } from './services/http-auth';
 import { getGuestToken } from './services/room-user-auth';
 import AppRoute from './types/AppRoute';
@@ -47,7 +48,7 @@ function App() {
   }
 
   if (globalInProgress) {
-    return <p>Login...</p>
+    return <LoadingPage />;
   }
 
   return (
