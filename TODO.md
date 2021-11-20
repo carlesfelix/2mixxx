@@ -1,0 +1,15 @@
+# TODO
+- [ ] Room user. Handle expired token (redirect to login page).
+- [ ] Room user logout.
+- [ ] Registered user logout.
+- [ ] Protect registered user endpoints (token).
+- [ ] Moderators only must see/moderate the rooms that they are as moderators.
+- [ ] Review api security (all endpoints).
+- [ ] Review socket security (all handlers).
+- [ ] Room user and registered user permissions.
+- [ ] Add 'order by' and 'direction' to all database queries that return arrays.
+- [ ] i18n.
+- [ ] UI improvements.
+- [ ] Moderator settings. Allow/disallow new song requests.
+- [ ] Moderator settings. Song request cool down (per room user).
+- [ ] Sync creations and deletions of registered users (app) with auth0.
