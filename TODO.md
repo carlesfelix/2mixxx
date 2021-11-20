@@ -1,6 +1,6 @@
 # TODO
 - [ ] Room user. Handle expired token (redirect to login page).
-- [ ] Room user logout.
+- [X] Room user logout.
 - [ ] Registered user logout.
 - [ ] Protect registered user endpoints (token).
 - [ ] Moderators only must see/moderate the rooms that they are as moderators.

@@ -19,6 +19,11 @@ nav.Toolbar {
   span.toolbar-title {
     flex-grow: 1;
   }
+  span.toolbar-menu {
+    span.toolbar-menu-btn {
+      color: variables.$c-primary--50;
+    }
+  }
   span.toolbar-item {
     margin: 0 0.5rem;
     &:first-child {

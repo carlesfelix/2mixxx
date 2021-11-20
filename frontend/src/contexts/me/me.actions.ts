@@ -3,21 +3,25 @@ import { getRegisteredMe } from '../../api/registered-me';
 import { Dispatch } from './types';
 
 export async function getGuestMeAction(dispatch: Dispatch): Promise<void> {
-  dispatch({ type: 'meGuestInProgress' });
+  dispatch({ type: 'getMeGuestInProgress' });
   try {
     const me = await getGuestMe();
-    dispatch({ type: 'meGuestSuccess', payload: { me } });
+    dispatch({ type: 'getMeGuestSuccess', payload: { me } });
   } catch (error) {
-    dispatch({type: 'meGuestError', payload: { error } });
+    dispatch({type: 'getMeGuestError' });
   }
 }
 
+export function logoutGuestMeAction(dispatch: Dispatch): void {
+  dispatch({ type: 'logOutMeGuest' });
+}
+
 export async function getRegisteredMeAction(dispatch: Dispatch): Promise<void> {
-  dispatch({ type: 'meRegisteredInProgress' });
+  dispatch({ type: 'getMeRegisteredInProgress' });
   try {
     const me = await getRegisteredMe();
-    dispatch({ type: 'meRegisteredSuccess', payload: { me } });
+    dispatch({ type: 'getMeRegisteredSuccess', payload: { me } });
   } catch (error) {
-    dispatch({type: 'meRegisteredError', payload: { error } });
+    dispatch({type: 'getMeRegisteredError' });
   }
 }

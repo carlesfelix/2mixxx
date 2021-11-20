@@ -2,37 +2,42 @@ import { Action, State } from './types';
 
 function meReducer(state: State, action: Action): State {
   switch (action.type) {
-    case 'meRegisteredInProgress':
-    case 'meGuestInProgress':
+    case 'getMeRegisteredInProgress':
+    case 'getMeGuestInProgress':
       return {
-        error: null,
+        error: false,
         inProgress: true,
         user: undefined
       };
-      case 'meRegisteredError':
-      case 'meGuestError':
+      case 'getMeRegisteredError':
+      case 'getMeGuestError':
         return {
-          error: action.payload.error,
+          error: true,
           inProgress: false,
           user: undefined
         };
-    case 'meGuestSuccess':
+    case 'getMeGuestSuccess':
       return {
-        error: null,
+        error: false,
         inProgress: false,
         user: {
           type: 'guest',
           ...action.payload.me
         }
       };
-    case 'meRegisteredSuccess':
+    case 'getMeRegisteredSuccess':
       return {
-        error: null,
+        error: false,
         inProgress: false,
         user: {
           type: 'registered',
           ...action.payload.me
         }
+      };
+    case 'logOutMeGuest':
+      return {
+        error: false,
+        inProgress: false
       };
     default:
       return state;

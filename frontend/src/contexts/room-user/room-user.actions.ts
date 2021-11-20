@@ -1,4 +1,4 @@
-import { isAuthenticated, register } from '../../services/room-user-auth';
+import { isAuthenticated, register, unregister } from '../../services/room-user-auth';
 import { Dispatch } from './types';
 
 export async function createRoomUserAction(dispatch: Dispatch, room: string): Promise<void> {
@@ -9,10 +9,12 @@ export async function createRoomUserAction(dispatch: Dispatch, room: string): Pr
       type: 'createRoomUserSuccess',
       payload: { isAuthenticated: isAuthenticated() }
     });
-  } catch (error) {
-    dispatch({
-      type: 'createRoomUserError',
-      payload: { error }
-    });
+  } catch {
+    dispatch({ type: 'createRoomUserError' });
   }
+}
+
+export function removeRoomUserAction(dispatch: Dispatch): void {
+  unregister();
+  dispatch({ type: 'removeRoomUser' });
 }
