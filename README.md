@@ -1,6 +1,6 @@
-# 2mixxx app
+# 2mixxx
 
-## The app for request songs
+## The app to request songs
 
 ### 2mixxx consist of two parts
 
@@ -9,5 +9,6 @@
 - [Backend](https://github.com/carlesfelix/2mixxx/tree/main/backend)
 
 ### Status
-- At the moment 2mixxx is under development. Stay tuned because alpha is coming soon!
 
+At the moment 2mixxx is under development.\
+Stay tuned because the first release is coming soon!
