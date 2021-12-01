@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 function get<T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
   return axios.get<T>(url, config);
@@ -48,12 +48,16 @@ function setBaseUrl(url: string): void {
   axios.defaults.baseURL = url;
 }
 
+function isError(error: any): error is AxiosError {
+  return axios.isAxiosError(error);
+}
+
 const http = {
   get, post, put, patch, delete: _delete,
   addCommonHeader, removeCommonHeader,
   addRequestInterceptor, removeRequestInterceptor,
   addResponseInterceptor, removeResponseInterceptor,
-  setBaseUrl
+  setBaseUrl, isError
 };
 
 export default http;

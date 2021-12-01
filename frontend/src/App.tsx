@@ -3,15 +3,16 @@ import { useEffect } from 'react';
 import Routes from './components/Routes';
 import { guestAppRoutes, registeredAppRoutes } from './constants/routes';
 import { getGuestMeAction, getRegisteredMeAction, useMe } from './contexts/me';
-import { useRoomUser } from './contexts/room-user';
+import { logoutGuestMeAction } from './contexts/me/me.actions';
+import { removeRoomUserAction, useRoomUser } from './contexts/room-user';
 import LoadingPage from './pages/LoadingPage';
-import { setGuestTokenFn, setRegisteredTokenFn } from './services/http-auth';
+import { setRegisteredTokenFn, setRoomUserConfigFn } from './services/http-auth';
 import { getGuestToken } from './services/room-user-auth';
 import AppRoute from './types/AppRoute';
 import './App.scss';
 
 function App() {
-  const { state: roomUserState } = useRoomUser();
+  const { state: roomUserState, dispatch: roomUserAuthDispatch } = useRoomUser();
   const { isAuthenticated, isLoading, getIdTokenClaims } = useAuth0();
   const { state: meState, dispatch: meDispatch } = useMe();
 
@@ -24,20 +25,29 @@ function App() {
     meState.inProgress || shouldGetMe;
 
   useEffect(() => {
-    let removeToken: () => void;
+    let removeInterceptors: () => void;
     if (registeredLogged) {
       getRegisteredMeAction(meDispatch);
-      removeToken = setRegisteredTokenFn(getIdTokenClaims);
+      removeInterceptors = setRegisteredTokenFn(getIdTokenClaims);
     } else if (guestLogged) {
       getGuestMeAction(meDispatch);
-      removeToken = setGuestTokenFn(getGuestToken);
+      removeInterceptors = setRoomUserConfigFn({
+        tokenCb: getGuestToken,
+        unauthorizedCb: () => {
+          removeRoomUserAction(roomUserAuthDispatch);
+          logoutGuestMeAction(meDispatch);
+        }
+      });
     }
     return () => {
-      if (removeToken) {
-        removeToken();
+      if (removeInterceptors) {
+        removeInterceptors();
       }
     }
-  }, [ registeredLogged, guestLogged, meDispatch, getIdTokenClaims ]);
+  }, [
+    registeredLogged, guestLogged, meDispatch,
+    getIdTokenClaims, roomUserAuthDispatch
+  ]);
   let appRoutes: AppRoute[] = guestAppRoutes;
   let redirectPath: string = '/';
   if (meState.user) {
