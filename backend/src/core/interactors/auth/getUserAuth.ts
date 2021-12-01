@@ -1,15 +1,19 @@
 import environment from '../../../environment';
 import dataSourcesConfig from '../../constants/data-sources.config';
-import { roomUserPermissions } from '../../constants/user-roles';
+import { adminPermissions, roomUserPermissions } from '../../constants/user-roles';
+import IRegisteredUserRepository from '../../repositories/IRegisteredUserRepository';
 import IRoomUserRepository from '../../repositories/IRoomUserRepository';
 import InteractorError, { InteractorErrorCodeEnum } from '../../services/InteractorError';
-import { getBearerToken, verifyToken } from '../../services/jwt';
-import UserAuth from '../../types/UserAuth';
+import { getBearerToken, verifyAuth0Token, verifyToken } from '../../services/jwt';
+import { BaseUserAuth } from '../../types/UserAuth';
 
-const interactorFn = (roomUserRepo: IRoomUserRepository) => async (
+const interactorFn = (
+  roomUserRepo: IRoomUserRepository,
+  registeredUserRepo: IRegisteredUserRepository
+) => async (
   userType: string,
   token: string
-): Promise<UserAuth> => {
+): Promise<BaseUserAuth> => {
   const bearerToken = getBearerToken(token);
 
   if (!bearerToken) {
@@ -39,12 +43,33 @@ const interactorFn = (roomUserRepo: IRoomUserRepository) => async (
       permissions: roomUserPermissions
     };
   }
-  // if (userType === 'user') {
+  if (userType === 'registeredUser') {
+    let tokenPayload;
+    try {
+      tokenPayload = await verifyAuth0Token(bearerToken);
+    } catch {
+      throw new InteractorError(InteractorErrorCodeEnum.UNAUTHORIZED);
+    }
 
-  // }
+    if (!tokenPayload || !tokenPayload.sub) {
+      throw new InteractorError(InteractorErrorCodeEnum.GENERIC);
+    }
+    const registeredUser = await registeredUserRepo.getUserBySub(tokenPayload.sub);
+    if (!registeredUser) {
+      throw new InteractorError(InteractorErrorCodeEnum.ACCESS_DENIED);
+    }
+    return {
+      type: 'registeredUser',
+      user: registeredUser,
+      permissions: adminPermissions
+    };
+  }
   throw new InteractorError(InteractorErrorCodeEnum.UNAUTHORIZED);
 };
 
-const getUserAuth = interactorFn(dataSourcesConfig.roomUser);
+const getUserAuth = interactorFn(
+  dataSourcesConfig.roomUser,
+  dataSourcesConfig.registeredUser
+);
 
 export default getUserAuth;

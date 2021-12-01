@@ -2,7 +2,7 @@
 - [X] Room user. Handle expired token (redirect to login page).
 - [X] Room user logout.
 - [X] Registered user logout.
-- [ ] Protect registered user endpoints (token).
+- [X] Protect registered user endpoints (token).
 - [ ] Moderators only must see/moderate the rooms that they are as moderators.
 - [ ] Review api security (all endpoints).
 - [ ] Review socket security (all handlers).

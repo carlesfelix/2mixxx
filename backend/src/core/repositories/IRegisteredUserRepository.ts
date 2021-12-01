@@ -6,4 +6,5 @@ export default interface IRegisteredUserRepository {
   getAllUsers(): Promise<RegisteredUserEntity[]>;
   deleteUser(userId: string): Promise<number>;
   getUserByEmail(email: string): Promise<RegisteredUserEntity | null>;
+  getUserBySub(sub: string): Promise<RegisteredUserEntity | null>;
 }

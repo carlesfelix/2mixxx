@@ -21,6 +21,12 @@ const modelDefinition: IModelDefinitionFn<RegisteredUserEntity> = sequelize => {
       type: DataTypes.DATE,
       field: 'updatedAt'
     },
+    sub: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      field: 'sub',
+      unique: true
+    },
     email: {
       allowNull: false,
       type: DataTypes.STRING,

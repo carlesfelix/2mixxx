@@ -32,7 +32,7 @@ export function setRegisteredTokenFn(registeredTokenCb: () => Promise<IdToken>):
   const id = http.addRequestInterceptor(async config => {
     const token = await registeredTokenCb();
     config.headers['Authorization'] = `Bearer ${token.__raw}`;
-    // config.headers['user-type'] = 'registeredUser';
+    config.headers['user-type'] = 'registeredUser';
     return config;
   });
   return () => http.removeRequestInterceptor(id);

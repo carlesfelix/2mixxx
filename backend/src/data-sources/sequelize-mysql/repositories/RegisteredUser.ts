@@ -4,6 +4,12 @@ import { instancesToJson, instanceToJson } from '../helpers';
 import models from '../models';
 
 export default class RegisteredUser implements IRegisteredUserRepository {
+  async getUserBySub(sub: string): Promise<RegisteredUserEntity | null> {
+    const user = await models.RegisteredUser.model.findOne({
+      where: { sub }, limit: 1
+    });
+    return instanceToJson<RegisteredUserEntity>(user);
+  }
   async createUser(user: RegisteredUserEntity): Promise<RegisteredUserEntity> {
     const createdUser = await models.RegisteredUser.model.create(user);
     return instanceToJson<RegisteredUserEntity>(createdUser) as RegisteredUserEntity;

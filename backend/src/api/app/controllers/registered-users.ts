@@ -13,7 +13,7 @@ export function createUserCtrl(
 ): void {
   const { body } = req;
   const { email, role } = body;
-  createUserInteractor({ email, role }).then(createdUser => {
+  createUserInteractor({ email, role, sub: '' }).then(createdUser => {
     res.status(200).json(createdUser);
   }).catch((err) => {
     next(err);
@@ -55,7 +55,7 @@ export function updateUserCtrl(
   const { email, role } = body;
   const { userId } = params;
   updateUserInteractor(
-    userId, { email, role }
+    userId, { email, role, sub: '' }
   ).then(() => {
     res.status(200).json();
   }).catch((err) => {

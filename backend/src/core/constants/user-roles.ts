@@ -29,11 +29,32 @@ export const permissions = {
 };
 
 export const roomUserPermissions = [
-  permissions.SONGS_SEARCH
+  permissions.SONGS_SEARCH,
+  permissions.CREATE_ROOM_USER
 ];
 
 export const adminPermissions = [
-
+  permissions.CREATE_LIBRARY,
+  permissions.DELETE_LIBRARY,
+  permissions.UPDATE_LIBRARY,
+  permissions.GET_LIBRARY_BY_ID,
+  permissions.GET_LIBRARIES,
+  permissions.IMPORT_SONGS_FROM_ITUNES,
+  permissions.DELETE_SONGS_FROM_ITUNES,
+  permissions.CREATE_USER,
+  permissions.DELETE_USER,
+  permissions.GET_ALL_USERS,
+  permissions.UPDATE_USER,
+  permissions.CHECK_USER_EXISTS,
+  permissions.CREATE_ROOM_USER,
+  permissions.GET_ALL_ROOMS,
+  permissions.GET_ROOM_BY_ID,
+  permissions.CREATE_ROOM,
+  permissions.DELETE_ROOM,
+  permissions.ADD_LIBRARY_TO_ROOM,
+  permissions.DELETE_LIBRARY_FROM_ROOM,
+  permissions.ADD_MODERATOR_TO_ROOM,
+  permissions.DELETE_MODERATOR_FROM_ROOM
 ];
 
 export const djPermissions = [
