@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import getUserAuth from '../../../core/interactors/auth/getUserAuth';
 import userHasSomePermissionInteractor from '../../../core/interactors/auth/userHasSomePermission';
-import UserAuth from '../../../core/types/UserAuth';
+import UserAuth, { BaseUserAuth } from '../../../core/types/UserAuth';
+import ApiError, { StatusCodeEnum } from '../services/ApiError';
 
 export function userAuthMid(
   req: Request,
@@ -27,23 +28,20 @@ export function userAuthMid(
   }
 }
 
-export function userHasSomePermission(permissions: string[], userType?: UserAuth['type']): (
+export function userHasSomePermission(permissions: string[]): (
   req: Request,
-  res: Response<unknown, { auth: UserAuth }>,
+  res: Response<unknown, { auth: BaseUserAuth }>,
   next: NextFunction
 ) => void {
   return (_, res, next) => {
-    userHasSomePermissionInteractor({
-      userAuth: res.locals.auth,
-      permissions,
-      userType,
-      next: err => {
-        if (err) {
-          next(err);
-          return;
-        }
-        next();
-      }
+    const allowed = userHasSomePermissionInteractor({
+      anyUser: res.locals.auth,
+      permissions
     });
+    if (allowed) {
+      next();
+      return;
+    }
+    next(new ApiError(StatusCodeEnum.AccessDenied));
   }
 }
