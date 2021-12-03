@@ -1,15 +1,14 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
+import './App.scss';
 import Routes from './components/Routes';
-import { guestAppRoutes, registeredAppRoutes } from './constants/routes';
+import appRoutes from './constants/routes';
 import { getGuestMeAction, getRegisteredMeAction, useMe } from './contexts/me';
 import { logoutGuestMeAction } from './contexts/me/me.actions';
 import { removeRoomUserAction, useRoomUser } from './contexts/room-user';
 import LoadingPage from './pages/LoadingPage';
 import { setRegisteredTokenFn, setRoomUserConfigFn } from './services/http-auth';
 import { getGuestToken } from './services/room-user-auth';
-import AppRoute from './types/AppRoute';
-import './App.scss';
 
 function App() {
   const { state: roomUserState, dispatch: roomUserAuthDispatch } = useRoomUser();
@@ -27,10 +26,9 @@ function App() {
   useEffect(() => {
     let removeInterceptors: () => void;
     if (registeredLogged) {
-      getRegisteredMeAction(meDispatch);
       removeInterceptors = setRegisteredTokenFn(getIdTokenClaims);
+      getRegisteredMeAction(meDispatch);
     } else if (guestLogged) {
-      getGuestMeAction(meDispatch);
       removeInterceptors = setRoomUserConfigFn({
         tokenCb: getGuestToken,
         unauthorizedCb: () => {
@@ -38,6 +36,7 @@ function App() {
           logoutGuestMeAction(meDispatch);
         }
       });
+      getGuestMeAction(meDispatch);
     }
     return () => {
       if (removeInterceptors) {
@@ -48,11 +47,9 @@ function App() {
     registeredLogged, guestLogged, meDispatch,
     getIdTokenClaims, roomUserAuthDispatch
   ]);
-  let appRoutes: AppRoute[] = guestAppRoutes;
   let redirectPath: string = '/';
   if (meState.user) {
-    if (meState.user.type === 'registered') {
-      appRoutes = registeredAppRoutes;
+    if (meState.user.type === 'registeredUser') {
       redirectPath = '/dashboard';
     }
   }
@@ -65,7 +62,7 @@ function App() {
     <div className="App">
       <Routes
         routes={appRoutes} fallbackPath={redirectPath}
-        permissions={meState.user?.permissions}
+        permissions={meState.user?.user.permissions}
       />
     </div>
   );

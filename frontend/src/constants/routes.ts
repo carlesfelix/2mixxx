@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import AppRoute from '../types/AppRoute';
-import { guestPermissions, registeredPermissions } from './permissions';
+import { permissions } from './permissions';
 
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 const RoomsDashboardPage = lazy(() => import('../pages/RoomsDashboardPage'));
@@ -16,59 +16,77 @@ const ManageRoomModeratorsPage = lazy(() => import('../pages/ManageRoomModerator
 const ModerateRoomsPage = lazy(() => import('../pages/ModerateRoomsPage'));
 const ModerateRoomPage = lazy(() => import('../pages/ModerateRoomPage'));
 
-export const registeredAppRoutes: AppRoute[] = [
+const appRoutes: AppRoute[] = [
+  {
+    path: '/',
+    Component: SongRequestsPage,
+    permission: permissions.PAGE_SONG_REQUEST,
+    exact: true
+  },
+  {
+    path: '/make-a-song-request',
+    Component: MakeASongRequestPage,
+    permission: permissions.PAGE_MAKE_A_SONG_REQUEST,
+    exact: true
+  },
+  {
+    path: '/recommend-song',
+    Component: RecommendSongPage,
+    permission: permissions.PAGE_RECOMMEND_SONG,
+    exact: true
+  },
   {
     path: '/moderate/rooms',
     Component: ModerateRoomsPage,
-    permission: registeredPermissions.PAGE_DASHBOARD,
+    permission: permissions.PAGE_MODERATE_ROOM,
     exact: true
   },
   {
     path: '/moderate/rooms/:roomId',
     Component: ModerateRoomPage,
-    permission: registeredPermissions.PAGE_DASHBOARD,
+    permission: permissions.PAGE_ROOM_BY_ID,
     exact: true
   },
   {
     path: '/dashboard',
     Component: DashboardPage,
-    permission: registeredPermissions.PAGE_DASHBOARD,
+    permission: permissions.PAGE_DASHBOARD,
     exact: true
   },
   {
     path: '/dashboard/rooms',
     Component: RoomsDashboardPage,
-    permission: registeredPermissions.PAGE_DASHBOARD,
+    permission: permissions.PAGE_MODERATE_ROOMS,
     exact: true
   },
   {
     path: '/dashboard/rooms/:roomId/libraries',
     Component: ManageRoomLibrariesPage,
-    permission: registeredPermissions.PAGE_DASHBOARD,
+    permission: permissions.PAGE_MANAGE_ROOM_LIBRARIES,
     exact: true
   },
   {
     path: '/dashboard/rooms/:roomId/moderators',
     Component: ManageRoomModeratorsPage,
-    permission: registeredPermissions.PAGE_DASHBOARD,
+    permission: permissions.PAGE_MANAGE_ROOM_MODERATORS,
     exact: true
   },
   {
     path: '/dashboard/libraries',
     Component: LibrariesDashboardPage,
-    permission: registeredPermissions.PAGE_DASHBOARD,
+    permission: permissions.PAGE_LIBRARIES_DASHBOARD,
     exact: true
   },
   {
     path: '/dashboard/users',
     Component: UsersDashboardPage,
-    permission: registeredPermissions.PAGE_DASHBOARD,
+    permission: permissions.PAGE_USERS_DASHBOARD,
     exact: true
   },
   {
     path: '/rooms/:id',
     Component: RoomByIdPage,
-    permission: registeredPermissions.PAGE_ROOM_BY_ID,
+    permission: permissions.PAGE_ROOM_BY_ID,
   },
   {
     path: '/',
@@ -77,34 +95,4 @@ export const registeredAppRoutes: AppRoute[] = [
   }
 ];
 
-export const guestAppRoutes: AppRoute[] = [
-  // {
-  //   path: '/',
-  //   Component: RoomPage,
-  //   permission: guestPermissions.PAGE_ROOM,
-  //   exact: true
-  // },
-  {
-    path: '/',
-    Component: SongRequestsPage,
-    permission: guestPermissions.PAGE_ROOM,
-    exact: true
-  },
-  {
-    path: '/make-a-song-request',
-    Component: MakeASongRequestPage,
-    permission: guestPermissions.PAGE_ROOM,
-    exact: true
-  },
-  {
-    path: '/recommend-song',
-    Component: RecommendSongPage,
-    permission: guestPermissions.PAGE_ROOM,
-    exact: true
-  },
-  {
-    path: '/',
-    Component: HomePage,
-    exact: true
-  }
-];
+export default appRoutes;

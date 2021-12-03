@@ -8,12 +8,6 @@ type SetRoomUserConfigProps = {
 };
 export function setRoomUserConfigFn(props: SetRoomUserConfigProps): () => void {
   const { tokenCb, unauthorizedCb } = props;
-  const addTokenToRequest = http.addRequestInterceptor(config => {
-    const token = tokenCb();
-    config.headers['Authorization'] = `Bearer ${token.__raw}`;
-    config.headers['user-type'] = 'roomUser';
-    return config;
-  });
   const handleAuthError = http.addResponseInterceptor(config => {
     return config;
   }, error => {
@@ -22,9 +16,16 @@ export function setRoomUserConfigFn(props: SetRoomUserConfigProps): () => void {
     }
     return Promise.reject(error);
   });
+  const addTokenToRequest = http.addRequestInterceptor(config => {
+    const token = tokenCb();
+    config.headers['Authorization'] = `Bearer ${token.__raw}`;
+    config.headers['user-type'] = 'roomUser';
+    return config;
+  });
+  
   return () => {
-    http.removeRequestInterceptor(addTokenToRequest);
     http.removeResponseInterceptor(handleAuthError);
+    http.removeRequestInterceptor(addTokenToRequest);
   };
 }
 

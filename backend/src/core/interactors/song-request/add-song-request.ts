@@ -2,13 +2,13 @@ import dataSourcesConfig from '../../constants/data-sources.config';
 import ISongRequestRepository from '../../repositories/ISongRequestRepository';
 import InteractorError, { InteractorErrorCodeEnum } from '../../services/InteractorError';
 import SongRequestEntity from '../../types/SongRequestEntity';
-import UserAuth from '../../types/UserAuth';
+import { RoomUserAuth } from '../../types/UserAuth';
 
 const addSongRequestInteractor = (
   songRequestRepo: ISongRequestRepository
 ) => async (
   songId: string,
-  userAuth?: UserAuth
+  userAuth?: RoomUserAuth
 ): Promise<SongRequestEntity> => {
   if (userAuth && userAuth.type === 'roomUser') {
     const data = await songRequestRepo.addSongRequest({

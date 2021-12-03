@@ -1,8 +1,8 @@
 import OptionItem from '../../types/OptionItem';
-import UserMe from '../../types/UserMe';
+import { AnyUserAuth } from '../../types/UserMe';
 
 type GetMenuProps = {
-  me?: UserMe,
+  me?: AnyUserAuth,
   meProgress: boolean;
   onAbout: () => void;
   onLogOutRoomUser: () => void;
@@ -21,12 +21,12 @@ export function getMenu(props: GetMenuProps): OptionItem[] {
     }
   ];
   if (me && !meProgress) {
-    if (me.type === 'guest') {
+    if (me.type === 'roomUser') {
       menuOptions.push({
         label: 'Log out',
         onSelected: onLogOutRoomUser
       });
-    } else if (me.type === 'registered') {
+    } else if (me.type === 'registeredUser') {
       menuOptions.push({
         label: 'Log out',
         onSelected: onLogOutRegisteredUser

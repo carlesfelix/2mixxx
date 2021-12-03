@@ -5,7 +5,7 @@ import IRegisteredUserRepository from '../../repositories/IRegisteredUserReposit
 import IRoomUserRepository from '../../repositories/IRoomUserRepository';
 import InteractorError, { InteractorErrorCodeEnum } from '../../services/InteractorError';
 import { getBearerToken, verifyAuth0Token, verifyToken } from '../../services/jwt';
-import { BaseUserAuth } from '../../types/UserAuth';
+import { AnyUserAuth } from '../../types/UserAuth';
 
 const interactorFn = (
   roomUserRepo: IRoomUserRepository,
@@ -13,7 +13,7 @@ const interactorFn = (
 ) => async (
   userType: string,
   token: string
-): Promise<BaseUserAuth> => {
+): Promise<AnyUserAuth> => {
   const bearerToken = getBearerToken(token);
 
   if (!bearerToken) {
@@ -39,8 +39,10 @@ const interactorFn = (
     }
     return {
       type: 'roomUser',
-      user: roomUser,
-      permissions: roomUserPermissions
+      user: {
+        ...roomUser,
+        permissions: roomUserPermissions
+      }
     };
   }
   if (userType === 'registeredUser') {
@@ -60,8 +62,10 @@ const interactorFn = (
     }
     return {
       type: 'registeredUser',
-      user: registeredUser,
-      permissions: registeredUser.role === 1 ? adminPermissions : djPermissions
+      user: {
+        ...registeredUser,
+        permissions: registeredUser.role === 1 ? adminPermissions : djPermissions
+      }
     };
   }
   throw new InteractorError(InteractorErrorCodeEnum.UNAUTHORIZED);

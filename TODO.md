@@ -7,7 +7,7 @@
 - [ ] Review api security (all endpoints).
 - [ ] Review socket security (all handlers).
 - [X] Room user and registered user permissions (backend).
-- [ ] Room user and registered user permissions (frontend).
+- [X] Room user and registered user permissions (frontend).
 - [ ] Add 'order by' and 'direction' to all database queries that return arrays.
 - [ ] i18n.
 - [ ] UI improvements.

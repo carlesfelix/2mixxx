@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import getUserAuth from '../../../core/interactors/auth/getUserAuth';
 import userHasSomePermissionInteractor from '../../../core/interactors/auth/userHasSomePermission';
-import { BaseUserAuth } from '../../../core/types/UserAuth';
+import { AnyUserAuth } from '../../../core/types/UserAuth';
 import ApiError, { StatusCodeEnum } from '../services/ApiError';
 
 export function userAuthMid(
   req: Request,
-  res: Response<unknown, { auth: BaseUserAuth }>,
+  res: Response<unknown, { auth: AnyUserAuth }>,
   next: NextFunction
 ): void {
   const { headers } = req;
@@ -30,7 +30,7 @@ export function userAuthMid(
 
 export function userHasSomePermission(permissions: string[]): (
   req: Request,
-  res: Response<unknown, { auth?: BaseUserAuth }>,
+  res: Response<unknown, { auth?: AnyUserAuth }>,
   next: NextFunction
 ) => void {
   return (_, res, next) => {

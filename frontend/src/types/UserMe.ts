@@ -1,7 +1,15 @@
-import GuestMe from './GuestMe';
-import RegisteredMe from './RegisteredMe';
+import RegisteredUser from './RegisteredUser';
+import RoomUser from './RoomUser';
 
-type UserMe = { type: 'guest' } & GuestMe |
-  { type: 'registered' } & RegisteredMe;
-
-export default UserMe;
+export type AnyUserAuth<User extends RoomUser | RegisteredUser | unknown = any> = {
+  type: string;
+  user: User;
+};
+export type RoomUserAuth = {
+  type: 'roomUser';
+  user: RoomUser;
+};
+export type RegisteredUserAuth = {
+  type: 'registeredUser';
+  user: RegisteredUser;
+};
