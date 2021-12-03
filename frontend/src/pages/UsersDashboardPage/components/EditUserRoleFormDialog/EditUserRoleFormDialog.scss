@@ -1,7 +1,6 @@
 @use '../../../../styles/utils/variables';
 
-.UserFormDialog {
-  min-width: variables.$min-xs;
+.EditUserRoleFormDialog {
   form {
     display: flex;
     flex-direction: column;

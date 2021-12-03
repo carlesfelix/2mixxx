@@ -1,4 +1,5 @@
 import { sign, verify, JwtPayload } from 'jsonwebtoken';
+import jwksAuth0Client from '../constants/jwks-auth0-client';
 
 export function createToken(
   secret: string, payload: JwtPayload
@@ -20,6 +21,27 @@ export function verifyToken(secret: string, token: string): Promise<JwtPayload |
         resolve(payload);
       }
       reject(err);
+    });
+  });
+}
+
+export function verifyAuth0Token(token: string): Promise<JwtPayload | undefined> {
+  return new Promise((resolve, reject) => {
+    function getKey(
+      header: { kid?: string },
+      callback: (error: Error | null, signingKey: string) => void
+    ): void {
+      jwksAuth0Client.getSigningKey(header.kid, function(err, key) {
+        const signingKey = err ? '' : key.getPublicKey();
+        callback(err, signingKey);
+      });
+    }
+    verify(token, getKey, {}, function(err, decoded) {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(decoded);
+      }
     });
   });
 }

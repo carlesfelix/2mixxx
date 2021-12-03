@@ -1,14 +1,16 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import { createUser, deleteUser, getAllUsers, updateUser } from '../../api/registered-users';
+import { createUser, deleteUser, getAllUsers, updateUserRole } from '../../api/registered-users';
 import AsyncLayout from '../../components/AsyncLayout';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import PageLayout from '../../components/PageLayout';
 import AsyncState from '../../types/AsyncState';
 import DialogState from '../../types/DialogState';
 import RegisteredUser from '../../types/RegisteredUser';
-import UserFormDialog from './components/UserFormDialog';
+import UserForm from '../../types/UserForm';
+import CreateUserFormDialog from './components/CreateUserFormDialog';
+import EditUserRoleFormDialog from './components/EditUserRoleFormDialog';
 import UserItem from './components/UserItem';
 import './UsersDashboardPage.scss';
 
@@ -16,13 +18,13 @@ export default function UsersDashboardPage() {
   const [ users, setUsers ] = useState<AsyncState<RegisteredUser[]>>({
     data: [], inProgress: true, error: false
   });
-  const [ newUserFormDialog, setNewUserFormDialog ] = useState<DialogState<RegisteredUser>>({
+  const [ newUserFormDialog, setNewUserFormDialog ] = useState<DialogState<UserForm>>({
     inProgress: false, isOpen: false
   });
-  const [ editUserFormDialog, setEditUserFormDialog ] = useState<DialogState<RegisteredUser>>({
+  const [ editUserRoleFormDialog, setEditUserRoleFormDialog ] = useState<DialogState<RegisteredUser>>({
     inProgress: false, isOpen: false
   });
-  const [ confirmDeleteUserDialog, setConfirmDeleteUserDialog ] = useState<DialogState<RegisteredUser>>({
+  const [ confirmDeleteUserDialog, setConfirmDeleteUserDialog ] = useState<DialogState<UserForm>>({
     inProgress: false, isOpen: false
   });
   useEffect(() => {
@@ -38,7 +40,7 @@ export default function UsersDashboardPage() {
   function closeUserFormDialogHandler(): void {
     setNewUserFormDialog({ isOpen: false, inProgress: false });
   }
-  function submitUserFormDialogHandler(user: RegisteredUser): void {
+  function submitUserFormDialogHandler(user: UserForm): void {
     setNewUserFormDialog({ isOpen: true, inProgress: true });
     createUser(user).then(createdUser => {
       setNewUserFormDialog({ isOpen: false, inProgress: false });
@@ -47,27 +49,30 @@ export default function UsersDashboardPage() {
       setNewUserFormDialog({ isOpen: true, inProgress: false });
     });
   }
-  function openEditUserFormDialogHandler(user: RegisteredUser): void {
-    setEditUserFormDialog({ isOpen: true, inProgress: false, data: user });
+  function openEditUserRoleFormDialogHandler(user: RegisteredUser): void {
+    setEditUserRoleFormDialog({ isOpen: true, inProgress: false, data: user });
   }
-  function closeEditUserFormDialogHandler(): void {
-    setEditUserFormDialog({ isOpen: false, inProgress: false });
+  function closeEditUserRoleFormDialogHandler(): void {
+    setEditUserRoleFormDialog({ isOpen: false, inProgress: false });
   }
-  function submitEditUserFormDialogHandler(user: RegisteredUser): void {
-    setEditUserFormDialog(old => ({ ...old, inProgress: true }));
-    updateUser(user).then(() => {
-      setEditUserFormDialog({ isOpen: false, inProgress: false });
+  function submitEditUserRoleFormDialogHandler(user: RegisteredUser, updatedRole: number): void {
+    setEditUserRoleFormDialog(old => ({ ...old, inProgress: true }));
+    updateUserRole(user.id!, updatedRole).then(() => {
+      setEditUserRoleFormDialog({ isOpen: false, inProgress: false });
       setUsers(old => ({
         ...old,
         data: old.data.map(oldUser => {
           if (oldUser.id === user.id) {
-            return user;
+            return {
+              ...oldUser,
+              role: updatedRole
+            };
           }
           return oldUser;
         })
       }));
     }).catch(() => {
-      setEditUserFormDialog(old => ({ ...old, inProgress: false }));
+      setEditUserRoleFormDialog(old => ({ ...old, inProgress: false }));
     });
   }
   function openConfirmDeleteUserDialogHandler(user: RegisteredUser): void {
@@ -101,7 +106,7 @@ export default function UsersDashboardPage() {
                 <UserItem
                   key={user.id} user={user} className="user-item"
                   onDelete={openConfirmDeleteUserDialogHandler}
-                  onEdit={openEditUserFormDialogHandler}
+                  onEdit={openEditUserRoleFormDialogHandler}
                 />
               ))
             }
@@ -113,13 +118,13 @@ export default function UsersDashboardPage() {
             </button>
           </div>
         </AsyncLayout>
-        <UserFormDialog
+        <CreateUserFormDialog
           state={newUserFormDialog} onClose={closeUserFormDialogHandler}
           onSubmit={submitUserFormDialogHandler}
         />
-        <UserFormDialog
-          state={editUserFormDialog} onClose={closeEditUserFormDialogHandler}
-          onSubmit={submitEditUserFormDialogHandler}
+        <EditUserRoleFormDialog
+          state={editUserRoleFormDialog} onClose={closeEditUserRoleFormDialogHandler}
+          onSubmit={submitEditUserRoleFormDialogHandler}
         />
         <ConfirmDialog
           message="User will be deleted"

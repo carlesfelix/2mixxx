@@ -1,19 +1,24 @@
 import { NextFunction, Request, Response } from 'express';
-import RegisteredUserEntity from '../../../core/types/RegisteredUserEntity';
 import createUserInteractor from '../../../core/interactors/registered-users/createUser';
 import deleteUserInteractor from '../../../core/interactors/registered-users/deleteUser';
 import getAllUsersInteractor from '../../../core/interactors/registered-users/getAllUsers';
-import updateUserInteractor from '../../../core/interactors/registered-users/updateUser';
+import updateUserRoleInteractor from '../../../core/interactors/registered-users/updateUserRole';
 import userEmailExistsInteractor from '../../../core/interactors/registered-users/userEmailExists';
+import RegisteredUserEntity from '../../../core/types/RegisteredUserEntity';
 
 export function createUserCtrl(
-  req: Request<unknown, unknown, RegisteredUserEntity>,
+  req: Request<
+    unknown, unknown,
+    { email: string, role: number, password: string }
+  >,
   res: Response<RegisteredUserEntity>,
   next: NextFunction
 ): void {
   const { body } = req;
-  const { email, role } = body;
-  createUserInteractor({ email, role }).then(createdUser => {
+  const { email, role, password } = body;
+  createUserInteractor({
+    email, role, password
+  }).then(createdUser => {
     res.status(200).json(createdUser);
   }).catch((err) => {
     next(err);
@@ -46,16 +51,16 @@ export function getAllUsersCtrl(
   });
 }
 
-export function updateUserCtrl(
-  req: Request<{ userId: string }, unknown, RegisteredUserEntity>,
-  res: Response<RegisteredUserEntity>,
+export function updateUserRoleCtrl(
+  req: Request<{ userId: string }, unknown, { role: number }>,
+  res: Response,
   next: NextFunction
 ): void {
   const { body, params } = req;
-  const { email, role } = body;
   const { userId } = params;
-  updateUserInteractor(
-    userId, { email, role }
+  const { role } = body;
+  updateUserRoleInteractor(
+    userId, role
   ).then(() => {
     res.status(200).json();
   }).catch((err) => {

@@ -5,6 +5,7 @@ import { userAuthMid } from '../middlewares/user-auth.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
 import librariesRouter from './libraries';
 import librarySongsRouter from './library-songs';
+import meRouter from './me';
 import registeredUsersRouter from './registered-users';
 import roomUsers from './room-users';
 import roomsRouter from './rooms';
@@ -34,6 +35,8 @@ api.use('/rooms', roomsRouter);
 api.use('/room-users', roomUsers);
 
 api.use('/songs', songsRouter);
+
+api.use('/me', meRouter);
 
 api.use(notFoundErrorMid);
 api.use(genericErrorMid);

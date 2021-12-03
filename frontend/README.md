@@ -1,4 +1,4 @@
-# Getting Started with 2mixxx app
+# Frontend
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -47,7 +47,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Environment variables for development
 
-- Create a `.env` file inside of `/frontend` folder with the following environment variables
+- Create a `.env` file in the `/frontend` folder with the following environment variables
 
 ```
 REACT_APP_SOCKET_BASE_URI=ws://localhost:3002
@@ -56,11 +56,11 @@ REACT_APP_AUTH0_CLIENT_ID=your_auth0_client_id # Your auth0 client id (SPA API)
 REACT_APP_API_BASE_URL=http://localhost:3001/api
 ```
 
-- Note: You must have an [auth0](https://auth0.com/) account.
+- Disclaimer: you must have an [auth0](https://auth0.com/) account.
 
 ## Environment variables for production
 
-- Create a `.env` file inside of `/frontend` folder with the following environment variables
+- Create a `.env` file in the `/frontend` folder with the following environment variables
 
 ```
 REACT_APP_SOCKET_BASE_URI=your_socket_server_uri
@@ -69,4 +69,4 @@ REACT_APP_AUTH0_CLIENT_ID=your_auth0_client_id # Your auth0 client id (SPA API)
 REACT_APP_API_BASE_URL=your_api_base_url
 ```
 
-- Note: You must have an [auth0](https://auth0.com/) account.
+- Disclaimer: you must have an [auth0](https://auth0.com/) account.

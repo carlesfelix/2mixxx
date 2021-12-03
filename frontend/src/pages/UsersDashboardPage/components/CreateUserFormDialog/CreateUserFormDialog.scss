@@ -1,0 +1,16 @@
+@use '../../../../styles/utils/variables';
+
+.CreateUserFormDialog {
+  form {
+    display: flex;
+    flex-direction: column;
+    & > *:not(:first-child) {
+      margin-top: 0.75rem;
+    }
+  }
+  div.user-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

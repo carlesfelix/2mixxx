@@ -6,10 +6,10 @@ export const customStyles: ReactModal.Styles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    padding: '0.75rem',
     borderRadius: 0,
     border: 0,
     overflow: 'hidden',
+    padding: 0,
     backgroundColor: 'transparent'
   },
   overlay: {

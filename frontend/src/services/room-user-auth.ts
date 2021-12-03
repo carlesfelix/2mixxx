@@ -3,17 +3,23 @@ import { ROOM_USER_TOKEN_EXP_KEY, ROOM_USER_TOKEN_KEY } from '../constants/local
 import { decodeToken } from '../helpers/jwt';
 import GuestToken, { GuestTokenPayload } from '../types/GuestToken';
 
-let guestToken: GuestToken | null;
+const emptyToken: GuestToken = {
+  __raw: '',
+  exp: 0,
+  iat: 0,
+  sub: ''
+};
+let guestToken: GuestToken = emptyToken;
 let expiresAtLocal = getTokenExpFromLocalStorage();
 
 try {
-  guestToken = getGuestTokenFromLocalStorage();
+  guestToken = getGuestTokenFromLocalStorage() || emptyToken;
 } catch {
-  guestToken = null;
+  guestToken = emptyToken;
 }
 
 export function unregister() {
-  guestToken = null;
+  guestToken = emptyToken;
   expiresAtLocal = 0;
   localStorage.removeItem(ROOM_USER_TOKEN_KEY);
   localStorage.removeItem(ROOM_USER_TOKEN_EXP_KEY);
@@ -29,10 +35,7 @@ export async function register(room: string): Promise<void> {
 }
 
 export function getGuestToken(): GuestToken {
-  if (guestToken && isAuthenticated()) {
-    return guestToken;
-  }
-  throw Error('User is not authenticated');
+  return guestToken;
 }
 
 function getGuestTokenFromLocalStorage(): GuestToken | null {
@@ -53,9 +56,9 @@ function getExpiresAtLocal(token: GuestToken): number {
 }
 
 function guestTokenExpired(): boolean {
-  return expiresAtLocal < (Date.now() + 300000);
+  return expiresAtLocal < (Date.now() + 60000);
 }
 
 export function isAuthenticated() {
-  return !!guestToken && !!expiresAtLocal && !guestTokenExpired();
+  return !!guestToken.__raw && !!expiresAtLocal && !guestTokenExpired();
 }

@@ -1,23 +1,14 @@
-import InteractorError, { InteractorErrorCodeEnum } from '../../services/InteractorError';
-import UserAuth from '../../types/UserAuth';
+import { AnyUserAuth } from '../../types/UserAuth';
 
 type Props = {
-  userAuth: UserAuth;
-  permissions: string [];
-  userType?: UserAuth['type'],
-  next: (err?: InteractorError) => void;
+  anyUser?: AnyUserAuth;
+  permissions: string[];
 }
 export default function userHasSomePermission(
   props: Props
-): void {
-  const { userAuth, permissions, userType, next } = props;
-  const hasPermission = !!userAuth &&
-    (userType === undefined || userAuth.type === userType) &&
-    userAuth.permissions.some(
-      userPermission => permissions.includes(userPermission)
-    );
-  next(
-    hasPermission ?
-      undefined : new InteractorError(InteractorErrorCodeEnum.ACCESS_DENIED)
+): boolean {
+  const { anyUser, permissions } = props;
+  return !!anyUser && !!anyUser.user.permissions && anyUser.user.permissions.some(
+    userPermission => permissions.includes(userPermission)
   );
 }

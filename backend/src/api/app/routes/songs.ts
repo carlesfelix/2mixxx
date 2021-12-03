@@ -9,7 +9,7 @@ const songsRouter = Router();
 
 songsRouter.get(
   '/',
-  userHasSomePermission([permissions.SONGS_SEARCH], 'roomUser'),
+  userHasSomePermission([ permissions.SONGS_SEARCH ]),
   [ query('query').optional().isString().isLength({ min: 3 }) ],
   validationErrorMid,
   searchSongsCtrl

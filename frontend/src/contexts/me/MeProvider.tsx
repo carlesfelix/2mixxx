@@ -6,7 +6,7 @@ import { MeProviderProps } from './types';
 export default function MeProvider(props: MeProviderProps) {
   const { children } = props;
   const [ state, dispatch ] = useReducer(meReducer, {
-    error: null,
+    error: false,
     inProgress: false,
     user: undefined
   });

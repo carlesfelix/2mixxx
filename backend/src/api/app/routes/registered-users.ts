@@ -1,19 +1,25 @@
 import { Router } from 'express';
 import { body, param, query } from 'express-validator';
-import { registeredUserRoles } from '../../../core/constants/user-roles';
+import { permissions, registeredUserRoles } from '../../../core/constants/user-roles';
 import {
   createUserCtrl, deleteUserCtrl, getAllUsersCtrl,
-  updateUserCtrl, userEmailExistsCtrl
+  updateUserRoleCtrl, userEmailExistsCtrl
 } from '../controllers/registered-users';
+import { userHasSomePermission } from '../middlewares/user-auth.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
 
 const registeredUsersRouter = Router();
 
 registeredUsersRouter.post(
   '/',
+  userHasSomePermission([ permissions.CREATE_USER ]),
   [
     body('email').isEmail(),
-    body('role').isIn(Object.values(registeredUserRoles))
+    body('role').isIn(Object.values(registeredUserRoles)),
+    body('password').isStrongPassword({
+      minLength: 8, minLowercase: 1, minUppercase: 1,
+      minSymbols: 1
+    })
   ],
   validationErrorMid,
   createUserCtrl
@@ -21,6 +27,7 @@ registeredUsersRouter.post(
 
 registeredUsersRouter.delete(
   '/:userId',
+  userHasSomePermission([ permissions.DELETE_USER ]),
   [ param('userId').isUUID() ],
   validationErrorMid,
   deleteUserCtrl
@@ -28,22 +35,24 @@ registeredUsersRouter.delete(
 
 registeredUsersRouter.get(
   '/',
+  userHasSomePermission([ permissions.GET_ALL_USERS ]),
   getAllUsersCtrl
 );
 
 registeredUsersRouter.put(
-  '/:userId',
+  '/:userId/role',
+  userHasSomePermission([ permissions.UPDATE_USER_ROLE ]),
   [
     param('userId').isUUID(),
-    body('email').isEmail(),
     body('role').isIn(Object.values(registeredUserRoles))
   ],
   validationErrorMid,
-  updateUserCtrl
+  updateUserRoleCtrl
 );
 
 registeredUsersRouter.get(
   '/exists',
+  userHasSomePermission([ permissions.CHECK_USER_EXISTS ]),
   [ query('email').isEmail() ],
   validationErrorMid,
   userEmailExistsCtrl

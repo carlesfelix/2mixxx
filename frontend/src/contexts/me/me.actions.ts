@@ -1,23 +1,27 @@
-import { getGuestMe } from '../../api/guest-me';
-import { getRegisteredMe } from '../../api/registered-me';
+import { getMe } from '../../api/me';
+import { RegisteredUserAuth, RoomUserAuth } from '../../types/UserMe';
 import { Dispatch } from './types';
 
 export async function getGuestMeAction(dispatch: Dispatch): Promise<void> {
-  dispatch({ type: 'meGuestInProgress' });
+  dispatch({ type: 'getMeGuestInProgress' });
   try {
-    const me = await getGuestMe();
-    dispatch({ type: 'meGuestSuccess', payload: { me } });
+    const me = await getMe<RoomUserAuth>();
+    dispatch({ type: 'getMeGuestSuccess', payload: { me } });
   } catch (error) {
-    dispatch({type: 'meGuestError', payload: { error } });
+    dispatch({type: 'getMeGuestError' });
   }
 }
 
+export function logoutGuestMeAction(dispatch: Dispatch): void {
+  dispatch({ type: 'logOutMeGuest' });
+}
+
 export async function getRegisteredMeAction(dispatch: Dispatch): Promise<void> {
-  dispatch({ type: 'meRegisteredInProgress' });
+  dispatch({ type: 'getMeRegisteredInProgress' });
   try {
-    const me = await getRegisteredMe();
-    dispatch({ type: 'meRegisteredSuccess', payload: { me } });
+    const me = await getMe<RegisteredUserAuth>();
+    dispatch({ type: 'getMeRegisteredSuccess', payload: { me } });
   } catch (error) {
-    dispatch({type: 'meRegisteredError', payload: { error } });
+    dispatch({type: 'getMeRegisteredError' });
   }
 }

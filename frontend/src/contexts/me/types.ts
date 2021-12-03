@@ -1,20 +1,20 @@
 import { ReactNode } from 'react';
-import GuestMe from '../../types/GuestMe';
-import RegisteredMe from '../../types/RegisteredMe';
+import { AnyUserAuth, RegisteredUserAuth, RoomUserAuth } from '../../types/UserMe';
 
-export type Action = { type: 'meGuestInProgress' } |
-  { type: 'meGuestSuccess', payload: { me: GuestMe } } |
-  { type: 'meGuestError', payload: { error: Error } } |
-  { type: 'meRegisteredInProgress' } |
-  { type: 'meRegisteredSuccess', payload: { me: RegisteredMe } } |
-  { type: 'meRegisteredError', payload: { error: Error } };
+export type Action = { type: 'getMeGuestInProgress' } |
+  { type: 'getMeGuestSuccess', payload: { me: RoomUserAuth } } |
+  { type: 'getMeGuestError' } |
+  { type: 'getMeRegisteredInProgress' } |
+  { type: 'getMeRegisteredSuccess', payload: { me: RegisteredUserAuth } } |
+  { type: 'getMeRegisteredError' } |
+  { type: 'logOutMeGuest' };
 export type Dispatch = (action: Action) => void;
-export type State = {
+export type State<
+  User extends RoomUserAuth | RegisteredUserAuth | AnyUserAuth = AnyUserAuth
+> = {
   inProgress: boolean;
-  error: Error | null;
-  user: { type: 'guest' } & GuestMe |
-    { type: 'registered' } & RegisteredMe |
-    undefined;
+  error: boolean;
+  user?: User;
 };
 
 export type MeProviderProps = { children: ReactNode };

@@ -9,7 +9,7 @@ export default function RoomUserProvider(props: RoomUserProviderProps) {
   const [ state, dispatch ] = useReducer(roomUserReducer, {
     isAuthenticated: isAuthenticated(),
     inProgress: false,
-    error: null
+    error: false
   });
   const value = { state, dispatch };
   return (

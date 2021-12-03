@@ -1,10 +1,13 @@
 import dataSourcesConfig from '../../constants/data-sources.config';
-import RegisteredUserEntity from '../../types/RegisteredUserEntity';
 import IRegisteredUserRepository from '../../repositories/IRegisteredUserRepository';
 import InteractorError, { InteractorErrorCodeEnum } from '../../services/InteractorError';
 
-const interactorFn = (registeredUserRepo: IRegisteredUserRepository) => async (userId: string, user: RegisteredUserEntity): Promise<void> => {
-  const updateCount = await registeredUserRepo.updateUser(userId, user);
+const interactorFn = (
+  registeredUserRepo: IRegisteredUserRepository
+) => async (userId: string, role: number): Promise<void> => {
+  const updateCount = await registeredUserRepo.updateUserRole(
+    userId, role
+  );
   if (!updateCount) {
     throw new InteractorError(InteractorErrorCodeEnum.ENTITY_NOT_FOUND);
   }

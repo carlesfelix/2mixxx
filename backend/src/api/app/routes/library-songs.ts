@@ -1,12 +1,15 @@
 import { Router } from 'express';
+import { permissions } from '../../../core/constants/user-roles';
 import { deleteSongsFromLibraryCtrl, importSongsFromItunesCtrl } from '../controllers/library-songs';
 import { catchRequestHandlerErrorMid } from '../middlewares/errors.mid';
 import { getUploadFileMemoryMid } from '../middlewares/upload-file.mid';
+import { userHasSomePermission } from '../middlewares/user-auth.mid';
 
 const librarySongsRouter = Router({ mergeParams: true });
 
 librarySongsRouter.post(
   '/import',
+  userHasSomePermission([ permissions.IMPORT_SONGS_FROM_ITUNES ]),
   catchRequestHandlerErrorMid(
     getUploadFileMemoryMid({
       limits: {
@@ -23,6 +26,7 @@ librarySongsRouter.post(
 
 librarySongsRouter.delete(
   '/',
+  userHasSomePermission([ permissions.DELETE_SONGS_FROM_ITUNES ]),
   deleteSongsFromLibraryCtrl
 );
 
