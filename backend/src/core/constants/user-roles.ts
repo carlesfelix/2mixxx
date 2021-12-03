@@ -15,9 +15,8 @@ export const permissions = {
   CREATE_USER: 'CREATE_USER',
   DELETE_USER: 'DELETE_USER',
   GET_ALL_USERS: 'GET_ALL_USERS',
-  UPDATE_USER: 'UPDATE_USER',
+  UPDATE_USER_ROLE: 'UPDATE_USER_ROLE',
   CHECK_USER_EXISTS: 'CHECK_USER_EXISTS',
-  CREATE_ROOM_USER: 'CREATE_ROOM_USER',
   GET_ALL_ROOMS: 'GET_ALL_ROOMS',
   GET_ROOM_BY_ID: 'GET_ROOM_BY_ID',
   CREATE_ROOM: 'CREATE_ROOM',
@@ -29,8 +28,7 @@ export const permissions = {
 };
 
 export const roomUserPermissions = [
-  permissions.SONGS_SEARCH,
-  permissions.CREATE_ROOM_USER
+  permissions.SONGS_SEARCH
 ];
 
 export const adminPermissions = [
@@ -44,9 +42,8 @@ export const adminPermissions = [
   permissions.CREATE_USER,
   permissions.DELETE_USER,
   permissions.GET_ALL_USERS,
-  permissions.UPDATE_USER,
+  permissions.UPDATE_USER_ROLE,
   permissions.CHECK_USER_EXISTS,
-  permissions.CREATE_ROOM_USER,
   permissions.GET_ALL_ROOMS,
   permissions.GET_ROOM_BY_ID,
   permissions.CREATE_ROOM,

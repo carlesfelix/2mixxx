@@ -1,7 +1,8 @@
 import http from '../services/http';
 import RegisteredUser from '../types/RegisteredUser';
+import UserForm from '../types/UserForm';
 
-export async function createUser(user: RegisteredUser): Promise<RegisteredUser> {
+export async function createUser(user: UserForm): Promise<RegisteredUser> {
   const { data } = await http.post<RegisteredUser>('/registered-users', user);
   return data;
 }
@@ -15,8 +16,10 @@ export async function getAllUsers(): Promise<RegisteredUser[]> {
   return data;
 }
 
-export async function updateUser(user: RegisteredUser): Promise<void> {
-  await http.put<void>(`/registered-users/${user.id!}`, user);
+export async function updateUserRole(userId: string, role: number): Promise<void> {
+  await http.put<void>(`/registered-users/${userId}/role`, {
+    role
+  });
 }
 
 export async function userEmailExists(email: string): Promise<{ exists: boolean }> {

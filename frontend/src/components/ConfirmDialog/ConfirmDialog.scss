@@ -1,7 +1,6 @@
 @use '../../styles/utils/variables';
 
 .ConfirmDialog {
-  min-width: variables.$min-xs;
   div.confirm-dialog-footer {
     text-align: end;
     button {

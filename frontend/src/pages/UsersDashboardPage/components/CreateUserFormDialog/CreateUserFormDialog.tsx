@@ -2,40 +2,46 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Dialog from '../../../../components/Dialog';
 import ControlledInput from '../../../../components/forms/ControlledInput';
+import CreateUserForm from '../../../../types/UserForm';
 import DialogState from '../../../../types/DialogState';
-import RegisteredUser from '../../../../types/RegisteredUser';
 import { getUserFormValidation } from '../../helpers';
-import './UserFormDialog.scss';
+import './CreateUserFormDialog.scss';
 
 type Props = {
-  state: DialogState<RegisteredUser>;
+  state: DialogState<CreateUserForm>;
   onClose: () => void;
-  onSubmit: (user: RegisteredUser) => void;
+  onSubmit: (user: CreateUserForm) => void;
 };
 
-const defaultValues: Partial<RegisteredUser> = {
+const defaultValues: CreateUserForm = {
   role: 2
 };
 
-export default function UserFormDialog(props: Props) {
+export default function CreateUserFormDialog(props: Props) {
   const { state, onClose, onSubmit } = props;
-  const { inProgress, isOpen, data } = state;
-  const { handleSubmit, control, reset } = useForm<Partial<RegisteredUser>>({ mode: 'onSubmit' });
-  
+  const { inProgress, isOpen } = state;
+  const {
+    handleSubmit, control, reset,
+    getValues, trigger
+  } = useForm<CreateUserForm>({ mode: 'onSubmit' });
   useEffect(() => {
-    reset(data || defaultValues);
-  }, [ isOpen, data, reset ]);
+    reset(defaultValues);
+  }, [ isOpen, reset ]);
 
-  const userFormValidation = getUserFormValidation({ editMode: !!data });
+  const userFormValidation = getUserFormValidation({
+    getValues, trigger
+  });
 
-  function submitHandler(user: RegisteredUser): void {
+  function submitHandler(user: CreateUserForm): void {
     onSubmit(user);
   }
 
   return (
     <Dialog
-      isOpen={isOpen} title={data ? 'Edit user' : 'Create new user'}
-      className="UserFormDialog" closeOptions={['closeBtn']} onClose={onClose}
+      isOpen={isOpen} title="Create new user"
+      className="CreateUserFormDialog"
+      closeOptions={['closeBtn']}
+      onClose={onClose}
       preventClose={inProgress}
       footer={
         <div className="user-form-actions">
@@ -43,18 +49,32 @@ export default function UserFormDialog(props: Props) {
             className="btn btn-primary" disabled={inProgress}
             type="submit" form="userFormDialog"
           >
-            {data ? 'Save changes' : 'Submit'}
+            Submit
           </button>
         </div>
       }
     >
       <form onSubmit={handleSubmit(submitHandler)} id="userFormDialog">
         <ControlledInput
-          field={{ type: 'inputText', props: { disabled: !!data } }}
+          field={{ type: 'inputText' }}
           control={control}
           label="Email"
           name="email"
           rules={userFormValidation.email}
+        />
+        <ControlledInput
+          field={{ type: 'inputText', props: { password: true } }}
+          control={control}
+          label="Password"
+          name="password"
+          rules={userFormValidation.password}
+        />
+        <ControlledInput
+          field={{ type: 'inputText', props: { password: true } }}
+          control={control}
+          label="Repeat password"
+          name="repeatPassword"
+          rules={userFormValidation.repeatPassword}
         />
         <ControlledInput
           field={{ type: 'dropdown', props: { options: [ { label: 'Admin', value: 1 }, {label: 'DJ', value: 2 } ] } }}

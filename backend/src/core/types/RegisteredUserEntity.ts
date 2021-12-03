@@ -1,9 +1,9 @@
 import BaseEntity from './BaseEntity';
 
-type RegisteredUserEntity = {
+type RegisteredUserEntity = Partial<{
   sub: string;
   email: string;
   role: number;
-} & BaseEntity;
+}> & BaseEntity;
 
 export default RegisteredUserEntity;

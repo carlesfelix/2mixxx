@@ -3,7 +3,7 @@ import { body, param, query } from 'express-validator';
 import { permissions, registeredUserRoles } from '../../../core/constants/user-roles';
 import {
   createUserCtrl, deleteUserCtrl, getAllUsersCtrl,
-  updateUserCtrl, userEmailExistsCtrl
+  updateUserRoleCtrl, userEmailExistsCtrl
 } from '../controllers/registered-users';
 import { userHasSomePermission } from '../middlewares/user-auth.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
@@ -15,7 +15,11 @@ registeredUsersRouter.post(
   userHasSomePermission([ permissions.CREATE_USER ]),
   [
     body('email').isEmail(),
-    body('role').isIn(Object.values(registeredUserRoles))
+    body('role').isIn(Object.values(registeredUserRoles)),
+    body('password').isStrongPassword({
+      minLength: 8, minLowercase: 1, minUppercase: 1,
+      minSymbols: 1
+    })
   ],
   validationErrorMid,
   createUserCtrl
@@ -36,15 +40,14 @@ registeredUsersRouter.get(
 );
 
 registeredUsersRouter.put(
-  '/:userId',
-  userHasSomePermission([ permissions.UPDATE_USER ]),
+  '/:userId/role',
+  userHasSomePermission([ permissions.UPDATE_USER_ROLE ]),
   [
     param('userId').isUUID(),
-    body('email').isEmail(),
     body('role').isIn(Object.values(registeredUserRoles))
   ],
   validationErrorMid,
-  updateUserCtrl
+  updateUserRoleCtrl
 );
 
 registeredUsersRouter.get(

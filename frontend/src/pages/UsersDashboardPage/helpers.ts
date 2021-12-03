@@ -1,8 +1,9 @@
+import { UseFormGetValues, UseFormTrigger } from 'react-hook-form';
 import { userEmailExists } from '../../api/registered-users';
-import validationRules from '../../services/validation-rules';
-import OptionItem from '../../types/OptionItem';
-import RegisteredUser from '../../types/RegisteredUser';
+import validationRules, { composeCustomRules } from '../../services/validation-rules';
 import FormValidation from '../../types/FormValidation';
+import OptionItem from '../../types/OptionItem';
+import UserForm from '../../types/UserForm';
 
 type GetUserOptionsProps = {
   onEdit: () => void,
@@ -12,7 +13,7 @@ export function getUserOptions(props: GetUserOptionsProps): OptionItem[] {
   const { onDelete, onEdit } = props;
   const userOptions: OptionItem[] = [
     {
-      label: 'Edit',
+      label: 'Edit role',
       onSelected: onEdit
     },
     {
@@ -23,18 +24,44 @@ export function getUserOptions(props: GetUserOptionsProps): OptionItem[] {
   return userOptions;
 }
 
-export const getUserFormValidation: FormValidation<Partial<RegisteredUser>, { editMode: boolean }> = (deps) => {
-  const { editMode } = deps;
+export const getUserFormValidation: FormValidation<
+  UserForm,
+  {
+    defaultData?: UserForm,
+    getValues: UseFormGetValues<UserForm>,
+    trigger: UseFormTrigger<UserForm>
+  }
+> = deps => {
+  const { defaultData, getValues, trigger } = deps;
   return {
     email: {
       required: validationRules.required(),
-      pattern: validationRules.patterns.email(),
-      validate: async (value: string) => {
-        if (editMode) {
-          return true;
+      validate: composeCustomRules([
+        validationRules.customRules.email(),
+        async (value: string) => {
+          if (defaultData?.email === value) {
+            return true;
+          }
+          const { exists } = await userEmailExists(value);
+          return !exists || 'User email exists';
         }
-        const { exists } = await userEmailExists(value);
-        return !exists || 'User email exists';
+      ])
+    },
+    password: {
+      required: validationRules.required(),
+      validate: composeCustomRules([
+        () => {
+          trigger('repeatPassword');
+          return true;
+        },
+        validationRules.customRules.strongPassword()
+      ])
+    },
+    repeatPassword: {
+      required: validationRules.required(),
+      validate: (value: string) => {
+        const { password } = getValues();
+        return password === value || 'Password must match';
       }
     },
     role: {

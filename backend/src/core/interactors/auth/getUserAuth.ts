@@ -1,6 +1,6 @@
 import environment from '../../../environment';
 import dataSourcesConfig from '../../constants/data-sources.config';
-import { adminPermissions, roomUserPermissions } from '../../constants/user-roles';
+import { adminPermissions, djPermissions, roomUserPermissions } from '../../constants/user-roles';
 import IRegisteredUserRepository from '../../repositories/IRegisteredUserRepository';
 import IRoomUserRepository from '../../repositories/IRoomUserRepository';
 import InteractorError, { InteractorErrorCodeEnum } from '../../services/InteractorError';
@@ -61,7 +61,7 @@ const interactorFn = (
     return {
       type: 'registeredUser',
       user: registeredUser,
-      permissions: adminPermissions
+      permissions: registeredUser.role === 1 ? adminPermissions : djPermissions
     };
   }
   throw new InteractorError(InteractorErrorCodeEnum.UNAUTHORIZED);

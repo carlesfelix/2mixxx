@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import Dialog from '../Dialog';
 import './ConfirmDialog.scss';
 
@@ -7,10 +8,13 @@ type Props = {
   onRejected?: () => void;
   onConfirmed?: () => void;
   inProgress?: boolean;
+  className?: string;
 };
 export default function ConfirmDialog(props: Props) {
   const {
-    message, onRejected, onConfirmed, isOpen, inProgress = false
+    message, onRejected, onConfirmed,
+    isOpen, inProgress = false,
+    className = ''
   } = props;
   function rejectedHandler(): void {
     onRejected && onRejected();
@@ -18,11 +22,14 @@ export default function ConfirmDialog(props: Props) {
   function confirmedHandler(): void {
     onConfirmed && onConfirmed();
   }
+  const confirmDialogClassName = classNames('ConfirmDialog', {
+    [className]: !!className
+  });
   return (
     <Dialog
       closeOptions={['escape', 'clickOutside']} preventClose={inProgress}
       onClose={rejectedHandler} isOpen={isOpen} title="Are you sure?"
-      className="ConfirmDialog"
+      className={confirmDialogClassName}
       footer={
         <div className="confirm-dialog-footer">
           <button

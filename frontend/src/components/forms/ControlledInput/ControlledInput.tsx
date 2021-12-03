@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import {
   Control, Controller, ControllerRenderProps,
   FieldValues, UseControllerProps
@@ -7,11 +7,12 @@ import FormField from '../FormField';
 import Checkbox, { CheckboxExtraProps } from '../inputs/Checkbox';
 import Dropdown, { DropdownExtraProps } from '../inputs/Dropdown';
 import InputText from '../inputs/InputText';
+import { InputTextExtraProps } from '../inputs/InputText/InputText';
 import MultiselectBox, { MultiselectBoxExtraProps } from '../inputs/MultiselectBox';
 import RadioButton, { RadioButtonExtraProps } from '../inputs/RadioButton';
 import RadioButtonCards, { RadioButtonCardsExtraProps } from '../inputs/RadioButtonCards';
 
-type Field = { type: 'inputText', props?: InputHTMLAttributes<HTMLInputElement> } |
+type Field = { type: 'inputText', props?: InputTextExtraProps } |
 { type: 'dropdown', props: DropdownExtraProps } |
 { type: 'checkbox', props: CheckboxExtraProps } |
 { type: 'multiselectBox', props: MultiselectBoxExtraProps } |
