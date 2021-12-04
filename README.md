@@ -14,7 +14,7 @@
 <img src="https://user-images.githubusercontent.com/10828536/144637793-81883253-9417-4e89-8735-3aa9f1982771.png" width="200" />
 <img src="https://user-images.githubusercontent.com/10828536/144638014-2df36bc0-3a6d-4e4a-a242-c817890d603a.png" width="200" />
 
-## Installation and build guide (developers)
+## Installation and build guide
 To install 2mixxx, you should have a basic understanding of Nodejs and Mysql.
 Follow the instruccions located in [Frontend](https://github.com/carlesfelix/2mixxx/tree/main/frontend) (client side) and [Backend](https://github.com/carlesfelix/2mixxx/tree/main/backend) (server side).
 
