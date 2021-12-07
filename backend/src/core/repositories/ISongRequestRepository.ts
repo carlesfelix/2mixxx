@@ -7,6 +7,6 @@ export default interface ISongRequestRepository {
     roomId: string
   }): Promise<SongRequestEntity>;
   getSongRequestById(id: string): Promise<SongRequestEntity | null>;
-  removeSongRequest(id: string): Promise<number>;
+  removeSongRequest(id: string, roomId: string): Promise<number>;
   getSongRequestsFromRoom(roomId: string): Promise<SongRequestEntity[]>;
 }

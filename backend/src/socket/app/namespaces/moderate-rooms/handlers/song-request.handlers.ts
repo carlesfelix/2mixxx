@@ -23,7 +23,9 @@ export function deleteSongRequestHandler(io: Server, socket: Socket): (
     const { songRequestId } = payload;
     
     try {
-      await deleteSongRequestInteractor(songRequestId);
+      await deleteSongRequestInteractor(
+        songRequestId, socket.data.params.roomId
+      );
 
       io.of('/').to(socket.data.params.roomId).emit(
         SERVER__DELETE_SONG_REQUEST,
