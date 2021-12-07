@@ -26,10 +26,14 @@ export function deleteSongRequestHandler(io: Server, socket: Socket): (
       await deleteSongRequestInteractor(
         songRequestId, socket.data.params.roomId
       );
-
+      const deleteSongPayload = { data: { songRequestId } };
+      socket.to(socket.data.params.roomId).emit(
+        SERVER__DELETE_SONG_REQUEST,
+        deleteSongPayload
+      );
       io.of('/').to(socket.data.params.roomId).emit(
         SERVER__DELETE_SONG_REQUEST,
-        { data: { songRequestId } }
+        deleteSongPayload
       );
       sendAck(ack, { status: 'OK' });
     } catch (err) {
