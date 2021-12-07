@@ -13,3 +13,8 @@ export async function getMyRooms(): Promise<Room[]> {
   const { data } = await http.get<Room[]>('/me/my-rooms');
   return data;
 }
+
+export async function getMyRoomById(id: string): Promise<Room> {
+  const { data } = await http.get<Room>(`/me/my-rooms/${id}`);
+  return data;
+}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getRoomById } from '../../api/rooms';
+import { getMyRoomById } from '../../api/me';
 import PageLayout from '../../components/PageLayout';
 import { defaultRoomDetails } from '../../constants/default-states';
 import { SERVER__NEW_SONG_REQUEST } from '../../constants/server-socket-actions';
@@ -68,7 +68,7 @@ export default function ModerateRoomPage() {
         inProgress: true, error: false,
         data: defaultRoomDetails
       });
-      getRoomById(roomId).then(data => {
+      getMyRoomById(roomId).then(data => {
         setRoom({
           inProgress: false, error: false,
           data

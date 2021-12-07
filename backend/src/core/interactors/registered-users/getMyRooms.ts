@@ -12,7 +12,7 @@ const getMyRoomsFn = (
     registeredUser.user.id!
   );
   if (!roomModerators) {
-    throw new InteractorError(InteractorErrorCodeEnum.ENTITY_NOT_FOUND);
+    throw new InteractorError(InteractorErrorCodeEnum.ACCESS_DENIED);
   }
   return roomModerators.rooms!;
 };

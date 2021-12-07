@@ -7,6 +7,7 @@ type RegisteredUserEntity = Partial<{
   role: number;
   permissions?: string[];
   rooms?: RoomEntity[];
+  room?: RoomEntity;
 }> & BaseEntity;
 
 export default RegisteredUserEntity;

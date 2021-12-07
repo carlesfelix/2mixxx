@@ -4,6 +4,21 @@ import { instancesToJson, instanceToJson } from '../helpers';
 import models from '../models';
 
 export default class RegisteredUser implements IRegisteredUserRepository {
+  async getUserRoom(id: string, roomId: string): Promise<RegisteredUserEntity | null> {
+    const data = await models.RoomModerator.model.findOne({
+      where: {
+        registeredUserId: id,
+        roomId
+      },
+      include: [
+        {
+          model: models.Room.model,
+          as: 'room'
+        }
+      ]
+    });
+    return instanceToJson<RegisteredUserEntity>(data);
+  }
   async getUserRooms(id: string): Promise<RegisteredUserEntity | null> {
     const data = await models.RegisteredUser.model.findByPk(id, {
       include: [

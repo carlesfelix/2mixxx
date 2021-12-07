@@ -44,6 +44,10 @@ const modelDefinition: IModelDefinitionFn<RoomModeratorEntity> = sequelize => {
         otherKey: 'registeredUserId',
         as: 'moderators'
       });
+      models.RoomModerator.model.belongsTo(models.Room.model, {
+        as: 'room',
+        foreignKey: 'roomId'
+      });
     }
   };
 };

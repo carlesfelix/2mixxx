@@ -9,4 +9,5 @@ export default interface IRegisteredUserRepository {
   getUserBySub(sub: string): Promise<RegisteredUserEntity | null>;
   getUserById(id: string): Promise<RegisteredUserEntity | null>;
   getUserRooms(id: string): Promise<RegisteredUserEntity | null>;
+  getUserRoom(id: string, roomId: string): Promise<RegisteredUserEntity | null>;
 }
