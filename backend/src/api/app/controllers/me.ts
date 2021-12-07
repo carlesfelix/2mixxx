@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import getMyRoomInteractor from '../../../core/interactors/registered-users/getMyRoom';
-import getMyRoomsInteractor from '../../../core/interactors/registered-users/getMyRooms';
+import getRoomFromUserInteractor from '../../../core/interactors/room-moderator/getRoomFromUser';
+import getRoomsFromUserInteractor from '../../../core/interactors/room-moderator/getRoomsFromUser';
 import RoomEntity from '../../../core/types/RoomEntity';
 import { AnyUserAuth, RegisteredUserAuth } from '../../../core/types/UserAuth';
 
@@ -17,7 +17,7 @@ export function getMyRoomsCtrl(
   next: NextFunction
 ): void {
   const { auth } = res.locals;
-  getMyRoomsInteractor(auth).then(data => {
+  getRoomsFromUserInteractor(auth).then(data => {
     res.status(200).json(data);
   }).catch(err => {
     next(err);
@@ -32,7 +32,7 @@ export function getMyRoomCtrl(
   const { params } = req;
   const { roomId } = params;
   const { auth } = res.locals;
-  getMyRoomInteractor(auth, roomId).then(data => {
+  getRoomFromUserInteractor(auth, roomId).then(data => {
     res.status(200).json(data);
   }).catch(err => {
     next(err);

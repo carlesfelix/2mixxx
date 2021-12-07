@@ -1,4 +1,4 @@
-import { Model, DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import RoomModeratorEntity from '../../../core/types/RoomModeratorEntity';
 import { IModelDefinitionFn } from './types';
 
@@ -47,6 +47,10 @@ const modelDefinition: IModelDefinitionFn<RoomModeratorEntity> = sequelize => {
       models.RoomModerator.model.belongsTo(models.Room.model, {
         as: 'room',
         foreignKey: 'roomId'
+      });
+      models.RoomModerator.model.belongsTo(models.RegisteredUser.model, {
+        as: 'moderator',
+        foreignKey: 'registeredUserId'
       });
     }
   };

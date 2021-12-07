@@ -1,16 +1,16 @@
 import dataSourcesConfig from '../../constants/data-sources.config';
-import IRegisteredUserRepository from '../../repositories/IRegisteredUserRepository';
+import IRoomModeratorRepository from '../../repositories/IRoomModeratorRepository';
 import InteractorError, { InteractorErrorCodeEnum } from '../../services/InteractorError';
 import RoomEntity from '../../types/RoomEntity';
 import { RegisteredUserAuth } from '../../types/UserAuth';
 
-const getMyRoomFn = (
-  roomRepo: IRegisteredUserRepository
+const getRoomFromUserFn = (
+  roomModeratorRepo: IRoomModeratorRepository
 ) => async (
   registeredUser: RegisteredUserAuth,
   roomId: string
 ): Promise<RoomEntity> => {
-  const roomModerator = await roomRepo.getUserRoom(
+  const roomModerator = await roomModeratorRepo.getRoomModerator(
     registeredUser.user.id!,
     roomId
   );
@@ -20,5 +20,5 @@ const getMyRoomFn = (
   return roomModerator.room!;
 };
 
-const getMyRoomInteractor = getMyRoomFn(dataSourcesConfig.registeredUser);
-export default getMyRoomInteractor;
+const getRoomFromUserInteractor = getRoomFromUserFn(dataSourcesConfig.roomModerator);
+export default getRoomFromUserInteractor;
