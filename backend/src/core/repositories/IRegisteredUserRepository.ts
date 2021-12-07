@@ -8,4 +8,5 @@ export default interface IRegisteredUserRepository {
   getUserByEmail(email: string): Promise<RegisteredUserEntity | null>;
   getUserBySub(sub: string): Promise<RegisteredUserEntity | null>;
   getUserById(id: string): Promise<RegisteredUserEntity | null>;
+  getUserRooms(id: string): Promise<RegisteredUserEntity | null>;
 }

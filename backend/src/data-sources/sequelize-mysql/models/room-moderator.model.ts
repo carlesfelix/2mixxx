@@ -35,7 +35,7 @@ const modelDefinition: IModelDefinitionFn<RoomModeratorEntity> = sequelize => {
         through: RoomModeratorModel,
         foreignKey: 'registeredUserId',
         otherKey: 'roomId',
-        as: 'room'
+        as: 'rooms'
       });
       models.Room.model.belongsToMany(models.RegisteredUser.model, {
         uniqueKey: 'roomId',

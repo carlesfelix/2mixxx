@@ -1,15 +1,24 @@
 import { NextFunction, Request, Response } from 'express';
-import ApiError, { StatusCodeEnum } from '../services/ApiError';
-import { AnyUserAuth } from '../../../core/types/UserAuth';
+import getMyRoomsInteractor from '../../../core/interactors/rooms/getMyRooms';
+import RoomEntity from '../../../core/types/RoomEntity';
+import { AnyUserAuth, RegisteredUserAuth } from '../../../core/types/UserAuth';
 
 export function getMeCtrl(
   _: Request,
-  res: Response<unknown, { auth: AnyUserAuth }>,
+  res: Response<AnyUserAuth, { auth: AnyUserAuth }>
+): void {
+  res.status(200).json(res.locals.auth);
+}
+
+export function getMyRoomsCtrl(
+  req: Request,
+  res: Response<RoomEntity[], { auth: RegisteredUserAuth }>,
   next: NextFunction
 ): void {
-  if (res.locals.auth && res.locals.auth.user) {
-    res.status(200).json(res.locals.auth);
-    return;
-  }
-  next(new ApiError(StatusCodeEnum.AccessDenied));
+  const { auth } = res.locals;
+  getMyRoomsInteractor(auth).then(data => {
+    res.status(200).json(data);
+  }).catch(err => {
+    next(err);
+  });
 }
