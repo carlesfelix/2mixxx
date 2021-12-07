@@ -77,7 +77,9 @@ export default class Room implements IRoomsRepository {
     return instanceToJson<RoomEntity>(data);
   }
   async getAllRooms(): Promise<RoomEntity[]> {
-    const data = await models.Room.model.findAll();
+    const data = await models.Room.model.findAll({
+      order: [['createdAt', 'DESC']]
+    });
     return instancesToJson<RoomEntity>(data);
   }
 }
