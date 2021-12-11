@@ -41,7 +41,7 @@ export default function librariesReducer(state: State, action: Action): State {
         ...state,
         libraries: {
           ...state.libraries,
-          data: [ ...state.libraries.data, action.payload.library ]
+          data: [ action.payload.library, ...state.libraries.data ]
         },
         addLibraryDialog: { inProgress: false, isOpen: false }
       };
