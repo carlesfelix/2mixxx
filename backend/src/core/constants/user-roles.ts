@@ -79,5 +79,7 @@ export const adminPermissions = [
 ];
 
 export const djPermissions = [
-
+  permissions.PAGE_DASHBOARD,
+  permissions.PAGE_MODERATE_ROOMS,
+  permissions.PAGE_MODERATE_ROOM
 ];
