@@ -31,7 +31,9 @@ export default class RegisteredUser implements IRegisteredUserRepository {
     return updateNumber;
   }
   async getAllUsers(): Promise<RegisteredUserEntity[]> {
-    const users = await models.RegisteredUser.model.findAll();
+    const users = await models.RegisteredUser.model.findAll({
+      order: [['createdAt', 'DESC']]
+    });
     return instancesToJson<RegisteredUserEntity>(users);
   }
   async deleteUser(userId: string): Promise<number> {
@@ -47,6 +49,4 @@ export default class RegisteredUser implements IRegisteredUserRepository {
     });
     return instanceToJson<RegisteredUserEntity>(user);
   }
-  
-
 }

@@ -1,3 +1,4 @@
+import { JwtPayload } from 'jsonwebtoken';
 import environment from '../../../environment';
 import dataSourcesConfig from '../../constants/data-sources.config';
 import { adminPermissions, djPermissions, roomUserPermissions } from '../../constants/user-roles';
@@ -46,7 +47,7 @@ const interactorFn = (
     };
   }
   if (userType === 'registeredUser') {
-    let tokenPayload;
+    let tokenPayload: JwtPayload | undefined;
     try {
       tokenPayload = await verifyAuth0Token(bearerToken);
     } catch {
