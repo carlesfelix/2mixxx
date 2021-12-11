@@ -8,7 +8,7 @@
 - [ ] Review socket security (all handlers).
 - [X] Room user and registered user permissions (backend).
 - [X] Room user and registered user permissions (frontend).
-- [ ] Add 'order by' and 'direction' to all database queries that return arrays.
+- [X] Add 'order by' and 'direction' to all database queries that return arrays.
 - [ ] i18n.
 - [ ] UI improvements.
 - [ ] Moderator settings. Allow/disallow new song requests.
