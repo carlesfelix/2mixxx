@@ -1,0 +1,15 @@
+FROM node:14.16.0-alpine3.13 as build
+WORKDIR /backend
+ENV PATH /app/node_modules/.bin:$PATH
+COPY ./backend/package.json ./
+COPY ./backend/package-lock.json ./
+RUN npm install
+COPY ./backend ./
+RUN npm run build:api
+
+FROM node:14.16.0-alpine3.13
+WORKDIR /backend
+COPY --from=build /backend ./
+WORKDIR /backend/dist/dist.api
+RUN npm install --production
+CMD ["node", "./src/api/index.js"]
