@@ -38,13 +38,13 @@ const appRoutes: AppRoute[] = [
   {
     path: '/moderate/rooms',
     Component: ModerateRoomsPage,
-    permission: permissions.PAGE_MODERATE_ROOM,
+    permission: permissions.PAGE_MODERATE_ROOMS,
     exact: true
   },
   {
     path: '/moderate/rooms/:roomId',
     Component: ModerateRoomPage,
-    permission: permissions.PAGE_ROOM_BY_ID,
+    permission: permissions.PAGE_MODERATE_ROOM,
     exact: true
   },
   {
@@ -56,7 +56,7 @@ const appRoutes: AppRoute[] = [
   {
     path: '/dashboard/rooms',
     Component: RoomsDashboardPage,
-    permission: permissions.PAGE_MODERATE_ROOMS,
+    permission: permissions.PAGE_ROOMS_DASHBOARD,
     exact: true
   },
   {

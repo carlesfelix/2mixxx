@@ -1,0 +1,56 @@
+version: '3.7'
+
+services:
+  nginx:
+    container_name: 2mixxx_nginx
+    build:
+      context: .
+      dockerfile: Dockerfile.deploy-vps.nginx
+    restart: always
+    ports: 
+      - "80:80"
+      - "443:443"
+      - "3001:3001"
+      - "3002:3002"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - api
+      - socket
+
+  api:
+    env_file: ./backend/.env
+    container_name: 2mixxx_api
+    build:
+      context: .
+      dockerfile: Dockerfile.deploy-vps.api
+    restart: always
+    dns:
+      - 8.8.8.8
+    depends_on:
+      - mysql
+
+  socket:
+    env_file: ./backend/.env
+    container_name: 2mixxx_socket
+    build:
+      context: .
+      dockerfile: Dockerfile.deploy-vps.socket
+    restart: always
+    dns:
+      - 8.8.8.8
+    depends_on:
+      - mysql
+
+  mysql:
+    env_file: ./backend/.env
+    container_name: 2mixxx_mysql
+    build:
+      context: .
+      dockerfile: Dockerfile.deploy-vps.mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./.vps-data/db:/var/lib/mysql

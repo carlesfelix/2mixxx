@@ -45,3 +45,14 @@ export function userHasSomePermission(permissions: string[]): (
     next(new ApiError(StatusCodeEnum.AccessDenied));
   }
 }
+
+export function userIsAuthenticated(userType?: 'roomUser' | 'registeredUser'): (
+  req: Request,
+  res: Response<unknown, { auth?: AnyUserAuth }>,
+  next: NextFunction
+) => void {
+  return (_, res, next) => {
+    const isAuth = res.locals.auth && (!userType || res.locals.auth.type === userType);
+    isAuth ? next() : next(new ApiError(StatusCodeEnum.AccessDenied));
+  };
+}

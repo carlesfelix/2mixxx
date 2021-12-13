@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getRoomById } from '../../api/rooms';
+import { getMyRoomById } from '../../api/me';
 import PageLayout from '../../components/PageLayout';
 import { defaultRoomDetails } from '../../constants/default-states';
-import { SERVER__NEW_SONG_REQUEST } from '../../constants/server-socket-actions';
+import { SERVER__DELETE_SONG_REQUEST, SERVER__NEW_SONG_REQUEST } from '../../constants/server-socket-actions';
 import environment from '../../environment';
 import useSocketConnectionManager from '../../hooks/useSocketConnectionManager';
 import { emitDeleteSongRequest, emitGetSongRequests } from '../../socket/emitters';
@@ -36,6 +36,16 @@ export default function ModerateRoomPage() {
         data: [ ...old.data, { request: res.data, deleteInProgress: false } ]
       }));
     }
+    function deleteSongRequestlistener(
+      res: SocketReponse<{ songRequestId: string }>
+    ): void {
+      setSongRequests(old => ({
+        ...old,
+        data: old.data.filter(
+          ({ request }) => request.id !== res.data.songRequestId
+        )
+      }));
+    }
     if (moderateRoomSocket) {
       setSongRequests({
         inProgress: true, error: false,
@@ -55,10 +65,12 @@ export default function ModerateRoomPage() {
         });
       });
       moderateRoomSocket.on(SERVER__NEW_SONG_REQUEST, newSongRequestlistener);
+      moderateRoomSocket.on(SERVER__DELETE_SONG_REQUEST, deleteSongRequestlistener);
     }
     return () => {
       if (moderateRoomSocket) {
         moderateRoomSocket.off(SERVER__NEW_SONG_REQUEST, newSongRequestlistener);
+        moderateRoomSocket.off(SERVER__DELETE_SONG_REQUEST, deleteSongRequestlistener);
       }
     };
   }, [ moderateRoomSocket ]);
@@ -68,7 +80,7 @@ export default function ModerateRoomPage() {
         inProgress: true, error: false,
         data: defaultRoomDetails
       });
-      getRoomById(roomId).then(data => {
+      getMyRoomById(roomId).then(data => {
         setRoom({
           inProgress: false, error: false,
           data

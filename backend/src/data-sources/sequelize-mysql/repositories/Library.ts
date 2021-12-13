@@ -23,7 +23,8 @@ export default class Library implements ILibraryRepository {
             'songs'
           ]
         ]
-      }
+      },
+      order: [['createdAt', 'DESC']]
     });
     return instancesToJson<LibraryEntity>(libraries);
   }

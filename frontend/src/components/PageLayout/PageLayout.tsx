@@ -39,7 +39,7 @@ export default function PageLayout(props: Props) {
 
   }
   function logOutRegisteredUserHandler(): void {
-    auth0Logout();
+    auth0Logout({ returnTo: window.location.origin });
   }
   function logOutRoomUserHandler(): void {
     removeRoomUserAction(roomUserDispatch);

@@ -25,9 +25,9 @@ export default class SongRequest implements ISongRequestRepository {
     const createdData = await models.SongRequest.model.create(data);
     return instanceToJson<SongRequestEntity>(createdData) as SongRequestEntity;
   }
-  async removeSongRequest(id: string): Promise<number> {
+  async removeSongRequest(id: string, roomId: string): Promise<number> {
     const deleteCount = await models.SongRequest.model.destroy({
-      where: { id },
+      where: { id, roomId },
       limit: 1
     });
     return deleteCount;

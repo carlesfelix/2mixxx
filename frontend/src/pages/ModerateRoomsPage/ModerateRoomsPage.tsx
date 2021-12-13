@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { getAllRooms } from '../../api/rooms';
+import { getMyRooms } from '../../api/me';
 import PageLayout from '../../components/PageLayout';
 import RoomsList from '../../components/RoomsList/RoomsList';
 import AsyncState from '../../types/AsyncState';
@@ -21,7 +21,7 @@ export default function ModerateRoomsPage() {
     data: [], inProgress: true, error: false
   });
   useEffect(() => {
-    getAllRooms().then(data => {
+    getMyRooms().then(data => {
       setRooms({ inProgress: false, error: false, data });
     }).catch(() => {
       setRooms({ inProgress: false, error: true, data: [] });

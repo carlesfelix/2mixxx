@@ -6,7 +6,7 @@ import { sendAck } from '../../../helpers';
 import { StatusCodeEnum } from '../../../services/SocketError';
 import Ack from '../../../types/Ack';
 import SocketResponse from '../../../types/SocketResponse';
-import { UserSchema, userSchema } from '../../schemas/song-request.schemas';
+import { UserSchema, userSchema } from '../../../schemas/song-request.schemas';
 import { SERVER__NEW_SONG_REQUEST } from '../../../constants/server-actions';
 
 export function addSongRequestHandler(io: Server, socket: Socket): (

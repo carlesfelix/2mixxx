@@ -4,8 +4,10 @@ import InteractorError, { InteractorErrorCodeEnum } from '../../services/Interac
 
 const deleteSongRequestInteractorFn = (
   songRequestRepo: ISongRequestRepository
-) => async (songRequestId: string): Promise<void> => {
-  const deleteCount = await songRequestRepo.removeSongRequest(songRequestId);
+) => async (songRequestId: string, roomId: string): Promise<void> => {
+  const deleteCount = await songRequestRepo.removeSongRequest(
+    songRequestId, roomId
+  );
   if (!deleteCount) {
     throw new InteractorError(InteractorErrorCodeEnum.ENTITY_NOT_FOUND);
   }

@@ -3,14 +3,16 @@
 - [X] Room user logout.
 - [X] Registered user logout.
 - [X] Protect registered user endpoints (token).
-- [ ] Moderators only must see/moderate the rooms that they are as moderators.
+- [X] Moderators only must see/moderate the rooms that they are as moderators.
 - [ ] Review api security (all endpoints).
 - [ ] Review socket security (all handlers).
 - [X] Room user and registered user permissions (backend).
 - [X] Room user and registered user permissions (frontend).
-- [ ] Add 'order by' and 'direction' to all database queries that return arrays.
+- [X] Add 'order by' and 'direction' to all database queries that return arrays.
 - [ ] i18n.
 - [ ] UI improvements.
 - [ ] Moderator settings. Allow/disallow new song requests.
 - [ ] Moderator settings. Song request cool down (per room user).
 - [X] Sync creations and deletions of registered users (app) with auth0.
+- [ ] Handle socket errors (frontend).
+- [ ] Handler socket errors (backend).

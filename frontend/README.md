@@ -51,14 +51,14 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ```
 REACT_APP_SOCKET_BASE_URI=ws://localhost:3002
-REACT_APP_AUTH0_DOMAIN=your_auth0_domain # Your auth0 domain (SPA API)
-REACT_APP_AUTH0_CLIENT_ID=your_auth0_client_id # Your auth0 client id (SPA API)
+REACT_APP_AUTH0_DOMAIN={your_auth0_domain} # Your auth0 domain (SPA API)
+REACT_APP_AUTH0_CLIENT_ID={your_auth0_client_id} # Your auth0 client id (SPA API)
 REACT_APP_API_BASE_URL=http://localhost:3001/api
 ```
 
 - Disclaimer: you must have an [auth0](https://auth0.com/) account.
 
-## Environment variables for production
+<!-- ## Environment variables for production
 
 - Create a `.env` file in the `/frontend` folder with the following environment variables
 
@@ -69,4 +69,4 @@ REACT_APP_AUTH0_CLIENT_ID=your_auth0_client_id # Your auth0 client id (SPA API)
 REACT_APP_API_BASE_URL=your_api_base_url
 ```
 
-- Disclaimer: you must have an [auth0](https://auth0.com/) account.
+- Disclaimer: you must have an [auth0](https://auth0.com/) account. -->

@@ -1,4 +1,4 @@
-import { Model, DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import RoomModeratorEntity from '../../../core/types/RoomModeratorEntity';
 import { IModelDefinitionFn } from './types';
 
@@ -35,7 +35,7 @@ const modelDefinition: IModelDefinitionFn<RoomModeratorEntity> = sequelize => {
         through: RoomModeratorModel,
         foreignKey: 'registeredUserId',
         otherKey: 'roomId',
-        as: 'room'
+        as: 'rooms'
       });
       models.Room.model.belongsToMany(models.RegisteredUser.model, {
         uniqueKey: 'roomId',
@@ -43,6 +43,14 @@ const modelDefinition: IModelDefinitionFn<RoomModeratorEntity> = sequelize => {
         foreignKey: 'roomId',
         otherKey: 'registeredUserId',
         as: 'moderators'
+      });
+      models.RoomModerator.model.belongsTo(models.Room.model, {
+        as: 'room',
+        foreignKey: 'roomId'
+      });
+      models.RoomModerator.model.belongsTo(models.RegisteredUser.model, {
+        as: 'moderator',
+        foreignKey: 'registeredUserId'
       });
     }
   };
