@@ -9,14 +9,18 @@ export default function DashboardPage() {
   const mePermissions = meState.user?.user.permissions || [];
   return (
     <PageLayout toolbarTitle="Dashboard">
-      <div className="DashboardPage page-content">
-        {
-          dashboardLinks.filter(
-            link => !link.permission || mePermissions.includes(link.permission)
-          ).map((link, iLink) => (
-            <DashboardLink dashboardLink={link} key={iLink} />
-          ))
-        }
+      <div className="DashboardPage">
+        <div className="page-content dashboard-wrapper">
+          <div className="dashboard-wrapper__items">
+            {
+              dashboardLinks.filter(
+                link => !link.permission || mePermissions.includes(link.permission)
+              ).map((link, iLink) => (
+                <DashboardLink dashboardLink={link} key={iLink} />
+              ))
+            }
+          </div>
+        </div>
       </div>
     </PageLayout>
   );

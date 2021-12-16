@@ -1,0 +1,5 @@
+@use './default' as current-theme;
+
+@function color($colorKey) {
+  @return map-get(current-theme.$colors, $colorKey);
+}

@@ -38,7 +38,7 @@ export default function SongRequestQueue(props: Props) {
         {
           songRequests.data.length ? (
             songRequests.data.map(songRequest => (
-              <div className="queue-item card card-primary" key={songRequest.request.id}>
+              <div className="queue-item" key={songRequest.request.id}>
                 <SongItem song={songRequest.request.song} className="queue-item__song" />
                 {
                   canDelete && (

@@ -16,7 +16,7 @@ export default function OverlayMenu<Data = any>(props: Props<Data>) {
   const {
     items, align = 'end', children,
     buttonClassName = 'btn default-btn-menu',
-    minWidth, data
+    minWidth = '10ch', data
   } = props;
   const [ open, setOpen ] = useState<boolean>(false);
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function OverlayMenu<Data = any>(props: Props<Data>) {
   }
   const content = (
     <div className="overlay-menu-content">
-      <ul className="card card-secondary" style={{ minWidth }}>
+      <ul className="overlay-container" style={{ minWidth }}>
         {
           items.map((item, iItem) => (
             <li key={iItem}>

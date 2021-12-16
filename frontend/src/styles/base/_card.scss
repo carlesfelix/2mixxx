@@ -1,17 +1,18 @@
-@use '../utils/variables';
+@use '../themes/theme';
 
 .card {
-  border-radius: 3px;
+  border-radius: 0.1875rem;
   &.card-primary {
-    border: solid 1px;
-    box-shadow: 1px 1px 0.5rem 0 transparentize($color: variables.$c-primary--900, $amount: 0.75);
-    border-color: variables.$c-primary--900;
-    background-color: variables.$c-primary--50;
-  }
-  &.card-secondary {
-    border: solid 1px;
-    box-shadow: 1px 1px 0.5rem 0 transparentize($color: variables.$c-secondary--600, $amount: 0.75);
-    border-color: variables.$c-secondary--600;
-    background-color: variables.$c-primary--50;
+    background-color: theme.color('card-primary-background');
+    padding: 1.5rem;
+    .card-title {
+      color: theme.color('card-primary-title');
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .card-paragraph {
+      color: theme.color('card-primary-paragraph');
+      font-size: 1rem;
+    }
   }
 }

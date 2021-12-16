@@ -1,0 +1,10 @@
+@use '../themes/theme';
+
+.hr {
+  border: none;
+  margin: 1rem 0;
+  height: 0.2rem;
+  &.hr-primary {
+    background-color: theme.color('hr-primary');
+  }
+}

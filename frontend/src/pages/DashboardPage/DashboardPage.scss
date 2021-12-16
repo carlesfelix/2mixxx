@@ -2,14 +2,23 @@
 
 div.DashboardPage {
   position: relative;
-  .dashboard-item {
-    margin-top: 0.75rem;
-    @include mixings.min-md {
-      margin-top: 1.25rem;
+  overflow: auto;
+  height: 100%;
+  div.dashboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    div.dashboard-wrapper__items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+      gap: 1rem;
+      justify-content: center;
+      height: auto;
+      padding-bottom: 0.75rem;
+      margin: auto 0;
     }
-    &:first-child {
-      margin-top: 0;
-    }
+  }
+  @include mixings.min-md {
+    gap: 1.25rem;
   }
 }
 

@@ -1,0 +1,105 @@
+// BASE COLORS
+// https://www.happyhues.co/palettes/3
+$c-base__white: #fffffe;
+$c-base__purple: #094067;
+// $c-base__purple-dark: #1f1235;
+$c-base__grey--dark: #5f6c7b;
+$c-base__blue: #3da9fc;
+$c-base__blue--light: #90b4ce;
+$c-base__blue--superlight: #d8eefe;
+$c-base__red: #ef4565;
+
+// THEME
+$colors: (
+  // Global background
+  'background-root': $c-base__blue--superlight,
+
+  // Text on global background
+  'text-primary': $c-base__grey--dark,
+
+  // Home page background
+  'login-form-background': $c-base__white,
+
+  // Global background
+  'login-form-left-bar': $c-base__blue--superlight,
+
+  // Horizontal line
+  'hr-primary': transparentize($color: $c-base__grey--dark, $amount: 0.85),
+
+  // Main toolbar background
+  'toolbar-background': $c-base__purple,
+
+  // Global title
+  'title-primary': $c-base__purple,
+
+  // Main toolbar text color
+  'toolbar-text': $c-base__white,
+
+  // BUTTON
+  // Primary button background
+  'background-button-primary': $c-base__blue,
+
+  // Primary button text
+  'text-button-primary': $c-base__white,
+
+  // Secondary button background
+  'background-button-secondary': $c-base__grey--dark,
+
+  // Secondary button text
+  'text-button-secondary': $c-base__white,
+
+  // Danger button background
+  'background-button-danger': $c-base__red,
+
+  // Danger button text
+  'text-button-danger': $c-base__white,
+
+  // INPUT
+  // Input shadow
+  'input-shadow': $c-base__blue--superlight,
+
+  // Input border
+  'input-border': $c-base__purple,
+
+  // Input border invalid
+  'input-border--invalid': $c-base__red,
+
+  // Input background
+  'input-background': $c-base__white,
+
+  // FORM FIELD
+  // Form field label
+  'form-field-label': $c-base__purple,
+
+  // Form field error
+  'form-field-error': $c-base__red,
+
+  // CARD
+  // Card primary background
+  'card-primary-background': $c-base__white,
+
+  // Card primary title
+  'card-primary-title': $c-base__purple,
+
+  // Card primary paragraph
+  'card-primary-paragraph': $c-base__grey--dark,
+
+  // Overaly menu
+  // Overlay menu background
+  'overlay-menu-background': $c-base__white,
+
+  // Overlay menu item text
+  'overlay-menu-item-text': $c-base__purple,
+
+  // Overlay menu item text hover
+  'overlay-menu-item-text--hover': transparentize($color: $c-base__blue--superlight, $amount: 0.65),
+
+  // Overlay menu shadow
+  'overlay-menu-shadow': $c-base__purple,
+
+  // Overlay menu item border
+  'overlay-menu-item-border': transparentize($color: $c-base__blue--superlight, $amount: 0.65),
+
+  // Overlay menu border
+  'overlay-menu-border': transparentize($color: $c-base__blue--superlight, $amount: 0.65),
+);
