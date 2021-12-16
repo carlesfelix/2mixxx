@@ -9,16 +9,23 @@ div.DashboardPage {
     flex-direction: column;
     div.dashboard-wrapper__items {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+      grid-template-columns: repeat(auto-fit, 100%);
       gap: 1rem;
       justify-content: center;
       height: auto;
       padding-bottom: 0.75rem;
       margin: auto 0;
+      @include mixings.min-sm {
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      }
+      @include mixings.min-md {
+        gap: 2.5rem;
+      }
+      @include mixings.min-lg {
+        gap: 3.5rem;
+        
+      }
     }
   }
-  @include mixings.min-md {
-    gap: 1.25rem;
-  }
 }
-
