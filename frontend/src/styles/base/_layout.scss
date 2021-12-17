@@ -1,0 +1,9 @@
+.layout {
+  &.layout-center-v {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    min-height: 100%;
+  }
+}

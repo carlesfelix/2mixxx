@@ -1,8 +1,6 @@
 @use '../../styles/utils/mixings';
 
-div.RoomsDashboardPage {
-  height: 100%;
-  position: relative;
+div.ModerateRoomsPage {
   div.rooms-container {
     div.rooms-grid {
       display: grid;
@@ -12,13 +10,6 @@ div.RoomsDashboardPage {
       @include mixings.min-md {
         gap: 1.5rem;
       }
-    }
-  }
-  div.actions-container {
-    text-align: center;
-    margin: 1.5rem;
-    button {
-      min-width: 12rem;
     }
   }
 }

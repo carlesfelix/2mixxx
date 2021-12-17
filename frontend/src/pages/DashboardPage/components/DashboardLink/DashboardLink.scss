@@ -1,11 +1,3 @@
-@use '../../../../styles/utils/mixings';
-
 a.DashboardLink { 
-  text-decoration: none;
   display: block;
-  transition-duration: 150ms;
-  transition-property: transform;
-  &:hover {
-    transform: scale(1.025);
-  }
 }

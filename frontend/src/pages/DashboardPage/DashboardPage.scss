@@ -1,13 +1,8 @@
 @use '../../styles/utils/mixings';
 
 div.DashboardPage {
-  position: relative;
-  overflow: auto;
-  height: 100%;
-  div.dashboard-wrapper {
-    display: flex;
-    flex-direction: column;
-    div.dashboard-wrapper__items {
+  div.dashboard-menu {
+    div.dashboard-menu__items {
       display: grid;
       grid-template-columns: repeat(auto-fit, 100%);
       gap: 1rem;
@@ -24,7 +19,6 @@ div.DashboardPage {
       }
       @include mixings.min-lg {
         gap: 3.5rem;
-        
       }
     }
   }

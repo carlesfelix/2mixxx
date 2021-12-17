@@ -1,11 +1,10 @@
-import { faDoorOpen } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAllLibraries } from '../../api/libraries';
 import { addLibraryToRoom, deleteLibraryFromRoom, getRoomById } from '../../api/rooms';
 import MultiselectBox from '../../components/forms/inputs/MultiselectBox';
 import PageLayout from '../../components/PageLayout';
+import RoomItem from '../../components/RoomItem';
 import { defaultRoomDetails } from '../../constants/default-states';
 import AsyncState from '../../types/AsyncState';
 import Library from '../../types/Library';
@@ -78,14 +77,7 @@ export default function ManageRoomLibrariesPage() {
       errorMessage="Room cannot be loaded :("
     >
       <div className="ManageRoomLibrariesPage page-content">
-        <div className="card card-primary manage-room-header">
-          <span className="room-icon">
-            <FontAwesomeIcon icon={faDoorOpen} />
-          </span>
-          <span className="room-title">
-            <span>{room.data.code}</span>
-          </span>
-        </div>
+        <RoomItem room={room.data} />
         <MultiselectBox<Library>
           extraProps={{
             onChecked: checkedHandler,
