@@ -5,6 +5,7 @@ import { addLibraryToRoom, deleteLibraryFromRoom, getRoomById } from '../../api/
 import MultiselectBox from '../../components/forms/inputs/MultiselectBox';
 import PageLayout from '../../components/PageLayout';
 import RoomItem from '../../components/RoomItem';
+import Section from '../../components/Section';
 import { defaultRoomDetails } from '../../constants/default-states';
 import AsyncState from '../../types/AsyncState';
 import Library from '../../types/Library';
@@ -75,20 +76,30 @@ export default function ManageRoomLibrariesPage() {
       inProgress={room.inProgress}
       error={room.error}
       errorMessage="Room cannot be loaded :("
+      className="ManageRoomLibrariesPage"
     >
-      <div className="ManageRoomLibrariesPage page-content">
-        <RoomItem room={room.data} />
-        <MultiselectBox<Library>
-          extraProps={{
-            onChecked: checkedHandler,
-            items: libraries.data,
-            labelProp: 'title',
-            valueProp: 'id'
-          }}
-          onChange={changeHandler}
-          value={room.data.libraries!.map(({ id }) => id)}
-          className="manage-room-content card card-primary"
-        />
+      <div className="page-content manage-room-libraries-container">
+        <RoomItem room={room.data} className="room-header" />
+        <Section
+          className="manage-room-content"
+          header={
+            <div className="manage-room-content__title">
+              <h3>Assign/Unassign libraries</h3>
+            </div>
+          }
+        >
+          <MultiselectBox<Library>
+            extraProps={{
+              onChecked: checkedHandler,
+              items: libraries.data,
+              labelProp: 'title',
+              valueProp: 'id'
+            }}
+            onChange={changeHandler}
+            value={room.data.libraries!.map(({ id }) => id)}
+            className="checkbox-list"
+          />
+        </Section>
       </div>
     </PageLayout>
   );

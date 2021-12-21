@@ -1,0 +1,27 @@
+@use '../../styles/utils/variables/sizes';
+@use '../../styles/themes/theme';
+
+div.Label {
+  display: flex;
+  span.Label__header, span.Label__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+  }
+  span.Label__header {
+    background-color: theme.color('label-header-primary-background');
+    color: theme.color('label-header-primary-text');
+    border-top-left-radius: sizes.$border-radius;
+    border-bottom-left-radius: sizes.$border-radius;
+  }
+  span.Label__content {
+    flex-grow: 1;
+    background-color: theme.color('label-content-primary-background');
+    color: theme.color('label-content-primary-text');
+    border-top-right-radius: sizes.$border-radius;
+    border-bottom-right-radius: sizes.$border-radius;
+    padding-left: 0.75rem;
+    font-weight: bold;
+  }
+}

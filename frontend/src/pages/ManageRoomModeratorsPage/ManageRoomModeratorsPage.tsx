@@ -1,11 +1,11 @@
-import { faDoorOpen } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAllUsers } from '../../api/registered-users';
 import { addModeratorToRoom, deleteModeratorFromRoom, getRoomById } from '../../api/rooms';
 import MultiselectBox from '../../components/forms/inputs/MultiselectBox';
 import PageLayout from '../../components/PageLayout';
+import RoomItem from '../../components/RoomItem';
+import Section from '../../components/Section';
 import { defaultRoomDetails } from '../../constants/default-states';
 import AsyncState from '../../types/AsyncState';
 import RegisteredUser from '../../types/RegisteredUser';
@@ -76,30 +76,33 @@ export default function ManageRoomModeratorsPage() {
       inProgress={room.inProgress}
       error={room.error}
       errorMessage="Room cannot be loaded :("
+      className="ManageRoomModeratorsPage"
     >
-      <div className="ManageRoomModeratorsPage page-content">
-        <div className="card card-primary manage-room-header">
-          <span className="room-icon">
-            <FontAwesomeIcon icon={faDoorOpen} />
-          </span>
-          <span className="room-title">
-            <span>{room.data.code}</span>
-          </span>
-        </div>
-        <MultiselectBox<RegisteredUser>
-          extraProps={{
-            onChecked: checkedHandler,
-            items: registeredUsers.data,
-            labelProp: 'email',
-            valueProp: 'id',
-            inProgress: registeredUsers.inProgress,
-            error: registeredUsers.error,
-            errorMessage: 'Users cannot be loaded :('
-          }}
-          onChange={changeHandler}
-          value={room.data.moderators!.map(({ id }) => id)}
-          className="manage-room-content card card-primary"
-        />
+      <div className="manage-room-moderators-container page-content">
+        <RoomItem room={room.data} className="room-header" />
+        <Section
+          className="manage-room-content"
+          header={
+            <div className="manage-room-content__title">
+              <h3>Assign/Unassign users</h3>
+            </div>
+          }
+        >
+          <MultiselectBox<RegisteredUser>
+            extraProps={{
+              onChecked: checkedHandler,
+              items: registeredUsers.data,
+              labelProp: 'email',
+              valueProp: 'id',
+              inProgress: registeredUsers.inProgress,
+              error: registeredUsers.error,
+              errorMessage: 'Users cannot be loaded :('
+            }}
+            onChange={changeHandler}
+            value={room.data.moderators!.map(({ id }) => id)}
+            className="checkbox-list"
+          />
+        </Section>
       </div>
     </PageLayout>
   );

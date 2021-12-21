@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import OverlayMenu from '../../components/OverlayMenu';
 import OptionItem from '../../types/OptionItem';
 import Room from '../../types/Room';
+import Label from '../Label';
 import './RoomItem.scss';
 
 type Props = {
@@ -15,16 +16,20 @@ type Props = {
 export default function RoomItem(props: Props) {
   const { room, menu = [], className = '' } = props;
   const rootItemClassName = classNames(
-    'RoomItem', 'card', 'card-group',
+    'RoomItem',
     { [className]: !!className }
   );
   return (
-    <div className={rootItemClassName}>
-      <div className="RoomItem__icon card-addon card-addon-primary">
-        <FontAwesomeIcon icon={faKey} />
-      </div>
-      <div className="RoomItem__info card card-primary">
-        <span className="room-code card-title">
+    <Label
+      className={rootItemClassName}
+      header={
+        <div className="RoomItem__icon">
+          <FontAwesomeIcon icon={faKey} />
+        </div> 
+      }
+    >
+      <div className="RoomItem__info">
+        <span className="room-code">
           { room.code }
         </span>
         {
@@ -39,6 +44,6 @@ export default function RoomItem(props: Props) {
           )
         }
       </div>
-    </div>
+    </Label>
   );
 }

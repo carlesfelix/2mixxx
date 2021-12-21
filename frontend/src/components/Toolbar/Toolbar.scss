@@ -2,8 +2,8 @@
 @use '../../styles/utils/mixings';
 
 nav.Toolbar {
-  background-color: theme.color('toolbar-background');
-  color: theme.color('toolbar-text');
+  background-color: theme.color('page-layout-toolbar-background');
+  color: theme.color('page-layout-toolbar-text');
   font-weight: bold;
   height: 2.25rem;
   padding: 1rem;
@@ -17,7 +17,7 @@ nav.Toolbar {
   span.toolbar-link {
     a {
       svg {
-        color: theme.color('toolbar-text');
+        color: theme.color('page-layout-toolbar-text');
       }
     }
   }
@@ -28,7 +28,7 @@ nav.Toolbar {
   span.toolbar-menu {
     span.toolbar-menu-btn {
       font-size: 1.25rem;
-      color: theme.color('toolbar-text');
+      color: theme.color('page-layout-toolbar-text');
     }
   }
   span.toolbar-item {

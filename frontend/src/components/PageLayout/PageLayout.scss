@@ -1,12 +1,24 @@
-@use '../../styles/utils/variables';
 @use '../../styles/utils/mixings';
+@use '../../styles/themes/theme';
 
 div.PageLayout {
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
   div.page-container {
     overflow: auto;
     flex-grow: 1;
+    height: 0;
+  }
+  div.bottom-bar {
+    background-color: theme.color('page-layout-bottom-bar-background');
+    border-top: solid 1px theme.color('page-layout-bottom-bar-border');
+    div.bottom-bar__content {
+      padding: 1.25rem;
+      @include mixings.min-md {
+        padding: 1.5rem;
+      }
+    }
   }
 }

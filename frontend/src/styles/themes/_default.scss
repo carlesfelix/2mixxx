@@ -26,14 +26,21 @@ $colors: (
   // Horizontal line
   'hr-primary': transparentize($color: $c-base__grey--dark, $amount: 0.85),
 
+  // Page layout
   // Main toolbar background
-  'toolbar-background': $c-base__purple,
-
-  // Global title
-  'title-primary': $c-base__purple,
+  'page-layout-toolbar-background': $c-base__purple,
 
   // Main toolbar text color
-  'toolbar-text': $c-base__white,
+  'page-layout-toolbar-text': $c-base__white,
+
+  // Optional bottom bar placed in the page layout component (background)
+  'page-layout-bottom-bar-background': $c-base__white,
+
+  // Optional bottom bar placed in the page layout component (border)
+  'page-layout-bottom-bar-border': transparentize($color: $c-base__grey--dark, $amount: 0.85),
+
+  // Global title
+  'header-primary': $c-base__purple,
 
   // BUTTON
   // Primary button background
@@ -59,13 +66,19 @@ $colors: (
   'input-shadow': $c-base__blue--superlight,
 
   // Input border
-  'input-border': $c-base__purple,
+  'input-border': transparentize($color: $c-base__grey--dark, $amount: 0.75),
+
+  // Input text
+  'input-text': $c-base__purple,
 
   // Input border invalid
   'input-border--invalid': $c-base__red,
 
   // Input background
-  'input-background': $c-base__white,
+  'input-background': transparentize($color: $c-base__blue--superlight, $amount: 0.70),
+
+  // Input background focus
+  'input-background--focus': transparentize($color: $c-base__blue--superlight, $amount: 0.85),
 
   // FORM FIELD
   // Form field label
@@ -87,11 +100,31 @@ $colors: (
   // Card primary icon
   'card-primary-icon': $c-base__purple,
 
-  // Card primary start/end background content
-  'card-group-addon-primary-background': $c-base__blue,
+  // Label
+  // Label header primary background
+  'label-header-primary-background': $c-base__blue,
 
-  // Card primary start/end text content
-  'card-group-addon-primary-text': $c-base__white,
+  // Label header primary text
+  'label-header-primary-text': $c-base__white,
+
+  // Label content primary background
+  'label-content-primary-background': $c-base__white,
+
+  // Label content primary text
+  'label-content-primary-text': $c-base__purple,
+
+  // Section
+  // Section header primary background
+  'section-header-primary-background': $c-base__blue,
+
+  // Section header primary text
+  'section-header-primary-text': $c-base__white,
+
+  // Section content primary background
+  'section-content-primary-background': $c-base__white,
+
+  // Section content primary text
+  'section-content-primary-text': $c-base__grey--dark,
 
   // Overaly menu
   // Overlay menu background
@@ -111,4 +144,17 @@ $colors: (
 
   // Overlay menu border
   'overlay-menu-border': transparentize($color: $c-base__blue--superlight, $amount: 0.65),
+
+  // Checkbox
+  // Checkbox border
+  'checkbox-border': transparentize($color: $c-base__grey--dark, $amount: 0.7),
+
+  // Checkbox background
+  'checkbox-background': $c-base__white,
+
+  // Checkbox background checked
+  'checkbox-background--checked': $c-base__blue,
+
+  // Checkbox icon
+  'checkbox-icon--checked': $c-base__white
 );

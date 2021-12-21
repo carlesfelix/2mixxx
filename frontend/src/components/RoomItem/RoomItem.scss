@@ -1,9 +1,13 @@
 div.RoomItem {
+  font-size: 1rem;
+  div.RoomItem__icon, div.RoomItem__info {
+    font-size: 1em;
+  }
   div.RoomItem__info {
     display: flex;
+    align-items: center;
     span.room-code {
       flex-grow: 1;
-      margin-left: 0.5rem;
     }
   }
 }

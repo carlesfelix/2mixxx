@@ -17,13 +17,15 @@ type Props = {
   inProgress?: boolean;
   error?: Error | null | boolean;
   errorMessage?: string;
+  bottomBar?: ReactNode;
 };
 
 export default function PageLayout(props: Props) {
   const {
     children, toolbarTitle,
     toolbarLinkBack, className = '',
-    error, inProgress, errorMessage
+    error, inProgress, errorMessage,
+    bottomBar
   } = props;
   const { logout: auth0Logout } = useAuth0();
   const { state: meState, dispatch: meDispatch } = useMe();
@@ -63,6 +65,15 @@ export default function PageLayout(props: Props) {
           {children}
         </AsyncLayout>
       </div>
+      {
+        !!bottomBar && (
+          <div className="bottom-bar">
+            <div className="page-content bottom-bar__content">
+              {bottomBar}
+            </div>
+          </div>
+        )
+      }
     </div>
   );
 }

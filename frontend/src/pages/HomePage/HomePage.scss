@@ -17,7 +17,7 @@ div.HomePage {
       width: 25rem;
     }
     h1.welcome-msg {
-      color: theme.color('title-primary');
+      color: theme.color('header-primary');
     }
   }
   div.HomePage__right {
@@ -36,7 +36,7 @@ div.HomePage {
       }
       form.choose-room {
         h2 {
-          color: theme.color('title-primary');
+          color: theme.color('header-primary');
           margin-top: 0;
           margin-bottom: 2.25rem;
         }
