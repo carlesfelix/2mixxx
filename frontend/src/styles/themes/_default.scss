@@ -110,8 +110,11 @@ $colors: (
   // Label content primary background
   'label-content-primary-background': $c-base__white,
 
+  // Label content primary title
+  'label-content-primary-title': $c-base__purple,
+
   // Label content primary text
-  'label-content-primary-text': $c-base__purple,
+  'label-content-primary-text': $c-base__grey--dark,
 
   // Section
   // Section header primary background
@@ -156,5 +159,31 @@ $colors: (
   'checkbox-background--checked': $c-base__blue,
 
   // Checkbox icon
-  'checkbox-icon--checked': $c-base__white
+  'checkbox-icon--checked': $c-base__white,
+
+  // DIALOG
+  // Dialog background
+  'dialog-background': $c-base__white,
+
+  // Dialog header
+  'dialog-header': $c-base__purple,
+
+  // Dialog close icon
+  'dialog-close-icon': $c-base__purple,
+
+  // Dialog mask
+  'dialog-mask': transparentize($color: $c-base__purple, $amount: 0.6),
+
+  // BADGE
+  // badge primary background
+  'badge-primary-background': $c-base__blue,
+
+  // badge primary text
+  'badge-primary-text': $c-base__white,
+
+  // badge secondary background
+  'badge-secondary-background': $c-base__grey--dark,
+
+  // badge secondary text
+  'badge-secondary-text': $c-base__white,
 );

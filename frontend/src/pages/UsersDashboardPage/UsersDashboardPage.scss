@@ -1,20 +1,14 @@
 @use '../../styles/utils/mixings';
 
-div.UsersDashboardPage {
-  position: relative;
-  div.user-list-container {
-    .user-item:not(:first-child) {
-      margin-top: 0.75rem;
-      @include mixings.min-md {
-        margin-top: 1rem;
+.UsersDashboardPage {
+  div.UsersDashboardPage__content {
+    div.user-list-container {
+      .user-item:not(:first-child) {
+        margin-top: 0.75rem;
+        @include mixings.min-md {
+          margin-top: 1rem;
+        }
       }
-    }
-  }
-  div.actions-container {
-    text-align: center;
-    margin: 1.5rem;
-    button {
-      min-width: 12rem;
     }
   }
 }

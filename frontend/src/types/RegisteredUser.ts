@@ -1,8 +1,9 @@
+import RegisteredUserRoleEnum from '../enums/RegisteredUserRoleEnum';
 import BaseEntity from './BaseEntity';
 
 type RegisteredUser = {
   email: string;
-  role: number;
+  role: RegisteredUserRoleEnum;
   permissions?: [];
 } & BaseEntity;
 

@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Dialog from '../../../../components/Dialog';
 import ControlledInput from '../../../../components/forms/ControlledInput';
+import { roleOptions } from '../../../../constants/dropdown-options';
+import RegisteredUserRoleEnum from '../../../../enums/RegisteredUserRoleEnum';
 import DialogState from '../../../../types/DialogState';
 import RegisteredUser from '../../../../types/RegisteredUser';
 import UserForm from '../../../../types/UserForm';
@@ -40,22 +42,26 @@ export default function EditUserRoleFormDialog(props: Props) {
       isOpen={isOpen} title="Edit role"
       className="EditUserRoleFormDialog" closeOptions={['closeBtn']} onClose={onClose}
       preventClose={inProgress}
+      maxWidth="20rem"
       footer={
         <div className="user-form-actions">
           <button
             className="btn btn-primary" disabled={inProgress}
             type="submit" form="userFormDialog"
           >
-            Update user
+            Save changes
           </button>
         </div>
       }
     >
       <form onSubmit={handleSubmit(submitHandler)} id="userFormDialog">
         <ControlledInput
-          field={{ type: 'dropdown', props: { options: [ { label: 'Admin', value: 1 }, {label: 'DJ', value: 2 } ] } }}
+          field={{
+            type: 'dropdown',
+            props: { options: roleOptions }
+          }}
           control={control}
-          defaultValue={2}
+          defaultValue={RegisteredUserRoleEnum.Dj}
           label="Role"
           name="role"
           rules={userFormValidation.role}

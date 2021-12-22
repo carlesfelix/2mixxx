@@ -1,0 +1,71 @@
+@use '../../styles/utils/mixings';
+@use '../../styles/themes/theme';
+
+.SongRequestItem {
+  div.thumbnail-container {
+    width: 1rem;
+    text-align: center;
+    @include mixings.min-sm {
+      width: 2.5rem;
+    }
+    span.queue-position {
+      font-size: 1.75rem;
+      text-align: center;
+      font-weight: bold;
+      vertical-align: middle;
+      @include mixings.min-sm {
+        font-size: 2.5rem;
+      }
+    }
+  }
+  div.request-container {
+    display: flex;
+    align-items: center;
+    div.request-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 3.5rem;
+      flex-grow: 1;
+      width: 0;
+      div.song-name, div.song-artist {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        span {
+          white-space: nowrap;
+        }
+      }
+      div.song-name {
+        span {
+          font-size: 1.1rem;
+        }
+      }
+      div.song-artist {
+        margin-top: 0.35rem;
+        @include mixings.min-sm {
+          margin-top: 0.75rem;
+        }
+        span {
+          color: theme.color('label-content-primary-text');
+          font-size: 1rem;
+          font-weight: normal;
+        }
+      }
+    }
+    div.song-request-actions {
+      font-size: 1.25rem;
+      margin-left: 0.75rem;
+      @include mixings.min-sm {
+        font-size: 1.5rem;
+        margin-left: 1rem;
+      }
+      div.delete-progress-container {
+        font-size: inherit;
+        text-align: center;
+        svg {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}

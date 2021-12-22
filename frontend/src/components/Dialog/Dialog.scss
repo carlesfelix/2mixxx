@@ -1,31 +1,72 @@
+@use '../../styles/themes/theme';
 @use '../../styles/utils/variables';
+@use '../../styles/utils/variables/sizes';
 
-div.Dialog {
-  display: flex;
-  flex-direction: column;
-  width: calc(100vw - 1.75rem);
-  max-width: variables.$min-sm;
-  div.Dialog__header {
-    padding: 1.25rem 1.5rem;
-    position: relative;
-    h2 {
-      margin: 0;
-    }
-    button.close-btn {
+.Dialog {
+  .dialog-mask {
+    background-color: theme.color('dialog-mask');
+    position: fixed;
+    inset: 0;
+    .dialog-content {
+      top: 50%;
+      left: 50%;
+      right: auto;
+      bottom: auto;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      border-radius: 0;
+      border: 0;
+      overflow: hidden;
+      padding: 0;
+      background-color: transparent;
       position: absolute;
-      top: 0;
-      right: 0;
-      color: variables.$c-primary--900;
+      div.Dialog__component {
+        display: flex;
+        flex-direction: column;
+        width: calc(100vw - 1.75rem);
+        max-width: variables.$min-sm;
+        max-height: 80vh;
+        min-width: variables.$min-xs;
+        .content-container {
+          background-color: theme.color('dialog-background');
+          padding: 1.25rem 1.5rem;
+          margin-top: -0.063rem;
+          &:first-child {
+            border-top-right-radius: sizes.$border-radius;
+            border-top-left-radius: sizes.$border-radius;
+            margin-bottom: -0.063rem;
+            margin-top: 0;
+          }
+          &:last-child {
+            border-bottom-right-radius: sizes.$border-radius;
+            border-bottom-left-radius: sizes.$border-radius;
+          }
+        }
+        div.Dialog__header {
+          position: relative;
+          h2 {
+            margin: 0;
+            color: theme.color('dialog-header');
+          }
+          button.close-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: theme.color('dialog-close-icon');
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0;
+            font-size: 1.25rem;
+          }
+        }
+        div.Dialog__content {
+          flex-grow: 1;
+          overflow: auto;
+        }
+        div.Dialog__footer {
+          position: relative;
+        }
+      }
     }
-  }
-  div.Dialog__content {
-    flex-grow: 1;
-    overflow: auto;
-    padding: 1.25rem 1.5rem;
-  }
-  div.Dialog__footer {
-    padding: 0.75rem;
-    border-top: solid 1px variables.$c-secondary--400;
-    margin-top: 1.25rem;
   }
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import AsyncLayout from '../../components/AsyncLayout';
+import BottomLink from '../../components/BottomLink';
 import PageLayout from '../../components/PageLayout';
 import { SERVER__DELETE_SONG_REQUEST, SERVER__NEW_SONG_REQUEST } from '../../constants/server-socket-actions';
 import environment from '../../environment';
@@ -66,19 +67,27 @@ export default function SongRequestsPage() {
   }, [ mainSocket ]);
 
   return (
-    <PageLayout toolbarTitle="Pending songs" className="SongRequestsPage">
-      <div className="page-content">
-        <SongRequestQueue
-          className="pending-songs"
-          songRequests={songRequests}
-        />
-      </div>
-      <Link
-        className="btn btn-primary btn-round btn-make-song-request"
-        to="/make-a-song-request"
+    <PageLayout
+      toolbarTitle="Pending songs"
+      className="SongRequestsPage"
+      bottomBar={
+        <BottomLink to="/make-a-song-request">
+          Request a song
+        </BottomLink>
+      }
+    >
+      <AsyncLayout
+        inProgress={songRequests.inProgress}
+        error={songRequests.error}
+        errorMessage="Unable to retrieve pending songs"
       >
-        Request a song
-      </Link>
+        <div className="page-content SongRequestsPage__content">
+          <SongRequestQueue
+            className="pending-songs"
+            songRequests={songRequests.data}
+          />
+        </div>
+      </AsyncLayout>
     </PageLayout>
   );
 }

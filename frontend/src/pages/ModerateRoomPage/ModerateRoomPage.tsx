@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { getMyRoomById } from '../../api/me';
+import AsyncLayout from '../../components/AsyncLayout';
 import PageLayout from '../../components/PageLayout';
 import { defaultRoomDetails } from '../../constants/default-states';
 import { SERVER__DELETE_SONG_REQUEST, SERVER__NEW_SONG_REQUEST } from '../../constants/server-socket-actions';
@@ -131,14 +132,21 @@ export default function ModerateRoomPage() {
       error={room.error}
       errorMessage="Room cannot be loaded :("
     >
-      <div className="page-content moderate-room">
-        <SongRequestQueue
-          className="moderate-room__songs"
-          songRequests={songRequests}
-          canDelete
-          onDeleteSong={deleteSongHandler}
-        />
-      </div>
+      <AsyncLayout
+        inProgress={songRequests.inProgress}
+        error={songRequests.error}
+        errorMessage="Unable to retrieve pending songs"
+      >
+        <div className="page-content ModerateRoomPage__content">
+          <SongRequestQueue
+            className="room-requests"
+            songRequests={songRequests.data}
+            canDelete
+            onDeleteSong={deleteSongHandler}
+          />
+        </div>
+      </AsyncLayout>
+      
     </PageLayout>
   );
 }

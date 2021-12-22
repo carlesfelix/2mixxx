@@ -50,6 +50,27 @@
   &.btn-round {
     border-radius: 1rem;
   }
+  &.btn-icon {
+    padding: 0.125rem;
+    background-color: transparent;
+    border-radius: 50%;
+    width: 1.75em;
+    height: 1.75em;
+    font-size: inherit;
+    > * {
+      vertical-align: middle;
+    }
+    &:focus-within {
+      outline: none;
+    }
+    &.btn-icon-danger {
+      color: theme.color('background-button-danger');
+      &:hover, &:focus-within {
+        box-shadow: 0 0.3125rem 0.9375rem -0.625rem theme.color('background-button-danger');
+        background-color: transparentize($color: theme.color('background-button-danger'), $amount: 0.85);
+      }
+    }
+  }
   &.btn-fab {
     font-size: 1.5rem;
     border-radius: 50%;

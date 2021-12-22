@@ -1,21 +1,13 @@
 @use '../../styles/utils/variables';
 @use '../../styles/utils/mixings';
 
-div.LibrariesDashboardPage {
-  div.libraries-grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    @include mixings.min-sm {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-    gap: 1rem;
-    justify-content: center;
-  }
-  div.libraries-actions {
-    text-align: center;
-    margin: 2rem 0;
-    button {
-      min-width: 14rem;
+.LibrariesDashboardPage {
+  div.LibrariesDashboardPage__content {
+    div.libraries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+      gap: 1rem;
+      justify-content: center;
     }
   }
 }

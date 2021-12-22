@@ -17,8 +17,9 @@ div.Label {
   }
   span.Label__content {
     flex-grow: 1;
+    width: 0;
     background-color: theme.color('label-content-primary-background');
-    color: theme.color('label-content-primary-text');
+    color: theme.color('label-content-primary-title');
     border-top-right-radius: sizes.$border-radius;
     border-bottom-right-radius: sizes.$border-radius;
     padding-left: 0.75rem;

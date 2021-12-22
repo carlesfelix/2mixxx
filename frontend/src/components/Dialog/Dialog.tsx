@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import React, { ReactNode } from 'react';
 import Modal from 'react-modal';
-import { customStyles } from './constants';
 import './Dialog.scss';
 
 Modal.setAppElement('#root');
@@ -15,6 +14,7 @@ type Props = {
   children: ReactNode;
   title?: string;
   footer?: ReactNode;
+  maxWidth?: string;
   className?: string;
   closeOptions?: CloseOption[];
   preventClose?: boolean;
@@ -22,12 +22,10 @@ type Props = {
 
 export default function Dialog(props: Props) {
   const {
-    isOpen = false, children, title, footer, className = '',
-    closeOptions = [], onClose, preventClose = false
+    isOpen = false, children, title, footer, maxWidth,
+    closeOptions = [], onClose, preventClose = false,
+    className = ''
   } = props;
-  const dialogClassName = classNames('card card-primary Dialog', {
-    [className]: !!className
-  });
   function requestCloseHandler(event: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>): void {
     if (onClose && !preventClose && (
       (closeOptions.includes('clickOutside') && event.type === 'click') || (
@@ -41,15 +39,21 @@ export default function Dialog(props: Props) {
   function closeHandler(): void {
     onClose && onClose();
   }
+  const dialogComponentClassName = classNames(
+    'Dialog__component',
+    { [className]: !!className }
+  );
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={requestCloseHandler}
-      style={customStyles}
+      portalClassName="Dialog"
+      overlayClassName="dialog-mask"
+      className="dialog-content"
       contentLabel="Example Modal"
     >
-      <div className={dialogClassName}>
-        <div className="Dialog__header">
+      <div className={dialogComponentClassName} style={{ maxWidth }}>
+        <div className="Dialog__header content-container">
           {
             title && (
               <h2>{title}</h2>
@@ -63,12 +67,12 @@ export default function Dialog(props: Props) {
             )
           }
         </div>        
-        <div className="Dialog__content">
+        <div className="Dialog__content content-container">
           {children}
         </div>
         {
           footer && (
-            <div className="Dialog__footer">
+            <div className="Dialog__footer content-container">
               {footer}
             </div>
           )

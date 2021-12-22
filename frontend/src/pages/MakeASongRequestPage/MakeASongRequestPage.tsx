@@ -5,7 +5,6 @@ import AsyncLayout from '../../components/AsyncLayout';
 import InputText from '../../components/forms/inputs/InputText';
 import RadioButtonCards from '../../components/forms/inputs/RadioButtonCards';
 import PageLayout from '../../components/PageLayout';
-import SongItem from '../../components/SongItem';
 import environment from '../../environment';
 import useSocketConnectionManager from '../../hooks/useSocketConnectionManager';
 import { emitNewSongRequest } from '../../socket/emitters';
@@ -119,7 +118,8 @@ export default function MakeASongRequestPage() {
               extraProps={{
                 items: songs.data.map(song => ({
                   label: (
-                    <SongItem song={song} />
+                    // <SongItem song={song} />
+                    <span>{song.title}</span>
                   ),
                   value: song.id
                 }))

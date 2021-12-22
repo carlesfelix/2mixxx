@@ -1,0 +1,12 @@
+@use '../../styles/utils/mixings';
+
+div.BottomLink {
+  text-align: end;
+  a.BottomLink__link {
+    width: 100%;
+    text-align: center;
+    @include mixings.min-sm {
+      width: auto;
+    }
+  }
+}

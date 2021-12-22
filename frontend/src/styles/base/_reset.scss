@@ -9,7 +9,7 @@ html {
     height: 100%;
     background-color: theme.color('background-root');
     color: theme.color('text-primary');
-    div {
+    div, a {
       box-sizing: border-box;
     }
     div#root {
