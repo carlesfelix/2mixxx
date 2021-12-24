@@ -6,6 +6,8 @@ import CreateUserForm from '../../../../types/UserForm';
 import DialogState from '../../../../types/DialogState';
 import { getUserFormValidation } from '../../helpers';
 import './CreateUserFormDialog.scss';
+import { roleOptions } from '../../../../constants/dropdown-options';
+import RegisteredUserRoleEnum from '../../../../enums/RegisteredUserRoleEnum';
 
 type Props = {
   state: DialogState<CreateUserForm>;
@@ -14,7 +16,7 @@ type Props = {
 };
 
 const defaultValues: CreateUserForm = {
-  role: 2
+  role: RegisteredUserRoleEnum.Dj
 };
 
 export default function CreateUserFormDialog(props: Props) {
@@ -43,6 +45,7 @@ export default function CreateUserFormDialog(props: Props) {
       closeOptions={['closeBtn']}
       onClose={onClose}
       preventClose={inProgress}
+      maxWidth="35rem"
       footer={
         <div className="user-form-actions">
           <button
@@ -77,7 +80,10 @@ export default function CreateUserFormDialog(props: Props) {
           rules={userFormValidation.repeatPassword}
         />
         <ControlledInput
-          field={{ type: 'dropdown', props: { options: [ { label: 'Admin', value: 1 }, {label: 'DJ', value: 2 } ] } }}
+          field={{
+            type: 'dropdown',
+            props: { options: roleOptions }
+          }}
           control={control}
           defaultValue={defaultValues.role}
           label="Role"

@@ -6,7 +6,7 @@
   width: 100%;
   max-width: variables.$min-md;
   margin: 0 auto;
-  height: 100%;
+  min-height: 100%;
   @include mixings.min-md {
     padding: 1.25rem;
   }

@@ -1,11 +1,11 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { createRoom, deleteRoom, getAllRooms } from '../../api/rooms';
+import AsyncLayout from '../../components/AsyncLayout';
+import BottomActionButton from '../../components/BottomActionButton';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import PageLayout from '../../components/PageLayout';
-import RoomsList from '../../components/RoomsList';
+import RoomItem from '../../components/RoomItem';
 import AsyncState from '../../types/AsyncState';
 import DialogState from '../../types/DialogState';
 import Room from '../../types/Room';
@@ -81,19 +81,33 @@ export default function RoomsDashboardPage() {
       toolbarTitle="Rooms"
       toolbarLinkBack="/dashboard"
       className="RoomsDashboardPage"
+      bottomBar={
+        <BottomActionButton
+          className="btn btn-primary"
+          onClick={createNewRoomHandler}
+        >
+          Create a new room
+        </BottomActionButton>
+      }
     >
-      <div className="page-content">
-        <RoomsList
-          rooms={rooms}
-          menu={menu}
-        />
-        <div className="actions-container">
-          <button className="btn btn-primary"
-            onClick={createNewRoomHandler}>
-            <FontAwesomeIcon icon={faPlus} />
-            <span>Create new room</span>
-          </button>
-        </div>
+      <div className="page-content rooms-container layout layout-center-v">
+        <AsyncLayout
+          inProgress={rooms.inProgress}
+          error={rooms.error}
+        >
+          <div className="rooms-grid">
+            {
+              rooms.data.map(room => (
+                <RoomItem
+                  key={room.id}
+                  className="room-item"
+                  room={room}
+                  menu={menu}
+                />
+              ))
+            }
+          </div>
+        </AsyncLayout>
       </div>
       <ConfirmDialog
         message="The room will be deleted"

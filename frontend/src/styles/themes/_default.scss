@@ -1,0 +1,209 @@
+// BASE COLORS
+// https://www.happyhues.co/palettes/3
+$c-base__white: #fffffe;
+$c-base__purple: #094067;
+// $c-base__purple-dark: #1f1235;
+$c-base__grey--dark: #5f6c7b;
+$c-base__blue: #3da9fc;
+$c-base__blue--light: #90b4ce;
+$c-base__blue--superlight: #d8eefe;
+$c-base__red: #ef4565;
+$c-base__transparent: transparent;
+
+// THEME
+$colors: (
+  // Global background
+  'background-root': $c-base__blue--superlight,
+
+  // Text on global background
+  'text-primary': $c-base__grey--dark,
+
+  // Home page background
+  'login-form-background': $c-base__white,
+
+  // Global background
+  'login-form-left-bar': $c-base__blue--superlight,
+
+  // Horizontal line
+  'hr-primary': transparentize($color: $c-base__grey--dark, $amount: 0.85),
+
+  // Page layout
+  // Main toolbar background
+  'page-layout-toolbar-background': $c-base__purple,
+
+  // Main toolbar text color
+  'page-layout-toolbar-text': $c-base__white,
+
+  // Optional top bar placed in the page layout component (background)
+  'page-layout-top-bar-background': $c-base__white,
+
+  // Optional top bar placed in the page layout component (border)
+  'page-layout-top-bar-border': transparentize($color: $c-base__grey--dark, $amount: 0.85),
+
+  // Optional bottom bar placed in the page layout component (background)
+  'page-layout-bottom-bar-background': $c-base__white,
+
+  // Optional bottom bar placed in the page layout component (border)
+  'page-layout-bottom-bar-border': transparentize($color: $c-base__grey--dark, $amount: 0.85),
+
+  // Global title
+  'header-primary': $c-base__purple,
+
+  // BUTTON
+  // Primary button background
+  'background-button-primary': $c-base__blue,
+
+  // Primary button text
+  'text-button-primary': $c-base__white,
+
+  // Secondary button background
+  'background-button-secondary': $c-base__grey--dark,
+
+  // Secondary button text
+  'text-button-secondary': $c-base__white,
+
+  // Danger button background
+  'background-button-danger': $c-base__red,
+
+  // Danger button text
+  'text-button-danger': $c-base__white,
+
+  // INPUT
+  // Input shadow
+  'input-shadow': $c-base__blue--superlight,
+
+  // Input border
+  'input-border': transparentize($color: $c-base__grey--dark, $amount: 0.75),
+
+  // Input text
+  'input-text': $c-base__purple,
+
+  // Input border invalid
+  'input-border--invalid': $c-base__red,
+
+  // Input background
+  'input-background': transparentize($color: $c-base__blue--superlight, $amount: 0.70),
+
+  // Input background focus
+  'input-background--focus': transparentize($color: $c-base__blue--superlight, $amount: 0.85),
+
+  // RADIO BUTTON
+  // Radio button border
+  'radio-button-border': transparentize($color: $c-base__grey--dark, $amount: 0.7),
+
+  // Radio button background
+  'radio-button-background': $c-base__transparent,
+
+  // Radio button background checked
+  'radio-button-background--checked': $c-base__blue,
+
+  // Radio button border checked
+  'radio-button-border--checked': $c-base__blue,
+
+  // FORM FIELD
+  // Form field label
+  'form-field-label': $c-base__purple,
+
+  // Form field error
+  'form-field-error': $c-base__red,
+
+  // CARD
+  // Card primary background
+  'card-primary-background': $c-base__white,
+
+  // Card primary title
+  'card-primary-title': $c-base__purple,
+
+  // Card primary paragraph
+  'card-primary-paragraph': $c-base__grey--dark,
+
+  // Card primary icon
+  'card-primary-icon': $c-base__purple,
+
+  // Label
+  // Label header primary background
+  'label-header-primary-background': $c-base__blue,
+
+  // Label header primary text
+  'label-header-primary-text': $c-base__white,
+
+  // Label content primary background
+  'label-content-primary-background': $c-base__white,
+
+  // Label content primary title
+  'label-content-primary-title': $c-base__purple,
+
+  // Label content primary text
+  'label-content-primary-text': $c-base__grey--dark,
+
+  // Section
+  // Section header primary background
+  'section-header-primary-background': $c-base__blue,
+
+  // Section header primary text
+  'section-header-primary-text': $c-base__white,
+
+  // Section content primary background
+  'section-content-primary-background': $c-base__white,
+
+  // Section content primary text
+  'section-content-primary-text': $c-base__grey--dark,
+
+  // Overaly menu
+  // Overlay menu background
+  'overlay-menu-background': $c-base__white,
+
+  // Overlay menu item text
+  'overlay-menu-item-text': $c-base__purple,
+
+  // Overlay menu item text hover
+  'overlay-menu-item-text--hover': transparentize($color: $c-base__blue--superlight, $amount: 0.65),
+
+  // Overlay menu shadow
+  'overlay-menu-shadow': $c-base__purple,
+
+  // Overlay menu item border
+  'overlay-menu-item-border': transparentize($color: $c-base__blue--superlight, $amount: 0.65),
+
+  // Overlay menu border
+  'overlay-menu-border': transparentize($color: $c-base__blue--superlight, $amount: 0.65),
+
+  // Checkbox
+  // Checkbox border
+  'checkbox-border': transparentize($color: $c-base__grey--dark, $amount: 0.7),
+
+  // Checkbox background
+  'checkbox-background': $c-base__transparent,
+
+  // Checkbox background checked
+  'checkbox-background--checked': $c-base__blue,
+
+  // Checkbox icon
+  'checkbox-icon--checked': $c-base__white,
+
+  // DIALOG
+  // Dialog background
+  'dialog-background': $c-base__white,
+
+  // Dialog header
+  'dialog-header': $c-base__purple,
+
+  // Dialog close icon
+  'dialog-close-icon': $c-base__purple,
+
+  // Dialog mask
+  'dialog-mask': transparentize($color: $c-base__purple, $amount: 0.6),
+
+  // BADGE
+  // badge primary background
+  'badge-primary-background': $c-base__blue,
+
+  // badge primary text
+  'badge-primary-text': $c-base__white,
+
+  // badge secondary background
+  'badge-secondary-background': $c-base__grey--dark,
+
+  // badge secondary text
+  'badge-secondary-text': $c-base__white,
+);

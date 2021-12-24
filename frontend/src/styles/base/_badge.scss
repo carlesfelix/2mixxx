@@ -1,0 +1,19 @@
+@use '../themes/theme';
+
+.badge {
+  font-size: 0.85rem;
+  display: inline-block;
+  min-width: 4ch;
+  text-align: center;
+  border-radius: 1rem;
+  font-weight: normal;
+  padding: 0.25rem 0.5rem;
+  &.badge-primary {
+    background-color: theme.color('badge-primary-background');
+    color: theme.color('badge-primary-text');
+  }
+  &.badge-secondary {
+    background-color: theme.color('badge-secondary-background');
+    color: theme.color('badge-secondary-text');
+  }
+}

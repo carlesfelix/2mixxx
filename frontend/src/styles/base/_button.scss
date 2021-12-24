@@ -1,4 +1,4 @@
-@use '../utils/variables';
+@use '../themes/theme';
 
 .btn {
   border: none;
@@ -20,19 +20,66 @@
       margin-left: 0;
     }
   }
+  &.btn-lg {
+    padding: 1rem;
+  }
   &.btn-primary {
-    background-color: variables.$c-primary--500;
-    color: variables.$c-primary--50;
-    box-shadow: 1px 1px 0.5rem 0 transparentize($color: variables.$c-primary--500, $amount: 0.75);
+    background-color: theme.color('background-button-primary');
+    color: theme.color('text-button-primary');
     font-weight: bold;
+    &:hover {
+      box-shadow: 0 0.3125rem 0.9375rem -0.625rem theme.color('background-button-primary');
+    }
+  }
+  &.btn-secondary {
+    background-color: theme.color('background-button-secondary');
+    color: theme.color('text-button-secondary');
+    font-weight: bold;
+    &:hover {
+      box-shadow: 0 0.3125rem 0.9375rem -0.625rem theme.color('background-button-secondary');
+    }
   }
   &.btn-danger {
-    background-color: variables.$c-danger--500;
-    color: variables.$c-primary--50;
-    box-shadow: 1px 1px 0.5rem 0 transparentize($color: variables.$c-danger--500, $amount: 0.75);
+    background-color: theme.color('background-button-danger');
+    color: theme.color('text-button-danger');
     font-weight: bold;
+    &:hover {
+      box-shadow: 0 0.3125rem 0.9375rem -0.625rem theme.color('background-button-danger');
+    }
   }
   &.btn-round {
     border-radius: 1rem;
+  }
+  &.btn-icon {
+    padding: 0.125rem;
+    background-color: transparent;
+    border-radius: 50%;
+    width: 1.75em;
+    height: 1.75em;
+    font-size: inherit;
+    > * {
+      vertical-align: middle;
+    }
+    &:focus-within {
+      outline: none;
+    }
+    &.btn-icon-danger {
+      color: theme.color('background-button-danger');
+      &:hover, &:focus-within {
+        box-shadow: 0 0.3125rem 0.9375rem -0.625rem theme.color('background-button-danger');
+        background-color: transparentize($color: theme.color('background-button-danger'), $amount: 0.85);
+      }
+    }
+  }
+  &.btn-fab {
+    font-size: 1.5rem;
+    border-radius: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

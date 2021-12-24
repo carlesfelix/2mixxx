@@ -1,11 +1,8 @@
 .SongRequestsPage {
-  position: relative;
-  .pending-songs {
-    height: 100%;
-  }
-  a.btn-make-song-request {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
+  div.SongRequestsPage__content {
+    display: flex;
+    .pending-songs {
+      flex-grow: 1;
+    }
   }
 }

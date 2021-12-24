@@ -1,22 +1,26 @@
-@use '../utils/variables';
+@use '../themes/theme';
 
 .input {
-  padding: 0.5rem;
-  border-radius: 3px;
-  border: 1px solid variables.$c-secondary--500;
+  height: 2.75rem;
+  padding: 0 0.75rem;
+  background-color: theme.color('input-background');
+  color: theme.color('input-text');
+  box-shadow: 0px 0px 0.75rem 0 theme.color('input-shadow');
+  font-size: 1rem;
+  border-radius: 0.3125rem;
+  border: 0.0625rem solid theme.color('input-border');
   width: 100%;
   box-sizing: border-box;
-  background-color: rgba($color: variables.$c-secondary--100, $alpha: 0.15);
+  transition-property: background-color;
+  transition-duration: 125ms;
   &:focus-within {
-    border: 1px variables.$c-primary--500 solid;
     outline: none;
-    background-color: rgba($color: variables.$c-secondary--100, $alpha: 0.1);
+    background-color: theme.color('input-background--focus');
   }
 }
 
 .field-invalid {
   .input {
-    border-color: variables.$c-danger--500;
-    outline-color: variables.$c-danger--500;
+    border-color: theme.color('input-border--invalid');
   }
 }

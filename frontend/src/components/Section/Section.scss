@@ -1,0 +1,25 @@
+@use '../../styles/themes/theme';
+@use '../../styles/utils/variables/sizes';;
+
+div.Section {
+  display: flex;
+  flex-direction: column;
+  div.Section__header, div.Section__content {
+    padding: 1rem;
+  }
+  div.Section__header {
+    background-color: theme.color('section-header-primary-background');
+    color: theme.color('section-header-primary-text');
+    border-top-left-radius: sizes.$border-radius;
+    border-top-right-radius: sizes.$border-radius;
+  }
+  div.Section__content {
+    background-color: theme.color('section-content-primary-background');
+    color: theme.color('section-content-primary-text');
+    overflow: auto;
+    flex-grow: 1;
+    height: 0;
+    border-bottom-left-radius: sizes.$border-radius;
+    border-bottom-right-radius: sizes.$border-radius;
+  }
+}

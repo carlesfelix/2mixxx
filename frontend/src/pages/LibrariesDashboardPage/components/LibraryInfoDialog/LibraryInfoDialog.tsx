@@ -34,6 +34,7 @@ export default function LibraryInfoDialog(props: Props) {
       isOpen={isOpen} title={data ? 'Edit library' : 'Create new library'}
       className="LibraryInfoDialog" closeOptions={['closeBtn']} onClose={onClose}
       preventClose={inProgress}
+      maxWidth="20rem"
       footer={
         actions.length ? (
           <div className="library-info-actions">

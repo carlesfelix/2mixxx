@@ -1,4 +1,4 @@
-@use '../../../../styles/utils/variables';
+@use '../../../../styles/themes/theme';
 
 label.RadioButton {
   display: inline-flex;
@@ -6,8 +6,10 @@ label.RadioButton {
   cursor: pointer;
   user-select: none;
   box-sizing: border-box;
+  width: 100%;
   span.radio-button-label {
     flex-grow: 1;
+    width: 0;
   }
   &:not(.RadioButton--reverse) {
     .radio-button-element {
@@ -30,18 +32,19 @@ label.RadioButton {
   span.radio-button-input {
     border-radius: 50%;
     display: inline-flex;
-    border: 0.125rem solid variables.$c-secondary--700;
+    border: 0.125rem solid theme.color('radio-button-border');
+    background-color: theme.color('radio-button-background');
     span.radio-button-input__checked {
       visibility: hidden;
       border-radius: 50%;
-      background-color: variables.$c-primary--600;
+      background-color: theme.color('radio-button-background--checked');
       margin: 0.1875rem;
       width: 0.6rem;
       height: 0.6rem;
     }
   }
   input.radio-button-input-native[type=radio]:checked + span.radio-button-input {
-    border-color: variables.$c-primary--600;
+    border-color: theme.color('radio-button-border--checked');
     span.radio-button-input__checked {
       visibility: visible;
     }

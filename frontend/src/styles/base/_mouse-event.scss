@@ -1,0 +1,12 @@
+.mouse-event {
+  &.mouse-event-hover {
+    &.mouse-event-clickable {
+      transition-duration: 150ms;
+      transition-property: transform;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.025);
+      }
+    }
+  }
+}

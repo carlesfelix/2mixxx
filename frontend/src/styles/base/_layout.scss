@@ -1,0 +1,10 @@
+.layout {
+  &.layout-center-v {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    min-height: 100%;
+    flex-grow: 1;
+  }
+}

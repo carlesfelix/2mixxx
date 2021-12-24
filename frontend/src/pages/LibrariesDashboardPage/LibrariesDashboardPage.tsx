@@ -1,7 +1,6 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect } from 'react';
 import AsyncLayout from '../../components/AsyncLayout';
+import BottomActionButton from '../../components/BottomActionButton';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import PageLayout from '../../components/PageLayout';
 import {
@@ -56,9 +55,25 @@ export default function LibrariesDashboardPage() {
     importSongsToLibraryAction({ dispatch: librariesDispatch, libraryId: library.id!, file });
   }
   return (
-    <PageLayout toolbarTitle="Libraries" toolbarLinkBack="/dashboard">
-      <div className="LibrariesDashboardPage page-content">
-        <AsyncLayout error={libraries.libraries.error} inProgress={libraries.libraries.inProgress} errorMessage="Error">
+    <PageLayout
+      toolbarTitle="Libraries"
+      toolbarLinkBack="/dashboard"
+      className="LibrariesDashboardPage"
+      bottomBar={
+        <BottomActionButton
+          className="btn btn-primary"
+          onClick={openLibraryInfoDialogHandler}
+        >
+          Add new library
+        </BottomActionButton>
+      }
+    >
+      <div className="LibrariesDashboardPage__content page-content layout layout-center-v">
+        <AsyncLayout
+          error={libraries.libraries.error}
+          inProgress={libraries.libraries.inProgress}
+          errorMessage="Error"
+        >
           <div className="libraries-grid">
             {
               libraries.libraries.data.map((library) => (
@@ -73,12 +88,6 @@ export default function LibrariesDashboardPage() {
                 />
               ))
             }
-          </div>
-          <div className="libraries-actions">
-            <button className="btn btn-primary" onClick={openLibraryInfoDialogHandler}>
-              <FontAwesomeIcon icon={faPlus} />
-              <span>Add new library</span>
-            </button>
           </div>
         </AsyncLayout>
         <LibraryInfoDialog

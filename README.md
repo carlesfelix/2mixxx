@@ -1,7 +1,7 @@
 # 2mixxx
 2mixxx is a web application for requesting songs that DJs have in their [iTunes](https://www.apple.com/es/itunes/download/index.html) libraries.
 
-<div>
+<!-- <div>
   <img src="https://user-images.githubusercontent.com/10828536/144634277-737c8d0b-48ea-4fea-88c5-c84de3bd2401.png" width="200" />
   <img src="https://user-images.githubusercontent.com/10828536/144638274-04638158-66b1-49c9-b89f-735923b7546e.png" width="200" />
   <img src="https://user-images.githubusercontent.com/10828536/144635577-5598beac-88e1-43de-b746-63e4494ebd2a.png" width="200" />
@@ -14,7 +14,7 @@
   <img src="https://user-images.githubusercontent.com/10828536/144637509-3dec9035-6bae-4380-bf01-f057a41c8afa.png" width="200" />
   <img src="https://user-images.githubusercontent.com/10828536/144637793-81883253-9417-4e89-8735-3aa9f1982771.png" width="200" />
   <img src="https://user-images.githubusercontent.com/10828536/144638014-2df36bc0-3a6d-4e4a-a242-c817890d603a.png" width="200" />
-</div>
+</div> -->
 
 ## Installation and build guide
 To install 2mixxx, you should have a basic understanding of docker.

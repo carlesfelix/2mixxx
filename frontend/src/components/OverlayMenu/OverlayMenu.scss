@@ -1,27 +1,37 @@
-@use '../../styles/utils/variables';
+@use '../../styles/themes/theme';
 
 div.OverlayMenu {
   button.default-btn-menu {
     padding: 0.25rem;
+    color: inherit;
   }
 }
 
 div.OverlayMenu__content {
   div.overlay-menu-content {
     padding: 0.25rem 0;
-    ul {
+    ul.overlay-container {
       list-style: none;
       margin: 0;
       padding: 0;
       overflow: hidden;
+      background-color: theme.color('overlay-menu-background');
+      box-shadow: 0.0625rem 0.1875rem 0.9375rem -0.5125rem theme.color('overlay-menu-shadow');
+      border: solid 0.0625rem theme.color('overlay-menu-border');
+      border-radius: 0.1875rem;
       li {
+        &:not(:first-child) {
+          border-top: solid 0.0625rem theme.color('overlay-menu-item-border');
+        }
         button {
           border-radius: 0;
-          padding-left: 0.75rem;
-          padding-right: 0.75rem;
           width: 100%;
+          color: theme.color('overlay-menu-item-text');
+          text-align: left;
+          padding: 0.5rem 0.75rem;
+          font-size: 0.875rem;
           &:hover {
-            background-color: transparentize($color: variables.$c-secondary--300, $amount: 0.7);
+            background-color: theme.color('overlay-menu-item-text--hover');
           }
         }
         &:first-child {

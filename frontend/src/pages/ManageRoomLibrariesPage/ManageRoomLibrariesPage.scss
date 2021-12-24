@@ -1,24 +1,23 @@
-@use '../../styles/utils/variables';
-
-div.ManageRoomLibrariesPage {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  div.manage-room-header {
-    padding: 1.5rem 1rem;
-    span.room-icon {
-      font-size: 1.5rem;
+.ManageRoomLibrariesPage {
+  div.manage-room-libraries-container {
+    .room-header {
+      font-size: 1.35rem;
     }
-    span.room-title {
-      font-size: 1.5rem;
-      margin-left: 1.5rem;
-      font-weight: bold;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    div.manage-room-content {
+      flex-grow: 1;
+      margin-top: 1rem;
+      div.manage-room-content__title {
+        h3 {
+          margin: 0;
+        }
+      }
+      .checkbox-list {
+        margin-top: -0.75rem;
+        height: 100%;
+      }
     }
-  }
-  .manage-room-content {
-    overflow: auto;
-    flex-grow: 1;
-    margin-top: 1rem;
-    padding: 1rem;
   }
 }

@@ -1,29 +1,12 @@
 @use '../../../../styles/utils/mixings';
-@use '../../../../styles/utils/variables';
+@use '../../../../styles/themes/theme';
 
 div.SongRequestQueue {
-  div.queue-item {
-    margin-top: 0.5rem;
-    display: flex;
-    align-items: center;
-    @include mixings.min-sm {
+  .queue-item__request {
+    &:not(:first-child) {
       margin-top: 0.75rem;
-    }
-    @include mixings.min-md {
-      margin-top: 1rem;
-    }
-    &:first-child {
-      margin-top: 0;
-    }
-    .queue-item__song {
-      flex-grow: 1;
-      padding: 0.25rem 0.5rem;
-    }
-    div.queue-item__actions {
-      padding: 0.5rem;
-      .btn-delete-song {
-        color: variables.$c-danger--500;
-        font-size: 1.25rem;
+      @include mixings.min-md {
+        margin-top: 1.25rem;
       }
     }
   }
@@ -32,5 +15,8 @@ div.SongRequestQueue {
     display: flex;
     align-items: center;
     justify-content: center;
+    p {
+      color: theme.color('header-primary');
+    }
   }
 }

@@ -1,8 +1,7 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { createUser, deleteUser, getAllUsers, updateUserRole } from '../../api/registered-users';
 import AsyncLayout from '../../components/AsyncLayout';
+import BottomActionButton from '../../components/BottomActionButton';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import PageLayout from '../../components/PageLayout';
 import AsyncState from '../../types/AsyncState';
@@ -44,7 +43,7 @@ export default function UsersDashboardPage() {
     setNewUserFormDialog({ isOpen: true, inProgress: true });
     createUser(user).then(createdUser => {
       setNewUserFormDialog({ isOpen: false, inProgress: false });
-      setUsers(old => ({ ...old, data: [ ...old.data, createdUser ] }));
+      setUsers(old => ({ ...old, data: [ createdUser, ...old.data ] }));
     }).catch(() => {
       setNewUserFormDialog({ isOpen: true, inProgress: false });
     });
@@ -97,8 +96,20 @@ export default function UsersDashboardPage() {
     }
   }
   return (
-    <PageLayout toolbarTitle="Users" toolbarLinkBack="/dashboard">
-      <div className="UsersDashboardPage page-content">
+    <PageLayout
+      toolbarTitle="Users"
+      toolbarLinkBack="/dashboard"
+      className="UsersDashboardPage"
+      bottomBar={
+        <BottomActionButton
+          className="btn btn-primary"
+          onClick={openNewUserFormDialogHandler}
+        >
+          Create a new user
+        </BottomActionButton>
+      }
+    >
+      <div className="page-content UsersDashboardPage__content layout layout-center-v">
         <AsyncLayout inProgress={users.inProgress}>
           <div className="user-list-container">
             {
@@ -110,12 +121,6 @@ export default function UsersDashboardPage() {
                 />
               ))
             }
-          </div>
-          <div className="actions-container">
-            <button className="btn btn-primary" onClick={openNewUserFormDialogHandler}>
-              <FontAwesomeIcon icon={faPlus} />
-              <span>Add new user</span>
-            </button>
           </div>
         </AsyncLayout>
         <CreateUserFormDialog

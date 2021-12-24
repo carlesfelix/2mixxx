@@ -1,11 +1,11 @@
-@use '../../../../styles/utils/variables';
+@use '../../../../styles/themes/theme';
 
 div.MultiselectBox {
   .checkbox-option {
     padding: 1rem;
     width: 100%;
     &:not(:first-child) {
-      border-top: solid 1px variables.$c-secondary--200;
+      border-top: solid 1px theme.color('hr-primary');
     }
   }
 }

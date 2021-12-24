@@ -1,0 +1,8 @@
+@use '../themes/theme';
+
+.header {
+  font-weight: bold;
+  &.header-primary {
+    color: theme.color('header-primary');
+  }
+}

@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { MouseEventHandler, ReactNode, useEffect, useState } from 'react';
 import OptionItem from '../../types/OptionItem';
 import Popover from '../Popover';
@@ -15,8 +16,8 @@ type Props<Data = any> = {
 export default function OverlayMenu<Data = any>(props: Props<Data>) {
   const {
     items, align = 'end', children,
-    buttonClassName = 'btn default-btn-menu',
-    minWidth, data
+    buttonClassName = '',
+    minWidth = '10ch', data
   } = props;
   const [ open, setOpen ] = useState<boolean>(false);
   useEffect(() => {
@@ -36,9 +37,14 @@ export default function OverlayMenu<Data = any>(props: Props<Data>) {
       selectedItem.onSelected && selectedItem.onSelected(data);
     };
   }
+
+  const btnClassName = classNames(
+    'btn', 'default-btn-menu',
+    { [buttonClassName]: !!buttonClassName }
+  )
   const content = (
     <div className="overlay-menu-content">
-      <ul className="card card-secondary" style={{ minWidth }}>
+      <ul className="overlay-container" style={{ minWidth }}>
         {
           items.map((item, iItem) => (
             <li key={iItem}>
@@ -59,7 +65,7 @@ export default function OverlayMenu<Data = any>(props: Props<Data>) {
         content={content} positions={['bottom', 'top']}
         align={align} containerClassName="OverlayMenu__content"
       >
-        <button onClick={clickHandler} className={buttonClassName}>
+        <button onClick={clickHandler} className={btnClassName}>
           {children}
         </button>
       </Popover>

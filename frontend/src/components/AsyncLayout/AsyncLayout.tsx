@@ -14,14 +14,14 @@ export default function AsyncLayout(props: Props) {
   const { error = '', inProgress, children, errorMessage } = props;
   if (error) {
     return (
-      <div className="AsyncLayout">
+      <div className="AsyncLayout layout layout-center-v">
         <span>{errorMessage}</span>
       </div>
     );
   }
   if (inProgress) {
     return (
-      <div className="AsyncLayout">
+      <div className="AsyncLayout layout layout-center-v">
         <FontAwesomeIcon icon={faCircleNotch} spin />
       </div>
     );

@@ -1,4 +1,5 @@
 @use '../utils/variables';
+@use '../themes/theme';
 
 html {
   height: 100%;
@@ -6,12 +7,18 @@ html {
     margin: 0;
     min-width: variables.$min-xs;
     height: 100%;
-    background-color: variables.$c-secondary--100;
-    div {
+    background-color: theme.color('background-root');
+    color: theme.color('text-primary');
+    div, a {
       box-sizing: border-box;
     }
     div#root {
       height: 100%;
+    }
+    a {
+      text-decoration: none;
+      color: theme.color('text-primary');
+      cursor: default;
     }
   }
 }

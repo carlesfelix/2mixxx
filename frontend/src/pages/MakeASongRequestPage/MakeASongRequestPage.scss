@@ -1,38 +1,30 @@
+@use '../../styles/themes/theme';
 @use '../../styles/utils/variables';
-@use '../../styles/utils/mixings';
 
 div.MakeASongRequestPage {
   height: 100%;
   display: flex;
   flex-direction: column;
-  .sub-toolbar {
-    background-color: variables.$c-primary--50;
-    padding: 0.25rem 0;
-    @include mixings.min-sm {
-      padding: 0.5rem;
-    }
-  }
-  div.search-songs-form {
-    border-bottom: 1px solid variables.$c-secondary--300;
+  div.filter-container {
+    text-align: center;
     .search-input {
       width: 100%;
-      font-size: 1rem;
+      max-width: 21.875rem;
     }
   }
   div.song-request-content {
     flex-grow: 1;
-    overflow: auto;
-    div.empty-message-container {
-      height: 100%;
-    }
-    div.empty-message-container {
+    display: flex;
+    flex-direction: column;
+    div.empty-message-container, div.not-found-message-container {
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-grow: 1;
+      p {
+        text-align: center;
+        color: theme.color('header-primary');
+      }
     }
-  }
-  div.song-request-footer {
-    text-align: right;
-    border-top: 1px solid variables.$c-secondary--300;
   }
 }

@@ -1,4 +1,4 @@
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV, faMusic, faRecordVinyl } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChangeEventHandler, useRef } from 'react';
 import OverlayMenu from '../../../../components/OverlayMenu';
@@ -49,18 +49,22 @@ export default function LibraryItem(props: Props) {
   }
   function importSongsHandler(): void {
     if (fileRef.current) {
+      fileRef.current.value = '';
       fileRef.current.click();
     }
   }
   return (
     <div className="card card-primary LibraryItem">
       <div className="library-header">
-        <span className="title">
+        <span className="library-icon card-title">
+          <FontAwesomeIcon icon={faRecordVinyl} />
+        </span>
+        <span className="library-title card-title">
           <span>
             {title}
           </span>
         </span>
-        <span className="library-menu">
+        <span className="library-menu card-title">
           <OverlayMenu items={libraryMenu}>
             <span className="library-menu-btn">
               <FontAwesomeIcon icon={faEllipsisV} />
@@ -78,7 +82,20 @@ export default function LibraryItem(props: Props) {
         />
       </div>
       <div className="library-footer">
-        {library.songs ? library.songs : 'Empty'}
+        <span className="badge badge-secondary songs-badge">
+          {
+            library.songs ? (
+              <span>
+                <span>
+                  <FontAwesomeIcon icon={faMusic} />
+                </span>
+                <span>{library.songs}</span>
+              </span>
+            ) : (
+              <span>Empty</span>
+            )
+          }
+        </span>
       </div>
       <input type="file" accept=".xml" style={{ display: 'none' }} ref={fileRef} onChange={changeFileInputHandler()} />
     </div>

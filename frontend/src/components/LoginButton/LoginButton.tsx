@@ -8,7 +8,7 @@ function LoginButton() {
   }
 
   return (
-    <button className="btn btn-tertiary" onClick={clickHandler}>
+    <button className="btn btn-secondary btn-lg" onClick={clickHandler}>
       Enter as registered user
     </button>
   );

@@ -1,4 +1,4 @@
-@use '../../../../styles/utils/variables';
+@use '../../../../styles/themes/theme';
 
 label.Checkbox {
   display: inline-flex;
@@ -28,18 +28,21 @@ label.Checkbox {
     display: none;
   }
   span.checkbox-input {
-    border-radius: 0.2rem;
-    border: solid 2px variables.$c-primary--700;
+    border-radius: 0.313rem;
+    border: solid 2px theme.color('checkbox-border');
     display: inline-flex;
+    background-color: theme.color('checkbox-background');
+    padding: 0.125rem;
     svg.checkbox-input__checked {
       visibility: hidden;
-      color: variables.$c-primary--50;
-      width: 1rem;
-      height: 1rem;
+      color: theme.color('checkbox-icon--checked');
+      width: 0.875rem;
+      height: 0.875rem;
     }
   }
   input.checkbox-input-native[type=checkbox]:checked + span.checkbox-input {
-    background-color: variables.$c-primary--600;
+    background-color: theme.color('checkbox-background--checked');
+    border-color: theme.color('checkbox-background--checked');
     svg.checkbox-input__checked {
       visibility: visible;
     }

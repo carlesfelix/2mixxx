@@ -29,7 +29,7 @@ export default function ConfirmDialog(props: Props) {
     <Dialog
       closeOptions={['escape', 'clickOutside']} preventClose={inProgress}
       onClose={rejectedHandler} isOpen={isOpen} title="Are you sure?"
-      className={confirmDialogClassName}
+      maxWidth="20rem" className={confirmDialogClassName}
       footer={
         <div className="confirm-dialog-footer">
           <button

@@ -1,0 +1,23 @@
+@use '../../../../styles/utils/mixings';
+
+div.SongResult {
+  height: 3.375rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  div.SongResult__info {
+    div.song-info-title, div.song-info-artist {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      span {
+        white-space: nowrap;
+      } 
+    }
+    div.song-info-artist {
+      margin-top: 0.75rem;
+      @include mixings.min-sm {
+        margin-top: 1rem;
+      }
+    }
+  }
+}

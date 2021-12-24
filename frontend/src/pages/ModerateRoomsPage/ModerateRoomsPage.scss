@@ -1,0 +1,15 @@
+@use '../../styles/utils/mixings';
+
+div.ModerateRoomsPage {
+  div.rooms-container {
+    div.rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+      justify-content: center;
+      gap: 0.75rem;
+      @include mixings.min-md {
+        gap: 1.5rem;
+      }
+    }
+  }
+}

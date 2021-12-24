@@ -35,9 +35,9 @@ export default function RadioButtonCards(props: RadioButtonCardsProps) {
     <div className={radioButtonCardsClassName} onBlur={blurHandler}>
       {
         items.map((eachItem, iEachItem) => (
-          <div className="card card-primary radio-button-item" key={iEachItem}>
+          <div className="radio-button-item" key={iEachItem}>
             <RadioButton
-              className="radio-button-item__input"
+              className="radio-button-item__input card card-primary"
               onChange={changeHandler(eachItem)}
               value={eachItem.value === value}
               extraProps={{

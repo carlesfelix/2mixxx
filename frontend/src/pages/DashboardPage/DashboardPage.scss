@@ -1,15 +1,25 @@
 @use '../../styles/utils/mixings';
 
 div.DashboardPage {
-  position: relative;
-  .dashboard-item {
-    margin-top: 0.75rem;
-    @include mixings.min-md {
-      margin-top: 1.25rem;
-    }
-    &:first-child {
-      margin-top: 0;
+  div.dashboard-menu {
+    div.dashboard-menu__items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 100%);
+      gap: 1rem;
+      justify-content: center;
+      height: auto;
+      padding-bottom: 0.75rem;
+      margin: auto 0;
+      @include mixings.min-sm {
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      }
+      @include mixings.min-md {
+        gap: 2.5rem;
+      }
+      @include mixings.min-lg {
+        gap: 3.5rem;
+      }
     }
   }
 }
-

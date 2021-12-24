@@ -1,22 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { getMyRooms } from '../../api/me';
+import AsyncLayout from '../../components/AsyncLayout';
 import PageLayout from '../../components/PageLayout';
-import RoomsList from '../../components/RoomsList/RoomsList';
+import RoomItem from '../../components/RoomItem';
 import AsyncState from '../../types/AsyncState';
-import OptionItem from '../../types/OptionItem';
 import Room from '../../types/Room';
+import './ModerateRoomsPage.scss';
 
 export default function ModerateRoomsPage() {
-  const { push } = useHistory();
-  const menu: OptionItem[] = [
-    {
-      label: 'Moderate',
-      onSelected: room => {
-        push(`/moderate/rooms/${room.id}`);
-      }
-    }
-  ];
   const [ rooms, setRooms ] = useState<AsyncState<Room[]>>({
     data: [], inProgress: true, error: false
   });
@@ -33,11 +25,25 @@ export default function ModerateRoomsPage() {
       toolbarTitle="Moderate rooms"
       toolbarLinkBack="/dashboard"
     >
-      <RoomsList
-        className="page-content"
-        rooms={rooms}
-        menu={menu}
-      />
+      <AsyncLayout
+        inProgress={rooms.inProgress}
+        error={rooms.error}
+      >
+        <div className="page-content rooms-container layout layout-center-v">
+          <div className="rooms-grid">
+            {
+              rooms.data.map(room => (
+                <Link to={`/moderate/rooms/${room.id}`} key={room.id}>
+                  <RoomItem
+                    className="room-item mouse-event mouse-event-hover mouse-event-clickable"
+                    room={room}
+                  />
+                </Link>
+              ))
+            }
+          </div>
+        </div>
+      </AsyncLayout>
     </PageLayout>
   );
 }

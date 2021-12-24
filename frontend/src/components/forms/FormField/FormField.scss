@@ -1,4 +1,4 @@
-@use '../../../styles/utils/variables';
+@use '../../../styles/themes/theme';
 
 label.FormField {
   display: inline-block;
@@ -9,19 +9,20 @@ label.FormField {
     font-size: 0.8rem;
     font-weight: bold;
     text-transform: uppercase;
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.3rem;
+    color: theme.color('form-field-label');
     &.field-label--required {
       &::after {
         content: "*";
         display: inline-block;
-        margin-left: 0.1rem;
+        margin-left: 0.2rem;
         font-weight: bold;
       }
     }
   }
   span.field-error-message {
     font-size: 0.8rem;
-    margin-top: 0.125rem;
-    color: variables.$c-danger--500;
+    margin-top: 0.3rem;
+    color: theme.color('form-field-error');
   }
 }
