@@ -1,7 +1,8 @@
 .ModerateRoomPage {
   div.ModerateRoomPage__content {
+    display: flex;
     .room-requests {
-      min-height: 100%;
+      flex-grow: 1;
     }
   }
 }

@@ -82,7 +82,10 @@ export default function RoomsDashboardPage() {
       toolbarLinkBack="/dashboard"
       className="RoomsDashboardPage"
       bottomBar={
-        <BottomActionButton onClick={createNewRoomHandler}>
+        <BottomActionButton
+          className="btn btn-primary"
+          onClick={createNewRoomHandler}
+        >
           Create a new room
         </BottomActionButton>
       }

@@ -38,7 +38,7 @@ export default function SongRequestQueue(props: Props) {
           ))
         ) : (
           <div className="queue-empty">
-            <span>There are no pending songs</span>
+            <p>There are no pending songs</p>
           </div>
         )
       }

@@ -76,18 +76,18 @@ export default function SongRequestsPage() {
         </BottomLink>
       }
     >
-      <AsyncLayout
-        inProgress={songRequests.inProgress}
-        error={songRequests.error}
-        errorMessage="Unable to retrieve pending songs"
-      >
-        <div className="page-content SongRequestsPage__content">
+      <div className="page-content SongRequestsPage__content">
+        <AsyncLayout
+          inProgress={songRequests.inProgress}
+          error={songRequests.error}
+          errorMessage="Unable to retrieve pending songs"
+        >
           <SongRequestQueue
             className="pending-songs"
             songRequests={songRequests.data}
-          />
-        </div>
-      </AsyncLayout>
+          /> 
+        </AsyncLayout>
+      </div>
     </PageLayout>
   );
 }

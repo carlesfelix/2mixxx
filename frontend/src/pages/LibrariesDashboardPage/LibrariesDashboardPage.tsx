@@ -60,7 +60,10 @@ export default function LibrariesDashboardPage() {
       toolbarLinkBack="/dashboard"
       className="LibrariesDashboardPage"
       bottomBar={
-        <BottomActionButton onClick={openLibraryInfoDialogHandler}>
+        <BottomActionButton
+          className="btn btn-primary"
+          onClick={openLibraryInfoDialogHandler}
+        >
           Add new library
         </BottomActionButton>
       }

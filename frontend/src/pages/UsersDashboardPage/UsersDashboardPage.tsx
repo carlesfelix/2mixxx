@@ -101,7 +101,10 @@ export default function UsersDashboardPage() {
       toolbarLinkBack="/dashboard"
       className="UsersDashboardPage"
       bottomBar={
-        <BottomActionButton onClick={openNewUserFormDialogHandler}>
+        <BottomActionButton
+          className="btn btn-primary"
+          onClick={openNewUserFormDialogHandler}
+        >
           Create a new user
         </BottomActionButton>
       }

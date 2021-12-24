@@ -1,8 +1,8 @@
 .SongRequestsPage {
-  position: relative;
   div.SongRequestsPage__content {
+    display: flex;
     .pending-songs {
-      height: inherit;
+      flex-grow: 1;
     }
   }
 }

@@ -18,6 +18,7 @@ type Props = {
   error?: Error | null | boolean;
   errorMessage?: string;
   bottomBar?: ReactNode;
+  topBar?: ReactNode;
 };
 
 export default function PageLayout(props: Props) {
@@ -25,7 +26,7 @@ export default function PageLayout(props: Props) {
     children, toolbarTitle,
     toolbarLinkBack, className = '',
     error, inProgress, errorMessage,
-    bottomBar
+    bottomBar, topBar
   } = props;
   const { logout: auth0Logout } = useAuth0();
   const { state: meState, dispatch: meDispatch } = useMe();
@@ -56,6 +57,15 @@ export default function PageLayout(props: Props) {
         title={inProgress ? 'Loading...' : toolbarTitle}
         linkBack={toolbarLinkBack} menu={menu}
       />
+      {
+        !!topBar && (
+          <div className="top-bar">
+            <div className="page-content top-bar__content">
+              {topBar}
+            </div>
+          </div>
+        )
+      }
       <div className="page-container">
         <AsyncLayout
           inProgress={inProgress}

@@ -1,21 +1,10 @@
 @use '../../../../styles/utils/mixings';
 div.RadioButtonCards {
   div.radio-button-item {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
     &:not(:first-child) {
-      margin-top: 0.5rem;
+      margin-top: 0.75rem;
       @include mixings.min-sm {
         margin-top: 1rem;
-      }
-    }
-    .radio-button-item__input {
-      width: 100%;
-      padding: 0.5rem;
-      @include mixings.min-sm {
-        padding: 0.75rem;
       }
     }
   }

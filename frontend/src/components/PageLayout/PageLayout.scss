@@ -11,6 +11,16 @@ div.PageLayout {
     flex-grow: 1;
     height: 0;
   }
+  div.top-bar {
+    background-color: theme.color('page-layout-top-bar-background');
+    border-bottom: solid 1px theme.color('page-layout-top-bar-border');
+    div.top-bar__content {
+      padding: 1.25rem;
+      @include mixings.min-md {
+        padding: 1.5rem;
+      }
+    }
+  }
   div.bottom-bar {
     background-color: theme.color('page-layout-bottom-bar-background');
     border-top: solid 1px theme.color('page-layout-bottom-bar-border');

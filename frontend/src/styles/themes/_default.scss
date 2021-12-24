@@ -8,6 +8,7 @@ $c-base__blue: #3da9fc;
 $c-base__blue--light: #90b4ce;
 $c-base__blue--superlight: #d8eefe;
 $c-base__red: #ef4565;
+$c-base__transparent: transparent;
 
 // THEME
 $colors: (
@@ -32,6 +33,12 @@ $colors: (
 
   // Main toolbar text color
   'page-layout-toolbar-text': $c-base__white,
+
+  // Optional top bar placed in the page layout component (background)
+  'page-layout-top-bar-background': $c-base__white,
+
+  // Optional top bar placed in the page layout component (border)
+  'page-layout-top-bar-border': transparentize($color: $c-base__grey--dark, $amount: 0.85),
 
   // Optional bottom bar placed in the page layout component (background)
   'page-layout-bottom-bar-background': $c-base__white,
@@ -79,6 +86,19 @@ $colors: (
 
   // Input background focus
   'input-background--focus': transparentize($color: $c-base__blue--superlight, $amount: 0.85),
+
+  // RADIO BUTTON
+  // Radio button border
+  'radio-button-border': transparentize($color: $c-base__grey--dark, $amount: 0.7),
+
+  // Radio button background
+  'radio-button-background': $c-base__transparent,
+
+  // Radio button background checked
+  'radio-button-background--checked': $c-base__blue,
+
+  // Radio button border checked
+  'radio-button-border--checked': $c-base__blue,
 
   // FORM FIELD
   // Form field label
@@ -153,7 +173,7 @@ $colors: (
   'checkbox-border': transparentize($color: $c-base__grey--dark, $amount: 0.7),
 
   // Checkbox background
-  'checkbox-background': $c-base__white,
+  'checkbox-background': $c-base__transparent,
 
   // Checkbox background checked
   'checkbox-background--checked': $c-base__blue,

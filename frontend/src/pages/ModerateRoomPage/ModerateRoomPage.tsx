@@ -132,21 +132,20 @@ export default function ModerateRoomPage() {
       error={room.error}
       errorMessage="Room cannot be loaded :("
     >
-      <AsyncLayout
-        inProgress={songRequests.inProgress}
-        error={songRequests.error}
-        errorMessage="Unable to retrieve pending songs"
-      >
-        <div className="page-content ModerateRoomPage__content">
+      <div className="page-content ModerateRoomPage__content">
+        <AsyncLayout
+          inProgress={songRequests.inProgress}
+          error={songRequests.error}
+          errorMessage="Unable to retrieve pending songs"
+        >
           <SongRequestQueue
             className="room-requests"
             songRequests={songRequests.data}
             canDelete
             onDeleteSong={deleteSongHandler}
           />
-        </div>
-      </AsyncLayout>
-      
+        </AsyncLayout>  
+      </div>
     </PageLayout>
   );
 }

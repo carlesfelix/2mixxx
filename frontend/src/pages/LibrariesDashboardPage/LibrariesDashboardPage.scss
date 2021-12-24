@@ -5,7 +5,7 @@
   div.LibrariesDashboardPage__content {
     div.libraries-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
       gap: 1rem;
       justify-content: center;
     }
