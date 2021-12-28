@@ -4,11 +4,13 @@ import LoginButton from '../../components/LoginButton';
 import PageLayout from '../../components/PageLayout';
 import { useRoomUser } from '../../contexts/room-user';
 import { createRoomUserAction } from '../../contexts/room-user';
+import { useTranslation } from '../../services/i18n';
 import { getRoomFormValidation } from './helpers';
 
 import './HomePage.scss';
 
 export default function HomePage() {
+  const { t } = useTranslation('Pages/HomePage');
   const { dispatch } = useRoomUser();
   const { control, handleSubmit } = useForm<{ roomCode?: string }>({ mode: 'onChange' });
   const roomFormValidation = getRoomFormValidation();
@@ -17,32 +19,40 @@ export default function HomePage() {
     createRoomUserAction(dispatch, roomCode);
   }
   return (
-    <PageLayout toolbarTitle="Welcome to 2mixxx">
+    <PageLayout toolbarTitle={t('toolbar.title')}>
       <div className="HomePage">
         <div className="HomePage__left">
-          <h1 className="welcome-msg">2mixxx</h1>
-          <p>The app for requesting songs to the DJ</p>
+          <h1 className="welcome-msg">
+            {t('title')}
+          </h1>
+          <p>
+            {t('description')}
+          </p>
         </div>
         <div className="HomePage__right">
           <div className="login-container">
-            <form className="choose-room" onSubmit={handleSubmit(submitHandler)}>
-              <h2>Enter to the room</h2>
+            <form className="choose-room" onSubmit={handleSubmit(submitHandler)} autoComplete="off">
+              <h2>
+                {t('loginForm.title')}
+              </h2>
               <div className="form-content">
                 <ControlledInput
                   className="room-code-input"
-                  label="Type a code"
+                  label={t('loginForm.fields.roomCode.label')}
                   control={control}
                   name="roomCode"
                   defaultValue=""
                   field={{
                     type: 'inputText',
-                    props: { autoComplete: 'off' }
+                    props: {
+                      placeholder: t('loginForm.fields.roomCode.placeholder')
+                    }
                   }}
                   rules={roomFormValidation.roomCode}
                 />
                 <div className="form-actions">
                   <button className="btn btn-primary btn-lg submit-room-btn" type="submit">
-                    Enter
+                    {t('loginForm.submitBtn')}
                   </button>
                 </div>
               </div>
