@@ -93,11 +93,12 @@ export default function ManageRoomLibrariesPage() {
               onChecked: checkedHandler,
               items: libraries.data,
               labelProp: 'title',
-              valueProp: 'id'
+              valueProp: 'id',
+              itemClassName: 'list-item'
             }}
             onChange={changeHandler}
             value={room.data.libraries!.map(({ id }) => id)}
-            className="checkbox-list"
+            className="checkbox-list list list-hr"
           />
         </Section>
       </div>

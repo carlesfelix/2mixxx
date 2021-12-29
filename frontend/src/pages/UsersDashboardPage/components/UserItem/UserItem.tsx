@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import Label from '../../../../components/Label';
 import OverlayMenu from '../../../../components/OverlayMenu';
-import { getRegisteredUserRoleName } from '../../../../helpers/registered-user-role';
+import { getRegisteredUserRoleName } from '../../../../helpers/input-option-labels';
 import RegisteredUser from '../../../../types/RegisteredUser';
 import { getUserOptions } from '../../helpers';
 import './UserItem.scss';
@@ -47,7 +47,7 @@ export default function UserItem(props: Props) {
         </span>
         <span className="user-role user-field">
           <span className="badge badge-secondary">
-            {getRegisteredUserRoleName(user.role)}
+            {getRegisteredUserRoleName((key) => key, user.role)}
           </span>
         </span>
         <span className="user-menu user-field">

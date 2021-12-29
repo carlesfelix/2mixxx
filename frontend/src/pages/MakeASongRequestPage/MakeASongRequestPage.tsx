@@ -4,7 +4,7 @@ import { searchSongs } from '../../api/songs';
 import AsyncLayout from '../../components/AsyncLayout';
 import BottomActionButton from '../../components/BottomActionButton';
 import InputText from '../../components/forms/inputs/InputText';
-import RadioButtonCards from '../../components/forms/inputs/RadioButtonCards';
+import RadioButtonBox from '../../components/forms/inputs/RadioButtonBox';
 import PageLayout from '../../components/PageLayout';
 import environment from '../../environment';
 import useSocketConnectionManager from '../../hooks/useSocketConnectionManager';
@@ -60,7 +60,7 @@ export default function MakeASongRequestPage() {
       });
     }
   }, [ queryTrimDebounced, queryLength ]);
-  function radioButtonCardsChangeHandler(itemValue: string): void {
+  function radioButtonBoxChangeHandler(itemValue: string): void {
     setSelectedSong(itemValue);
   }
   function sendRequestHandler(): void {
@@ -133,11 +133,12 @@ export default function MakeASongRequestPage() {
               </div>
             )
           }
-          <RadioButtonCards
-            onChange={radioButtonCardsChangeHandler}
+          <RadioButtonBox
+            onChange={radioButtonBoxChangeHandler}
             value={selectedSong}
-            className="search-results"
+            className="list"
             extraProps={{
+              itemClassName: 'card card-primary list-item',
               items: songs.data.map(song => ({
                 label: (
                   <SongResult song={song} />

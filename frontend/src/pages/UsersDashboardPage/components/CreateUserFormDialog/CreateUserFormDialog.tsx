@@ -6,8 +6,8 @@ import CreateUserForm from '../../../../types/UserForm';
 import DialogState from '../../../../types/DialogState';
 import { getUserFormValidation } from '../../helpers';
 import './CreateUserFormDialog.scss';
-import { roleOptions } from '../../../../constants/dropdown-options';
 import RegisteredUserRoleEnum from '../../../../enums/RegisteredUserRoleEnum';
+import { getRoleOptions } from '../../../../helpers/input-options';
 
 type Props = {
   state: DialogState<CreateUserForm>;
@@ -82,7 +82,7 @@ export default function CreateUserFormDialog(props: Props) {
         <ControlledInput
           field={{
             type: 'dropdown',
-            props: { options: roleOptions }
+            props: { options: getRoleOptions(key => key) }
           }}
           control={control}
           defaultValue={defaultValues.role}

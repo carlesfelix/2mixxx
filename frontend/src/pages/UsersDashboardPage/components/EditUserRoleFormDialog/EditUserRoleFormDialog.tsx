@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Dialog from '../../../../components/Dialog';
 import ControlledInput from '../../../../components/forms/ControlledInput';
-import { roleOptions } from '../../../../constants/dropdown-options';
 import RegisteredUserRoleEnum from '../../../../enums/RegisteredUserRoleEnum';
+import { getRoleOptions } from '../../../../helpers/input-options';
 import DialogState from '../../../../types/DialogState';
 import RegisteredUser from '../../../../types/RegisteredUser';
 import UserForm from '../../../../types/UserForm';
@@ -58,7 +58,7 @@ export default function EditUserRoleFormDialog(props: Props) {
         <ControlledInput
           field={{
             type: 'dropdown',
-            props: { options: roleOptions }
+            props: { options: getRoleOptions(key => key) }
           }}
           control={control}
           defaultValue={RegisteredUserRoleEnum.Dj}

@@ -2,10 +2,6 @@
 
 div.MultiselectBox {
   .checkbox-option {
-    padding: 1rem;
     width: 100%;
-    &:not(:first-child) {
-      border-top: solid 1px theme.color('hr-primary');
-    }
   }
 }

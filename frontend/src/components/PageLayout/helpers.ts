@@ -7,14 +7,19 @@ type GetMenuProps = {
   onAbout: () => void;
   onLogOutRoomUser: () => void;
   onLogOutRegisteredUser: () => void;
+  onLanguage: () => void;
 };
 export function getMenu(props: GetMenuProps): OptionItem[] {
   const {
-    me, onAbout, onLogOutRoomUser,
+    me, onAbout, onLanguage, onLogOutRoomUser,
     onLogOutRegisteredUser,
     meProgress
   } = props;
   const menuOptions: OptionItem[] = [
+    {
+      label: 'Language',
+      onSelected: onLanguage
+    },
     {
       label: 'About',
       onSelected: onAbout

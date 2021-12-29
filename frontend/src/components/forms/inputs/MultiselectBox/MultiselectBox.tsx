@@ -13,6 +13,7 @@ export type MultiselectBoxExtraProps<Item = any> = {
   inProgress?: boolean;
   error?: Error | null | boolean;
   errorMessage?: string;
+  itemClassName?: string;
 };
 type MultiselectBoxProps<Item> = ControlledInputProps<any[], MultiselectBoxExtraProps<Item>>;
 export default function MultiselectBox<Item = any>(props: MultiselectBoxProps<Item>) {
@@ -24,11 +25,9 @@ export default function MultiselectBox<Item = any>(props: MultiselectBoxProps<It
     items, labelProp, valueProp,
     labelPosition, onChecked,
     inProgress, error,
-    errorMessage
+    errorMessage, itemClassName = ''
   } = extraProps;
-  const multiselectBoxClassName = classNames('MultiselectBox', {
-    [className]: !!className
-  });
+  
   function blurHandler(): void {
     onBlur && onBlur();
   }
@@ -42,6 +41,12 @@ export default function MultiselectBox<Item = any>(props: MultiselectBoxProps<It
       }
     };
   }
+  const multiselectBoxClassName = classNames(
+    'MultiselectBox', className
+  );
+  const checkboxClassName = classNames(
+    'checkbox-option', itemClassName
+  );
   return (
     <div className={multiselectBoxClassName} onBlur={blurHandler}>
       <AsyncLayout
@@ -59,7 +64,7 @@ export default function MultiselectBox<Item = any>(props: MultiselectBoxProps<It
               }}
               onChange={changeHandler(item)}
               value={value.includes(item[valueProp])}
-              className="checkbox-option"
+              className={checkboxClassName}
             />
           ))
         }

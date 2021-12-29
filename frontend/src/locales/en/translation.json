@@ -1,0 +1,41 @@
+{
+  "Common": {
+    "inputOptions": {
+      "languages": {
+        "ca": {
+          "label": "Català"
+        },
+        "en": {
+          "label": "English"
+        },
+        "es": {
+          "label": "Español"
+        }
+      }
+    }
+  },
+  "Components": {
+    "LoginButton": {
+      "loginBtn": "Enter as registered user"
+    }
+  },
+  "Pages": {
+    "HomePage": {
+      "toolbar": {
+        "title": "Welcome to 2mixxx"
+      },
+      "title": "2mixxx",
+      "description": "The app for requesting songs to the DJ",
+      "loginForm": {
+        "title": "Join into a room",
+        "fields": {
+          "roomCode": {
+            "label": "Room code",
+            "placeholder": "type a code"
+          }
+        },
+        "submitBtn": "Enter"
+      }
+    }
+  }
+}

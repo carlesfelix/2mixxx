@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useTranslation } from '../../services/i18n';
 
 function LoginButton() {
-  const { t } = useTranslation('Components/LoginButton');
+  const { t } = useTranslation();
   const { loginWithRedirect } = useAuth0();
 
   function clickHandler(): void {
@@ -11,7 +11,7 @@ function LoginButton() {
 
   return (
     <button className="btn btn-secondary btn-lg" onClick={clickHandler}>
-      {t('loginBtn')}
+      {t('Components.LoginButton.loginBtn')}
     </button>
   );
 };

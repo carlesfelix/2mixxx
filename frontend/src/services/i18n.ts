@@ -10,6 +10,7 @@ import {
   KeyPrefix
 } from 'react-i18next';
 import I18nextBrowserLanguageDetector from 'i18next-browser-languagedetector';
+import { useEffect, useState } from 'react';
 
 export function setupI18n(): void {
   i18n
@@ -26,7 +27,6 @@ export function setupI18n(): void {
     .use(initReactI18next)
     .init({
       fallbackLng: "en",
-      nsSeparator: ':',
       interpolation: {
         escapeValue: false
       }
@@ -53,4 +53,18 @@ export function changeLanguage(lang: string): Promise<void> {
       }
     });
   });
+}
+
+export function useLanguage(): string {
+  const [ lang, setLang ] = useState<string>(i18n.language);
+  useEffect(() => {
+    function languageHandler(language: string): void {
+      setLang(language);
+    }
+    i18n.on('languageChanged', languageHandler);
+    return () => {
+      i18n.off('languageChanged', languageHandler);
+    };
+  }, []);
+  return lang;
 }

@@ -96,11 +96,12 @@ export default function ManageRoomModeratorsPage() {
               valueProp: 'id',
               inProgress: registeredUsers.inProgress,
               error: registeredUsers.error,
-              errorMessage: 'Users cannot be loaded :('
+              errorMessage: 'Users cannot be loaded :(',
+              itemClassName: 'list-item'
             }}
             onChange={changeHandler}
             value={room.data.moderators!.map(({ id }) => id)}
-            className="checkbox-list"
+            className="checkbox-list list list-hr"
           />
         </Section>
       </div>

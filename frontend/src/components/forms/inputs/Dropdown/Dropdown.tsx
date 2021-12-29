@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import { ChangeEventHandler } from 'react';
 import ControlledInputProps from '../../../../types/ControlledInputProps';
-import DropdownOptions from '../../../../types/DropdownOptions';
+import InputOptions from '../../../../types/InputOptions';
 
 type DropdownValue = string | number;
 export type DropdownExtraProps<DropdownValues = any> = {
-  options: DropdownOptions<DropdownValues>;
+  options: InputOptions<DropdownValues>;
 };
 type DropdownProps = ControlledInputProps<DropdownValue, DropdownExtraProps>;
 

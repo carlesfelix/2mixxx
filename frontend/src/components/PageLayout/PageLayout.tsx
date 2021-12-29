@@ -1,11 +1,12 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import classNames from 'classnames';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { useMe } from '../../contexts/me';
 import { logoutGuestMeAction } from '../../contexts/me/me.actions';
 import { removeRoomUserAction, useRoomUser } from '../../contexts/room-user';
 import AsyncLayout from '../AsyncLayout';
 import Toolbar from '../Toolbar';
+import LanguageDialog from './components/LanguageDialog';
 import { getMenu } from './helpers';
 import './PageLayout.scss';
 
@@ -31,8 +32,10 @@ export default function PageLayout(props: Props) {
   const { logout: auth0Logout } = useAuth0();
   const { state: meState, dispatch: meDispatch } = useMe();
   const { dispatch: roomUserDispatch } = useRoomUser();
+  const [ languageDialogOpen, setLanguageDialogOpen ] = useState<boolean>(false);
   const menu = getMenu({
     onAbout: aboutHandler,
+    onLanguage: languageHandler,
     onLogOutRegisteredUser: logOutRegisteredUserHandler,
     onLogOutRoomUser: logOutRoomUserHandler,
     me: meState.user,
@@ -40,6 +43,12 @@ export default function PageLayout(props: Props) {
   });
   function aboutHandler(): void {
 
+  }
+  function languageHandler(): void {
+    setLanguageDialogOpen(true);
+  }
+  function languageDialogCloseHandler(): void {
+    setLanguageDialogOpen(false);
   }
   function logOutRegisteredUserHandler(): void {
     auth0Logout({ returnTo: window.location.origin });
@@ -84,6 +93,10 @@ export default function PageLayout(props: Props) {
           </div>
         )
       }
+      <LanguageDialog
+        isOpen={languageDialogOpen}
+        onClose={languageDialogCloseHandler}
+      />
     </div>
   );
 }

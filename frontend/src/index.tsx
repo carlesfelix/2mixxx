@@ -11,7 +11,6 @@ import reportWebVitals from './reportWebVitals';
 import http from './services/http';
 import { setupI18n } from './services/i18n';
 import './index.scss';
-import LoadingPage from './pages/LoadingPage';
 
 setupI18n();
 http.setBaseUrl(environment.REACT_APP_API_BASE_URL);
@@ -27,7 +26,7 @@ ReactDOM.render(
         <MeProvider>
           <BrowserRouter>
             <LibrariesProvider>
-              <Suspense fallback={<LoadingPage />}>
+              <Suspense fallback={false}>
                 <App />
               </Suspense>
             </LibrariesProvider>
