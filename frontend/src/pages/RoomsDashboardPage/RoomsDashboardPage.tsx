@@ -6,6 +6,7 @@ import BottomActionButton from '../../components/BottomActionButton';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import PageLayout from '../../components/PageLayout';
 import RoomItem from '../../components/RoomItem';
+import { useTranslation } from '../../services/i18n';
 import AsyncState from '../../types/AsyncState';
 import DialogState from '../../types/DialogState';
 import Room from '../../types/Room';
@@ -14,6 +15,7 @@ import './RoomsDashboardPage.scss';
 
 export default function RoomsDashboardPage() {
   const { push } = useHistory();
+  const { t } = useTranslation();
   const [ rooms, setRooms ] = useState<AsyncState<Room[]>>({
     data: [], inProgress: true, error: false
   });
@@ -21,6 +23,7 @@ export default function RoomsDashboardPage() {
     inProgress: false, isOpen: false
   });
   const menu = getRoomItemMenu({
+    t,
     onDeleteRoom: deleteRoomMenuHandler,
     onManageLibraries: manageLibrariesMenuHandler,
     onManageModerators: manageModeratorsMenuHandler
@@ -78,7 +81,7 @@ export default function RoomsDashboardPage() {
   }
   return (
     <PageLayout
-      toolbarTitle="Rooms"
+      toolbarTitle={t('Pages.RoomsDashboardPage.toolbarTitle')}
       toolbarLinkBack="/dashboard"
       className="RoomsDashboardPage"
       bottomBar={
@@ -86,7 +89,7 @@ export default function RoomsDashboardPage() {
           className="btn btn-primary"
           onClick={createNewRoomHandler}
         >
-          Create a new room
+          {t('Pages.RoomsDashboardPage.bottomActionButton')}
         </BottomActionButton>
       }
     >
@@ -110,7 +113,7 @@ export default function RoomsDashboardPage() {
         </AsyncLayout>
       </div>
       <ConfirmDialog
-        message="The room will be deleted"
+        message={t('Pages.RoomsDashboardPage.confirmDeleteRoom')}
         isOpen={confirmDeleteDialog.isOpen}
         inProgress={confirmDeleteDialog.inProgress}
         onRejected={rejectedConfirmDeleteHandler}

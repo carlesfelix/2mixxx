@@ -92,8 +92,20 @@
     },
     "ModerateRoomPage": {
       "toolbarTitle": "Moderating \"{{value}}\"",
-      "roomLoadError": "Room cannot be loaded :( *",
-      "pendingSongsLoadError": "Unable to retrieve pending songs *"
+      "roomLoadError": "Room cannot be loaded :(",
+      "pendingSongsLoadError": "Unable to retrieve pending songs"
+    },
+    "RoomsDashboardPage": {
+      "helpers": {
+        "roomMenuItems": {
+          "manageLibraries": "Manage libraries",
+          "manageModerators": "Manage moderators",
+          "deleteRoom": "Delete room"
+        }
+      },
+      "toolbarTitle": "Rooms",
+      "bottomActionButton": "Create a new room",
+      "confirmDeleteRoom": "The room will be deleted"
     }
   }
 }
