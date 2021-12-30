@@ -86,6 +86,11 @@
     },
     "ModerateRoomsPage": {
       "toolbarTitle": "Moderate rooms"
+    },
+    "ModerateRoomPage": {
+      "toolbarTitle": "Moderating \"{{value}}\"",
+      "roomLoadError": "Room cannot be loaded :( *",
+      "pendingSongsLoadError": "Unable to retrieve pending songs *"
     }
   }
 }

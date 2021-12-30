@@ -18,6 +18,7 @@ type Props = {
   className?: string;
   inProgress?: boolean;
   error?: Error | null | boolean;
+  hideTitleOnError?: boolean;
   errorMessage?: string;
   bottomBar?: ReactNode;
   topBar?: ReactNode;
@@ -25,7 +26,7 @@ type Props = {
 
 export default function PageLayout(props: Props) {
   const {
-    children, toolbarTitle,
+    children, toolbarTitle, hideTitleOnError,
     toolbarLinkBack, className = '',
     error, inProgress, errorMessage,
     bottomBar, topBar
@@ -63,10 +64,12 @@ export default function PageLayout(props: Props) {
   const pageLayoutClassName = classNames('PageLayout', {
     [className]: !!className
   });
+  const title = inProgress ?
+    t('Components.PageLayout.toolbarProgress') : toolbarTitle;
   return (
     <div className={pageLayoutClassName}>
       <Toolbar
-        title={inProgress ? t('Components.PageLayout.toolbarProgress') : toolbarTitle}
+        title={error && hideTitleOnError ? '' : title}
         linkBack={toolbarLinkBack} menu={menu}
       />
       {
