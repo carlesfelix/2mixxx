@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { useTranslation } from '../../services/i18n';
 import Dialog from '../Dialog';
 import './ConfirmDialog.scss';
 
@@ -16,6 +17,7 @@ export default function ConfirmDialog(props: Props) {
     isOpen, inProgress = false,
     className = ''
   } = props;
+  const { t } = useTranslation();
   function rejectedHandler(): void {
     onRejected && onRejected();
   }
@@ -28,7 +30,8 @@ export default function ConfirmDialog(props: Props) {
   return (
     <Dialog
       closeOptions={['escape', 'clickOutside']} preventClose={inProgress}
-      onClose={rejectedHandler} isOpen={isOpen} title="Are you sure?"
+      onClose={rejectedHandler} isOpen={isOpen}
+      title={t('Components.ConfirmDialog.title')}
       maxWidth="20rem" className={confirmDialogClassName}
       footer={
         <div className="confirm-dialog-footer">
@@ -36,13 +39,13 @@ export default function ConfirmDialog(props: Props) {
             className="btn btn-secondary" type="button"
             disabled={inProgress} onClick={rejectedHandler}
           >
-            Cancel
+            {t('Components.ConfirmDialog.cancel')}
           </button>
           <button
             className="btn btn-danger" type="button"
             disabled={inProgress}  onClick={confirmedHandler}
           >
-            Continue
+            {t('Components.ConfirmDialog.continue')}
           </button>
         </div>
       }

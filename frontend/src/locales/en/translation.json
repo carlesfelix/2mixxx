@@ -44,6 +44,11 @@
     },
     "SongRequestQueue": {
       "noPendingSongs": "There are no pending songs"
+    },
+    "ConfirmDialog": {
+      "title": "Are you sure?",
+      "cancel": "Cancel",
+      "continue": "Continue"
     }
   },
   "Pages": {
