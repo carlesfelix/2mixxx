@@ -49,6 +49,29 @@
         },
         "submitBtn": "Enter"
       }
+    },
+    "DashboardPage": {
+      "toolbar": {
+        "title": "Dashboard"
+      },
+      "cardLinks": {
+        "moderateRooms": {
+          "title": "Moderate rooms",
+          "description": "Delete and control the song requests from a room."
+        },
+        "manageRooms": {
+          "title": "Manage rooms",
+          "description": "Create, edit, delete and configure rooms."
+        },
+        "manageLibraries": {
+          "title": "Manage libraries",
+          "description": "Create, edit, and delete libraries and manage their songs."
+        },
+        "manageUsers": {
+          "title": "Manage users",
+          "description": "Create, edit and delete registered users."
+        }
+      }
     }
   }
 }
