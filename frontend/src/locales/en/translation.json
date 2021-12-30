@@ -111,6 +111,11 @@
       "toolbarTitle": "Rooms",
       "bottomActionButton": "Create a new room",
       "confirmDeleteRoom": "The room will be deleted"
+    },
+    "ManageRoomLibrariesPage": {
+      "toolbarTitle": "Manage room's libraries",
+      "roomLoadError": "Room cannot be loaded :(",
+      "subtitle": "Assign/Unassign libraries"
     }
   }
 }
