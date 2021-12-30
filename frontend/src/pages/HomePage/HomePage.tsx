@@ -13,7 +13,7 @@ export default function HomePage() {
   const { t } = useTranslation();
   const { dispatch } = useRoomUser();
   const { control, handleSubmit } = useForm<{ roomCode?: string }>({ mode: 'onChange' });
-  const roomFormValidation = getRoomFormValidation();
+  const roomFormValidation = getRoomFormValidation(t);
   function submitHandler(data: { roomCode: string }): void {
     const { roomCode } = data;
     createRoomUserAction(dispatch, roomCode);

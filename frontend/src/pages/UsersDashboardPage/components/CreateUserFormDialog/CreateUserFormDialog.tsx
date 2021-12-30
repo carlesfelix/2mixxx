@@ -8,6 +8,7 @@ import { getUserFormValidation } from '../../helpers';
 import './CreateUserFormDialog.scss';
 import RegisteredUserRoleEnum from '../../../../enums/RegisteredUserRoleEnum';
 import { getRoleOptions } from '../../../../helpers/input-options';
+import { useTranslation } from '../../../../services/i18n';
 
 type Props = {
   state: DialogState<CreateUserForm>;
@@ -22,6 +23,7 @@ const defaultValues: CreateUserForm = {
 export default function CreateUserFormDialog(props: Props) {
   const { state, onClose, onSubmit } = props;
   const { inProgress, isOpen } = state;
+  const { t } = useTranslation();
   const {
     handleSubmit, control, reset,
     getValues, trigger
@@ -31,7 +33,7 @@ export default function CreateUserFormDialog(props: Props) {
   }, [ isOpen, reset ]);
 
   const userFormValidation = getUserFormValidation({
-    getValues, trigger
+    t, getValues, trigger
   });
 
   function submitHandler(user: CreateUserForm): void {

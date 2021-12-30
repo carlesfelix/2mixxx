@@ -1,3 +1,4 @@
+import { TFunction } from '../../services/i18n';
 import validationRules from '../../services/validation-rules';
 import FormValidation from '../../types/FormValidation';
 import Library from '../../types/Library';
@@ -22,8 +23,11 @@ export function getLibraryMenu(props: GetLibraryMenuProps): OptionItem[] {
   return libraryMenu;
 }
 
-export const getLibraryInfoFormValidation: FormValidation<Partial<Library>> = () => {
+export const getLibraryInfoFormValidation: FormValidation<
+  Partial<Library>,
+  [t: TFunction]
+> = (t) => {
   return {
-    title: { required: validationRules.required() }
+    title: { required: validationRules.required(t) }
   };
 };

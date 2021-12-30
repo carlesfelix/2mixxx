@@ -2,6 +2,7 @@ import { ButtonHTMLAttributes, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Dialog from '../../../../components/Dialog';
 import ControlledInput from '../../../../components/forms/ControlledInput';
+import { useTranslation } from '../../../../services/i18n';
 import DialogState from '../../../../types/DialogState';
 import Library from '../../../../types/Library';
 import { getLibraryInfoFormValidation } from '../../helpers';
@@ -16,7 +17,8 @@ export default function LibraryInfoDialog(props: Props) {
   const { state, onSubmit, onClose } = props;
   const { inProgress, data, isOpen } = state;
   const { control, handleSubmit, reset } = useForm();
-  const libraryInfoFormValidation = getLibraryInfoFormValidation();
+  const { t } = useTranslation();
+  const libraryInfoFormValidation = getLibraryInfoFormValidation(t);
   useEffect(() => {
     reset(data || {});
   }, [ isOpen, data, reset ]);

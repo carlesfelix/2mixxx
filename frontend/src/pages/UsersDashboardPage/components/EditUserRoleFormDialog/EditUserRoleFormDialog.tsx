@@ -4,6 +4,7 @@ import Dialog from '../../../../components/Dialog';
 import ControlledInput from '../../../../components/forms/ControlledInput';
 import RegisteredUserRoleEnum from '../../../../enums/RegisteredUserRoleEnum';
 import { getRoleOptions } from '../../../../helpers/input-options';
+import { useTranslation } from '../../../../services/i18n';
 import DialogState from '../../../../types/DialogState';
 import RegisteredUser from '../../../../types/RegisteredUser';
 import UserForm from '../../../../types/UserForm';
@@ -19,6 +20,7 @@ type Props = {
 export default function EditUserRoleFormDialog(props: Props) {
   const { state, onClose, onSubmit } = props;
   const { inProgress, isOpen, data } = state;
+  const { t } = useTranslation();
   const {
     handleSubmit, control, reset,
     getValues, trigger
@@ -28,7 +30,7 @@ export default function EditUserRoleFormDialog(props: Props) {
   }, [ isOpen, data, reset ]);
 
   const userFormValidation = getUserFormValidation({
-    defaultData: data, getValues, trigger
+    defaultData: data, getValues, trigger, t
   });
 
   function submitHandler(records: { role: number }): void {

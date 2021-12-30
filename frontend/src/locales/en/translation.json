@@ -12,6 +12,19 @@
           "label": "Español"
         }
       }
+    },
+    "formValidationMessages": {
+      "required": "This field is mandatory",
+      "min": "The minimum required value is {{value}}",
+      "max": "The maximum required value is {{value}}",
+      "minLength_one": "This field must be at least {{count}} character long",
+      "minLength_other": "This field must be at least {{count}} characters long",
+      "maxLength_one": "This field must have a maximum length of {{count}} character",
+      "maxLength_other": "This field must have a maximum length of {{count}} characters",
+      "email": "Invalid email format",
+      "strongPassword": "Password must contain at least 8 characters, a lowercase, an uppercase and one symbol",
+      "emailAlreadyInUse": "This email is already in use",
+      "passwordMustMatch": "Password must match"
     }
   },
   "Components": {

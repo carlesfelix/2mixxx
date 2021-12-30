@@ -7,7 +7,8 @@ import {
   UseTranslationOptions,
   DefaultNamespace,
   Namespace,
-  KeyPrefix
+  KeyPrefix,
+  TFunction as _TFunction
 } from 'react-i18next';
 import I18nextBrowserLanguageDetector from 'i18next-browser-languagedetector';
 import { useEffect, useState } from 'react';
@@ -68,3 +69,5 @@ export function useLanguage(): string {
   }, []);
   return lang;
 }
+
+export type TFunction = _TFunction;
