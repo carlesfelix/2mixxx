@@ -83,6 +83,9 @@
           "description": "Create, edit and delete registered users."
         }
       }
+    },
+    "ModerateRoomsPage": {
+      "toolbarTitle": "Moderate rooms"
     }
   }
 }

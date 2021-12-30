@@ -4,11 +4,13 @@ import { getMyRooms } from '../../api/me';
 import AsyncLayout from '../../components/AsyncLayout';
 import PageLayout from '../../components/PageLayout';
 import RoomItem from '../../components/RoomItem';
+import { useTranslation } from '../../services/i18n';
 import AsyncState from '../../types/AsyncState';
 import Room from '../../types/Room';
 import './ModerateRoomsPage.scss';
 
 export default function ModerateRoomsPage() {
+  const { t } = useTranslation();
   const [ rooms, setRooms ] = useState<AsyncState<Room[]>>({
     data: [], inProgress: true, error: false
   });
@@ -22,7 +24,7 @@ export default function ModerateRoomsPage() {
   return (
     <PageLayout
       className="ModerateRoomsPage"
-      toolbarTitle="Moderate rooms"
+      toolbarTitle={t('Pages.ModerateRoomsPage.toolbarTitle')}
       toolbarLinkBack="/dashboard"
     >
       <AsyncLayout
