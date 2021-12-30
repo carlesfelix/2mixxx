@@ -30,6 +30,17 @@
   "Components": {
     "LoginButton": {
       "loginBtn": "Enter as registered user"
+    },
+    "PageLayout": {
+      "helpers": {
+        "menuItems": {
+          "language": "Language",
+          "about": "About",
+          "roomUserLogout": "Logout",
+          "registeredUserLogout": "Logout"
+        }
+      },
+      "toolbarProgress": "Loading..."
     }
   },
   "Pages": {

@@ -4,6 +4,7 @@ import { ReactNode, useState } from 'react';
 import { useMe } from '../../contexts/me';
 import { logoutGuestMeAction } from '../../contexts/me/me.actions';
 import { removeRoomUserAction, useRoomUser } from '../../contexts/room-user';
+import { useTranslation } from '../../services/i18n';
 import AsyncLayout from '../AsyncLayout';
 import Toolbar from '../Toolbar';
 import LanguageDialog from './components/LanguageDialog';
@@ -32,8 +33,10 @@ export default function PageLayout(props: Props) {
   const { logout: auth0Logout } = useAuth0();
   const { state: meState, dispatch: meDispatch } = useMe();
   const { dispatch: roomUserDispatch } = useRoomUser();
+  const { t } = useTranslation();
   const [ languageDialogOpen, setLanguageDialogOpen ] = useState<boolean>(false);
   const menu = getMenu({
+    t,
     onAbout: aboutHandler,
     onLanguage: languageHandler,
     onLogOutRegisteredUser: logOutRegisteredUserHandler,
@@ -63,7 +66,7 @@ export default function PageLayout(props: Props) {
   return (
     <div className={pageLayoutClassName}>
       <Toolbar
-        title={inProgress ? 'Loading...' : toolbarTitle}
+        title={inProgress ? t('Components.PageLayout.toolbarProgress') : toolbarTitle}
         linkBack={toolbarLinkBack} menu={menu}
       />
       {
