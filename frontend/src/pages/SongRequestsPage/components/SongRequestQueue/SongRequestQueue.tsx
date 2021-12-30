@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import SongRequestItem from '../../../../components/SongRequestItem';
+import { useTranslation } from '../../../../services/i18n';
 import SongRequest from '../../../../types/SongRequest';
 import './SongRequestQueue.scss';
 
@@ -15,6 +16,7 @@ export default function SongRequestQueue(props: Props) {
     songRequests, onDeleteSong, className = '',
     canDelete
   } = props;
+  const { t } = useTranslation();
   function deleteSongHandler(songRequest: SongRequest): void {
     onDeleteSong && onDeleteSong(songRequest);
   }
@@ -38,7 +40,7 @@ export default function SongRequestQueue(props: Props) {
           ))
         ) : (
           <div className="queue-empty">
-            <p>There are no pending songs</p>
+            <p>{t('Components.SongRequestQueue.noPendingSongs')}</p>
           </div>
         )
       }

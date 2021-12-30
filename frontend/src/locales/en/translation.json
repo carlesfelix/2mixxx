@@ -41,6 +41,9 @@
         }
       },
       "toolbarProgress": "Loading..."
+    },
+    "SongRequestQueue": {
+      "noPendingSongs": "There are no pending songs"
     }
   },
   "Pages": {
