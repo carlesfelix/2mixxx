@@ -115,7 +115,14 @@
     "ManageRoomLibrariesPage": {
       "toolbarTitle": "Manage room's libraries",
       "roomLoadError": "Room cannot be loaded :(",
-      "subtitle": "Assign/Unassign libraries"
+      "subtitle": "Assign or unassign libraries",
+      "librariesLoadError": "Libraries cannot be loaded :("
+    },
+    "ManageRoomModeratorsPage": {
+      "toolbarTitle": "Manage room's moderators",
+      "roomLoadError": "Room cannot be loaded :(",
+      "subtitle": "Add or delete moderators",
+      "usersLoadError": "Users cannot be loaded :("
     }
   }
 }
