@@ -49,6 +49,26 @@
       "title": "Are you sure?",
       "cancel": "Cancel",
       "continue": "Continue"
+    },
+    "LibraryItem": {
+      "empty": "Empty"
+    },
+    "LibraryItemActions": {
+      "deleteSongs": "Delete songs",
+      "importXmlFromItunes": "Import XML from iTunes"
+    },
+    "LibraryInfoDialog": {
+      "saveChangesAction": "Save changes",
+      "createAction": "Create",
+      "editLibrary": "Edit library",
+      "createNewLibrary": "Create new library",
+      "form": {
+        "fields": {
+          "title": {
+            "label": "Title"
+          }
+        }
+      }
     }
   },
   "Pages": {
@@ -123,6 +143,18 @@
       "roomLoadError": "Room cannot be loaded :(",
       "subtitle": "Add or delete moderators",
       "usersLoadError": "Users cannot be loaded :("
+    },
+    "LibrariesDashboardPage": {
+      "toolbarTitle": "Libraries",
+      "bottomActionButton": "Add new library",
+      "librariesLoadError": "Libraries cannot be loaded :(",
+      "confirmDeleteDialogTitle": "The library and all its songs will be deleted",
+      "helpers": {
+        "libraryMenu": {
+          "editInfo": "Edit info",
+          "deleteLibrary": "Delete library"
+        }
+      }
     }
   }
 }

@@ -5,18 +5,19 @@ import Library from '../../types/Library';
 import OptionItem from '../../types/OptionItem';
 
 type GetLibraryMenuProps = {
+  t: TFunction;
   onEditInfo: () => void;
   onDeleteLibrary: () => void;
 };
 export function getLibraryMenu(props: GetLibraryMenuProps): OptionItem[] {
-  const { onEditInfo, onDeleteLibrary } = props;
+  const { t, onEditInfo, onDeleteLibrary } = props;
   const libraryMenu: OptionItem[] = [
     {
-      label: 'Edit info',
+      label: t('Pages.LibrariesDashboardPage.helpers.libraryMenu.editInfo'),
       onSelected: onEditInfo
     },
     {
-      label: 'Delete library',
+      label: t('Pages.LibrariesDashboardPage.helpers.libraryMenu.deleteLibrary'),
       onSelected: onDeleteLibrary
     }
   ];

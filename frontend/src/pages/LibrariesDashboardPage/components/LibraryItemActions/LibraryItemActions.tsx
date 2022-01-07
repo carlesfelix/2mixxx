@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { useTranslation } from '../../../../services/i18n';
 import './LibraryItemActions.scss';
 
 type Props = {
@@ -14,6 +15,7 @@ export default function LibrarySongManager(props: Props) {
     importProgress, songs, onDeleteSongs, onImportSongs,
     deleteSongsInProgress
   } = props;
+  const { t } = useTranslation();
   function deleteSongsHandler(): void {
     onDeleteSongs();
   }
@@ -29,13 +31,13 @@ export default function LibrarySongManager(props: Props) {
     if (songs) {
       return (
         <button className="btn btn-danger" onClick={deleteSongsHandler} disabled={deleteSongsInProgress}>
-          Delete songs
+          {t('Components.LibraryItemActions.deleteSongs')}
         </button>
       );
     }
     return (
       <button className="btn btn-primary" onClick={importSongsHandler}>
-        Import songs
+        {t('Components.LibraryItemActions.importXmlFromItunes')}
       </button>
     );
   }

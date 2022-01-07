@@ -2,6 +2,7 @@ import { faEllipsisV, faMusic, faRecordVinyl } from '@fortawesome/free-solid-svg
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChangeEventHandler, useRef } from 'react';
 import OverlayMenu from '../../../../components/OverlayMenu';
+import { useTranslation } from '../../../../services/i18n';
 import Library from '../../../../types/Library';
 import { getLibraryMenu } from '../../helpers';
 import LibraryActions from '../LibraryItemActions';
@@ -22,9 +23,11 @@ export default function LibraryItem(props: Props) {
     importProgress, deleteSongsInProgress = false
   } = props;
   const { title } = library;
+  const { t } = useTranslation();
   const fileRef = useRef<HTMLInputElement>(null);
   const libraryMenu = getLibraryMenu({
-    onDeleteLibrary: deleteLibraryHandler, onEditInfo: editInfoHandler
+    t, onDeleteLibrary: deleteLibraryHandler,
+    onEditInfo: editInfoHandler
   });
   function changeFileInputHandler(): ChangeEventHandler<HTMLInputElement> {
     return event => {
@@ -92,12 +95,18 @@ export default function LibraryItem(props: Props) {
                 <span>{library.songs}</span>
               </span>
             ) : (
-              <span>Empty</span>
+              <span>{t('Components.LibraryItem.empty')}</span>
             )
           }
         </span>
       </div>
-      <input type="file" accept=".xml" style={{ display: 'none' }} ref={fileRef} onChange={changeFileInputHandler()} />
+      <input
+        type="file"
+        accept=".xml"
+        style={{ display: 'none' }}
+        ref={fileRef}
+        onChange={changeFileInputHandler()}
+      />
     </div>
   );
 }

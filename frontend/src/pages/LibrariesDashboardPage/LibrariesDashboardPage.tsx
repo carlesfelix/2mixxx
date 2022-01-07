@@ -11,12 +11,14 @@ import {
 } from '../../contexts/libraries';
 import { deleteSongsFromLibraryAction, importSongsToLibraryAction } from '../../contexts/libraries/libraries.actions';
 import useLibraries from '../../contexts/libraries/useLibraries';
+import { useTranslation } from '../../services/i18n';
 import Library from '../../types/Library';
 import LibraryInfoDialog from './components/LibraryInfoDialog';
 import LibraryItem from './components/LibraryItem';
 import './LibrariesDashboardPage.scss';
 
 export default function LibrariesDashboardPage() {
+  const { t } = useTranslation();
   const { state: libraries, dispatch: librariesDispatch } = useLibraries();
   useEffect(() => {
     getLibrariesAction(librariesDispatch);
@@ -56,7 +58,7 @@ export default function LibrariesDashboardPage() {
   }
   return (
     <PageLayout
-      toolbarTitle="Libraries"
+      toolbarTitle={t('Pages.LibrariesDashboardPage.toolbarTitle')}
       toolbarLinkBack="/dashboard"
       className="LibrariesDashboardPage"
       bottomBar={
@@ -64,7 +66,7 @@ export default function LibrariesDashboardPage() {
           className="btn btn-primary"
           onClick={openLibraryInfoDialogHandler}
         >
-          Add new library
+          {t('Pages.LibrariesDashboardPage.bottomActionButton')}
         </BottomActionButton>
       }
     >
@@ -72,7 +74,7 @@ export default function LibrariesDashboardPage() {
         <AsyncLayout
           error={libraries.libraries.error}
           inProgress={libraries.libraries.inProgress}
-          errorMessage="Error"
+          errorMessage={t('Pages.LibrariesDashboardPage.librariesLoadError')}
         >
           <div className="libraries-grid">
             {
@@ -99,10 +101,11 @@ export default function LibrariesDashboardPage() {
           onClose={closeEditLibraryDialog}
         />
         <ConfirmDialog
-          message="The library and all its songs will be deleted"
+          message={t('Pages.LibrariesDashboardPage.confirmDeleteDialogTitle')}
           isOpen={libraries.confirmDeleteDialog.isOpen}
           inProgress={libraries.confirmDeleteDialog.inProgress}
-          onRejected={dismissConfirmDeleteDialog} onConfirmed={confirmedDeleteHandler}
+          onRejected={dismissConfirmDeleteDialog}
+          onConfirmed={confirmedDeleteHandler}
         />
       </div>
     </PageLayout>

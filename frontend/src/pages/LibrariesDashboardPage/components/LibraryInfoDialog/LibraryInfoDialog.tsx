@@ -27,13 +27,14 @@ export default function LibraryInfoDialog(props: Props) {
   }
   const actions: ButtonHTMLAttributes<HTMLButtonElement>[] = [];
   if (data) {
-    actions.push({ children: 'Save changes' });
+    actions.push({ children: t('Components.LibraryInfoDialog.saveChangesAction') });
   } else {
-    actions.push({ children: 'Create' });
+    actions.push({ children: t('Components.LibraryInfoDialog.createAction') });
   }
   return (
     <Dialog
-      isOpen={isOpen} title={data ? 'Edit library' : 'Create new library'}
+      isOpen={isOpen}
+      title={data ? t('Components.LibraryInfoDialog.editLibrary') : t('Components.LibraryInfoDialog.createNewLibrary')}
       className="LibraryInfoDialog" closeOptions={['closeBtn']} onClose={onClose}
       preventClose={inProgress}
       maxWidth="20rem"
@@ -56,7 +57,7 @@ export default function LibraryInfoDialog(props: Props) {
         <ControlledInput
           field={{ type: 'inputText' }}
           control={control}
-          label="Title"
+          label={t('Components.LibraryInfoDialog.form.fields.title.label')}
           name="title"
           rules={libraryInfoFormValidation.title}
         />
