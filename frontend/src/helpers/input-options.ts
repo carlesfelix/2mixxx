@@ -1,9 +1,10 @@
 import RegisteredUserRoleEnum from '../enums/RegisteredUserRoleEnum';
+import { TFunction } from '../services/i18n';
 import InputOptions from '../types/InputOptions';
 import TCallback from '../types/TCallback';
 import { getLangNameByLocale, getRegisteredUserRoleName } from './input-option-labels';
 
-export function getRoleOptions(t: TCallback): InputOptions<RegisteredUserRoleEnum> {
+export function getRoleOptions(t: TFunction): InputOptions<RegisteredUserRoleEnum> {
   return [
     {
       label: getRegisteredUserRoleName(t, RegisteredUserRoleEnum.Admin),

@@ -97,7 +97,7 @@ export default function ManageRoomLibrariesPage() {
               labelProp: 'title',
               valueProp: 'id',
               inProgress: libraries.inProgress,
-              error: true || libraries.error,
+              error: libraries.error,
               errorMessage: t('Pages.ManageRoomLibrariesPage.librariesLoadError'),
               itemClassName: 'list-item'
             }}

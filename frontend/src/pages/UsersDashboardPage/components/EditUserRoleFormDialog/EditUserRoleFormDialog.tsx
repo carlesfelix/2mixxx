@@ -41,7 +41,7 @@ export default function EditUserRoleFormDialog(props: Props) {
 
   return (
     <Dialog
-      isOpen={isOpen} title="Edit role"
+      isOpen={isOpen} title={t('Components.EditUserRoleFormDialog.title')}
       className="EditUserRoleFormDialog" closeOptions={['closeBtn']} onClose={onClose}
       preventClose={inProgress}
       maxWidth="20rem"
@@ -51,7 +51,7 @@ export default function EditUserRoleFormDialog(props: Props) {
             className="btn btn-primary" disabled={inProgress}
             type="submit" form="userFormDialog"
           >
-            Save changes
+            {t('Components.EditUserRoleFormDialog.submitBtn')}
           </button>
         </div>
       }
@@ -60,11 +60,11 @@ export default function EditUserRoleFormDialog(props: Props) {
         <ControlledInput
           field={{
             type: 'dropdown',
-            props: { options: getRoleOptions(key => key) }
+            props: { options: getRoleOptions(t) }
           }}
           control={control}
           defaultValue={RegisteredUserRoleEnum.Dj}
-          label="Role"
+          label={t('Components.EditUserRoleFormDialog.form.fields.role.label')}
           name="role"
           rules={userFormValidation.role}
         />

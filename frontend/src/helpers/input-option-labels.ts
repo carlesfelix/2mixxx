@@ -1,13 +1,14 @@
 import RegisteredUserRoleEnum from '../enums/RegisteredUserRoleEnum';
+import { TFunction } from '../services/i18n';
 import TCallback from '../types/TCallback';
 
 export function getRegisteredUserRoleName(
-  t: TCallback,
+  t: TFunction,
   role: RegisteredUserRoleEnum
 ): string {
   const roleNames = {
-    [RegisteredUserRoleEnum.Admin]: 'Admin',
-    [RegisteredUserRoleEnum.Dj]: 'Deejay'
+    [RegisteredUserRoleEnum.Admin]: t('Common.registeredUserRoles.admin'),
+    [RegisteredUserRoleEnum.Dj]: t('Common.registeredUserRoles.dj')
   };
   return t(roleNames[role]);
 }

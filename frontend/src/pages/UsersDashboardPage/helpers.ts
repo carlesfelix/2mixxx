@@ -7,18 +7,19 @@ import OptionItem from '../../types/OptionItem';
 import UserForm from '../../types/UserForm';
 
 type GetUserOptionsProps = {
+  t: TFunction,
   onEdit: () => void,
   onDelete: () => void
 };
 export function getUserOptions(props: GetUserOptionsProps): OptionItem[] {
-  const { onDelete, onEdit } = props;
+  const { t, onDelete, onEdit } = props;
   const userOptions: OptionItem[] = [
     {
-      label: 'Edit role',
+      label: t('Pages.UsersDashboardPage.helpers.userOptions.editRole'),
       onSelected: onEdit
     },
     {
-      label: 'Delete',
+      label: t('Pages.UsersDashboardPage.helpers.userOptions.delete'),
       onSelected: onDelete
     }
   ];

@@ -1,5 +1,9 @@
 {
   "Common": {
+    "registeredUserRoles": {
+      "admin": "Admin",
+      "dj": "Deejay"
+    },
     "inputOptions": {
       "languages": {
         "ca": {
@@ -66,6 +70,37 @@
         "fields": {
           "title": {
             "label": "Title"
+          }
+        }
+      }
+    },
+    "CreateUserFormDialog": {
+      "title": "Create a new user",
+      "submitBtn": "Submit",
+      "form": {
+        "fields": {
+          "email": {
+            "label": "Email"
+          },
+          "password": {
+            "label": "Password"
+          },
+          "repeatPassword": {
+            "label": "Repeat password"
+          },
+          "role": {
+            "label": "Role"
+          }
+        }
+      }
+    },
+    "EditUserRoleFormDialog": {
+      "title": "Edit role",
+      "submitBtn": "Save changes",
+      "form": {
+        "fields": {
+          "role": {
+            "label": "Role"
           }
         }
       }
@@ -153,6 +188,18 @@
         "libraryMenu": {
           "editInfo": "Edit info",
           "deleteLibrary": "Delete library"
+        }
+      }
+    },
+    "UsersDashboardPage": {
+      "toolbarTitle": "Users",
+      "bottomActionButton": "Create a new user",
+      "usersLoadError": "Users cannot be loaded :(",
+      "confirmDeleteUserDialogTitle": "The user will be deleted",
+      "helpers": {
+        "userOptions": {
+          "editRole": "Edit role",
+          "delete": "Delete"
         }
       }
     }
