@@ -202,6 +202,11 @@
           "delete": "Delete"
         }
       }
+    },
+    "SongRequestsPage": {
+      "toolbarTitle": "Pending songs",
+      "bottomAction": "Request a song",
+      "pendingSongsLoadError": "Unable to retrieve pending songs"
     }
   }
 }
