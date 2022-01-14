@@ -207,6 +207,20 @@
       "toolbarTitle": "Pending songs",
       "bottomAction": "Request a song",
       "pendingSongsLoadError": "Unable to retrieve pending songs"
+    },
+    "MakeASongRequestPage": {
+      "toolbarTitle": "Make a song request",
+      "searchForm": {
+        "fields": {
+          "query": {
+            "placeholder": "Search songs"
+          }
+        }
+      },
+      "songsLoadError": "Something went wrong :(",
+      "emptyQueryMessage": "Start searching something in order to see results",
+      "emptyRecords": "Songs not found",
+      "bottomAction": "Send request"
     }
   }
 }

@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { searchSongs } from '../../api/songs';
@@ -85,7 +86,7 @@ export default function MakeASongRequestPage() {
   return (
     <PageLayout
       className="MakeASongRequestPage"
-      toolbarTitle="Make a song request"
+      toolbarTitle={t('Pages.MakeASongRequestPage.toolbarTitle')}
       toolbarLinkBack="/"
       topBar={
         <div className="filter-container">
@@ -94,7 +95,7 @@ export default function MakeASongRequestPage() {
             onChange={setQuery}
             value={query}
             extraProps={{
-              placeholder: 'Search songs',
+              placeholder: t('Pages.MakeASongRequestPage.searchForm.fields.query.placeholder'),
               autoComplete: 'off'
             }}
           />
@@ -106,7 +107,7 @@ export default function MakeASongRequestPage() {
           disabled={!selectedSong || requestSent.inProgress}
           onClick={sendRequestHandler}
         >
-          Send request
+          {t('Pages.MakeASongRequestPage.bottomAction')}
         </BottomActionButton>
       }
     >
@@ -114,12 +115,13 @@ export default function MakeASongRequestPage() {
         <AsyncLayout
           error={songs.error}
           inProgress={songs.inProgress}
+          errorMessage={t('Pages.MakeASongRequestPage.songsLoadError')}
         >
           {
             emptySearch && (
               <div className="empty-message-container">
                 <p>
-                  Start searching something in order to see results
+                  {t('Pages.MakeASongRequestPage.emptyQueryMessage')}
                 </p>
               </div>
             )
@@ -128,7 +130,7 @@ export default function MakeASongRequestPage() {
             resultsNotFound && (
               <div className="not-found-message-container">
                 <p>
-                  Songs not found
+                  {t('Pages.MakeASongRequestPage.emptyRecords')}
                 </p>
               </div>
             )
