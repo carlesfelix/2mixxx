@@ -4,6 +4,7 @@ import AsyncLayout from '../../components/AsyncLayout';
 import BottomActionButton from '../../components/BottomActionButton';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import PageLayout from '../../components/PageLayout';
+import { useTranslation } from '../../services/i18n';
 import AsyncState from '../../types/AsyncState';
 import DialogState from '../../types/DialogState';
 import RegisteredUser from '../../types/RegisteredUser';
@@ -14,6 +15,7 @@ import UserItem from './components/UserItem';
 import './UsersDashboardPage.scss';
 
 export default function UsersDashboardPage() {
+  const { t } = useTranslation();
   const [ users, setUsers ] = useState<AsyncState<RegisteredUser[]>>({
     data: [], inProgress: true, error: false
   });
@@ -97,7 +99,7 @@ export default function UsersDashboardPage() {
   }
   return (
     <PageLayout
-      toolbarTitle="Users"
+      toolbarTitle={t('Pages.UsersDashboardPage.toolbarTitle')}
       toolbarLinkBack="/dashboard"
       className="UsersDashboardPage"
       bottomBar={
@@ -105,12 +107,16 @@ export default function UsersDashboardPage() {
           className="btn btn-primary"
           onClick={openNewUserFormDialogHandler}
         >
-          Create a new user
+          {t('Pages.UsersDashboardPage.bottomActionButton')}
         </BottomActionButton>
       }
     >
       <div className="page-content UsersDashboardPage__content layout layout-center-v">
-        <AsyncLayout inProgress={users.inProgress}>
+        <AsyncLayout
+          inProgress={users.inProgress}
+          error={users.error}
+          errorMessage={t('Pages.UsersDashboardPage.usersLoadError')}
+        >
           <div className="user-list-container">
             {
               users.data.map(user => (
@@ -132,7 +138,7 @@ export default function UsersDashboardPage() {
           onSubmit={submitEditUserRoleFormDialogHandler}
         />
         <ConfirmDialog
-          message="User will be deleted"
+          message={t('Pages.UsersDashboardPage.confirmDeleteUserDialogTitle')}
           isOpen={confirmDeleteUserDialog.isOpen}
           inProgress={confirmDeleteUserDialog.inProgress}
           onRejected={dismissConfirmDeleteUserDialogHandler}

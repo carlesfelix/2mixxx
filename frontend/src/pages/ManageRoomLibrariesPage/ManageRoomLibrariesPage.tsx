@@ -7,12 +7,14 @@ import PageLayout from '../../components/PageLayout';
 import RoomItem from '../../components/RoomItem';
 import Section from '../../components/Section';
 import { defaultRoomDetails } from '../../constants/default-states';
+import { useTranslation } from '../../services/i18n';
 import AsyncState from '../../types/AsyncState';
 import Library from '../../types/Library';
 import Room from '../../types/Room';
 import './ManageRoomLibrariesPage.scss';
 
 export default function ManageRoomLibrariesPage() {
+  const { t } = useTranslation();
   const [ room, setRoom ] = useState<AsyncState<Room>>({
     data: defaultRoomDetails,
     error: false,
@@ -71,11 +73,11 @@ export default function ManageRoomLibrariesPage() {
   }
   return (
     <PageLayout
-      toolbarTitle="Manage room's libraries"
+      toolbarTitle={t('Pages.ManageRoomLibrariesPage.toolbarTitle')}
       toolbarLinkBack="/dashboard/rooms"
       inProgress={room.inProgress}
       error={room.error}
-      errorMessage="Room cannot be loaded :("
+      errorMessage={t('Pages.ManageRoomLibrariesPage.roomLoadError')}
       className="ManageRoomLibrariesPage"
     >
       <div className="page-content manage-room-libraries-container">
@@ -84,7 +86,7 @@ export default function ManageRoomLibrariesPage() {
           className="manage-room-content"
           header={
             <div className="manage-room-content__title">
-              <h3>Assign/Unassign libraries</h3>
+              <h3>{t('Pages.ManageRoomLibrariesPage.subtitle')}</h3>
             </div>
           }
         >
@@ -93,11 +95,15 @@ export default function ManageRoomLibrariesPage() {
               onChecked: checkedHandler,
               items: libraries.data,
               labelProp: 'title',
-              valueProp: 'id'
+              valueProp: 'id',
+              inProgress: libraries.inProgress,
+              error: libraries.error,
+              errorMessage: t('Pages.ManageRoomLibrariesPage.librariesLoadError'),
+              itemClassName: 'list-item'
             }}
             onChange={changeHandler}
             value={room.data.libraries!.map(({ id }) => id)}
-            className="checkbox-list"
+            className="checkbox-list list list-hr"
           />
         </Section>
       </div>

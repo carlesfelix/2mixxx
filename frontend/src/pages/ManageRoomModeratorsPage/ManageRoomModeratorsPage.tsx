@@ -7,12 +7,14 @@ import PageLayout from '../../components/PageLayout';
 import RoomItem from '../../components/RoomItem';
 import Section from '../../components/Section';
 import { defaultRoomDetails } from '../../constants/default-states';
+import { useTranslation } from '../../services/i18n';
 import AsyncState from '../../types/AsyncState';
 import RegisteredUser from '../../types/RegisteredUser';
 import Room from '../../types/Room';
 import './ManageRoomModeratorsPage.scss';
 
 export default function ManageRoomModeratorsPage() {
+  const { t } = useTranslation();
   const [ room, setRoom ] = useState<AsyncState<Room>>({
     data: defaultRoomDetails,
     error: false,
@@ -71,11 +73,11 @@ export default function ManageRoomModeratorsPage() {
   }
   return (
     <PageLayout
-      toolbarTitle="Manage room's moderators"
+      toolbarTitle={t('Pages.ManageRoomModeratorsPage.toolbarTitle')}
       toolbarLinkBack="/dashboard/rooms"
       inProgress={room.inProgress}
       error={room.error}
-      errorMessage="Room cannot be loaded :("
+      errorMessage={t('Pages.ManageRoomModeratorsPage.roomLoadError')}
       className="ManageRoomModeratorsPage"
     >
       <div className="manage-room-moderators-container page-content">
@@ -84,7 +86,7 @@ export default function ManageRoomModeratorsPage() {
           className="manage-room-content"
           header={
             <div className="manage-room-content__title">
-              <h3>Assign/Unassign users</h3>
+              <h3>{t('Pages.ManageRoomModeratorsPage.subtitle')}</h3>
             </div>
           }
         >
@@ -96,11 +98,12 @@ export default function ManageRoomModeratorsPage() {
               valueProp: 'id',
               inProgress: registeredUsers.inProgress,
               error: registeredUsers.error,
-              errorMessage: 'Users cannot be loaded :('
+              errorMessage: t('Pages.ManageRoomModeratorsPage.usersLoadError'),
+              itemClassName: 'list-item'
             }}
             onChange={changeHandler}
             value={room.data.moderators!.map(({ id }) => id)}
-            className="checkbox-list"
+            className="checkbox-list list list-hr"
           />
         </Section>
       </div>

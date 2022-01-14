@@ -10,14 +10,14 @@ import InputText from '../inputs/InputText';
 import { InputTextExtraProps } from '../inputs/InputText/InputText';
 import MultiselectBox, { MultiselectBoxExtraProps } from '../inputs/MultiselectBox';
 import RadioButton, { RadioButtonExtraProps } from '../inputs/RadioButton';
-import RadioButtonCards, { RadioButtonCardsExtraProps } from '../inputs/RadioButtonCards';
+import RadioButtonBox, { RadioButtonBoxExtraProps } from '../inputs/RadioButtonBox';
 
 type Field = { type: 'inputText', props?: InputTextExtraProps } |
 { type: 'dropdown', props: DropdownExtraProps } |
 { type: 'checkbox', props: CheckboxExtraProps } |
 { type: 'multiselectBox', props: MultiselectBoxExtraProps } |
 { type: 'radioButton', props: RadioButtonExtraProps } |
-{ type: 'radioButtonCards', props: RadioButtonCardsExtraProps };
+{ type: 'RadioButtonBox', props: RadioButtonBoxExtraProps };
   
 type Props = {
   control: Control<FieldValues>;
@@ -73,9 +73,9 @@ export default function ControlledInput(props: Props) {
             name={name} extraProps={field.props}
           />
         );
-      case 'radioButtonCards':
+      case 'RadioButtonBox':
         return (
-          <RadioButtonCards
+          <RadioButtonBox
             value={value} onChange={onChange} onBlur={onBlur}
             name={name} extraProps={field.props}
           />

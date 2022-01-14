@@ -7,6 +7,7 @@ import { defaultRoomDetails } from '../../constants/default-states';
 import { SERVER__DELETE_SONG_REQUEST, SERVER__NEW_SONG_REQUEST } from '../../constants/server-socket-actions';
 import environment from '../../environment';
 import useSocketConnectionManager from '../../hooks/useSocketConnectionManager';
+import { useTranslation } from '../../services/i18n';
 import { emitDeleteSongRequest, emitGetSongRequests } from '../../socket/emitters';
 import AsyncState from '../../types/AsyncState';
 import Room from '../../types/Room';
@@ -17,6 +18,7 @@ import './ModerateRoomPage.scss';
 
 export default function ModerateRoomPage() {
   const { roomId } = useParams<{ roomId: string }>();
+  const { t } = useTranslation();
   const [ room, setRoom ] = useState<AsyncState<Room>>({
     inProgress: true, error: false,
     data: defaultRoomDetails
@@ -126,17 +128,21 @@ export default function ModerateRoomPage() {
   return (
     <PageLayout
       className="ModerateRoomPage"
-      toolbarTitle={room.data.code}
+      hideTitleOnError
+      toolbarTitle={t(
+        'Pages.ModerateRoomPage.toolbarTitle',
+        { value: room.data.code }
+      )}
       toolbarLinkBack="/moderate/rooms"
       inProgress={room.inProgress}
       error={room.error}
-      errorMessage="Room cannot be loaded :("
+      errorMessage={t('Pages.ModerateRoomPage.roomLoadError')}
     >
       <div className="page-content ModerateRoomPage__content">
         <AsyncLayout
           inProgress={songRequests.inProgress}
           error={songRequests.error}
-          errorMessage="Unable to retrieve pending songs"
+          errorMessage={t('Pages.ModerateRoomPage.pendingSongsLoadError')}
         >
           <SongRequestQueue
             className="room-requests"

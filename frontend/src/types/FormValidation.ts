@@ -1,5 +1,5 @@
 import FormValidationRules from './FormValidationRules';
 
-type FormValidation<T = any, K = void> = (deps: K) => FormValidationRules<T>;
+type FormValidation<T = any, K extends any[] = []> = (...deps: K) => FormValidationRules<T>;
 
 export default FormValidation;

@@ -1,10 +1,11 @@
+import { t } from 'i18next';
 import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { searchSongs } from '../../api/songs';
 import AsyncLayout from '../../components/AsyncLayout';
 import BottomActionButton from '../../components/BottomActionButton';
 import InputText from '../../components/forms/inputs/InputText';
-import RadioButtonCards from '../../components/forms/inputs/RadioButtonCards';
+import RadioButtonBox from '../../components/forms/inputs/RadioButtonBox';
 import PageLayout from '../../components/PageLayout';
 import environment from '../../environment';
 import useSocketConnectionManager from '../../hooks/useSocketConnectionManager';
@@ -60,7 +61,7 @@ export default function MakeASongRequestPage() {
       });
     }
   }, [ queryTrimDebounced, queryLength ]);
-  function radioButtonCardsChangeHandler(itemValue: string): void {
+  function radioButtonBoxChangeHandler(itemValue: string): void {
     setSelectedSong(itemValue);
   }
   function sendRequestHandler(): void {
@@ -85,7 +86,7 @@ export default function MakeASongRequestPage() {
   return (
     <PageLayout
       className="MakeASongRequestPage"
-      toolbarTitle="Make a song request"
+      toolbarTitle={t('Pages.MakeASongRequestPage.toolbarTitle')}
       toolbarLinkBack="/"
       topBar={
         <div className="filter-container">
@@ -94,7 +95,7 @@ export default function MakeASongRequestPage() {
             onChange={setQuery}
             value={query}
             extraProps={{
-              placeholder: 'Search songs',
+              placeholder: t('Pages.MakeASongRequestPage.searchForm.fields.query.placeholder'),
               autoComplete: 'off'
             }}
           />
@@ -106,7 +107,7 @@ export default function MakeASongRequestPage() {
           disabled={!selectedSong || requestSent.inProgress}
           onClick={sendRequestHandler}
         >
-          Send request
+          {t('Pages.MakeASongRequestPage.bottomAction')}
         </BottomActionButton>
       }
     >
@@ -114,12 +115,13 @@ export default function MakeASongRequestPage() {
         <AsyncLayout
           error={songs.error}
           inProgress={songs.inProgress}
+          errorMessage={t('Pages.MakeASongRequestPage.songsLoadError')}
         >
           {
             emptySearch && (
               <div className="empty-message-container">
                 <p>
-                  Start searching something in order to see results
+                  {t('Pages.MakeASongRequestPage.emptyQueryMessage')}
                 </p>
               </div>
             )
@@ -128,16 +130,17 @@ export default function MakeASongRequestPage() {
             resultsNotFound && (
               <div className="not-found-message-container">
                 <p>
-                  Songs not found
+                  {t('Pages.MakeASongRequestPage.emptyRecords')}
                 </p>
               </div>
             )
           }
-          <RadioButtonCards
-            onChange={radioButtonCardsChangeHandler}
+          <RadioButtonBox
+            onChange={radioButtonBoxChangeHandler}
             value={selectedSong}
-            className="search-results"
+            className="list"
             extraProps={{
+              itemClassName: 'card card-primary list-item',
               items: songs.data.map(song => ({
                 label: (
                   <SongResult song={song} />

@@ -20,6 +20,7 @@
       padding: 0;
       background-color: transparent;
       position: absolute;
+      outline: none;
       div.Dialog__component {
         display: flex;
         flex-direction: column;
@@ -27,6 +28,7 @@
         max-width: variables.$min-sm;
         max-height: 80vh;
         min-width: variables.$min-xs;
+        outline: none;
         .content-container {
           background-color: theme.color('dialog-background');
           padding: 1.25rem 1.5rem;

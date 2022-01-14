@@ -1,5 +1,5 @@
 import { Auth0Provider } from '@auth0/auth0-react';
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
@@ -9,8 +9,10 @@ import { RoomUserProvider } from './contexts/room-user';
 import environment from './environment';
 import reportWebVitals from './reportWebVitals';
 import http from './services/http';
+import { setupI18n } from './services/i18n';
 import './index.scss';
 
+setupI18n();
 http.setBaseUrl(environment.REACT_APP_API_BASE_URL);
 
 ReactDOM.render(
@@ -24,7 +26,9 @@ ReactDOM.render(
         <MeProvider>
           <BrowserRouter>
             <LibrariesProvider>
-              <App />
+              <Suspense fallback={false}>
+                <App />
+              </Suspense>
             </LibrariesProvider>
           </BrowserRouter>
         </MeProvider>

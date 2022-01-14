@@ -1,0 +1,226 @@
+{
+  "Common": {
+    "registeredUserRoles": {
+      "admin": "Admin",
+      "dj": "Deejay"
+    },
+    "inputOptions": {
+      "languages": {
+        "ca": {
+          "label": "Català"
+        },
+        "en": {
+          "label": "English"
+        },
+        "es": {
+          "label": "Español"
+        }
+      }
+    },
+    "formValidationMessages": {
+      "required": "This field is mandatory",
+      "min": "The minimum required value is {{value}}",
+      "max": "The maximum required value is {{value}}",
+      "minLength_one": "This field must be at least {{count}} character long",
+      "minLength_other": "This field must be at least {{count}} characters long",
+      "maxLength_one": "This field must have a maximum length of {{count}} character",
+      "maxLength_other": "This field must have a maximum length of {{count}} characters",
+      "email": "Invalid email format",
+      "strongPassword": "Password must contain at least 8 characters, a lowercase, an uppercase and one symbol",
+      "emailAlreadyInUse": "This email is already in use",
+      "passwordMustMatch": "Password must match"
+    }
+  },
+  "Components": {
+    "LoginButton": {
+      "loginBtn": "Enter as registered user"
+    },
+    "PageLayout": {
+      "helpers": {
+        "menuItems": {
+          "language": "Language",
+          "about": "About",
+          "roomUserLogout": "Logout",
+          "registeredUserLogout": "Logout"
+        }
+      },
+      "toolbarProgress": "Loading..."
+    },
+    "SongRequestQueue": {
+      "noPendingSongs": "There are no pending songs"
+    },
+    "ConfirmDialog": {
+      "title": "Are you sure?",
+      "cancel": "Cancel",
+      "continue": "Continue"
+    },
+    "LibraryItem": {
+      "empty": "Empty"
+    },
+    "LibraryItemActions": {
+      "deleteSongs": "Delete songs",
+      "importXmlFromItunes": "Import XML from iTunes"
+    },
+    "LibraryInfoDialog": {
+      "saveChangesAction": "Save changes",
+      "createAction": "Create",
+      "editLibrary": "Edit library",
+      "createNewLibrary": "Create new library",
+      "form": {
+        "fields": {
+          "title": {
+            "label": "Title"
+          }
+        }
+      }
+    },
+    "CreateUserFormDialog": {
+      "title": "Create a new user",
+      "submitBtn": "Submit",
+      "form": {
+        "fields": {
+          "email": {
+            "label": "Email"
+          },
+          "password": {
+            "label": "Password"
+          },
+          "repeatPassword": {
+            "label": "Repeat password"
+          },
+          "role": {
+            "label": "Role"
+          }
+        }
+      }
+    },
+    "EditUserRoleFormDialog": {
+      "title": "Edit role",
+      "submitBtn": "Save changes",
+      "form": {
+        "fields": {
+          "role": {
+            "label": "Role"
+          }
+        }
+      }
+    }
+  },
+  "Pages": {
+    "HomePage": {
+      "toolbar": {
+        "title": "Welcome to 2mixxx"
+      },
+      "title": "2mixxx",
+      "description": "The app for requesting songs to the DJ",
+      "loginForm": {
+        "title": "Join into a room",
+        "fields": {
+          "roomCode": {
+            "label": "Room code",
+            "placeholder": "type a code"
+          }
+        },
+        "submitBtn": "Enter"
+      }
+    },
+    "DashboardPage": {
+      "toolbar": {
+        "title": "Dashboard"
+      },
+      "cardLinks": {
+        "moderateRooms": {
+          "title": "Moderate rooms",
+          "description": "Delete and control the song requests from a room."
+        },
+        "manageRooms": {
+          "title": "Manage rooms",
+          "description": "Create, edit, delete and configure rooms."
+        },
+        "manageLibraries": {
+          "title": "Manage libraries",
+          "description": "Create, edit, and delete libraries and manage their songs."
+        },
+        "manageUsers": {
+          "title": "Manage users",
+          "description": "Create, edit and delete registered users."
+        }
+      }
+    },
+    "ModerateRoomsPage": {
+      "toolbarTitle": "Moderate rooms"
+    },
+    "ModerateRoomPage": {
+      "toolbarTitle": "Moderating \"{{value}}\"",
+      "roomLoadError": "Room cannot be loaded :(",
+      "pendingSongsLoadError": "Unable to retrieve pending songs"
+    },
+    "RoomsDashboardPage": {
+      "helpers": {
+        "roomMenuItems": {
+          "manageLibraries": "Manage libraries",
+          "manageModerators": "Manage moderators",
+          "deleteRoom": "Delete room"
+        }
+      },
+      "toolbarTitle": "Rooms",
+      "bottomActionButton": "Create a new room",
+      "confirmDeleteRoom": "The room will be deleted"
+    },
+    "ManageRoomLibrariesPage": {
+      "toolbarTitle": "Manage room's libraries",
+      "roomLoadError": "Room cannot be loaded :(",
+      "subtitle": "Assign or unassign libraries",
+      "librariesLoadError": "Libraries cannot be loaded :("
+    },
+    "ManageRoomModeratorsPage": {
+      "toolbarTitle": "Manage room's moderators",
+      "roomLoadError": "Room cannot be loaded :(",
+      "subtitle": "Add or delete moderators",
+      "usersLoadError": "Users cannot be loaded :("
+    },
+    "LibrariesDashboardPage": {
+      "toolbarTitle": "Libraries",
+      "bottomActionButton": "Add new library",
+      "librariesLoadError": "Libraries cannot be loaded :(",
+      "confirmDeleteDialogTitle": "The library and all its songs will be deleted",
+      "helpers": {
+        "libraryMenu": {
+          "editInfo": "Edit info",
+          "deleteLibrary": "Delete library"
+        }
+      }
+    },
+    "UsersDashboardPage": {
+      "toolbarTitle": "Users",
+      "bottomActionButton": "Create a new user",
+      "usersLoadError": "Users cannot be loaded :(",
+      "confirmDeleteUserDialogTitle": "The user will be deleted",
+      "helpers": {
+        "userOptions": {
+          "editRole": "Edit role",
+          "delete": "Delete"
+        }
+      }
+    },
+    "SongRequestsPage": {
+      "toolbarTitle": "Pending songs",
+      "bottomAction": "Request a song",
+      "pendingSongsLoadError": "Unable to retrieve pending songs"
+    },
+    "MakeASongRequestPage": {
+      "toolbarTitle": "Make a song request",
+      "searchForm": {
+        "fields": {
+          "query": {
+            "placeholder": "Search songs"
+          }
+        }
+      },
+      "songsLoadError": "Something went wrong :(",
+      "emptyQueryMessage": "Start searching something in order to see results",
+      "emptyRecords": "Songs not found",
+      "bottomAction": "Send request"
+    }
+  }
+}

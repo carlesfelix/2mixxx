@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Dialog from '../../../../components/Dialog';
 import ControlledInput from '../../../../components/forms/ControlledInput';
-import { roleOptions } from '../../../../constants/dropdown-options';
 import RegisteredUserRoleEnum from '../../../../enums/RegisteredUserRoleEnum';
+import { getRoleOptions } from '../../../../helpers/input-options';
+import { useTranslation } from '../../../../services/i18n';
 import DialogState from '../../../../types/DialogState';
 import RegisteredUser from '../../../../types/RegisteredUser';
 import UserForm from '../../../../types/UserForm';
@@ -19,6 +20,7 @@ type Props = {
 export default function EditUserRoleFormDialog(props: Props) {
   const { state, onClose, onSubmit } = props;
   const { inProgress, isOpen, data } = state;
+  const { t } = useTranslation();
   const {
     handleSubmit, control, reset,
     getValues, trigger
@@ -28,7 +30,7 @@ export default function EditUserRoleFormDialog(props: Props) {
   }, [ isOpen, data, reset ]);
 
   const userFormValidation = getUserFormValidation({
-    defaultData: data, getValues, trigger
+    defaultData: data, getValues, trigger, t
   });
 
   function submitHandler(records: { role: number }): void {
@@ -39,7 +41,7 @@ export default function EditUserRoleFormDialog(props: Props) {
 
   return (
     <Dialog
-      isOpen={isOpen} title="Edit role"
+      isOpen={isOpen} title={t('Components.EditUserRoleFormDialog.title')}
       className="EditUserRoleFormDialog" closeOptions={['closeBtn']} onClose={onClose}
       preventClose={inProgress}
       maxWidth="20rem"
@@ -49,7 +51,7 @@ export default function EditUserRoleFormDialog(props: Props) {
             className="btn btn-primary" disabled={inProgress}
             type="submit" form="userFormDialog"
           >
-            Save changes
+            {t('Components.EditUserRoleFormDialog.submitBtn')}
           </button>
         </div>
       }
@@ -58,11 +60,11 @@ export default function EditUserRoleFormDialog(props: Props) {
         <ControlledInput
           field={{
             type: 'dropdown',
-            props: { options: roleOptions }
+            props: { options: getRoleOptions(t) }
           }}
           control={control}
           defaultValue={RegisteredUserRoleEnum.Dj}
-          label="Role"
+          label={t('Components.EditUserRoleFormDialog.form.fields.role.label')}
           name="role"
           rules={userFormValidation.role}
         />

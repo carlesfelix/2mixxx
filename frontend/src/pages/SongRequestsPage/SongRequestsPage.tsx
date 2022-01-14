@@ -5,6 +5,7 @@ import PageLayout from '../../components/PageLayout';
 import { SERVER__DELETE_SONG_REQUEST, SERVER__NEW_SONG_REQUEST } from '../../constants/server-socket-actions';
 import environment from '../../environment';
 import useSocketConnectionManager from '../../hooks/useSocketConnectionManager';
+import { useTranslation } from '../../services/i18n';
 import { emitGetSongRequests } from '../../socket/emitters';
 import AsyncState from '../../types/AsyncState';
 import SocketReponse from '../../types/SocketResponse';
@@ -13,6 +14,7 @@ import SongRequestQueue from './components/SongRequestQueue';
 import './SongRequestsPage.scss';
 
 export default function SongRequestsPage() {
+  const { t } = useTranslation();
   const [ songRequests, setSongRequests ] = useState<
     AsyncState<{ request: SongRequest, deleteInProgress: boolean }[]>
   >({
@@ -68,11 +70,11 @@ export default function SongRequestsPage() {
 
   return (
     <PageLayout
-      toolbarTitle="Pending songs"
+      toolbarTitle={t('Pages.SongRequestsPage.toolbarTitle')}
       className="SongRequestsPage"
       bottomBar={
         <BottomLink to="/make-a-song-request">
-          Request a song
+          {t('Pages.SongRequestsPage.bottomAction')}
         </BottomLink>
       }
     >
@@ -80,7 +82,7 @@ export default function SongRequestsPage() {
         <AsyncLayout
           inProgress={songRequests.inProgress}
           error={songRequests.error}
-          errorMessage="Unable to retrieve pending songs"
+          errorMessage={t('Pages.SongRequestsPage.pendingSongsLoadError')}
         >
           <SongRequestQueue
             className="pending-songs"

@@ -6,8 +6,9 @@ import CreateUserForm from '../../../../types/UserForm';
 import DialogState from '../../../../types/DialogState';
 import { getUserFormValidation } from '../../helpers';
 import './CreateUserFormDialog.scss';
-import { roleOptions } from '../../../../constants/dropdown-options';
 import RegisteredUserRoleEnum from '../../../../enums/RegisteredUserRoleEnum';
+import { getRoleOptions } from '../../../../helpers/input-options';
+import { useTranslation } from '../../../../services/i18n';
 
 type Props = {
   state: DialogState<CreateUserForm>;
@@ -22,6 +23,7 @@ const defaultValues: CreateUserForm = {
 export default function CreateUserFormDialog(props: Props) {
   const { state, onClose, onSubmit } = props;
   const { inProgress, isOpen } = state;
+  const { t } = useTranslation();
   const {
     handleSubmit, control, reset,
     getValues, trigger
@@ -31,7 +33,7 @@ export default function CreateUserFormDialog(props: Props) {
   }, [ isOpen, reset ]);
 
   const userFormValidation = getUserFormValidation({
-    getValues, trigger
+    t, getValues, trigger
   });
 
   function submitHandler(user: CreateUserForm): void {
@@ -40,7 +42,7 @@ export default function CreateUserFormDialog(props: Props) {
 
   return (
     <Dialog
-      isOpen={isOpen} title="Create new user"
+      isOpen={isOpen} title={t('Components.CreateUserFormDialog.title')}
       className="CreateUserFormDialog"
       closeOptions={['closeBtn']}
       onClose={onClose}
@@ -52,7 +54,7 @@ export default function CreateUserFormDialog(props: Props) {
             className="btn btn-primary" disabled={inProgress}
             type="submit" form="userFormDialog"
           >
-            Submit
+            {t('Components.CreateUserFormDialog.submitBtn')}
           </button>
         </div>
       }
@@ -61,32 +63,32 @@ export default function CreateUserFormDialog(props: Props) {
         <ControlledInput
           field={{ type: 'inputText' }}
           control={control}
-          label="Email"
+          label={t('Components.CreateUserFormDialog.form.fields.email.label')}
           name="email"
           rules={userFormValidation.email}
         />
         <ControlledInput
           field={{ type: 'inputText', props: { password: true } }}
           control={control}
-          label="Password"
+          label={t('Components.CreateUserFormDialog.form.fields.password.label')}
           name="password"
           rules={userFormValidation.password}
         />
         <ControlledInput
           field={{ type: 'inputText', props: { password: true } }}
           control={control}
-          label="Repeat password"
+          label={t('Components.CreateUserFormDialog.form.fields.repeatPassword.label')}
           name="repeatPassword"
           rules={userFormValidation.repeatPassword}
         />
         <ControlledInput
           field={{
             type: 'dropdown',
-            props: { options: roleOptions }
+            props: { options: getRoleOptions(t) }
           }}
           control={control}
           defaultValue={defaultValues.role}
-          label="Role"
+          label={t('Components.CreateUserFormDialog.form.fields.role.label')}
           name="role"
           rules={userFormValidation.role}
         />

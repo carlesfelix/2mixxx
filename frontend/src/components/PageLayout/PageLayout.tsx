@@ -1,11 +1,13 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import classNames from 'classnames';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { useMe } from '../../contexts/me';
 import { logoutGuestMeAction } from '../../contexts/me/me.actions';
 import { removeRoomUserAction, useRoomUser } from '../../contexts/room-user';
+import { useTranslation } from '../../services/i18n';
 import AsyncLayout from '../AsyncLayout';
 import Toolbar from '../Toolbar';
+import LanguageDialog from './components/LanguageDialog';
 import { getMenu } from './helpers';
 import './PageLayout.scss';
 
@@ -16,6 +18,7 @@ type Props = {
   className?: string;
   inProgress?: boolean;
   error?: Error | null | boolean;
+  hideTitleOnError?: boolean;
   errorMessage?: string;
   bottomBar?: ReactNode;
   topBar?: ReactNode;
@@ -23,7 +26,7 @@ type Props = {
 
 export default function PageLayout(props: Props) {
   const {
-    children, toolbarTitle,
+    children, toolbarTitle, hideTitleOnError,
     toolbarLinkBack, className = '',
     error, inProgress, errorMessage,
     bottomBar, topBar
@@ -31,8 +34,12 @@ export default function PageLayout(props: Props) {
   const { logout: auth0Logout } = useAuth0();
   const { state: meState, dispatch: meDispatch } = useMe();
   const { dispatch: roomUserDispatch } = useRoomUser();
+  const { t } = useTranslation();
+  const [ languageDialogOpen, setLanguageDialogOpen ] = useState<boolean>(false);
   const menu = getMenu({
+    t,
     onAbout: aboutHandler,
+    onLanguage: languageHandler,
     onLogOutRegisteredUser: logOutRegisteredUserHandler,
     onLogOutRoomUser: logOutRoomUserHandler,
     me: meState.user,
@@ -40,6 +47,12 @@ export default function PageLayout(props: Props) {
   });
   function aboutHandler(): void {
 
+  }
+  function languageHandler(): void {
+    setLanguageDialogOpen(true);
+  }
+  function languageDialogCloseHandler(): void {
+    setLanguageDialogOpen(false);
   }
   function logOutRegisteredUserHandler(): void {
     auth0Logout({ returnTo: window.location.origin });
@@ -51,10 +64,12 @@ export default function PageLayout(props: Props) {
   const pageLayoutClassName = classNames('PageLayout', {
     [className]: !!className
   });
+  const title = inProgress ?
+    t('Components.PageLayout.toolbarProgress') : toolbarTitle;
   return (
     <div className={pageLayoutClassName}>
       <Toolbar
-        title={inProgress ? 'Loading...' : toolbarTitle}
+        title={error && hideTitleOnError ? '' : title}
         linkBack={toolbarLinkBack} menu={menu}
       />
       {
@@ -84,6 +99,10 @@ export default function PageLayout(props: Props) {
           </div>
         )
       }
+      <LanguageDialog
+        isOpen={languageDialogOpen}
+        onClose={languageDialogCloseHandler}
+      />
     </div>
   );
 }
