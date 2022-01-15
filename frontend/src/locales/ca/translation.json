@@ -1,5 +1,9 @@
 {
   "Common": {
+    "registeredUserRoles": {
+      "admin": "Admin",
+      "dj": "Deejay"
+    },
     "inputOptions": {
       "languages": {
         "ca": {
@@ -12,30 +16,211 @@
           "label": "Español"
         }
       }
+    },
+    "formValidationMessages": {
+      "required": "Aquest camp és obligatori",
+      "min": "El valor mínim acceptat és {{value}}",
+      "max": "El valor màxim acceptat és {{value}}",
+      "minLength_one": "Aquest camp ha de tindre alemnys {{count}} caràcter",
+      "minLength_other": "Aquest camp ha de tindre alemnys {{count}} caràcters",
+      "maxLength_one": "Aquest camp ha de tindre {{count}} caràcter com a màxim",
+      "maxLength_other": "Aquest camp ha de tindre {{count}} caràcters com a màxim",
+      "email": "El format de l'email és invalid",
+      "strongPassword": "La contrasenya ha de tindre alemnys 8 caràcters, una minúscula, una majúscula i un simbol",
+      "emailAlreadyInUse": "Aquest email ja està en ús",
+      "passwordMustMatch": "La contrasenya ha de coincidir"
     }
   },
   "Components": {
     "LoginButton": {
-      "loginBtn": "Entrar com usuari registrat"
+      "loginBtn": "Entrar com a usuari registrat"
+    },
+    "PageLayout": {
+      "helpers": {
+        "menuItems": {
+          "language": "Idioma",
+          "about": "Sobre",
+          "roomUserLogout": "Eixir de la sala",
+          "registeredUserLogout": "Tancar la sessió"
+        }
+      },
+      "toolbarProgress": "Carregant..."
+    },
+    "SongRequestQueue": {
+      "noPendingSongs": "No hi ha cançons pendents"
+    },
+    "ConfirmDialog": {
+      "title": "Estàs segur?",
+      "cancel": "Cancel·lar",
+      "continue": "Continuar"
+    },
+    "LibraryItem": {
+      "empty": "Buida"
+    },
+    "LibraryItemActions": {
+      "deleteSongs": "Suprimir cançons",
+      "importXmlFromItunes": "Importar XML des d'iTunes"
+    },
+    "LibraryInfoDialog": {
+      "saveChangesAction": "Guardar canvis",
+      "createAction": "Crear",
+      "editLibrary": "Editar llibreria",
+      "createNewLibrary": "Crear una llibreria",
+      "form": {
+        "fields": {
+          "title": {
+            "label": "Títol"
+          }
+        }
+      }
+    },
+    "CreateUserFormDialog": {
+      "title": "Crear un usuari nou",
+      "submitBtn": "Enviar",
+      "form": {
+        "fields": {
+          "email": {
+            "label": "Email"
+          },
+          "password": {
+            "label": "Contrasenya"
+          },
+          "repeatPassword": {
+            "label": "Repetir contrasenya"
+          },
+          "role": {
+            "label": "Rol"
+          }
+        }
+      }
+    },
+    "EditUserRoleFormDialog": {
+      "title": "Editar rol",
+      "submitBtn": "Guardar canvis",
+      "form": {
+        "fields": {
+          "role": {
+            "label": "Rol"
+          }
+        }
+      }
     }
   },
   "Pages": {
     "HomePage": {
       "toolbar": {
-        "title": "Benvingut/a a 2mixxx"
+        "title": "Benvingut/da a 2mixxx"
       },
       "title": "2mixxx",
-      "description": "The app for requesting songs to the DJ",
+      "description": "L'aplicació per demanar cançons al Deejay",
       "loginForm": {
-        "title": "Join into a room",
+        "title": "Entrar a una sala",
         "fields": {
           "roomCode": {
-            "label": "Room code",
-            "placeholder": "type a code"
+            "label": "Codi de la sala",
+            "placeholder": "escriga un codi"
           }
         },
-        "submitBtn": "Enter"
+        "submitBtn": "Entrar"
       }
+    },
+    "DashboardPage": {
+      "toolbar": {
+        "title": "Panell de control"
+      },
+      "cardLinks": {
+        "moderateRooms": {
+          "title": "Moderar sales",
+          "description": "Suprimir i controlar les cançons demanades d'una sala."
+        },
+        "manageRooms": {
+          "title": "Administrar sales",
+          "description": "Crear, editar, suprimir i configurar sales."
+        },
+        "manageLibraries": {
+          "title": "Administrar llibreries",
+          "description": "Crear, editar i suprimir llibreries i administrar les seues cançons."
+        },
+        "manageUsers": {
+          "title": "Administrar usuaris",
+          "description": "Crear, editar i suprimir usuaris registrats."
+        }
+      }
+    },
+    "ModerateRoomsPage": {
+      "toolbarTitle": "Moderar sales"
+    },
+    "ModerateRoomPage": {
+      "toolbarTitle": "Moderant \"{{value}}\"",
+      "roomLoadError": "La sala no s'ha pogut carregar :(",
+      "pendingSongsLoadError": "No s'han pogut obtindre les cançons pendents"
+    },
+    "RoomsDashboardPage": {
+      "helpers": {
+        "roomMenuItems": {
+          "manageLibraries": "Administrar llibreries",
+          "manageModerators": "Administrar moderadors",
+          "deleteRoom": "Suprimir sala"
+        }
+      },
+      "toolbarTitle": "Sales",
+      "bottomActionButton": "Crear una sala nova",
+      "confirmDeleteRoom": "La sala serà suprimida"
+    },
+    "ManageRoomLibrariesPage": {
+      "toolbarTitle": "Administrar les llibreries de la sala",
+      "roomLoadError": "La sala no s'ha pogut carregar :(",
+      "subtitle": "Assignar llibreries",
+      "librariesLoadError": "Les llibreries no s'han pogut carregar :("
+    },
+    "ManageRoomModeratorsPage": {
+      "toolbarTitle": "Administrar els moderadors de la sala",
+      "roomLoadError": "La sala no s'ha pogut carregar :(",
+      "subtitle": "Afegir o suprimir moderadors",
+      "usersLoadError": "Els usuaris no s'han pogut carregar :("
+    },
+    "LibrariesDashboardPage": {
+      "toolbarTitle": "Llibreries",
+      "bottomActionButton": "Afegir una llibreria nova",
+      "librariesLoadError": "Les llibreries no s'han pogut carregar :(",
+      "confirmDeleteDialogTitle": "La llibreria i totes les seues cançons es suprimiran",
+      "helpers": {
+        "libraryMenu": {
+          "editInfo": "Editar informació",
+          "deleteLibrary": "Suprimir llibreria"
+        }
+      }
+    },
+    "UsersDashboardPage": {
+      "toolbarTitle": "Usuaris",
+      "bottomActionButton": "Crear un usuari nou",
+      "usersLoadError": "Els usuaris no s'han pogut carregar :(",
+      "confirmDeleteUserDialogTitle": "L'usuari es suprimirà",
+      "helpers": {
+        "userOptions": {
+          "editRole": "Editar rol",
+          "delete": "Suprimir"
+        }
+      }
+    },
+    "SongRequestsPage": {
+      "toolbarTitle": "Cançons pendents",
+      "bottomAction": "Demanar una cançó",
+      "pendingSongsLoadError": "No s'han pogut obtindre les cançons pendents"
+    },
+    "MakeASongRequestPage": {
+      "toolbarTitle": "Enviar petició",
+      "searchForm": {
+        "fields": {
+          "query": {
+            "placeholder": "Buscar cançons"
+          }
+        }
+      },
+      "songsLoadError": "Alguna cosa no ha anat bé :(",
+      "emptyQueryMessage": "Comence buscant alguna cançó per a veure resultats",
+      "emptyRecords": "No s'han trobat cançons",
+      "bottomAction": "Enviar"
     }
   }
 }
