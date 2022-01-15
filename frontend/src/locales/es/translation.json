@@ -1,5 +1,9 @@
 {
   "Common": {
+    "registeredUserRoles": {
+      "admin": "Admin",
+      "dj": "Deejay"
+    },
     "inputOptions": {
       "languages": {
         "ca": {
@@ -12,11 +16,94 @@
           "label": "Español"
         }
       }
+    },
+    "formValidationMessages": {
+      "required": "Este campo es obligatorio",
+      "min": "El valor mínimo aceptado es {{value}}",
+      "max": "El valor máximo aceptado es {{value}}",
+      "minLength_one": "Este campo debe tener almenos {{count}} carácter",
+      "minLength_other": "Este campo debe tener almenos {{count}} caracteres",
+      "maxLength_one": "Este campo debe tener {{count}} carácter como a máximo",
+      "maxLength_other": "Este campo debe tener {{count}} caracteres com a máximo",
+      "email": "El formato del email no es válido",
+      "strongPassword": "La contraseña debe tener alemos 8 caracteres, una minúscula, una mayúscula y un símbolo",
+      "emailAlreadyInUse": "Este email ya está en uso",
+      "passwordMustMatch": "La contraseña debe coincidir"
     }
   },
   "Components": {
     "LoginButton": {
       "loginBtn": "Entrar como usuario registrado"
+    },
+    "PageLayout": {
+      "helpers": {
+        "menuItems": {
+          "language": "Idioma",
+          "about": "Acerca de",
+          "roomUserLogout": "Salir de la sala",
+          "registeredUserLogout": "Cerrar sesión"
+        }
+      },
+      "toolbarProgress": "Cargando..."
+    },
+    "SongRequestQueue": {
+      "noPendingSongs": "No hay canciones pendientes"
+    },
+    "ConfirmDialog": {
+      "title": "¿Estás seguro?",
+      "cancel": "Cancelar",
+      "continue": "Continuar"
+    },
+    "LibraryItem": {
+      "empty": "Vacía"
+    },
+    "LibraryItemActions": {
+      "deleteSongs": "Eliminar canciones",
+      "importXmlFromItunes": "Importar XML desde iTunes"
+    },
+    "LibraryInfoDialog": {
+      "saveChangesAction": "Guardar cambios",
+      "createAction": "Crear",
+      "editLibrary": "Editar librería",
+      "createNewLibrary": "Crear una librería",
+      "form": {
+        "fields": {
+          "title": {
+            "label": "Título"
+          }
+        }
+      }
+    },
+    "CreateUserFormDialog": {
+      "title": "Crear un usuario nuevo",
+      "submitBtn": "Enviar",
+      "form": {
+        "fields": {
+          "email": {
+            "label": "Email"
+          },
+          "password": {
+            "label": "Contraseña"
+          },
+          "repeatPassword": {
+            "label": "Repetir contraseña"
+          },
+          "role": {
+            "label": "Rol"
+          }
+        }
+      }
+    },
+    "EditUserRoleFormDialog": {
+      "title": "Editar rol",
+      "submitBtn": "Guardar cambios",
+      "form": {
+        "fields": {
+          "role": {
+            "label": "Rol"
+          }
+        }
+      }
     }
   },
   "Pages": {
@@ -25,17 +112,115 @@
         "title": "Bienvenido/a a 2mixxx"
       },
       "title": "2mixxx",
-      "description": "The app for requesting songs to the DJ",
+      "description": "La aplicación para pedir canciones al Deejay",
       "loginForm": {
-        "title": "Join into a room",
+        "title": "Entrar a una sala",
         "fields": {
           "roomCode": {
-            "label": "Room code",
-            "placeholder": "type a code"
+            "label": "Código de la sala",
+            "placeholder": "escriba un código"
           }
         },
-        "submitBtn": "Enter"
+        "submitBtn": "Entrar"
       }
+    },
+    "DashboardPage": {
+      "toolbar": {
+        "title": "Panel de control"
+      },
+      "cardLinks": {
+        "moderateRooms": {
+          "title": "Moderar salas",
+          "description": "Eliminar y controlar las canciones pedidas de una sala."
+        },
+        "manageRooms": {
+          "title": "Administrar salas",
+          "description": "Crear, editar, eliminar y configurar salas."
+        },
+        "manageLibraries": {
+          "title": "Administrar librerías",
+          "description": "Crear, editar y eliminar librerías y administrar sus canciones."
+        },
+        "manageUsers": {
+          "title": "Administrar usuarios",
+          "description": "Crear, editar y eliminar usuarios registrados."
+        }
+      }
+    },
+    "ModerateRoomsPage": {
+      "toolbarTitle": "Moderar salas"
+    },
+    "ModerateRoomPage": {
+      "toolbarTitle": "Moderando \"{{value}}\"",
+      "roomLoadError": "La sala no se ha podido cargar :(",
+      "pendingSongsLoadError": "No se han podido obtener las canciones pendientes"
+    },
+    "RoomsDashboardPage": {
+      "helpers": {
+        "roomMenuItems": {
+          "manageLibraries": "Administrar librerías",
+          "manageModerators": "Administrar moderadores",
+          "deleteRoom": "Eliminar sala"
+        }
+      },
+      "toolbarTitle": "Salas",
+      "bottomActionButton": "Crear una sala nueva",
+      "confirmDeleteRoom": "La sala será eliminada"
+    },
+    "ManageRoomLibrariesPage": {
+      "toolbarTitle": "Administrar las librerías de la sala",
+      "roomLoadError": "La sala no se ha podido cargar :(",
+      "subtitle": "Asignar librerías",
+      "librariesLoadError": "Las librerías no se han podido cargar :("
+    },
+    "ManageRoomModeratorsPage": {
+      "toolbarTitle": "Administrar los moderadores de la sala",
+      "roomLoadError": "La sala no se ha podido cargar :(",
+      "subtitle": "Añadir o eliminar moderadores",
+      "usersLoadError": "Los usuarios no se han podido cargar :("
+    },
+    "LibrariesDashboardPage": {
+      "toolbarTitle": "Librerías",
+      "bottomActionButton": "Añadir una librería nueva",
+      "librariesLoadError": "Las librerías no se han podido cargar :(",
+      "confirmDeleteDialogTitle": "La librería y todas sus canciones se eliminarán",
+      "helpers": {
+        "libraryMenu": {
+          "editInfo": "Editar información",
+          "deleteLibrary": "Eliminar librería"
+        }
+      }
+    },
+    "UsersDashboardPage": {
+      "toolbarTitle": "Usuarios",
+      "bottomActionButton": "Crear un usuario nuevo",
+      "usersLoadError": "Los usuarios no se han podido cargar :(",
+      "confirmDeleteUserDialogTitle": "El usuario se eliminará",
+      "helpers": {
+        "userOptions": {
+          "editRole": "Editar rol",
+          "delete": "Eliminar"
+        }
+      }
+    },
+    "SongRequestsPage": {
+      "toolbarTitle": "Canciones pendientes",
+      "bottomAction": "Pedir una canción",
+      "pendingSongsLoadError": "No se han podido obtener las canciones pendientes"
+    },
+    "MakeASongRequestPage": {
+      "toolbarTitle": "Enviar petición",
+      "searchForm": {
+        "fields": {
+          "query": {
+            "placeholder": "Buscar canciones"
+          }
+        }
+      },
+      "songsLoadError": "Algo no ha ido bien :(",
+      "emptyQueryMessage": "Empiece buscando alguna canción para ver resultados",
+      "emptyRecords": "No se han encontrado canciones",
+      "bottomAction": "Enviar"
     }
   }
 }
