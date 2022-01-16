@@ -10,6 +10,5 @@ RUN npm run build:socket
 FROM node:14.16.0-alpine3.13
 WORKDIR /backend
 COPY --from=build /backend/dist/dist.socket ./
-WORKDIR /
 RUN npm install --production
 CMD ["node", "./src/socket/index.js"]
