@@ -1,4 +1,3 @@
-import { t } from 'i18next';
 import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { searchSongs } from '../../api/songs';
@@ -9,6 +8,7 @@ import RadioButtonBox from '../../components/forms/inputs/RadioButtonBox';
 import PageLayout from '../../components/PageLayout';
 import environment from '../../environment';
 import useSocketConnectionManager from '../../hooks/useSocketConnectionManager';
+import { useTranslation } from '../../services/i18n';
 import { emitNewSongRequest } from '../../socket/emitters';
 import AsyncState from '../../types/AsyncState';
 import Song from '../../types/Song';
@@ -17,6 +17,7 @@ import SongResult from './components/SongResult';
 import './MakeASongRequestPage.scss';
 
 export default function MakeASongRequestPage() {
+  const { t } = useTranslation();
   const mainSocket = useSocketConnectionManager(environment.REACT_APP_SOCKET_BASE_URI);
   const [ query, setQuery ] = useState<string>('');
   const [ selectedSong, setSelectedSong ] = useState<string>('');
