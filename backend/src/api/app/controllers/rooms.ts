@@ -8,6 +8,7 @@ import getRoomById from '../../../core/interactors/rooms/getRoomById';
 import RoomEntity from '../../../core/types/RoomEntity';
 import addModeratorToRoom from '../../../core/interactors/rooms/addModeratorToRoom';
 import deleteModeratorFromRoom from '../../../core/interactors/rooms/deleteModeratorFromRoom';
+import roomCodeExists from '../../../core/interactors/rooms/roomCodeExists';
 
 export function getAllRoomsCtrl(
   req: Request, res: Response<RoomEntity[]>, next: NextFunction
@@ -27,6 +28,20 @@ export function getRoomByIdCtrl(
   const { roomId } = params;
   getRoomById(roomId).then(data => {
     res.status(200).json(data);
+  }).catch(err => {
+    next(err);
+  });
+}
+
+export function roomCodeExistsCtrl(
+  req: Request<unknown, unknown, unknown, { code: string }>,
+  res: Response<{ exists: boolean }>,
+  next: NextFunction
+): void {
+  const { query } = req;
+  const { code } = query;
+  roomCodeExists(code).then(exists => {
+    res.status(200).json({ exists });
   }).catch(err => {
     next(err);
   });

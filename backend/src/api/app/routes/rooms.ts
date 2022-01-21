@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { body, param } from 'express-validator';
+import { body, param, query } from 'express-validator';
 import { permissions } from '../../../core/constants/user-roles';
 import {
   addLibraryToRoomCtrl, addModeratorToRoomCtrl, createRoomCtrl,
   deleteLibraryFromRoomCtrl, deleteModeratorFromRoomCtrl, deleteRoomCtrl,
-  getAllRoomsCtrl, getRoomByIdCtrl
+  getAllRoomsCtrl, getRoomByIdCtrl, roomCodeExistsCtrl
 } from '../controllers/rooms';
 import { userHasSomePermission } from '../middlewares/user-auth.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
@@ -15,6 +15,13 @@ roomsRouter.get(
   '/',
   userHasSomePermission([ permissions.GET_ALL_ROOMS ]),
   getAllRoomsCtrl
+);
+
+roomsRouter.get(
+  '/exists',
+  [ query('code').isString() ],
+  validationErrorMid,
+  roomCodeExistsCtrl
 );
 
 roomsRouter.get(
