@@ -118,7 +118,10 @@
         "fields": {
           "roomCode": {
             "label": "Room code",
-            "placeholder": "type a code"
+            "placeholder": "type a code",
+            "errors": {
+              "invalidRoomCode": "This code does not match any room"
+            }
           }
         },
         "submitBtn": "Enter"

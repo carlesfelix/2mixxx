@@ -11,6 +11,13 @@ export async function createRoom(): Promise<Room> {
   return data;
 }
 
+export async function roomCodeExists(code: string): Promise<boolean> {
+  const { data } = await http.get<{ exists: boolean }>(
+    '/rooms/exists', { params: { code } }
+  );
+  return data.exists;
+}
+
 export async function deleteRoom(id: string): Promise<void> {
   await http.delete(`/rooms/${id}`);
 }

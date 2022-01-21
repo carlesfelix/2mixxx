@@ -118,7 +118,10 @@
         "fields": {
           "roomCode": {
             "label": "Codi de la sala",
-            "placeholder": "escriga un codi"
+            "placeholder": "escriga un codi",
+            "errors": {
+              "invalidRoomCode": "Aquest codi no coincideix amb cap sala"
+            }
           }
         },
         "submitBtn": "Entrar"
