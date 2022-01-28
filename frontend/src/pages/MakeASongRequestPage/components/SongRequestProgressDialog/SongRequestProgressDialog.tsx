@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Dialog from '../../../../components/Dialog';
+import { useTranslation } from '../../../../services/i18n';
 import './SongRequestProgressDialog.scss';
 
 type Props = {
@@ -7,19 +8,20 @@ type Props = {
 };
 export default function SongRequestProgressDialog(props: Props) {
   const { isOpen } = props;
+  const { t } = useTranslation();
   return (
     <Dialog
       isOpen={isOpen}
-      title="Song request sent"
+      title={t('Components.SongRequestProgressDialog.title')}
       className="SongRequestProgressDialog"
       footer={
         <div className="song-request-progress-actions">
           <Link className="btn btn-primary" to="/">
-            Go to pending songs
+            {t('Components.SongRequestProgressDialog.goBack')}
           </Link>
         </div>
       }>
-        <p>Song request added successfully</p>
+        <p>{t('Components.SongRequestProgressDialog.sucessMessage')}</p>
       </Dialog>
   );
 }

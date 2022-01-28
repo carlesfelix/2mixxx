@@ -104,6 +104,11 @@
           }
         }
       }
+    },
+    "SongRequestProgressDialog": {
+      "title": "Song request sent",
+      "goBack" : "Go to pending songs",
+      "sucessMessage" : "Song request added successfully"
     }
   },
   "Pages": {

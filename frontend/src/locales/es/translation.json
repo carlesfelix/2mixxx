@@ -104,6 +104,11 @@
           }
         }
       }
+    },
+    "SongRequestProgressDialog": {
+      "title": "Petición enviada",
+      "goBack" : "Ir a canciones pendientes",
+      "sucessMessage" : "La petición se ha añadido correctamente"
     }
   },
   "Pages": {
