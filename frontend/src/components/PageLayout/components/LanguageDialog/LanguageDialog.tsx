@@ -29,11 +29,11 @@ export default function LanguageDialog(props: Props) {
     >
       <RadioButtonBox
         className="list list-hr"
-        value={currentLang}
+        value={currentLang.short}
         onChange={changeHandler}
         extraProps={{
           itemClassName: 'list-item',
-          items: getLangOptions(text => t(text))
+          items: getLangOptions(t)
         }}
       />
     </Dialog>
