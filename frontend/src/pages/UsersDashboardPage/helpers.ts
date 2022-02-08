@@ -1,7 +1,7 @@
 import { UseFormGetValues, UseFormTrigger } from 'react-hook-form';
 import { userEmailExists } from '../../api/registered-users';
 import { TFunction } from '../../services/i18n';
-import validationRules, { composeCustomRules } from '../../services/validation-rules';
+import validationRules, { buildMessage, composeCustomRules } from '../../helpers/validation-rules';
 import FormValidation from '../../types/FormValidation';
 import OptionItem from '../../types/OptionItem';
 import UserForm from '../../types/UserForm';
@@ -31,46 +31,45 @@ export const getUserFormValidation: FormValidation<
   [deps: {
     defaultData?: UserForm,
     getValues: UseFormGetValues<UserForm>,
-    trigger: UseFormTrigger<UserForm>,
-    t: TFunction
+    trigger: UseFormTrigger<UserForm>
   }]
 > = deps => {
-  const { t, defaultData, getValues, trigger } = deps;
+  const { defaultData, getValues, trigger } = deps;
   return {
     email: {
-      required: validationRules.required(t),
+      required: validationRules.required(),
       validate: composeCustomRules([
-        validationRules.customRules.email(t),
+        validationRules.customRules.email(),
         async (value: string) => {
           if (defaultData?.email === value) {
             return true;
           }
           const { exists } = await userEmailExists(value);
           return !exists ||
-            t('Common.formValidationMessages.emailAlreadyInUse') as string;
+            buildMessage('Common.formValidationMessages.emailAlreadyInUse');
         }
       ])
     },
     password: {
-      required: validationRules.required(t),
+      required: validationRules.required(),
       validate: composeCustomRules([
         () => {
           trigger('repeatPassword');
           return true;
         },
-        validationRules.customRules.strongPassword(t)
+        validationRules.customRules.strongPassword()
       ])
     },
     repeatPassword: {
-      required: validationRules.required(t),
+      required: validationRules.required(),
       validate: (value: string) => {
         const { password } = getValues();
         return password === value ||
-          t('Common.formValidationMessages.passwordMustMatch') as string;
+          buildMessage('Common.formValidationMessages.passwordMustMatch');
       }
     },
     role: {
-      required: validationRules.required(t)
+      required: validationRules.required()
     }
   };
 };

@@ -3,6 +3,7 @@ import {
   Control, Controller, ControllerRenderProps,
   FieldValues, UseControllerProps
 } from 'react-hook-form';
+import { useTranslation } from '../../../services/i18n';
 import FormField from '../FormField';
 import Checkbox, { CheckboxExtraProps } from '../inputs/Checkbox';
 import Dropdown, { DropdownExtraProps } from '../inputs/Dropdown';
@@ -34,6 +35,7 @@ export default function ControlledInput(props: Props) {
     control, defaultValue, rules, name,
     label, field, className
   } = props;
+  const { t } = useTranslation();
 
   function getComponent(controllerRenderProps: ControllerRenderProps<FieldValues>): ReactNode {
     const { value, onChange, onBlur, name } = controllerRenderProps;
@@ -84,6 +86,20 @@ export default function ControlledInput(props: Props) {
         throw new Error(`fieldType does not exists`);
     }
   }
+  function resolveMessage(message: string): string {
+    try {
+      const parsed = JSON.parse(message);
+      if (
+        'message' in parsed && typeof parsed.message === 'string' &&
+        typeof parsed.options === 'object'
+      ) {
+        return t(parsed.message, parsed.options);
+      }
+      return '';
+    } catch {
+      return '';
+    }
+  }
   const isRequired = !!(rules && rules.required && (typeof rules.required === 'string' ||
     (typeof rules.required === 'object' && rules.required.value)));
   
@@ -94,9 +110,11 @@ export default function ControlledInput(props: Props) {
       defaultValue={defaultValue}
       rules={rules}
       render={({ field: renderField, fieldState }) => {
+        const resolvedErrorMessage = fieldState.error?.message &&
+          resolveMessage(fieldState.error.message);
         return (
           <FormField
-            className={className} errorMessage={fieldState.error?.message} label={label}
+            className={className} errorMessage={resolvedErrorMessage} label={label}
             invalid={fieldState.invalid} required={isRequired}
           >
             {getComponent(renderField)}

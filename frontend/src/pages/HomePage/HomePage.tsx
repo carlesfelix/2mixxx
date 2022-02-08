@@ -4,6 +4,7 @@ import ControlledInput from '../../components/forms/ControlledInput';
 import LoginButton from '../../components/LoginButton';
 import PageLayout from '../../components/PageLayout';
 import { createRoomUserAction, useRoomUser } from '../../contexts/room-user';
+import { buildMessage } from '../../helpers/validation-rules';
 import { useTranslation } from '../../services/i18n';
 import { getRoomFormValidation } from './helpers';
 import './HomePage.scss';
@@ -14,7 +15,7 @@ export default function HomePage() {
   const {
     control, handleSubmit, setError
   } = useForm<{ roomCode?: string }>({ mode: 'onChange' });
-  const roomFormValidation = getRoomFormValidation(t);
+  const roomFormValidation = getRoomFormValidation();
   async function submitHandler(data: { roomCode: string }): Promise<void> {
     const { roomCode } = data;
     const exists = await roomCodeExists(roomCode);
@@ -22,9 +23,9 @@ export default function HomePage() {
       createRoomUserAction(dispatch, roomCode);
     } else {
       setError('roomCode', {
-        message: t(
+        message: buildMessage(
           'Pages.HomePage.loginForm.fields.roomCode.errors.invalidRoomCode'
-        ) as string
+        )
       });
     }
   }

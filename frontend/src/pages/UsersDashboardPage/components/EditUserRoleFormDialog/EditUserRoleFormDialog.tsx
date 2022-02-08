@@ -30,7 +30,7 @@ export default function EditUserRoleFormDialog(props: Props) {
   }, [ isOpen, data, reset ]);
 
   const userFormValidation = getUserFormValidation({
-    defaultData: data, getValues, trigger, t
+    defaultData: data, getValues, trigger
   });
 
   function submitHandler(records: { role: number }): void {
