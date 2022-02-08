@@ -3,7 +3,7 @@
 
 .SongRequestItem {
   div.thumbnail-container {
-    width: 1rem;
+    width: 2.15rem;
     text-align: center;
     @include mixings.min-sm {
       width: 2.5rem;
@@ -14,7 +14,7 @@
       font-weight: bold;
       vertical-align: middle;
       @include mixings.min-sm {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
     }
   }

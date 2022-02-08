@@ -56,7 +56,7 @@ export function changeLanguage(lang: string): Promise<void> {
   });
 }
 
-export function useLanguage(): string {
+export function useLanguage(): { short: string, full: string } {
   const [ lang, setLang ] = useState<string>(i18n.language);
   useEffect(() => {
     function languageHandler(language: string): void {
@@ -67,7 +67,7 @@ export function useLanguage(): string {
       i18n.off('languageChanged', languageHandler);
     };
   }, []);
-  return lang;
+  return { short: i18n.resolvedLanguage, full: lang };
 }
 
 export type TFunction = _TFunction;

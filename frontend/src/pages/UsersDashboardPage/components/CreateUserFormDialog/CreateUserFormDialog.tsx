@@ -33,7 +33,7 @@ export default function CreateUserFormDialog(props: Props) {
   }, [ isOpen, reset ]);
 
   const userFormValidation = getUserFormValidation({
-    t, getValues, trigger
+    getValues, trigger
   });
 
   function submitHandler(user: CreateUserForm): void {

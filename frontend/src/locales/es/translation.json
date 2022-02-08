@@ -104,6 +104,11 @@
           }
         }
       }
+    },
+    "SongRequestProgressDialog": {
+      "title": "Petición enviada",
+      "goBack" : "Ir a canciones pendientes",
+      "sucessMessage" : "La petición se ha añadido correctamente"
     }
   },
   "Pages": {
@@ -118,7 +123,10 @@
         "fields": {
           "roomCode": {
             "label": "Código de la sala",
-            "placeholder": "escriba un código"
+            "placeholder": "escriba un código",
+            "errors": {
+              "invalidRoomCode": "Este código no coincide con ninguna sala"
+            }
           }
         },
         "submitBtn": "Entrar"

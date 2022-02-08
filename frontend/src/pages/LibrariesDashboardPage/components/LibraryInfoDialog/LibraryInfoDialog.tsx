@@ -18,7 +18,7 @@ export default function LibraryInfoDialog(props: Props) {
   const { inProgress, data, isOpen } = state;
   const { control, handleSubmit, reset } = useForm();
   const { t } = useTranslation();
-  const libraryInfoFormValidation = getLibraryInfoFormValidation(t);
+  const libraryInfoFormValidation = getLibraryInfoFormValidation();
   useEffect(() => {
     reset(data || {});
   }, [ isOpen, data, reset ]);

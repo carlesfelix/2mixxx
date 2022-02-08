@@ -1,22 +1,33 @@
 import { useForm } from 'react-hook-form';
+import { roomCodeExists } from '../../api/rooms';
 import ControlledInput from '../../components/forms/ControlledInput';
 import LoginButton from '../../components/LoginButton';
 import PageLayout from '../../components/PageLayout';
-import { useRoomUser } from '../../contexts/room-user';
-import { createRoomUserAction } from '../../contexts/room-user';
+import { createRoomUserAction, useRoomUser } from '../../contexts/room-user';
+import { buildMessage } from '../../helpers/validation-rules';
 import { useTranslation } from '../../services/i18n';
 import { getRoomFormValidation } from './helpers';
-
 import './HomePage.scss';
 
 export default function HomePage() {
   const { t } = useTranslation();
   const { dispatch } = useRoomUser();
-  const { control, handleSubmit } = useForm<{ roomCode?: string }>({ mode: 'onChange' });
-  const roomFormValidation = getRoomFormValidation(t);
-  function submitHandler(data: { roomCode: string }): void {
+  const {
+    control, handleSubmit, setError
+  } = useForm<{ roomCode?: string }>({ mode: 'onChange' });
+  const roomFormValidation = getRoomFormValidation();
+  async function submitHandler(data: { roomCode: string }): Promise<void> {
     const { roomCode } = data;
-    createRoomUserAction(dispatch, roomCode);
+    const exists = await roomCodeExists(roomCode);
+    if (exists) {
+      createRoomUserAction(dispatch, roomCode);
+    } else {
+      setError('roomCode', {
+        message: buildMessage(
+          'Pages.HomePage.loginForm.fields.roomCode.errors.invalidRoomCode'
+        )
+      });
+    }
   }
   return (
     <PageLayout toolbarTitle={t('Pages.HomePage.toolbar.title')}>
