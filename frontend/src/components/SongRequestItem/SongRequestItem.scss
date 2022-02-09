@@ -9,13 +9,10 @@
       width: 2.5rem;
     }
     span.queue-position {
-      font-size: 1.75rem;
+      font-size: 2rem;
       text-align: center;
       font-weight: bold;
       vertical-align: middle;
-      @include mixings.min-sm {
-        font-size: 2rem;
-      }
     }
   }
   div.request-container {
@@ -25,7 +22,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 3.5rem;
+      height: 2.75rem;
       flex-grow: 1;
       width: 0;
       div.song-name, div.song-artist {
@@ -41,10 +38,7 @@
         }
       }
       div.song-artist {
-        margin-top: 0.35rem;
-        @include mixings.min-sm {
-          margin-top: 0.75rem;
-        }
+        margin-top: 0.25rem;
         span {
           color: theme.color('label-content-primary-text');
           font-size: 1rem;
