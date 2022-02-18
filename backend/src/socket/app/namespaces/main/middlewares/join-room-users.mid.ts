@@ -1,5 +1,6 @@
 import { Socket } from 'socket.io';
 import { RoomUserAuth } from '../../../../../core/types/UserAuth';
+import SocketError, { StatusCodeEnum } from '../../../services/SocketError';
 
 export default function joinRoomUsersMid(socket: Socket, next: (err?: Error) => void): void {
   const auth: RoomUserAuth | undefined = socket.data.auth;
@@ -7,6 +8,6 @@ export default function joinRoomUsersMid(socket: Socket, next: (err?: Error) => 
     socket.join(auth.user.roomId);
     next();
   } else {
-    next(new Error('Access denied!'));
+    next(new SocketError(StatusCodeEnum.AccessDenied).toNative());
   }
 }

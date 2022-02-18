@@ -1,5 +1,6 @@
 import { Socket } from 'socket.io';
 import getUserAuth from '../../../core/interactors/auth/getUserAuth';
+import SocketError, { StatusCodeEnum } from '../services/SocketError';
 
 export default function authMid(socket: Socket, next: (error?: Error) => void): void {
   if (socket.handshake.auth) {
@@ -8,11 +9,11 @@ export default function authMid(socket: Socket, next: (error?: Error) => void): 
       getUserAuth(userType, authorization).then(auth => {
         socket.data.auth = auth;
         next();
-      }).catch(err => {
-        next(err);
+      }).catch(() => {
+        next(new SocketError(StatusCodeEnum.InternalError).toNative());
       });
     }
   } else {
-    next(new Error('Token required!'));
+    next(new SocketError(StatusCodeEnum.Unauthorized).toNative());
   }
 }

@@ -1,3 +1,5 @@
+import BaseError from '../../../core/services/BaseError';
+
 export enum StatusCodeEnum {
   BadPayload = 1,
   NotFound = 2,
@@ -5,30 +7,22 @@ export enum StatusCodeEnum {
   Unauthorized = 4,
   AccessDenied = 5
 }
-const socketErrorMessages = {
-  [StatusCodeEnum.BadPayload]: 'Bad payload',
-  [StatusCodeEnum.NotFound]: 'Not found',
-  [StatusCodeEnum.InternalError]: 'Internal server error',
-  [StatusCodeEnum.Unauthorized]: 'Unauthorized',
-  [StatusCodeEnum.AccessDenied]: 'Access denied',
-}
 
-export default class SocketError<Details = undefined> extends Error {
-  statusCode: StatusCodeEnum;
-  details: Details | undefined;
-  eventArgs: unknown[];
-  constructor(errorProps: {
-    statusCode: StatusCodeEnum,
-    eventArgs: unknown[],
-    details?: Details | undefined,
-  }) {
-    const {
-      statusCode, eventArgs, details
-    } = errorProps;
-    super(socketErrorMessages[statusCode]);
+export default class SocketError<
+  Details = unknown
+> extends BaseError<StatusCodeEnum, Details> {
+  constructor(statusCode: StatusCodeEnum, details?: Details) {
+    super(statusCode, details);
     this.name = 'SocketError';
-    this.statusCode = statusCode;
-    this.eventArgs = eventArgs;
-    this.details = details;
+  }
+
+  protected getErrorMessageResolver(): Record<StatusCodeEnum, string> {
+    return {
+      [StatusCodeEnum.BadPayload]: 'Bad payload',
+      [StatusCodeEnum.NotFound]: 'Not found',
+      [StatusCodeEnum.InternalError]: 'Internal server error',
+      [StatusCodeEnum.Unauthorized]: 'Unauthorized',
+      [StatusCodeEnum.AccessDenied]: 'Access denied'
+    }
   }
 }
