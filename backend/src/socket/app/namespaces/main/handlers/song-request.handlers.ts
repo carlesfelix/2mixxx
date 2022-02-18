@@ -15,10 +15,9 @@ export function addSongRequestHandler(io: Server, socket: Socket): (
   return async (payload, ack) => {
     const { value, error } = userSchema.validate(payload);
     if (error) {
-      sendAck({
-        status: 'FAILED',
+      sendAck(ack, {
         error: new SocketError(StatusCodeEnum.BadPayload, error.details)
-      }, ack);
+      });
     } else {
       const { songId } = value as UserSchema;
       try {
@@ -35,12 +34,9 @@ export function addSongRequestHandler(io: Server, socket: Socket): (
         io.of(`/moderate-rooms/${roomId}`).to(roomId!).emit(
           SERVER__NEW_SONG_REQUEST, response
         );
-        sendAck({ status: 'OK', data }, ack); 
+        sendAck(ack, { data }); 
       } catch (error) {
-        sendAck({
-          status: 'FAILED',
-          error
-        }, ack);
+        sendAck(ack, { error });
       }
     }
   }
@@ -50,9 +46,9 @@ export function getSongRequestsHandler(socket: Socket): (ack: Ack) => Promise<vo
   return async ack => {
     try {
       const data = await getSongRequestsFromRoomInteractor(socket.data.auth.user.roomId);
-      sendAck({ status: 'OK', data }, ack);
+      sendAck(ack, { data });
     } catch (error) {
-      sendAck({ status: 'FAILED', error }, ack);
+      sendAck(ack, { error });
     }
   }
 }

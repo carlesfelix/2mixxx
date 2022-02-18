@@ -5,11 +5,11 @@ import Ack from '../types/Ack';
 import AckPayload from '../types/AckPayload';
 
 export function sendAck<Data = unknown>(
-  ackPayload: AckPayload<Data>,
-  ack?: Ack<Data>
+  ack?: Ack<Data>,
+  ackPayload: AckPayload<Data> = {}
 ): void {
   if (typeof ack === 'function') {
-    const { error, ...data } = ackPayload;
+    const { error, data } = ackPayload;
     let errorResponse: ErrorAsJSON | undefined;
     if (error instanceof BaseError) {
       errorResponse = error.toJSON();
@@ -18,8 +18,9 @@ export function sendAck<Data = unknown>(
       errorResponse = unknownError.toJSON();
     }
     ack({
-      ...data,
-      error: errorResponse
+      data,
+      error: errorResponse,
+      status: error ? 'FAILED' : 'OK'
     });
   }
 }
