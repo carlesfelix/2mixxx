@@ -1,26 +1,26 @@
+import BaseError from "./BaseError";
+
 export enum InteractorErrorCodeEnum {
-  ENTITY_NOT_FOUND = 'ENTITY_NOT_FOUND',
-  GENERIC = 'GENERIC',
-  UNAUTHORIZED = 'UNAUTHORIZED',
-  ACCESS_DENIED = 'ACCESS_DENIED',
-  BAD_INPUT_DATA = 'BAD_INPUT_DATA'
+  ENTITY_NOT_FOUND = 404,
+  GENERIC = 500,
+  UNAUTHORIZED = 401,
+  ACCESS_DENIED = 403,
+  BAD_INPUT_DATA = 400
 }
 
-const interactorErrorMessages = {
-  [InteractorErrorCodeEnum.ENTITY_NOT_FOUND]: 'Not found',
-  [InteractorErrorCodeEnum.GENERIC]: 'Internal error',
-  [InteractorErrorCodeEnum.UNAUTHORIZED]: 'Unauthorized',
-  [InteractorErrorCodeEnum.BAD_INPUT_DATA]: 'Bad data provided',
-  [InteractorErrorCodeEnum.ACCESS_DENIED]: 'Access denied',
-}
-
-export default class InteractorError<Details = undefined> extends Error {
-  code: InteractorErrorCodeEnum;
-  details: Details | undefined;
+export default class InteractorError<Details = undefined> extends BaseError<InteractorErrorCodeEnum> {
   constructor(code: InteractorErrorCodeEnum, details?: Details | undefined) {
-    super(interactorErrorMessages[code]);
+    super(code, details);
     this.name = 'InteractorError';
-    this.code = code;
-    this.details = details;
+  }
+
+  protected getErrorMessageResolver(): Record<InteractorErrorCodeEnum, string> {
+    return {
+      [InteractorErrorCodeEnum.ENTITY_NOT_FOUND]: 'Entity not found',
+      [InteractorErrorCodeEnum.GENERIC]: 'Generic error',
+      [InteractorErrorCodeEnum.UNAUTHORIZED]: 'Unauthorized',
+      [InteractorErrorCodeEnum.BAD_INPUT_DATA]: 'Bad data provided',
+      [InteractorErrorCodeEnum.ACCESS_DENIED]: 'Access denied',
+    };
   }
 }
