@@ -5,11 +5,11 @@ export default abstract class BaseError<
   Details = unknown
 > extends Error {
   code: ErrorCode;
-  details?: Record<string, unknown>;
+  details?: Details;
   constructor(code: ErrorCode, details?: Details) {
     super();
     this.code = code;
-    this.details = details || {};
+    this.details = details;
     this.message = this.#resolveErrorMessage();
   }
   toJSON(): ErrorAsJSON<ErrorCode> {
