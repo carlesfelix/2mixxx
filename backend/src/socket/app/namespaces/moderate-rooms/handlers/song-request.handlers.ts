@@ -9,9 +9,12 @@ export function getSongRequestsHandler(socket: Socket): (ack: Ack) => Promise<vo
   return async ack => {
     try {
       const data = await getSongRequestsFromRoomInteractor(socket.data.params.roomId);
-      sendAck(ack, { status: 'OK', data });
-    } catch {
-      sendAck(ack, { status: 'FAILED' });
+      sendAck({ status: 'OK', data }, ack);
+    } catch (err) {
+      sendAck({
+        status: 'FAILED',
+        error: err
+      }, ack);
     }
   };
 }
@@ -21,7 +24,6 @@ export function deleteSongRequestHandler(io: Server, socket: Socket): (
 ) => Promise<void> {
   return async (payload, ack) => {
     const { songRequestId } = payload;
-    
     try {
       await deleteSongRequestInteractor(
         songRequestId, socket.data.params.roomId
@@ -35,10 +37,9 @@ export function deleteSongRequestHandler(io: Server, socket: Socket): (
         SERVER__DELETE_SONG_REQUEST,
         deleteSongPayload
       );
-      sendAck(ack, { status: 'OK' });
+      sendAck({ status: 'OK' }, ack);
     } catch (err) {
-      console.log(err)
-      sendAck(ack, { status: 'FAILED' });
+      sendAck({ status: 'FAILED' }, ack);
     }
   };
 }
