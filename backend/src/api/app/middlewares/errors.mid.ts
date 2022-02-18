@@ -2,6 +2,7 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 import InteractorError from '../../../core/services/InteractorError';
 import ApiError, { StatusCodeEnum } from '../services/ApiError';
 import { getStatusFromInteractorErrorCode } from '../helpers';
+import BaseError from '../../../core/services/BaseError';
 
 export function notFoundErrorMid(req: Request, res: Response): void {
   res.status(404).json({ msg: 'Not found' });
@@ -19,8 +20,8 @@ export function genericErrorMid(
     });
     return;
   }
-  if (error instanceof ApiError) {
-    res.status(error.statusCode).json(error.getHttpResponse());
+  if (error instanceof BaseError) {
+    res.status(error.code).json(error.toJSON());
     return;
   }
   res.status(500).json({
