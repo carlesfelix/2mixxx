@@ -1,5 +1,6 @@
 import { Socket } from 'socket.io';
 import getRoomFromUser from '../../../../../core/interactors/room-moderator/getRoomFromUser';
+import { buildNativeError } from '../../../helpers';
 
 export default function joinModeratorToRoomMid(socket: Socket, next: (err?: Error) => void): void {
   const roomId = socket.nsp.name.replace('/moderate-rooms/', '');
@@ -7,7 +8,7 @@ export default function joinModeratorToRoomMid(socket: Socket, next: (err?: Erro
     socket.data.params = { roomId };
     socket.join(roomId);
     next();
-  }).catch(err => {
-    next(err)
+  }).catch(error => {
+    next(buildNativeError(error));
   });
 }

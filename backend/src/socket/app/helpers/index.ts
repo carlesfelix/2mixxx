@@ -24,3 +24,13 @@ export function sendAck<Data = unknown>(
     });
   }
 }
+
+export function buildNativeError(error: unknown): Error | undefined {
+  if (error instanceof BaseError) {
+    return error.toNative();
+  }
+  if (error instanceof Error) {
+    const unknownError = new SocketError(StatusCodeEnum.InternalError);
+    return unknownError.toNative();
+  }
+}
