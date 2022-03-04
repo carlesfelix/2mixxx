@@ -1,7 +1,5 @@
-import SocketErrorMessage from "./SocketErrorMessage";
-
 type SocketConnectionStatus = {
-  error?: SocketErrorMessage | string;
+  error?: string;
   connected: boolean;
 };
 
