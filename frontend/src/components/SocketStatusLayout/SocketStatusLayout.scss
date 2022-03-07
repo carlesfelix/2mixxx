@@ -1,0 +1,11 @@
+div.SocketStatusLayout {
+  .SocketStatusLayout__error {
+    align-items: center;
+    p.error-header {
+      font-size: 2rem;
+    }
+    p.error-details {
+      word-break: break-all;
+    }
+  }
+}
