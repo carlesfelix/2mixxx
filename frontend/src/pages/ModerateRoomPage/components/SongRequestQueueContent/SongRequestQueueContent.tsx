@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Socket } from "socket.io-client";
 import { SERVER__DELETE_SONG_REQUEST, SERVER__NEW_SONG_REQUEST } from "../../../../constants/server-socket-actions";
-import SongRequestQueue from "../../../SongRequestsPage/components/SongRequestQueue";
+import SongRequestQueue from "../../../../components/SongRequestQueue";
 import { emitDeleteSongRequest, emitGetSongRequests } from "../../../../socket/emitters";
 import AsyncState from "../../../../types/AsyncState";
 import SocketReponse from "../../../../types/SocketResponse";

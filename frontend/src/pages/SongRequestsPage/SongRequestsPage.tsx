@@ -10,7 +10,7 @@ import { emitGetSongRequests } from '../../socket/emitters';
 import AsyncState from '../../types/AsyncState';
 import SocketReponse from '../../types/SocketResponse';
 import SongRequest from '../../types/SongRequest';
-import SongRequestQueue from './components/SongRequestQueue';
+import SongRequestQueue from '../../components/SongRequestQueue';
 import './SongRequestsPage.scss';
 
 export default function SongRequestsPage() {

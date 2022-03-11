@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import SongRequestItem from '../../../../components/SongRequestItem';
-import { useTranslation } from '../../../../services/i18n';
-import SongRequest from '../../../../types/SongRequest';
+import SongRequestItem from '../SongRequestItem';
+import { useTranslation } from '../../services/i18n';
+import SongRequest from '../../types/SongRequest';
 import './SongRequestQueue.scss';
 
 type Props = {
