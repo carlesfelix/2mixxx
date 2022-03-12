@@ -14,5 +14,5 @@
 - [ ] Moderator settings. Allow/disallow new song requests.
 - [ ] Moderator settings. Song request cool down (per room user).
 - [X] Sync creations and deletions of registered users (app) with auth0.
-- [ ] Handle socket errors (frontend).
-- [ ] Handler socket errors (backend).
+- [X] Handle socket errors (frontend).
+- [X] Handler socket errors (backend).

@@ -109,6 +109,10 @@
       "title": "Petición enviada",
       "goBack" : "Ir a canciones pendientes",
       "sucessMessage" : "La petición se ha añadido correctamente"
+    },
+    "SocketStatusLayout": {
+      "errorMessage": "No se puede conectar al recurso :(",
+      "errorDetails": "Error: {{error}}"
     }
   },
   "Pages": {
@@ -161,7 +165,11 @@
     "ModerateRoomPage": {
       "toolbarTitle": "Moderando \"{{value}}\"",
       "roomLoadError": "La sala no se ha podido cargar :(",
-      "pendingSongsLoadError": "No se han podido obtener las canciones pendientes"
+      "components": {
+        "SongRequestQueueContent": {
+          "pendingSongsLoadError": "No se han podido obtener las canciones pendientes"
+        }
+      }
     },
     "RoomsDashboardPage": {
       "helpers": {

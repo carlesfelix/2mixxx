@@ -109,6 +109,10 @@
       "title": "Petició enviada",
       "goBack" : "Anar a cançons pendents",
       "sucessMessage" : "La petició s'ha afegit amb èxit"
+    },
+    "SocketStatusLayout": {
+      "errorMessage": "No es pot connectar al recurs :(",
+      "errorDetails": "Error: {{error}}"
     }
   },
   "Pages": {
@@ -161,7 +165,11 @@
     "ModerateRoomPage": {
       "toolbarTitle": "Moderant \"{{value}}\"",
       "roomLoadError": "La sala no s'ha pogut carregar :(",
-      "pendingSongsLoadError": "No s'han pogut obtindre les cançons pendents"
+      "components": {
+        "SongRequestQueueContent": {
+          "pendingSongsLoadError": "No s'han pogut obtindre les cançons pendents"
+        }
+      }
     },
     "RoomsDashboardPage": {
       "helpers": {

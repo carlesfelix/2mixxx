@@ -109,6 +109,10 @@
       "title": "Song request sent",
       "goBack" : "Go to pending songs",
       "sucessMessage" : "Song request added successfully"
+    },
+    "SocketStatusLayout": {
+      "errorMessage": "Unable to connect to the resource :(",
+      "errorDetails": "Error: {{error}}"
     }
   },
   "Pages": {
@@ -161,7 +165,11 @@
     "ModerateRoomPage": {
       "toolbarTitle": "Moderating \"{{value}}\"",
       "roomLoadError": "Room cannot be loaded :(",
-      "pendingSongsLoadError": "Unable to retrieve pending songs"
+      "components": {
+        "SongRequestQueueContent": {
+          "pendingSongsLoadError": "Unable to retrieve pending songs"
+        }
+      }
     },
     "RoomsDashboardPage": {
       "helpers": {
