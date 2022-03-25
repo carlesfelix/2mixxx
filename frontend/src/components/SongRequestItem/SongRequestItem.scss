@@ -1,11 +1,11 @@
-@use '../../styles/utils/mixings';
+@use '../../styles/utils/mixings/breakpoints';
 @use '../../styles/themes/theme';
 
 .SongRequestItem {
   div.thumbnail-container {
     width: 2.15rem;
     text-align: center;
-    @include mixings.min-sm {
+    @include breakpoints.min-sm {
       width: 2.5rem;
     }
     span.queue-position {
@@ -49,7 +49,7 @@
     div.song-request-actions {
       font-size: 1.25rem;
       margin-left: 0.75rem;
-      @include mixings.min-sm {
+      @include breakpoints.min-sm {
         font-size: 1.5rem;
         margin-left: 1rem;
       }

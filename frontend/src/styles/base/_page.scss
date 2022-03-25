@@ -1,13 +1,13 @@
-@use '../utils/mixings';
-@use '../utils/variables';
+@use '../utils/mixings/breakpoints';
+@use '../utils/variables/breakpoints' as breakpointSizes;
 
 .page-content {
   padding: 0.75rem;
   width: 100%;
-  max-width: variables.$min-md;
+  max-width: breakpointSizes.$min-md;
   margin: 0 auto;
   min-height: 100%;
-  @include mixings.min-md {
+  @include breakpoints.min-md {
     padding: 1.25rem;
   }
 }

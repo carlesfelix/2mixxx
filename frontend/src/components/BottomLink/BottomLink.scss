@@ -1,11 +1,11 @@
-@use '../../styles/utils/mixings';
+@use '../../styles/utils/mixings/breakpoints';
 
 div.BottomLink {
   text-align: end;
   a.BottomLink__link {
     width: 100%;
     text-align: center;
-    @include mixings.min-sm {
+    @include breakpoints.min-sm {
       width: auto;
     }
   }

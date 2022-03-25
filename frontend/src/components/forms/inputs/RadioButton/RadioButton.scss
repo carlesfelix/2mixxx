@@ -1,5 +1,5 @@
 @use '../../../../styles/themes/theme';
-@use '../../../../styles/utils/mixings';
+@use '../../../../styles/utils/mixings/breakpoints';
 
 label.RadioButton {
   display: inline-flex;
@@ -9,7 +9,7 @@ label.RadioButton {
   box-sizing: border-box;
   width: 100%;
   padding: 0.75rem 0;
-  @include mixings.min-sm {
+  @include breakpoints.min-sm {
     padding: 1rem 0;
   }
   span.radio-button-label {

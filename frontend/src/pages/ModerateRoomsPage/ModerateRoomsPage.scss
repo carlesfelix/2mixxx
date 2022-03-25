@@ -1,4 +1,4 @@
-@use '../../styles/utils/mixings';
+@use '../../styles/utils/mixings/breakpoints';
 
 div.ModerateRoomsPage {
   div.rooms-container {
@@ -7,7 +7,7 @@ div.ModerateRoomsPage {
       grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
       justify-content: center;
       gap: 0.75rem;
-      @include mixings.min-md {
+      @include breakpoints.min-md {
         gap: 1.5rem;
       }
     }

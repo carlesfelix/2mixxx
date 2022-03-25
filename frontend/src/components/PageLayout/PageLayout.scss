@@ -1,4 +1,4 @@
-@use '../../styles/utils/mixings';
+@use '../../styles/utils/mixings/breakpoints';
 @use '../../styles/themes/theme';
 
 div.PageLayout {
@@ -16,7 +16,7 @@ div.PageLayout {
     border-bottom: solid 1px theme.color('page-layout-top-bar-border');
     div.top-bar__content {
       padding: 1.25rem;
-      @include mixings.min-md {
+      @include breakpoints.min-md {
         padding: 1.5rem;
       }
     }
@@ -26,7 +26,7 @@ div.PageLayout {
     border-top: solid 1px theme.color('page-layout-bottom-bar-border');
     div.bottom-bar__content {
       padding: 1.25rem;
-      @include mixings.min-md {
+      @include breakpoints.min-md {
         padding: 1.5rem;
       }
     }

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Dialog from '../../../../components/Dialog';
 import ControlledInput from '../../../../components/forms/ControlledInput';
+import SubmitButton from '../../../../components/SubmitButton';
 import RegisteredUserRoleEnum from '../../../../enums/RegisteredUserRoleEnum';
 import { getRoleOptions } from '../../../../helpers/input-options';
 import { useTranslation } from '../../../../services/i18n';
@@ -47,12 +48,12 @@ export default function EditUserRoleFormDialog(props: Props) {
       maxWidth="20rem"
       footer={
         <div className="user-form-actions">
-          <button
-            className="btn btn-primary" disabled={inProgress}
-            type="submit" form="userFormDialog"
+          <SubmitButton
+            color="primary" inProgress={inProgress}
+            form="userFormDialog"
           >
             {t('Components.EditUserRoleFormDialog.submitBtn')}
-          </button>
+          </SubmitButton>
         </div>
       }
     >

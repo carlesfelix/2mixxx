@@ -9,6 +9,7 @@ import './CreateUserFormDialog.scss';
 import RegisteredUserRoleEnum from '../../../../enums/RegisteredUserRoleEnum';
 import { getRoleOptions } from '../../../../helpers/input-options';
 import { useTranslation } from '../../../../services/i18n';
+import SubmitButton from '../../../../components/SubmitButton';
 
 type Props = {
   state: DialogState<CreateUserForm>;
@@ -50,12 +51,12 @@ export default function CreateUserFormDialog(props: Props) {
       maxWidth="35rem"
       footer={
         <div className="user-form-actions">
-          <button
-            className="btn btn-primary" disabled={inProgress}
-            type="submit" form="userFormDialog"
+          <SubmitButton
+            color="primary" inProgress={inProgress}
+            form="userFormDialog"
           >
             {t('Components.CreateUserFormDialog.submitBtn')}
-          </button>
+          </SubmitButton>
         </div>
       }
     >

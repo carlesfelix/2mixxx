@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { createUser, deleteUser, getAllUsers, updateUserRole } from '../../api/registered-users';
 import AsyncLayout from '../../components/AsyncLayout';
-import BottomActionButton from '../../components/BottomActionButton';
+import BasicButton from '../../components/BasicButton';
+import BottomActionWrapper from '../../components/BottomActionWrapper';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import PageLayout from '../../components/PageLayout';
 import { useTranslation } from '../../services/i18n';
@@ -103,12 +104,11 @@ export default function UsersDashboardPage() {
       toolbarLinkBack="/dashboard"
       className="UsersDashboardPage"
       bottomBar={
-        <BottomActionButton
-          className="btn btn-primary"
-          onClick={openNewUserFormDialogHandler}
-        >
-          {t('Pages.UsersDashboardPage.bottomActionButton')}
-        </BottomActionButton>
+        <BottomActionWrapper className="bottom-action">
+          <BasicButton onClick={openNewUserFormDialogHandler} color="primary" className="bottom-action-btn">
+            {t('Pages.UsersDashboardPage.bottomActionButton')}
+          </BasicButton>
+        </BottomActionWrapper>
       }
     >
       <div className="page-content UsersDashboardPage__content layout layout-center-v">

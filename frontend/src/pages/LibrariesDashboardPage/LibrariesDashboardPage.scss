@@ -1,7 +1,9 @@
-@use '../../styles/utils/variables';
-@use '../../styles/utils/mixings';
-
 .LibrariesDashboardPage {
+  .bottom-actions {
+    .bottom-action-btn {
+      width: 100%;
+    }
+  }
   div.LibrariesDashboardPage__content {
     div.libraries-grid {
       display: grid;

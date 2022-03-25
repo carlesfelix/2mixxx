@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { searchSongs } from '../../api/songs';
 import AsyncLayout from '../../components/AsyncLayout';
-import BottomActionButton from '../../components/BottomActionButton';
+import BasicButton from '../../components/BasicButton';
+import BottomActionWrapper from '../../components/BottomActionWrapper';
 import InputText from '../../components/forms/inputs/InputText';
 import RadioButtonBox from '../../components/forms/inputs/RadioButtonBox';
 import PageLayout from '../../components/PageLayout';
@@ -103,13 +104,17 @@ export default function MakeASongRequestPage() {
         </div>
       }
       bottomBar={
-        <BottomActionButton
-          className="btn btn-primary"
-          disabled={!selectedSong || requestSent.inProgress}
-          onClick={sendRequestHandler}
-        >
-          {t('Pages.MakeASongRequestPage.bottomAction')}
-        </BottomActionButton>
+        <BottomActionWrapper className="bottom-actions">
+          <BasicButton
+            inProgress={requestSent.inProgress}
+            disabled={!selectedSong}
+            onClick={sendRequestHandler}
+            color="primary"
+            className="bottom-action-btn"
+          >
+            {t('Pages.MakeASongRequestPage.bottomAction')}
+          </BasicButton>
+        </BottomActionWrapper>
       }
     >
       <div className="page-content song-request-content">

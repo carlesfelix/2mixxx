@@ -1,11 +1,11 @@
-@use '../utils/mixings';
+@use '../utils/mixings/breakpoints';
 @use '../themes/theme';
 
 .list {
   .list-item {
     &:not(:first-child) {
       margin-top: 0.75rem;
-      @include mixings.min-sm {
+      @include breakpoints.min-sm {
         margin-top: 1rem;
       }
     }
@@ -14,7 +14,7 @@
     .list-item {
       margin: 0;
       padding: 0.75rem 0;
-      @include mixings.min-sm {
+      @include breakpoints.min-sm {
         padding: 1rem 0;
       }
       &:not(:first-child) {

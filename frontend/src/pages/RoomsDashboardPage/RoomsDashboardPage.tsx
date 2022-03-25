@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { createRoom, deleteRoom, getAllRooms } from '../../api/rooms';
 import AsyncLayout from '../../components/AsyncLayout';
-import BottomActionButton from '../../components/BottomActionButton';
+import BasicButton from '../../components/BasicButton';
+import BottomActionWrapper from '../../components/BottomActionWrapper';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import PageLayout from '../../components/PageLayout';
 import RoomItem from '../../components/RoomItem';
@@ -85,12 +86,11 @@ export default function RoomsDashboardPage() {
       toolbarLinkBack="/dashboard"
       className="RoomsDashboardPage"
       bottomBar={
-        <BottomActionButton
-          className="btn btn-primary"
-          onClick={createNewRoomHandler}
-        >
-          {t('Pages.RoomsDashboardPage.bottomActionButton')}
-        </BottomActionButton>
+        <BottomActionWrapper className="bottom-action">
+          <BasicButton onClick={createNewRoomHandler} color="primary" className="bottom-action-btn">
+            {t('Pages.RoomsDashboardPage.bottomActionButton')}
+          </BasicButton>
+        </BottomActionWrapper>
       }
     >
       <div className="page-content rooms-container layout layout-center-v">

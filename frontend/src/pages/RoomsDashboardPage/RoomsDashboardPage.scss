@@ -1,15 +1,20 @@
-@use '../../styles/utils/mixings';
+@use '../../styles/utils/mixings/breakpoints';
 
 div.RoomsDashboardPage {
   height: 100%;
   position: relative;
+  .bottom-action {
+    .bottom-action-btn {
+      width: 100%;
+    }
+  }
   div.rooms-container {
     div.rooms-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
       justify-content: center;
       gap: 0.75rem;
-      @include mixings.min-md {
+      @include breakpoints.min-md {
         gap: 1.5rem;
       }
     }

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import AsyncLayout from '../../components/AsyncLayout';
-import BottomActionButton from '../../components/BottomActionButton';
+import BasicButton from '../../components/BasicButton';
+import BottomActionWrapper from '../../components/BottomActionWrapper';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import PageLayout from '../../components/PageLayout';
 import {
@@ -62,12 +63,11 @@ export default function LibrariesDashboardPage() {
       toolbarLinkBack="/dashboard"
       className="LibrariesDashboardPage"
       bottomBar={
-        <BottomActionButton
-          className="btn btn-primary"
-          onClick={openLibraryInfoDialogHandler}
-        >
-          {t('Pages.LibrariesDashboardPage.bottomActionButton')}
-        </BottomActionButton>
+        <BottomActionWrapper className="bottom-actions">
+          <BasicButton onClick={openLibraryInfoDialogHandler} color="primary" className="bottom-action-btn">
+            {t('Pages.LibrariesDashboardPage.bottomActionButton')}
+          </BasicButton>
+        </BottomActionWrapper>
       }
     >
       <div className="LibrariesDashboardPage__content page-content layout layout-center-v">

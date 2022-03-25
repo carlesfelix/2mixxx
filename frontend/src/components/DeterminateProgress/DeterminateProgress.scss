@@ -1,0 +1,7 @@
+svg.DeterminateProgress {
+  transform: rotate(-90deg);
+  circle {
+    transition-property: stroke-dashoffset;
+    transition-duration: 100ms;
+  }
+}

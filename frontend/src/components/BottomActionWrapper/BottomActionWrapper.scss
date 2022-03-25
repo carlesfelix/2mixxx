@@ -1,0 +1,14 @@
+@use '../../styles/utils/mixings/breakpoints';
+
+div.BottomActionWrapper {
+  text-align: end;
+  pointer-events: none;
+  span {
+    width: 100%;
+    pointer-events: initial;
+    display: inline-block;
+    @include breakpoints.min-sm {
+      width: auto;
+    }
+  }
+}

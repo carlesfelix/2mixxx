@@ -1,11 +1,16 @@
-@use '../../styles/utils/mixings';
+@use '../../styles/utils/mixings/breakpoints';
 
 .UsersDashboardPage {
+  .bottom-action {
+    .bottom-action-btn {
+      width: 100%;
+    }
+  }
   div.UsersDashboardPage__content {
     div.user-list-container {
       .user-item:not(:first-child) {
         margin-top: 0.75rem;
-        @include mixings.min-md {
+        @include breakpoints.min-md {
           margin-top: 1rem;
         }
       }
