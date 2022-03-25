@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { MouseEventHandler, ReactNode, useEffect, useState } from 'react';
 import OptionItem from '../../types/OptionItem';
 import Popover from '../Popover';
+import BasicButton from '../BasicButton';
 import './OverlayMenu.scss';
 
 type Props<Data = any> = {
@@ -65,9 +66,9 @@ export default function OverlayMenu<Data = any>(props: Props<Data>) {
         content={content} positions={['bottom', 'top']}
         align={align} containerClassName="OverlayMenu__content"
       >
-        <button onClick={clickHandler} className={btnClassName}>
+        <BasicButton onClick={clickHandler} className={btnClassName}>
           {children}
-        </button>
+        </BasicButton>
       </Popover>
     </div>
   );

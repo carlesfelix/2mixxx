@@ -1,5 +1,5 @@
 @use '../../styles/themes/theme';
-@use '../../styles/utils/mixings';
+@use '../../styles/utils/mixings/breakpoints';
 
 nav.Toolbar {
   background-color: theme.color('page-layout-toolbar-background');
@@ -7,7 +7,7 @@ nav.Toolbar {
   font-weight: bold;
   height: 2.25rem;
   padding: 1rem;
-  @include mixings.min-xl {
+  @include breakpoints.min-xl {
     padding: 1rem 2rem;
   }
   font-weight: bold;
@@ -33,7 +33,7 @@ nav.Toolbar {
   }
   span.toolbar-item {
     margin: 0 0.5rem;
-    @include mixings.min-xl {
+    @include breakpoints.min-xl {
       margin: 0 0.75rem;
     }
     &:first-child {

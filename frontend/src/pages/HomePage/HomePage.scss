@@ -1,5 +1,5 @@
 @use '../../styles/themes/theme';
-@use '../../styles/utils/mixings';
+@use '../../styles/utils/mixings/breakpoints';
 
 div.HomePage {
   position: relative;
@@ -10,10 +10,10 @@ div.HomePage {
     padding: 2rem;
     display: none;
     background-color: theme.color('login-form-left-bar');
-    @include mixings.min-md {
+    @include breakpoints.min-md {
       display: block;
     }
-    @include mixings.min-lg {
+    @include breakpoints.min-lg {
       width: 25rem;
     }
     h1.welcome-msg {
@@ -31,7 +31,7 @@ div.HomePage {
       padding: 1rem;
       width: 100%;
       max-width: 30rem;
-      @include mixings.min-sm {
+      @include breakpoints.min-sm {
         padding: 2rem;
       }
       form.choose-room {
@@ -47,9 +47,6 @@ div.HomePage {
           }
           div.form-actions {
             margin-top: 1.5rem;
-            button.submit-room-btn {
-              min-width: 9.375rem;
-            }
           }
         }
       }

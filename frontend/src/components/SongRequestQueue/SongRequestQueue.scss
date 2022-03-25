@@ -1,11 +1,11 @@
-@use '../../styles/utils/mixings';
+@use '../../styles/utils/mixings/breakpoints';
 @use '../../styles/themes/theme';
 
 div.SongRequestQueue {
   .queue-item__request {
     &:not(:first-child) {
       margin-top: 0.75rem;
-      @include mixings.min-md {
+      @include breakpoints.min-md {
         margin-top: 1.25rem;
       }
     }

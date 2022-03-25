@@ -1,0 +1,11 @@
+@mixin svg-color($color) {
+  ._svg {
+    color: $color;
+    ._svg-fill {
+      fill: $color;
+    }
+    ._svg-stroke {
+      stroke: $color;
+    }
+  }
+}

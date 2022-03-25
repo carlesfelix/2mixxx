@@ -3,6 +3,7 @@ import { roomCodeExists } from '../../api/rooms';
 import ControlledInput from '../../components/forms/ControlledInput';
 import LoginButton from '../../components/LoginButton';
 import PageLayout from '../../components/PageLayout';
+import SubmitButton from '../../components/SubmitButton';
 import { createRoomUserAction, useRoomUser } from '../../contexts/room-user';
 import { buildMessage } from '../../helpers/validation-rules';
 import { useTranslation } from '../../services/i18n';
@@ -13,7 +14,7 @@ export default function HomePage() {
   const { t } = useTranslation();
   const { dispatch } = useRoomUser();
   const {
-    control, handleSubmit, setError
+    control, handleSubmit, setError, formState
   } = useForm<{ roomCode?: string }>({ mode: 'onChange' });
   const roomFormValidation = getRoomFormValidation();
   async function submitHandler(data: { roomCode: string }): Promise<void> {
@@ -27,6 +28,7 @@ export default function HomePage() {
           'Pages.HomePage.loginForm.fields.roomCode.errors.invalidRoomCode'
         )
       });
+      return Promise.reject();
     }
   }
   return (
@@ -62,9 +64,9 @@ export default function HomePage() {
                   rules={roomFormValidation.roomCode}
                 />
                 <div className="form-actions">
-                  <button className="btn btn-primary btn-lg submit-room-btn" type="submit">
+                  <SubmitButton color="primary" size="large" inProgress={formState.isSubmitting}>
                     {t('Pages.HomePage.loginForm.submitBtn')}
-                  </button>
+                  </SubmitButton>
                 </div>
               </div>
             </form>

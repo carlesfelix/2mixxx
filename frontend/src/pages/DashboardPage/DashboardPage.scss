@@ -1,4 +1,4 @@
-@use '../../styles/utils/mixings';
+@use '../../styles/utils/mixings/breakpoints';
 
 div.DashboardPage {
   div.dashboard-menu {
@@ -10,14 +10,14 @@ div.DashboardPage {
       height: auto;
       padding-bottom: 0.75rem;
       margin: auto 0;
-      @include mixings.min-sm {
+      @include breakpoints.min-sm {
         gap: 1.25rem;
         grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
       }
-      @include mixings.min-md {
+      @include breakpoints.min-md {
         gap: 2.5rem;
       }
-      @include mixings.min-lg {
+      @include breakpoints.min-lg {
         gap: 3.5rem;
       }
     }

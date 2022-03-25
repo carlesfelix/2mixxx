@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useTranslation } from '../../services/i18n';
+import BasicButton from '../SubmitButton/SubmitButton';
 
 function LoginButton() {
   const { t } = useTranslation();
@@ -10,9 +11,9 @@ function LoginButton() {
   }
 
   return (
-    <button className="btn btn-secondary btn-lg" onClick={clickHandler}>
+    <BasicButton color="secondary" size="large" onClick={clickHandler}>
       {t('Components.LoginButton.loginBtn')}
-    </button>
+    </BasicButton>
   );
 };
 

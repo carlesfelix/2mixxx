@@ -1,8 +1,9 @@
-import { faCircleNotch, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import SongRequest from '../../types/SongRequest';
 import Label from '../Label';
+import TextIconButton from '../TextIconButton';
 import './SongRequestItem.scss';
 
 type Props = {
@@ -55,21 +56,9 @@ export default function SongRequestItem(props: Props) {
         {
           canDelete && (
             <div className="song-request-actions">
-              {
-                deleteInProgress ? (
-                  <div className="delete-progress-container">
-                    <FontAwesomeIcon icon={faCircleNotch} spin />
-                  </div>
-                ) : (
-                  <button
-                    className="btn btn-icon btn-icon-danger"
-                    onClick={deleteHandler}
-                  >
-                    <FontAwesomeIcon icon={faTrash} />
-                  </button>
-                )
-              }
-              
+              <TextIconButton inProgress={deleteInProgress} onClick={deleteHandler} color="danger">
+                <FontAwesomeIcon icon={faTrash} className="_svg" />
+              </TextIconButton>
             </div>
           )
         }

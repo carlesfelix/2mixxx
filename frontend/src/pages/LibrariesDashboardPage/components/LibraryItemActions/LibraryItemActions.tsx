@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import BasicButton from '../../../../components/BasicButton';
 import { useTranslation } from '../../../../services/i18n';
 import './LibraryItemActions.scss';
 
@@ -30,15 +31,15 @@ export default function LibrarySongManager(props: Props) {
     }
     if (songs) {
       return (
-        <button className="btn btn-danger" onClick={deleteSongsHandler} disabled={deleteSongsInProgress}>
+        <BasicButton color="danger" onClick={deleteSongsHandler} inProgress={deleteSongsInProgress}>
           {t('Components.LibraryItemActions.deleteSongs')}
-        </button>
+        </BasicButton>
       );
     }
     return (
-      <button className="btn btn-primary" onClick={importSongsHandler}>
+      <BasicButton color="primary" onClick={importSongsHandler}>
         {t('Components.LibraryItemActions.importXmlFromItunes')}
-      </button>
+      </BasicButton>
     );
   }
   return (

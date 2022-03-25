@@ -27,7 +27,7 @@ div.OverlayMenu__content {
           border-radius: 0;
           width: 100%;
           color: theme.color('overlay-menu-item-text');
-          text-align: left;
+          justify-content: start;
           padding: 0.5rem 0.75rem;
           font-size: 0.875rem;
           &:hover {

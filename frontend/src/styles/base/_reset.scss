@@ -1,11 +1,11 @@
-@use '../utils/variables';
+@use '../utils/variables/breakpoints';
 @use '../themes/theme';
 
 html {
   height: 100%;
   body {
     margin: 0;
-    min-width: variables.$min-xs;
+    min-width: breakpoints.$min-xs;
     height: 100%;
     background-color: theme.color('background-root');
     color: theme.color('text-primary');

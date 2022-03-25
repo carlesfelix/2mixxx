@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import React, { ReactNode } from 'react';
 import Modal from 'react-modal';
+import TextIconButton from '../TextIconButton';
 import './Dialog.scss';
 
 Modal.setAppElement('#root');
@@ -61,9 +62,9 @@ export default function Dialog(props: Props) {
           }
           {
             closeOptions.includes('closeBtn') && (
-              <button className="btn close-btn" onClick={closeHandler} disabled={preventClose}>
+              <TextIconButton className="close-btn" onClick={closeHandler} disabled={preventClose}>
                 <FontAwesomeIcon icon={faTimes} />
-              </button>
+              </TextIconButton>
             )
           }
         </div>        
