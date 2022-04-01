@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Dialog from '../../../../components/Dialog';
-import ControlledInput from '../../../../components/forms/ControlledInput';
+import InputTextField from '../../../../components/form/InputTextField';
 import SubmitButton from '../../../../components/SubmitButton';
 import { useTranslation } from '../../../../services/i18n';
 import DialogState from '../../../../types/DialogState';
@@ -56,8 +56,7 @@ export default function LibraryInfoDialog(props: Props) {
       }
     >
       <form onSubmit={handleSubmit(submitHandler)} id="libraryInfoForm">
-        <ControlledInput
-          field={{ type: 'inputText' }}
+        <InputTextField
           control={control}
           label={t('Components.LibraryInfoDialog.form.fields.title.label')}
           name="title"

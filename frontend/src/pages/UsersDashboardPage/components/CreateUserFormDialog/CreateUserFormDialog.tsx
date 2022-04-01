@@ -10,7 +10,8 @@ import RegisteredUserRoleEnum from '../../../../enums/RegisteredUserRoleEnum';
 import { getRoleOptions } from '../../../../helpers/input-options';
 import { useTranslation } from '../../../../services/i18n';
 import SubmitButton from '../../../../components/SubmitButton';
-import InputTextField from '../../../../components/form/InputTextField/InputTextField';
+import InputTextField from '../../../../components/form/InputTextField';
+import InputPasswordField from '../../../../components/form/InputPasswordField';
 
 type Props = {
   state: DialogState<CreateUserForm>;
@@ -68,15 +69,13 @@ export default function CreateUserFormDialog(props: Props) {
           name="email"
           rules={userFormValidation.email}
         />
-        <ControlledInput
-          field={{ type: 'inputText', props: { password: true } }}
+        <InputPasswordField
           control={control}
           label={t('Components.CreateUserFormDialog.form.fields.password.label')}
           name="password"
           rules={userFormValidation.password}
         />
-        <ControlledInput
-          field={{ type: 'inputText', props: { password: true } }}
+        <InputPasswordField
           control={control}
           label={t('Components.CreateUserFormDialog.form.fields.repeatPassword.label')}
           name="repeatPassword"

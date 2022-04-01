@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import { ChangeEvent, forwardRef } from "react";
-import { InputTextProps } from "./types";
+import { InputPasswordProps } from "./types";
 
-const InputText = forwardRef<
+const InputPassword = forwardRef<
   HTMLInputElement,
-  InputTextProps
+  InputPasswordProps
 >((props, ref) => {
   const {
     placeholder,
@@ -17,12 +17,12 @@ const InputText = forwardRef<
   function changeHandler(event: ChangeEvent<HTMLInputElement>): void {
     onChange(event.currentTarget.value)
   }
-  const rootClassName = classNames('InputText', 'input', className);
+  const rootClassName = classNames('InputPassword', 'input', className);
   return (
     <input
       ref={ref}
       className={rootClassName}
-      type="text"
+      type="password"
       placeholder={placeholder}
       value={value}
       autoComplete="off"
@@ -33,4 +33,4 @@ const InputText = forwardRef<
   );
 });
 
-export default InputText;
+export default InputPassword;
