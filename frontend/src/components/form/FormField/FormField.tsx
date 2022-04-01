@@ -18,7 +18,7 @@ const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
   });
 
   return (
-    <div className={formFieldClassName} ref={ref}>
+    <div className={formFieldClassName} ref={ref} tabIndex={-1}>
       {
         !!label && (
           <span className={labelClassName}>{label}</span>
