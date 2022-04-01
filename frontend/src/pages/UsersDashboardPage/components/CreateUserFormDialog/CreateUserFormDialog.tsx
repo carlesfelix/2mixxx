@@ -10,6 +10,7 @@ import RegisteredUserRoleEnum from '../../../../enums/RegisteredUserRoleEnum';
 import { getRoleOptions } from '../../../../helpers/input-options';
 import { useTranslation } from '../../../../services/i18n';
 import SubmitButton from '../../../../components/SubmitButton';
+import InputTextField from '../../../../components/form/InputTextField/InputTextField';
 
 type Props = {
   state: DialogState<CreateUserForm>;
@@ -61,8 +62,7 @@ export default function CreateUserFormDialog(props: Props) {
       }
     >
       <form onSubmit={handleSubmit(submitHandler)} id="userFormDialog">
-        <ControlledInput
-          field={{ type: 'inputText' }}
+        <InputTextField
           control={control}
           label={t('Components.CreateUserFormDialog.form.fields.email.label')}
           name="email"

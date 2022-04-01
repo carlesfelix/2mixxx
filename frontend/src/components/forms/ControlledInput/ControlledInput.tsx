@@ -4,7 +4,7 @@ import {
   FieldValues, UseControllerProps
 } from 'react-hook-form';
 import { useTranslation } from '../../../services/i18n';
-import FormField from '../FormField';
+import FormField from '../../form/FormField';
 import Checkbox, { CheckboxExtraProps } from '../inputs/Checkbox';
 import Dropdown, { DropdownExtraProps } from '../inputs/Dropdown';
 import InputText from '../inputs/InputText';
