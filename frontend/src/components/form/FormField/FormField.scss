@@ -1,7 +1,10 @@
 @use '../../../styles/themes/theme';
 
-label.FormField {
+div.FormField {
   display: inline-block;
+  border: none;
+  padding: 0;
+  margin: 0;
   span.field-label, div.field-children, span.field-error-message {
     display: block;
   }

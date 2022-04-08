@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Navigate, Route, Routes as Switch } from 'react-router-dom';
 import LoadingPage from '../../pages/LoadingPage';
 import AppRoute from '../../types/AppRoute';
 
@@ -19,23 +19,34 @@ export default function Routes(props: Props) {
     return !!permission && permissions.includes(permission);
   });
   return (
-    <Switch>
-      {
-        allowedRoutes.map(({
-          path, exact, Component: PageComponent
-        }, iRoute) => (
-          <Route path={`${parentUrl}${path}`} exact={exact} key={iRoute}>
-            <Suspense fallback={<LoadingPage />}>
-              <PageComponent />
-            </Suspense>
-          </Route>
-        ))
-      }
-      {
+    <>
+      <Switch>
+        {
+          allowedRoutes.map(({
+            path, Component: PageComponent
+          }, iRoute) => (
+            <Route
+              path={`${parentUrl}${path}`}
+              key={iRoute}
+              element={
+                <Suspense fallback={<LoadingPage />}>
+                  <PageComponent />
+                </Suspense>
+              }
+            />
+          ))
+        }
+        {
+          fallbackPath && (
+            <Route path="*" element={<Navigate to={fallbackPath} />} />
+          )
+        }
+      </Switch>
+      {/* {
         !!fallbackPath && (
-          <Route render={() => <Redirect to={fallbackPath} />} />
+          <Navigate to={fallbackPath} />
         )
-      }
-    </Switch>
+      } */}
+    </>
   );
 }

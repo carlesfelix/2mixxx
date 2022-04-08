@@ -5,7 +5,7 @@ export default function useCooldown(
   date: number | string | Date,
   tickInterval: number = 1000
 ): number {
-  const intervalId = useRef<number>();
+  const intervalId = useRef<NodeJS.Timer>();
   const [remaining, setRemaining] = useState(() => {
     const newValue = getTimestamp(date) - Date.now();
     return newValue > 0 ? newValue : 0;

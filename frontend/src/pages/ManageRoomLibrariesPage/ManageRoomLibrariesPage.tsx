@@ -29,7 +29,7 @@ export default function ManageRoomLibrariesPage() {
       inProgress: true, error: false,
       data: defaultRoomDetails
     });
-    getRoomById(roomId).then(data => {
+    getRoomById(roomId!).then(data => {
       setRoom({
         inProgress: false, error: false,
         data
@@ -59,9 +59,9 @@ export default function ManageRoomLibrariesPage() {
   }, []);
   function checkedHandler(library: Library, checked: boolean): void {
     if (checked) {
-      addLibraryToRoom(roomId, library.id!);
+      addLibraryToRoom(roomId!, library.id!);
     } else {
-      deleteLibraryFromRoom(roomId, library.id!);
+      deleteLibraryFromRoom(roomId!, library.id!);
     }
   }
   function changeHandler(value: string[]): void {

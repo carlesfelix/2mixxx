@@ -1,7 +1,8 @@
-import { ButtonHTMLAttributes, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Dialog from '../../../../components/Dialog';
-import ControlledInput from '../../../../components/forms/ControlledInput';
+import InputTextField from '../../../../components/form/InputTextField';
+import SubmitButton from '../../../../components/SubmitButton';
 import { useTranslation } from '../../../../services/i18n';
 import DialogState from '../../../../types/DialogState';
 import Library from '../../../../types/Library';
@@ -16,7 +17,7 @@ type Props = {
 export default function LibraryInfoDialog(props: Props) {
   const { state, onSubmit, onClose } = props;
   const { inProgress, data, isOpen } = state;
-  const { control, handleSubmit, reset } = useForm();
+  const { control, handleSubmit, reset } = useForm<Library>();
   const { t } = useTranslation();
   const libraryInfoFormValidation = getLibraryInfoFormValidation();
   useEffect(() => {
@@ -25,37 +26,37 @@ export default function LibraryInfoDialog(props: Props) {
   function submitHandler(library: Library): void {
     onSubmit(library);
   }
-  const actions: ButtonHTMLAttributes<HTMLButtonElement>[] = [];
-  if (data) {
-    actions.push({ children: t('Components.LibraryInfoDialog.saveChangesAction') });
-  } else {
-    actions.push({ children: t('Components.LibraryInfoDialog.createAction') });
-  }
+  const submitButtonLabel = data ? (
+    t('Components.LibraryInfoDialog.saveChangesAction')
+  ) : (
+    t('Components.LibraryInfoDialog.createAction')
+  );
+  const dialogTitle = data ? (
+    t('Components.LibraryInfoDialog.editLibrary')
+  ) : (
+    t('Components.LibraryInfoDialog.createNewLibrary')
+  );
   return (
     <Dialog
       isOpen={isOpen}
-      title={data ? t('Components.LibraryInfoDialog.editLibrary') : t('Components.LibraryInfoDialog.createNewLibrary')}
+      title={dialogTitle}
       className="LibraryInfoDialog" closeOptions={['closeBtn']} onClose={onClose}
       preventClose={inProgress}
       maxWidth="20rem"
       footer={
-        actions.length ? (
-          <div className="library-info-actions">
-            {
-              actions.map((btnProps, iBtnProps) => (
-                <button
-                  {...btnProps} className="btn btn-primary" disabled={inProgress}
-                  key={iBtnProps} type="submit" form="libraryInfoForm"
-                />
-              ))
-            }
-          </div>
-        ) : undefined
+        <div className="library-info-actions">
+          <SubmitButton
+            color="primary"
+            inProgress={inProgress}
+            form="libraryInfoForm"
+          >
+            {submitButtonLabel}
+          </SubmitButton>
+        </div>
       }
     >
       <form onSubmit={handleSubmit(submitHandler)} id="libraryInfoForm">
-        <ControlledInput
-          field={{ type: 'inputText' }}
+        <InputTextField
           control={control}
           label={t('Components.LibraryInfoDialog.form.fields.title.label')}
           name="title"

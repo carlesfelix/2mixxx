@@ -29,7 +29,7 @@ export default function ManageRoomModeratorsPage() {
       inProgress: true, error: false,
       data: defaultRoomDetails
     });
-    getRoomById(roomId).then(data => {
+    getRoomById(roomId!).then(data => {
       setRoom({
         inProgress: false, error: false,
         data
@@ -59,9 +59,9 @@ export default function ManageRoomModeratorsPage() {
   }, []);
   function checkedHandler(moderator: RegisteredUser, checked: boolean): void {
     if (checked) {
-      addModeratorToRoom(roomId, moderator.id!);
+      addModeratorToRoom(roomId!, moderator.id!);
     } else {
-      deleteModeratorFromRoom(roomId, moderator.id!);
+      deleteModeratorFromRoom(roomId!, moderator.id!);
     }
   }
   function changeHandler(value: string[]): void {

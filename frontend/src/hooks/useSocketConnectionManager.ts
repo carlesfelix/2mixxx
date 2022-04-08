@@ -24,6 +24,9 @@ export default function useSocketConnectionManager(uri: string): Socket | undefi
     setSocket(nextSocket);
     if (registeredLogged) {
       getIdTokenClaims().then(idToken => {
+        if (!idToken) {
+          return Promise.reject();
+        }
         nextSocket.auth = {
           authorization: `Bearer ${idToken.__raw}`,
           userType: 'registeredUser'

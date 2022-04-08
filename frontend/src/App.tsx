@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     let removeInterceptors: () => void;
     if (registeredLogged) {
-      removeInterceptors = setRegisteredTokenFn(getIdTokenClaims);
+      removeInterceptors = setRegisteredTokenFn(() => getIdTokenClaims());
       getRegisteredMeAction(meDispatch);
     } else if (guestLogged) {
       removeInterceptors = setRoomUserConfigFn({

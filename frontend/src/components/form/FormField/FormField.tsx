@@ -1,26 +1,15 @@
 import classNames from 'classnames';
-import { ReactNode } from 'react';
+import { forwardRef } from 'react';
 import './FormField.scss';
+import { FormFieldProps } from './types';
 
-
-type Props = {
-  label?: string;
-  errorMessage?: string;
-  invalid: boolean;
-  children: ReactNode;
-  className?: string;
-  required?: boolean;
-};
-
-export default function FormField(props: Props) {
+const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
   const {
-    label, errorMessage, children, invalid, className = '',
+    label, errorMessage, children, invalid, className,
     required = false
   } = props;
   
-  const formFieldClassName = classNames('FormField', {
-    [className]: !!className
-  });
+  const formFieldClassName = classNames('FormField', className);
   const labelClassName = classNames('field-label', {
     'field-label--required': required
   });
@@ -29,7 +18,7 @@ export default function FormField(props: Props) {
   });
 
   return (
-    <label className={formFieldClassName}>
+    <div className={formFieldClassName} ref={ref} tabIndex={-1}>
       {
         !!label && (
           <span className={labelClassName}>{label}</span>
@@ -45,6 +34,8 @@ export default function FormField(props: Props) {
           </span>
         )
       }
-    </label>
+    </div>
   );
-}
+});
+
+export default FormField

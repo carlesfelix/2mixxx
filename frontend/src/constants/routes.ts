@@ -8,7 +8,6 @@ const ManageRoomLibrariesPage = lazy(() => import('../pages/ManageRoomLibrariesP
 const LibrariesDashboardPage = lazy(() => import('../pages/LibrariesDashboardPage'));
 const UsersDashboardPage = lazy(() => import('../pages/UsersDashboardPage'));
 const HomePage = lazy(() => import('../pages/HomePage'));
-const RoomByIdPage = lazy(() => import('../pages/RoomByIdPage'));
 const MakeASongRequestPage = lazy(() => import('../pages/MakeASongRequestPage'));
 const RecommendSongPage = lazy(() => import('../pages/RecommendSongPage'));
 const SongRequestsPage = lazy(() => import('../pages/SongRequestsPage'));
@@ -18,7 +17,7 @@ const ModerateRoomPage = lazy(() => import('../pages/ModerateRoomPage'));
 
 const appRoutes: AppRoute[] = [
   {
-    path: '/',
+    path: '/*',
     Component: SongRequestsPage,
     permission: permissions.PAGE_SONG_REQUEST,
     exact: true
@@ -36,7 +35,7 @@ const appRoutes: AppRoute[] = [
     exact: true
   },
   {
-    path: '/moderate/rooms',
+    path: '/moderate/rooms/*',
     Component: ModerateRoomsPage,
     permission: permissions.PAGE_MODERATE_ROOMS,
     exact: true
@@ -48,13 +47,13 @@ const appRoutes: AppRoute[] = [
     exact: true
   },
   {
-    path: '/dashboard',
+    path: '/dashboard/*',
     Component: DashboardPage,
     permission: permissions.PAGE_DASHBOARD,
     exact: true
   },
   {
-    path: '/dashboard/rooms',
+    path: '/dashboard/rooms/*',
     Component: RoomsDashboardPage,
     permission: permissions.PAGE_ROOMS_DASHBOARD,
     exact: true
@@ -84,14 +83,8 @@ const appRoutes: AppRoute[] = [
     exact: true
   },
   {
-    path: '/rooms/:id',
-    Component: RoomByIdPage,
-    permission: permissions.PAGE_ROOM_BY_ID,
-  },
-  {
-    path: '/',
+    path: '/*',
     Component: HomePage,
-    exact: true
   }
 ];
 

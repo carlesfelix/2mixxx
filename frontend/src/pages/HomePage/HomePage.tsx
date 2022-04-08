@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { roomCodeExists } from '../../api/rooms';
-import ControlledInput from '../../components/forms/ControlledInput';
+import InputTextField from '../../components/form/InputTextField';
 import LoginButton from '../../components/LoginButton';
 import PageLayout from '../../components/PageLayout';
 import SubmitButton from '../../components/SubmitButton';
@@ -15,7 +15,7 @@ export default function HomePage() {
   const { dispatch } = useRoomUser();
   const {
     control, handleSubmit, setError, formState
-  } = useForm<{ roomCode?: string }>({ mode: 'onChange' });
+  } = useForm<{ roomCode: string }>({ mode: 'onChange' });
   const roomFormValidation = getRoomFormValidation();
   async function submitHandler(data: { roomCode: string }): Promise<void> {
     const { roomCode } = data;
@@ -49,18 +49,12 @@ export default function HomePage() {
                 {t('Pages.HomePage.loginForm.title')}
               </h2>
               <div className="form-content">
-                <ControlledInput
-                  className="room-code-input"
+                <InputTextField
+                  fieldClassName="room-code-input"
                   label={t('Pages.HomePage.loginForm.fields.roomCode.label')}
                   control={control}
+                  placeholder={t('Pages.HomePage.loginForm.fields.roomCode.placeholder')}
                   name="roomCode"
-                  defaultValue=""
-                  field={{
-                    type: 'inputText',
-                    props: {
-                      placeholder: t('Pages.HomePage.loginForm.fields.roomCode.placeholder')
-                    }
-                  }}
                   rules={roomFormValidation.roomCode}
                 />
                 <div className="form-actions">
