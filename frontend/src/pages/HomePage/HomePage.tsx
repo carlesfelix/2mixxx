@@ -15,7 +15,7 @@ export default function HomePage() {
   const { dispatch } = useRoomUser();
   const {
     control, handleSubmit, setError, formState
-  } = useForm<{ roomCode?: string }>({ mode: 'onChange' });
+  } = useForm<{ roomCode: string }>({ mode: 'onChange' });
   const roomFormValidation = getRoomFormValidation();
   async function submitHandler(data: { roomCode: string }): Promise<void> {
     const { roomCode } = data;

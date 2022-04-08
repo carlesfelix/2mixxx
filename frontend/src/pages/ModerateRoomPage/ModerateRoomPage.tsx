@@ -30,7 +30,7 @@ export default function ModerateRoomPage() {
         inProgress: true, error: false,
         data: defaultRoomDetails
       });
-      getMyRoomById(roomId).then(data => {
+      getMyRoomById(roomId!).then(data => {
         setRoom({
           inProgress: false, error: false,
           data

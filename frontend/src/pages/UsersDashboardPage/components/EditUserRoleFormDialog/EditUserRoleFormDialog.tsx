@@ -34,9 +34,9 @@ export default function EditUserRoleFormDialog(props: Props) {
     defaultData: data, getValues, trigger
   });
 
-  function submitHandler(records: { role: number }): void {
+  function submitHandler(records: UserForm): void {
     if (state.data) {
-      onSubmit(state.data, records.role);
+      onSubmit(state.data, records.role!);
     }
   }
 

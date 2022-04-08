@@ -18,8 +18,11 @@ export function setRoomUserConfigFn(props: SetRoomUserConfigProps): () => void {
   });
   const addTokenToRequest = http.addRequestInterceptor(config => {
     const token = tokenCb();
-    config.headers['Authorization'] = `Bearer ${token.__raw}`;
-    config.headers['user-type'] = 'roomUser';
+    if (token) {
+      !config.headers && (config.headers = {});
+      config.headers['Authorization'] = `Bearer ${token.__raw}`;
+      config.headers['user-type'] = 'roomUser';
+    }
     return config;
   });
   
@@ -29,11 +32,14 @@ export function setRoomUserConfigFn(props: SetRoomUserConfigProps): () => void {
   };
 }
 
-export function setRegisteredTokenFn(registeredTokenCb: () => Promise<IdToken>): () => void {
+export function setRegisteredTokenFn(registeredTokenCb: () => Promise<IdToken | undefined>): () => void {
   const id = http.addRequestInterceptor(async config => {
     const token = await registeredTokenCb();
-    config.headers['Authorization'] = `Bearer ${token.__raw}`;
-    config.headers['user-type'] = 'registeredUser';
+    if (token) {
+      !config.headers && (config.headers = {});
+      config.headers['Authorization'] = `Bearer ${token.__raw}`;
+      config.headers['user-type'] = 'registeredUser';
+    }
     return config;
   });
   return () => http.removeRequestInterceptor(id);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { createRoom, deleteRoom, getAllRooms } from '../../api/rooms';
 import AsyncLayout from '../../components/AsyncLayout';
 import BasicButton from '../../components/BasicButton';
@@ -15,7 +15,7 @@ import { getRoomItemMenu } from './helpers';
 import './RoomsDashboardPage.scss';
 
 export default function RoomsDashboardPage() {
-  const { push } = useHistory();
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const [ rooms, setRooms ] = useState<AsyncState<Room[]>>({
     data: [], inProgress: true, error: false
@@ -48,10 +48,10 @@ export default function RoomsDashboardPage() {
     });
   }
   function manageLibrariesMenuHandler(room: Room): void {
-    push(`/dashboard/rooms/${room.id}/libraries`);
+    navigate(`/dashboard/rooms/${room.id}/libraries`);
   }
   function manageModeratorsMenuHandler(room: Room): void {
-    push(`/dashboard/rooms/${room.id}/moderators`);
+    navigate(`/dashboard/rooms/${room.id}/moderators`);
   }
   function rejectedConfirmDeleteHandler(): void {
     setConfirmDeleteDialog({
