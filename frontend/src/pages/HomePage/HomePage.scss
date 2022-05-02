@@ -11,13 +11,14 @@ div.HomePage {
     display: none;
     background-color: theme.color('login-form-left-bar');
     @include breakpoints.min-md {
-      display: block;
+      display: flex;
+      flex-direction: column;
     }
     @include breakpoints.min-lg {
       width: 25rem;
     }
-    h1.welcome-msg {
-      color: theme.color('header-primary');
+    span.fill-remaining-space {
+      flex-grow: 1;
     }
   }
   div.HomePage__right {
@@ -33,6 +34,14 @@ div.HomePage {
       max-width: 30rem;
       @include breakpoints.min-sm {
         padding: 2rem;
+      }
+      div.app-title {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3rem;
+        @include breakpoints.min-md {
+          display: none;
+        }
       }
       form.choose-room {
         h2 {

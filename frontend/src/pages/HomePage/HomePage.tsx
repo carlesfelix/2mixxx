@@ -7,6 +7,7 @@ import SubmitButton from '../../components/SubmitButton';
 import { createRoomUserAction, useRoomUser } from '../../contexts/room-user';
 import { buildMessage } from '../../helpers/validation-rules';
 import { useTranslation } from '../../services/i18n';
+import AppTitle from './components/AppTitle';
 import { getRoomFormValidation } from './helpers';
 import './HomePage.scss';
 
@@ -35,15 +36,17 @@ export default function HomePage() {
     <PageLayout toolbarTitle={t('Pages.HomePage.toolbar.title')}>
       <div className="HomePage">
         <div className="HomePage__left">
-          <h1 className="welcome-msg">
-            {t('Pages.HomePage.title')}
-          </h1>
+          <AppTitle />
+          <span className="fill-remaining-space"></span>
           <p>
             {t('Pages.HomePage.description')}
           </p>
         </div>
         <div className="HomePage__right">
           <div className="login-container">
+            <div className="app-title">
+              <AppTitle />
+            </div>
             <form className="choose-room" onSubmit={handleSubmit(submitHandler)} autoComplete="off">
               <h2>
                 {t('Pages.HomePage.loginForm.title')}
