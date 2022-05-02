@@ -13,7 +13,6 @@ export default function AboutDialog(props: AboutDialogProps) {
   function closeHandler(): void {
     onClose();
   }
-  console.log(process.env)
   return (
     <Dialog
       title={t('Components.PageLayout.aboutDialogTitle')}
