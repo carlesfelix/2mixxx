@@ -49,14 +49,11 @@ div.HomePage {
           margin-top: 0;
           margin-bottom: 2.25rem;
         }
-        div.form-content {
-          .room-code-input {
-            flex-grow: 1;
-            width: 100%;
-          }
-          div.form-actions {
-            margin-top: 1.5rem;
-          }
+        .room-code-input {
+          width: 100%;
+        }
+        div.form-actions {
+          margin-top: 1.5rem;
         }
       }
       hr {

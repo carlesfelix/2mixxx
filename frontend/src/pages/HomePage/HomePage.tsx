@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { roomCodeExists } from '../../api/rooms';
+import FormGroup from '../../components/form/FormGroup';
 import InputTextField from '../../components/form/InputTextField';
 import LoginButton from '../../components/LoginButton';
 import PageLayout from '../../components/PageLayout';
@@ -29,7 +30,6 @@ export default function HomePage() {
           'Pages.HomePage.loginForm.fields.roomCode.errors.invalidRoomCode'
         )
       });
-      return Promise.reject();
     }
   }
   return (
@@ -48,18 +48,25 @@ export default function HomePage() {
               <AppTitle />
             </div>
             <form className="choose-room" onSubmit={handleSubmit(submitHandler)} autoComplete="off">
-              <h2>
-                {t('Pages.HomePage.loginForm.title')}
-              </h2>
-              <div className="form-content">
-                <InputTextField
-                  fieldClassName="room-code-input"
-                  label={t('Pages.HomePage.loginForm.fields.roomCode.label')}
-                  control={control}
-                  placeholder={t('Pages.HomePage.loginForm.fields.roomCode.placeholder')}
-                  name="roomCode"
-                  rules={roomFormValidation.roomCode}
-                />
+              <div >
+                <FormGroup
+                  className="form-content"
+                  legend={
+                    <h2>
+                      {t('Pages.HomePage.loginForm.title')}
+                    </h2>
+                  }
+                  disabled={formState.isSubmitting}
+                >
+                  <InputTextField
+                    fieldClassName="room-code-input"
+                    label={t('Pages.HomePage.loginForm.fields.roomCode.label')}
+                    control={control}
+                    placeholder={t('Pages.HomePage.loginForm.fields.roomCode.placeholder')}
+                    name="roomCode"
+                    rules={roomFormValidation.roomCode}
+                  />
+                </FormGroup>
                 <div className="form-actions">
                   <SubmitButton color="primary" size="large" inProgress={formState.isSubmitting}>
                     {t('Pages.HomePage.loginForm.submitBtn')}
