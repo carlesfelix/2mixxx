@@ -12,8 +12,8 @@ export async function getGuestMeAction(dispatch: Dispatch): Promise<void> {
   }
 }
 
-export function logoutGuestMeAction(dispatch: Dispatch): void {
-  dispatch({ type: 'logOutMeGuest' });
+export function logoutGuestMeAction(dispatch: Dispatch, url: string = window.location.origin): void {
+  window.location.replace(url);
 }
 
 export async function getRegisteredMeAction(dispatch: Dispatch): Promise<void> {

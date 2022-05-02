@@ -1,4 +1,6 @@
+import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSearchParams } from 'react-router-dom';
 import { roomCodeExists } from '../../api/rooms';
 import FormGroup from '../../components/form/FormGroup';
 import InputTextField from '../../components/form/InputTextField';
@@ -7,6 +9,7 @@ import PageLayout from '../../components/PageLayout';
 import SubmitButton from '../../components/SubmitButton';
 import { createRoomUserAction, useRoomUser } from '../../contexts/room-user';
 import { buildMessage } from '../../helpers/validation-rules';
+import usePrevious from '../../hooks/usePrevious';
 import { useTranslation } from '../../services/i18n';
 import AppTitle from './components/AppTitle';
 import { getRoomFormValidation } from './helpers';
@@ -16,8 +19,28 @@ export default function HomePage() {
   const { t } = useTranslation();
   const { dispatch } = useRoomUser();
   const {
-    control, handleSubmit, setError, formState
+    control, handleSubmit, setError, formState,
+    setValue
   } = useForm<{ roomCode: string }>({ mode: 'onChange' });
+  const { isSubmitting } = formState;
+  const [ searchParams ] = useSearchParams();
+  const roomCodeParam = searchParams.get('roomCode');
+  const roomCodeParamPrev = usePrevious(roomCodeParam);
+  const submitRoomRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (
+      submitRoomRef.current && roomCodeParam &&
+      roomCodeParam !== roomCodeParamPrev && !isSubmitting
+    ) {
+      setValue('roomCode', roomCodeParam);
+      submitRoomRef.current.click();
+    }
+  }, [
+    roomCodeParam, roomCodeParamPrev, isSubmitting,
+    submitRoomRef, setValue
+  ]);
+  
   const roomFormValidation = getRoomFormValidation();
   async function submitHandler(data: { roomCode: string }): Promise<void> {
     const { roomCode } = data;
@@ -56,7 +79,7 @@ export default function HomePage() {
                       {t('Pages.HomePage.loginForm.title')}
                     </h2>
                   }
-                  disabled={formState.isSubmitting}
+                  disabled={isSubmitting}
                 >
                   <InputTextField
                     fieldClassName="room-code-input"
@@ -68,7 +91,12 @@ export default function HomePage() {
                   />
                 </FormGroup>
                 <div className="form-actions">
-                  <SubmitButton color="primary" size="large" inProgress={formState.isSubmitting}>
+                  <SubmitButton
+                    color="primary"
+                    size="large"
+                    inProgress={isSubmitting}
+                    ref={submitRoomRef}
+                  >
                     {t('Pages.HomePage.loginForm.submitBtn')}
                   </SubmitButton>
                 </div>
