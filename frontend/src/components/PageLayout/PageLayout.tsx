@@ -7,6 +7,7 @@ import { removeRoomUserAction, useRoomUser } from '../../contexts/room-user';
 import { useTranslation } from '../../services/i18n';
 import AsyncLayout from '../AsyncLayout';
 import Toolbar from '../Toolbar';
+import AboutDialog from './components/AboutDialog';
 import LanguageDialog from './components/LanguageDialog';
 import { getMenu } from './helpers';
 import './PageLayout.scss';
@@ -36,6 +37,7 @@ export default function PageLayout(props: Props) {
   const { dispatch: roomUserDispatch } = useRoomUser();
   const { t } = useTranslation();
   const [ languageDialogOpen, setLanguageDialogOpen ] = useState<boolean>(false);
+  const [ aboutDialogOpen, setAboutDialogOpen ] = useState<boolean>(false);
   const menu = getMenu({
     t,
     onAbout: aboutHandler,
@@ -46,7 +48,10 @@ export default function PageLayout(props: Props) {
     meProgress: meState.inProgress
   });
   function aboutHandler(): void {
-
+    setAboutDialogOpen(true);
+  }
+  function aboutDialogCloseHandler(): void {
+    setAboutDialogOpen(false);
   }
   function languageHandler(): void {
     setLanguageDialogOpen(true);
@@ -102,6 +107,10 @@ export default function PageLayout(props: Props) {
       <LanguageDialog
         isOpen={languageDialogOpen}
         onClose={languageDialogCloseHandler}
+      />
+      <AboutDialog
+        isOpen={aboutDialogOpen}
+        onClose={aboutDialogCloseHandler}
       />
     </div>
   );

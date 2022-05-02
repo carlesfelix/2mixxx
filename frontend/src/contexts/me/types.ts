@@ -6,8 +6,7 @@ export type Action = { type: 'getMeGuestInProgress' } |
   { type: 'getMeGuestError' } |
   { type: 'getMeRegisteredInProgress' } |
   { type: 'getMeRegisteredSuccess', payload: { me: RegisteredUserAuth } } |
-  { type: 'getMeRegisteredError' } |
-  { type: 'logOutMeGuest' };
+  { type: 'getMeRegisteredError' };
 export type Dispatch = (action: Action) => void;
 export type State<
   User extends RoomUserAuth | RegisteredUserAuth | AnyUserAuth = AnyUserAuth

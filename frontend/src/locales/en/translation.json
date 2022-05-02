@@ -44,7 +44,13 @@
           "registeredUserLogout": "Logout"
         }
       },
-      "toolbarProgress": "Loading..."
+      "toolbarProgress": "Loading...",
+      "aboutDialogTitle": "About 2mixxx",
+      "aboutDialogDescription1": "2mixxx is an open source and free application, created by Carles Fèlix Tur",
+      "aboutDialogDescription2": "2mixxx uses the web technology to let you request or admin songs in a controlled way and in real time",
+      "aboutDialogGitHubUrlAlt": "2mixxx source code",
+      "aboutDialogVersion": "Version {{version}}",
+      "languageDialogTitle": "Language"
     },
     "SongRequestQueue": {
       "noPendingSongs": "There are no pending songs"

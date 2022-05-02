@@ -44,7 +44,13 @@
           "registeredUserLogout": "Cerrar sesión"
         }
       },
-      "toolbarProgress": "Cargando..."
+      "toolbarProgress": "Cargando...",
+      "aboutDialogTitle": "Acerca de 2mixxx",
+      "aboutDialogDescription1": "2mixxx es una aplicación de código abierto y gratuita, creada por Carles Fèlix Tur",
+      "aboutDialogDescription2": "2mixxx utiliza la tecnología web para que pueda pedir o administrar canciones de forma contralada y en tiempo real",
+      "aboutDialogGitHubUrlAlt": "Código fuente de 2mixxx",
+      "aboutDialogVersion": "Versión {{version}}",
+      "languageDialogTitle": "Idioma"
     },
     "SongRequestQueue": {
       "noPendingSongs": "No hay canciones pendientes"

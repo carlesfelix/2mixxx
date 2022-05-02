@@ -1,0 +1,13 @@
+@use '../../../../styles/themes/theme';
+
+div.AppTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  span {
+    h1.welcome-msg {
+      color: theme.color('header-primary');
+      font-size: 3rem;
+    }
+  }
+}

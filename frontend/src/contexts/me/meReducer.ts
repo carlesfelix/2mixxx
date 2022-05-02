@@ -34,11 +34,6 @@ function meReducer(state: State, action: Action): State {
           user: action.payload.me.user
         }
       };
-    case 'logOutMeGuest':
-      return {
-        error: false,
-        inProgress: false
-      };
     default:
       return state;
   }

@@ -1,0 +1,26 @@
+@use '../../../../styles/utils/mixings/breakpoints';
+
+.AboutDialog {
+  div.about-content {
+    display: flex;
+    gap: 1.5rem;
+    div.about-logo {
+      width: 10rem;
+      display: none;
+      @include breakpoints.min-sm {
+        display: block;
+      }
+    }
+    div.about-description {
+      flex-grow: 1;
+      width: 0;
+      p.about-description__version {
+        opacity: 0.7;
+      }
+    }
+  }
+  div.about-footer {
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
