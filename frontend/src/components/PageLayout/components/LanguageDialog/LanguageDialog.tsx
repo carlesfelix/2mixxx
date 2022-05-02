@@ -20,7 +20,7 @@ export default function LanguageDialog(props: Props) {
   }
   return (
     <Dialog
-      title="Language"
+      title={t('Components.PageLayout.languageDialogTitle')}
       isOpen={isOpen}
       onClose={closeHandler}
       closeOptions={['clickOutside', 'closeBtn', 'escape']}
