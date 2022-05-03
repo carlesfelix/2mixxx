@@ -1,6 +1,14 @@
 button.SubmitButton {
+  span.SubmitButton__progress {
+    width: auto;
+    position: absolute;
+    left: 1rem;
+  }
   span.SubmitButton__content {
     display: inline-flex;
     align-items: center;
+  }
+  span.SubmitButton__progress + span.SubmitButton__content {
+    margin-left: 0.75rem;
   }
 }

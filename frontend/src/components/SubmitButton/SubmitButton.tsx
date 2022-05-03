@@ -42,7 +42,7 @@ const SubmitButton = forwardRef<HTMLButtonElement, Props>((props, ref) => {
     >
       {
         inProgress && (
-          <span>
+          <span className="SubmitButton__progress">
             <FontAwesomeIcon icon={faCircleNotch} spin />
           </span>
         )

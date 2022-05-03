@@ -40,7 +40,7 @@ const BasicButton = forwardRef<HTMLButtonElement, Props>((props, ref) => {
     >
       {
         inProgress && (
-          <span>
+          <span className="BasicButton__progress">
             <FontAwesomeIcon icon={faCircleNotch} spin />
           </span>
         )
