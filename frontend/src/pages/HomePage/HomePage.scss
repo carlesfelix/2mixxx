@@ -27,6 +27,7 @@ div.HomePage {
     flex-direction: column;
     align-items: center;
     background-color: theme.color('login-form-background');
+    overflow: auto;
     div.login-container {
       margin: auto;
       padding: 1rem;

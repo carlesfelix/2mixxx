@@ -1,7 +1,15 @@
 button.BasicButton {
+  span.BasicButton__progress {
+    width: auto;
+    position: absolute;
+    left: 1rem;
+  }
   span.BasicButton__content {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+  span.BasicButton__progress + span.BasicButton__content {
+    margin-left: 0.75rem;
   }
 }
