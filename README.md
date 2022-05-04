@@ -1,6 +1,8 @@
 # 2mixxx
 [2mixxx](https://2mixxx.com) is a web application for requesting songs that DJs have in their [iTunes](https://www.apple.com/es/itunes/download/index.html) libraries.
 
+![image](https://user-images.githubusercontent.com/10828536/166813078-db17995d-9868-4d05-8b47-811321fd6cc9.png)
+
 ## Installation and build guide
 
 1. Install [git](https://git-scm.com/downloads)
