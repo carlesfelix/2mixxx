@@ -3,14 +3,12 @@ WORKDIR /frontend
 ENV PATH /app/node_modules/.bin:$PATH
 COPY ./frontend/package.json ./
 COPY ./frontend/package-lock.json ./
-RUN npm install
+RUN npm ci
 COPY ./frontend ./
 RUN npm run build
+RUN rm -rf node_modules
 
 FROM nginx:stable-alpine
 COPY --from=build /frontend/build /usr/share/nginx/html/frontend
-COPY ./2mixxx.crt /var/lib/2mixxx/certificates/
-COPY ./2mixxx.key /var/lib/2mixxx/certificates/
-COPY ./default.conf /etc/nginx/conf.d/
 
 CMD ["nginx", "-g", "daemon off;"]

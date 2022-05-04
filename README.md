@@ -34,6 +34,7 @@ REACT_APP_SOCKET_BASE_URI=wss://{your_host}:3002
 REACT_APP_AUTH0_DOMAIN={your_auth0_domain}
 REACT_APP_AUTH0_CLIENT_ID={your_auth0_SPA_client_id}
 REACT_APP_API_BASE_URL=https://{your_host}:3001/api
+GENERATE_SOURCEMAP=false
 ```
 8. Create the environment variables for backend. `/backend/.env`
 ```

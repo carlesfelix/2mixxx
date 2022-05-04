@@ -1,5 +1,5 @@
 {
-  "include": ["./package.json", "src/environment.ts"],
+  "include": ["./package.json", "./package-lock.json", "src/environment.ts"],
   "ts-node": {
     "files": true
   },
