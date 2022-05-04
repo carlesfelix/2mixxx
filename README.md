@@ -1,8 +1,7 @@
 # 2mixxx
-2mixxx is a web application for requesting songs that DJs have in their [iTunes](https://www.apple.com/es/itunes/download/index.html) libraries.
+[2mixxx](https://2mixxx.com) is a web application for requesting songs that DJs have in their [iTunes](https://www.apple.com/es/itunes/download/index.html) libraries.
 
 ## Installation and build guide
-To install 2mixxx, you should have a basic understanding of docker.
 
 1. Install [git](https://git-scm.com/downloads)
 2. Install [docker compose](https://docs.docker.com/compose/install)
@@ -55,8 +54,3 @@ INSERT INTO registered_users (id, createdAt, updatedAt, sub, email, userRole) VA
 ## Setting up the environment for development
 
 Follow the instruccions located in [Frontend](https://github.com/carlesfelix/2mixxx/tree/main/frontend) (client side) and [Backend](https://github.com/carlesfelix/2mixxx/tree/main/backend) (server side).
-
-## Status
-
-At the moment 2mixxx is under development.\
-The first alpha is coming soon!
