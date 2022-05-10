@@ -206,6 +206,8 @@
       "bottomActionButton": "Add new library",
       "librariesLoadError": "Libraries cannot be loaded :(",
       "confirmDeleteDialogTitle": "The library and all its songs will be deleted",
+      "wrongFileDialogTitle": "Invalid file",
+      "wrongFileDialogMessage": "File provided is corrupted or is not an iTunes library",
       "helpers": {
         "libraryMenu": {
           "editInfo": "Edit info",

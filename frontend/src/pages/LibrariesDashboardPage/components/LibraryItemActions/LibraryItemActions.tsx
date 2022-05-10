@@ -9,12 +9,13 @@ type Props = {
   deleteSongsInProgress: boolean;
   onDeleteSongs: () => void;
   onImportSongs: () => void;
+  loadFileProgress: boolean;
 };
 
 export default function LibrarySongManager(props: Props) {
   const {
     importProgress, songs, onDeleteSongs, onImportSongs,
-    deleteSongsInProgress
+    deleteSongsInProgress, loadFileProgress
   } = props;
   const { t } = useTranslation();
   function deleteSongsHandler(): void {
@@ -31,13 +32,21 @@ export default function LibrarySongManager(props: Props) {
     }
     if (songs) {
       return (
-        <BasicButton color="danger" onClick={deleteSongsHandler} inProgress={deleteSongsInProgress}>
+        <BasicButton
+          color="danger"
+          onClick={deleteSongsHandler}
+          inProgress={deleteSongsInProgress}
+        >
           {t('Components.LibraryItemActions.deleteSongs')}
         </BasicButton>
       );
     }
     return (
-      <BasicButton color="primary" onClick={importSongsHandler}>
+      <BasicButton
+        color="primary"
+        onClick={importSongsHandler}
+        inProgress={loadFileProgress}
+      >
         {t('Components.LibraryItemActions.importXmlFromItunes')}
       </BasicButton>
     );

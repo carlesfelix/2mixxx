@@ -1,5 +1,10 @@
-import { createLibrary, deleteLibraryById, deleteSongsFromLibrary, getAllLibraries, importSongsToLibrary, updateLibraryById } from '../../api/libraries';
+import {
+  createLibrary, deleteLibraryById, deleteSongsFromLibrary,
+  getAllLibraries, getLibraryById, importSongs, updateLibraryById
+} from '../../api/libraries';
+import chunkLoader from '../../services/chunkLoader';
 import Library from '../../types/Library';
+import Song from '../../types/Song';
 import { Dispatch } from './types';
 
 export async function getLibrariesAction(dispatch: Dispatch): Promise<void> {
@@ -69,19 +74,37 @@ export async function deleteLibraryAction(dispatch: Dispatch, libraryId: string)
 type ImportSongsToLibraryActionProps = {
   dispatch: Dispatch;
   libraryId: string;
-  file: File;
+  songs: Song[];
 }
-export async function importSongsToLibraryAction(props: ImportSongsToLibraryActionProps): Promise<void> {
-  const { dispatch, libraryId, file } = props;
-  dispatch({ type: 'importSongsToLibraryInProgress', payload: { libraryId, progress: 0 } });
+export async function importSongsToLibraryAction(
+  props: ImportSongsToLibraryActionProps
+): Promise<void> {
+  const { dispatch, libraryId, songs } = props;
+  dispatch({
+    type: 'importSongsToLibraryInProgress',
+    payload: { libraryId, progress: 0 }
+  });
   try {
-    const library = await importSongsToLibrary(libraryId, file, (event: ProgressEvent) => {
-      const { total, loaded } = event;
-      dispatch({
-        type: 'importSongsToLibraryInProgress',
-        payload: { libraryId, progress: Math.round(loaded / total * 100) }
-      });
+    await chunkLoader({
+      data: songs,
+      chunkProgress: progress => {
+        dispatch({
+          type: 'importSongsToLibraryInProgress',
+          payload: { progress, libraryId }
+        });
+      },
+      onLoaded: ({
+        chunkData, error,
+        next
+      }) => {
+        importSongs(libraryId, chunkData).then(() => {
+          next();
+        }).catch(() => {
+          error();
+        });
+      }
     });
+    const library = await getLibraryById(libraryId);
     dispatch({ type: 'importSongsToLibrarySuccess', payload: { library } });
   } catch {
     dispatch({ type: 'importSongsToLibraryError', payload: { libraryId } });
