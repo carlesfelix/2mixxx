@@ -206,6 +206,8 @@
       "bottomActionButton": "Afegir una llibreria nova",
       "librariesLoadError": "Les llibreries no s'han pogut carregar :(",
       "confirmDeleteDialogTitle": "La llibreria i totes les seues cançons es suprimiran",
+      "wrongFileDialogTitle": "Arxiu invàlid",
+      "wrongFileDialogMessage": "L'arxiu proporcionat està malmés o no és una biblioteca d'iTunes",
       "helpers": {
         "libraryMenu": {
           "editInfo": "Editar informació",

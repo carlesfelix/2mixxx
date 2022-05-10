@@ -206,6 +206,8 @@
       "bottomActionButton": "Añadir una librería nueva",
       "librariesLoadError": "Las librerías no se han podido cargar :(",
       "confirmDeleteDialogTitle": "La librería y todas sus canciones se eliminarán",
+      "wrongFileDialogTitle": "Archivo inválido",
+      "wrongFileDialogMessage": "El archivo proporcionado está dañado o no es una biblioteca de iTunes",
       "helpers": {
         "libraryMenu": {
           "editInfo": "Editar información",

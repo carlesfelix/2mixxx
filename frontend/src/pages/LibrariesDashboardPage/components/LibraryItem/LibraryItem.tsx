@@ -1,18 +1,21 @@
 import { faEllipsisV, faMusic, faRecordVinyl } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ChangeEventHandler, useRef } from 'react';
+import { ChangeEventHandler, useRef, useState } from 'react';
 import OverlayMenu from '../../../../components/OverlayMenu';
+import { loadSongsFromItunesFile } from '../../../../services/file';
 import { useTranslation } from '../../../../services/i18n';
 import Library from '../../../../types/Library';
+import Song from '../../../../types/Song';
 import { getLibraryMenu } from '../../helpers';
 import LibraryActions from '../LibraryItemActions';
+import WrongFileDialog from '../WrongFileDialog';
 import './LibraryItem.scss';
 
 type Props = {
   library: Library,
   onStartEdit: (value: Library) => void;
   onStartDelete: (value: Library) => void;
-  onImportSongs: (library: Library, file: File) => void;
+  onImportSongs: (library: Library, songs: Song[]) => void;
   onDeleteSongs: (library: Library) => void;
   importProgress?: number;
   deleteSongsInProgress?: boolean;
@@ -24,6 +27,9 @@ export default function LibraryItem(props: Props) {
   } = props;
   const { title } = library;
   const { t } = useTranslation();
+  const [ loadFileStatus, setLoadFileStatus ] = useState<
+    'initial' | 'progress' | 'error'
+  >('initial');
   const fileRef = useRef<HTMLInputElement>(null);
   const libraryMenu = getLibraryMenu({
     t, onDeleteLibrary: deleteLibraryHandler,
@@ -31,12 +37,18 @@ export default function LibraryItem(props: Props) {
   });
   function changeFileInputHandler(): ChangeEventHandler<HTMLInputElement> {
     return event => {
+      setLoadFileStatus('progress');
       const { currentTarget } = event;
       const { files } = currentTarget;
       if (files?.length) {
         const file = files.item(0);
         if (file) {
-          onImportSongs(library, file);
+          loadSongsFromItunesFile(file).then(songs => {
+            onImportSongs(library, songs);
+            setLoadFileStatus('initial')
+          }).catch(() => {
+            setLoadFileStatus('error');
+          });
         }
       }
     };
@@ -55,6 +67,9 @@ export default function LibraryItem(props: Props) {
       fileRef.current.value = '';
       fileRef.current.click();
     }
+  }
+  function wrongFileDialogCloseHandler(): void {
+    setLoadFileStatus('initial');
   }
   return (
     <div className="card card-primary LibraryItem">
@@ -81,6 +96,7 @@ export default function LibraryItem(props: Props) {
           onDeleteSongs={deleteSongsHandler}
           onImportSongs={importSongsHandler}
           importProgress={importProgress}
+          loadFileProgress={loadFileStatus === 'progress'}
           deleteSongsInProgress={deleteSongsInProgress}
         />
       </div>
@@ -106,6 +122,10 @@ export default function LibraryItem(props: Props) {
         style={{ display: 'none' }}
         ref={fileRef}
         onChange={changeFileInputHandler()}
+      />
+      <WrongFileDialog
+        isOpen={loadFileStatus === 'error'}
+        onClose={wrongFileDialogCloseHandler}
       />
     </div>
   );

@@ -12,9 +12,9 @@ import {
 } from '../../contexts/libraries';
 import { deleteSongsFromLibraryAction, importSongsToLibraryAction } from '../../contexts/libraries/libraries.actions';
 import useLibraries from '../../contexts/libraries/useLibraries';
-import { loadSongsFromItunesFile } from '../../services/file';
 import { useTranslation } from '../../services/i18n';
 import Library from '../../types/Library';
+import Song from '../../types/Song';
 import LibraryInfoDialog from './components/LibraryInfoDialog';
 import LibraryItem from './components/LibraryItem';
 import './LibrariesDashboardPage.scss';
@@ -55,17 +55,12 @@ export default function LibrariesDashboardPage() {
   function deleteSongsHandler(library: Library): void {
     deleteSongsFromLibraryAction(librariesDispatch, library.id!);
   }
-  async function importSongsHandler(library: Library, file: File): Promise<void> {
-    try {
-      const songs = await loadSongsFromItunesFile(file);
-      importSongsToLibraryAction({
-        dispatch: librariesDispatch,
-        libraryId: library.id!,
-        songs
-      });
-    } catch {
-      console.log('invalid file');
-    }
+  function importSongsHandler(library: Library, songs: Song[]): void {
+    importSongsToLibraryAction({
+      dispatch: librariesDispatch,
+      libraryId: library.id!,
+      songs
+    });
   }
   return (
     <PageLayout
