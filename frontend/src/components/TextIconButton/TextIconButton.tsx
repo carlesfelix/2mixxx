@@ -37,7 +37,7 @@ const TextIconButton = forwardRef<HTMLButtonElement, Props>((props, ref) => {
       type="button"
       className={buttonClassName}
       onClick={onClick}
-      disabled={disabled}
+      disabled={disabled || inProgress}
       ref={ref}
     >
       {
