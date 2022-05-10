@@ -12,6 +12,7 @@ import {
 } from '../../contexts/libraries';
 import { deleteSongsFromLibraryAction, importSongsToLibraryAction } from '../../contexts/libraries/libraries.actions';
 import useLibraries from '../../contexts/libraries/useLibraries';
+import { loadSongsFromItunesFile } from '../../services/file';
 import { useTranslation } from '../../services/i18n';
 import Library from '../../types/Library';
 import LibraryInfoDialog from './components/LibraryInfoDialog';
@@ -54,8 +55,17 @@ export default function LibrariesDashboardPage() {
   function deleteSongsHandler(library: Library): void {
     deleteSongsFromLibraryAction(librariesDispatch, library.id!);
   }
-  function importSongsHandler(library: Library, file: File): void {
-    importSongsToLibraryAction({ dispatch: librariesDispatch, libraryId: library.id!, file });
+  async function importSongsHandler(library: Library, file: File): Promise<void> {
+    try {
+      const songs = await loadSongsFromItunesFile(file);
+      importSongsToLibraryAction({
+        dispatch: librariesDispatch,
+        libraryId: library.id!,
+        songs
+      });
+    } catch {
+      console.log('invalid file');
+    }
   }
   return (
     <PageLayout

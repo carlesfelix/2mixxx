@@ -31,13 +31,20 @@ export default function LibrarySongManager(props: Props) {
     }
     if (songs) {
       return (
-        <BasicButton color="danger" onClick={deleteSongsHandler} inProgress={deleteSongsInProgress}>
+        <BasicButton
+          color="danger"
+          onClick={deleteSongsHandler}
+          inProgress={deleteSongsInProgress}
+        >
           {t('Components.LibraryItemActions.deleteSongs')}
         </BasicButton>
       );
     }
     return (
-      <BasicButton color="primary" onClick={importSongsHandler}>
+      <BasicButton
+        color="primary"
+        onClick={importSongsHandler}
+      >
         {t('Components.LibraryItemActions.importXmlFromItunes')}
       </BasicButton>
     );

@@ -1,23 +1,25 @@
 import { NextFunction, Request, Response } from 'express';
-import importFromItunes from '../../../core/interactors/songs/importFromItunes';
+import importSongsToLibrary from '../../../core/interactors/songs/importSongsToLibrary';
 import removeSongsFromLibrary from '../../../core/interactors/songs/removeSongsFromLibrary';
-import LibraryEntity from '../../../core/types/LibraryEntity';
 import SongEntity from '../../../core/types/SongEntity';
-import ApiError, { StatusCodeEnum } from '../services/ApiError';
 
-export function importSongsFromItunesCtrl(
-  req: Request<{ libraryId: string }>,
-  res: Response<LibraryEntity>,
+export function importSongsCtrl(
+  req: Request<
+    { libraryId: string },
+    unknown,
+    { songs: SongEntity[] }
+  >,
+  res: Response,
   next: NextFunction
 ): void {
-  const { file, params } = req;
+  const { params, body } = req;
   const { libraryId } = params;
-	if (!file) {
-    throw new ApiError(StatusCodeEnum.BadRequest, 'File must be provided');
-	}
-  const { buffer: fileBuffer } = file;
-	importFromItunes({ fileBuffer, mimetype: 'utf8', libraryId }).then((result) => {
-    res.status(200).json(result);
+  const { songs } = body;
+	importSongsToLibrary({
+    libraryId,
+    songs
+  }).then(() => {
+    res.status(200).json();
   }).catch((err) => {
     next(err);
   });

@@ -1,5 +1,6 @@
 import http from '../services/http';
 import Library from '../types/Library';
+import Song from '../types/Song';
 
 export async function getAllLibraries(): Promise<Library[]> {
   const { data } = await http.get<Library[]>('/libraries');
@@ -11,13 +12,13 @@ export async function createLibrary(library: Library): Promise<Library> {
   return data;
 }
 
-export async function importSongsToLibrary(libraryId: string, file: File, onUploadProgress: (event: any) => void): Promise<Library> {
-  const formData = new FormData();
-  formData.append('itunes', file, file.name);
-  const { data } = await http.post<Library>(`/libraries/${libraryId}/songs/import`, formData, {
-    onUploadProgress
-  });
-  return data;
+export async function importSongs(
+  libraryId: string, songs: Song[]
+): Promise<void> {
+  await http.post(
+    `/libraries/${libraryId}/songs/import`,
+    { songs }
+  );
 }
 
 export async function getLibraryById(libraryId: string): Promise<Library> {
