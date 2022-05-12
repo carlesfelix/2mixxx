@@ -13,7 +13,9 @@ librarySongsRouter.post(
   [
     body('songs').isArray({ min: 1, max: 100 }),
     body('songs.*.title').isString().isLength({ min: 1, max: 255 }),
-    body('songs.*.artist').isString().isLength({ min: 1, max: 255 }),
+    body('songs.*.artist').isString()
+      .isLength({ min: 1, max: 255 })
+      .optional(),
   ],
   validationErrorMid,
   importSongsCtrl
