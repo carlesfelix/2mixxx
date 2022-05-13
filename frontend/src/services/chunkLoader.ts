@@ -26,7 +26,7 @@ export default function chunkLoader<
     chunkProgress
   } = config;
   let concurrentNow: number = 0;
-  let lastSongIndex: number = 0;
+  let nextSongIndex: number = 0;
   let loadedItems: number = 0;
   let status: ChunkLoaderStatus = 'progress';
   let onFinish: () => void;
@@ -41,18 +41,17 @@ export default function chunkLoader<
   }
 
   function loadChunks(): void {
-    if (lastSongIndex < data.length) {
-      while (concurrentNow < concurrent && status === 'progress') {
-        concurrentNow++;
-        const startChunk = lastSongIndex;
-        const endChunk = lastSongIndex + chunkSize
-        const chunk = data.slice(startChunk, endChunk) as Data;
-        lastSongIndex = endChunk;
-        nextChunk(chunk);
-      }
-    } else if (!concurrentNow) {
-      status = 'success';
-      onFinish();
+    while (
+      concurrentNow < concurrent &&
+      nextSongIndex < data.length &&
+      status === 'progress'
+    ) {
+      concurrentNow++;
+      const startChunk = nextSongIndex;
+      const endChunk = nextSongIndex + chunkSize
+      const chunk = data.slice(startChunk, endChunk) as Data;
+      nextSongIndex = endChunk;
+      nextChunk(chunk);
     }
   }
 
@@ -64,9 +63,14 @@ export default function chunkLoader<
           return;
         }
         concurrentNow--;
-        loadedItems = loadedItems + chunkData.length;
-        notifyProgress();
-        loadChunks();
+        if (concurrentNow) {
+          loadedItems = loadedItems + chunkData.length;
+          notifyProgress();
+          loadChunks();
+        } else {
+          status = 'success';
+          onFinish();
+        }
       },
       error: () => {
         status = 'error';
