@@ -1,12 +1,12 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
 import './App.scss';
-import Routes from './components/Routes';
-import appRoutes from './constants/routes';
+import Routing from './components/Routing';
 import { getGuestMeAction, getRegisteredMeAction, useMe } from './contexts/me';
 import { logoutGuestMeAction } from './contexts/me/me.actions';
 import { removeRoomUserAction, useRoomUser } from './contexts/room-user';
 import LoadingPage from './pages/LoadingPage';
+import getMainRoutes from './routes/main';
 import { setRegisteredTokenFn, setRoomUserConfigFn } from './services/http-auth';
 import { getGuestToken } from './services/room-user-auth';
 
@@ -33,7 +33,7 @@ function App() {
         tokenCb: getGuestToken,
         unauthorizedCb: () => {
           removeRoomUserAction(roomUserAuthDispatch);
-          logoutGuestMeAction(meDispatch);
+          logoutGuestMeAction();
         }
       });
       getGuestMeAction(meDispatch);
@@ -47,23 +47,14 @@ function App() {
     registeredLogged, guestLogged, meDispatch,
     getIdTokenClaims, roomUserAuthDispatch
   ]);
-  let redirectPath: string = '/';
-  if (meState.user) {
-    if (meState.user.type === 'registeredUser') {
-      redirectPath = '/dashboard';
-    }
-  }
 
-  if (globalInProgress) {
-    return <LoadingPage />;
-  }
-
+  const mainRoutes = getMainRoutes({
+    inProgress: globalInProgress,
+    user: meState.user
+  });
   return (
     <div className="App">
-      <Routes
-        routes={appRoutes} fallbackPath={redirectPath}
-        permissions={meState.user?.user.permissions}
-      />
+      <Routing routes={mainRoutes} loadingElement={<LoadingPage />} />
     </div>
   );
 }

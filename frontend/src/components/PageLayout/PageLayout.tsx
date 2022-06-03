@@ -33,7 +33,7 @@ export default function PageLayout(props: Props) {
     bottomBar, topBar
   } = props;
   const { logout: auth0Logout } = useAuth0();
-  const { state: meState, dispatch: meDispatch } = useMe();
+  const { state: meState } = useMe();
   const { dispatch: roomUserDispatch } = useRoomUser();
   const { t } = useTranslation();
   const [ languageDialogOpen, setLanguageDialogOpen ] = useState<boolean>(false);
@@ -64,7 +64,7 @@ export default function PageLayout(props: Props) {
   }
   function logOutRoomUserHandler(): void {
     removeRoomUserAction(roomUserDispatch);
-    logoutGuestMeAction(meDispatch);
+    logoutGuestMeAction();
   }
   const pageLayoutClassName = classNames('PageLayout', {
     [className]: !!className
