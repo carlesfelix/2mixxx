@@ -13,7 +13,7 @@ export async function getGuestMeAction(dispatch: Dispatch): Promise<void> {
   }
 }
 
-export function logoutGuestMeAction(dispatch: Dispatch, url: string = window.location.origin): void {
+export function logoutGuestMeAction(url: string = window.location.origin): void {
   window.location.replace(url);
 }
 

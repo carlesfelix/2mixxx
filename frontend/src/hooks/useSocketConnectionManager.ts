@@ -1,7 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
-import { useMe } from '../contexts/me';
 import { logoutGuestMeAction } from '../contexts/me/me.actions';
 import { removeRoomUserAction, useRoomUser } from '../contexts/room-user';
 import { getGuestToken } from '../services/room-user-auth';
@@ -9,7 +8,6 @@ import { getGuestToken } from '../services/room-user-auth';
 export default function useSocketConnectionManager(uri: string): Socket | undefined {
   const [ socket, setSocket ] = useState<Socket | undefined>(undefined);
   const { state: roomUserState, dispatch: roomUserAuthDispatch } = useRoomUser();
-  const { dispatch: meDispatch } = useMe();
   const { isAuthenticated, isLoading, getIdTokenClaims } = useAuth0();
   const registeredLogged = !isLoading && isAuthenticated;
   const guestLogged =  !roomUserState.inProgress &&
@@ -19,7 +17,7 @@ export default function useSocketConnectionManager(uri: string): Socket | undefi
     const nextSocket = io(uri, { autoConnect: false });
     function onError(): void {
       removeRoomUserAction(roomUserAuthDispatch);
-      logoutGuestMeAction(meDispatch);
+      logoutGuestMeAction();
     }
     setSocket(nextSocket);
     if (registeredLogged) {
@@ -52,7 +50,7 @@ export default function useSocketConnectionManager(uri: string): Socket | undefi
     }
   }, [
     registeredLogged, guestLogged, getIdTokenClaims,
-    uri, roomUserAuthDispatch, meDispatch
+    uri, roomUserAuthDispatch
   ]);
   return socket;
 }

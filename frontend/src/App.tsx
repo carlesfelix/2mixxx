@@ -33,7 +33,7 @@ function App() {
         tokenCb: getGuestToken,
         unauthorizedCb: () => {
           removeRoomUserAction(roomUserAuthDispatch);
-          logoutGuestMeAction(meDispatch);
+          logoutGuestMeAction();
         }
       });
       getGuestMeAction(meDispatch);
@@ -48,13 +48,13 @@ function App() {
     getIdTokenClaims, roomUserAuthDispatch
   ]);
 
-  const appRoutes = getMainRoutes({
+  const mainRoutes = getMainRoutes({
     inProgress: globalInProgress,
     user: meState.user
   });
   return (
     <div className="App">
-      <Routing routes={appRoutes} loadingElement={<LoadingPage />} />
+      <Routing routes={mainRoutes} loadingElement={<LoadingPage />} />
     </div>
   );
 }
