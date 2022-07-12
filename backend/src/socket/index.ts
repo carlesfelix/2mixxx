@@ -1,7 +1,3 @@
-import { config } from 'dotenv';
-import { resolve } from 'path';
-config({ path: resolve(__dirname, '../../.env') });
-
 import http from 'http';
 import { Server, ServerOptions } from 'socket.io';
 import environment from '../environment';
