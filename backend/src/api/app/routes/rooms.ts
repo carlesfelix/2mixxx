@@ -4,7 +4,8 @@ import { permissions } from '../../../core/constants/user-roles';
 import {
   addLibraryToRoomCtrl, addModeratorToRoomCtrl, createRoomCtrl,
   deleteLibraryFromRoomCtrl, deleteModeratorFromRoomCtrl, deleteRoomCtrl,
-  getAllRoomsCtrl, getRoomByIdCtrl, roomCodeExistsCtrl
+  getAllRoomsCtrl, getRoomByIdCtrl, roomCodeExistsCtrl,
+  getRoomQrCtrl
 } from '../controllers/rooms';
 import { userHasSomePermission } from '../middlewares/user-auth.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
@@ -30,6 +31,17 @@ roomsRouter.get(
   [ param('roomId').isUUID() ],
   validationErrorMid,
   getRoomByIdCtrl
+);
+
+roomsRouter.get(
+  '/:roomId/qr',
+  userHasSomePermission([ permissions.GET_ROOM_QR ]),
+  [
+    param('roomId').isUUID(),
+    query('docHeader').isString().isLength({max: 20})
+  ],
+  validationErrorMid,
+  getRoomQrCtrl
 );
 
 roomsRouter.post(

@@ -7,9 +7,9 @@ const httpServer = http.createServer((_, res) => res.end());
 
 const socketSeverOpts: Partial<ServerOptions> = {};
 
-if (environment.SOCKET_CORS_ORIGIN) {
+if (environment.WEB_ORIGIN) {
   socketSeverOpts.cors = {
-    origin: environment.SOCKET_CORS_ORIGIN
+    origin: environment.WEB_ORIGIN
   };
 }
 
