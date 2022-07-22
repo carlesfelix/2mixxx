@@ -182,12 +182,14 @@
         "roomMenuItems": {
           "manageLibraries": "Manage libraries",
           "manageModerators": "Manage moderators",
+          "printQr": "Print QR",
           "deleteRoom": "Delete room"
         }
       },
       "toolbarTitle": "Rooms",
       "bottomActionButton": "Create a new room",
-      "confirmDeleteRoom": "The room will be deleted"
+      "confirmDeleteRoom": "The room will be deleted",
+      "roomQrHeader": "Request a song"
     },
     "ManageRoomLibrariesPage": {
       "toolbarTitle": "Manage room's libraries",

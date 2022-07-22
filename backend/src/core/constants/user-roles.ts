@@ -74,7 +74,8 @@ export const adminPermissions = [
   permissions.ADD_LIBRARY_TO_ROOM,
   permissions.DELETE_LIBRARY_FROM_ROOM,
   permissions.ADD_MODERATOR_TO_ROOM,
-  permissions.DELETE_MODERATOR_FROM_ROOM
+  permissions.DELETE_MODERATOR_FROM_ROOM,
+  permissions.GET_ROOM_QR
 ];
 
 export const djPermissions = [

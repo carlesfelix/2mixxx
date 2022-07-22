@@ -6,12 +6,13 @@ type GetRoomItemMenuProps = {
   t: TFunction,
   onManageLibraries: (room: Room) => void;
   onManageModerators: (room: Room) => void;
+  onPrintQr: (room: Room) => void;
   onDeleteRoom: (room: Room) => void;
 };
 export function getRoomItemMenu(props: GetRoomItemMenuProps): OptionItem[] {
   const {
     t, onManageLibraries, onManageModerators,
-    onDeleteRoom
+    onDeleteRoom, onPrintQr
   } = props;
   const roomItemMenu: OptionItem[] = [
     {
@@ -21,6 +22,10 @@ export function getRoomItemMenu(props: GetRoomItemMenuProps): OptionItem[] {
     {
       label: t('Pages.RoomsDashboardPage.helpers.roomMenuItems.manageModerators'),
       onSelected: onManageModerators
+    },
+    {
+      label: t('Pages.RoomsDashboardPage.helpers.roomMenuItems.printQr'),
+      onSelected: onPrintQr
     },
     {
       label: t('Pages.RoomsDashboardPage.helpers.roomMenuItems.deleteRoom'),

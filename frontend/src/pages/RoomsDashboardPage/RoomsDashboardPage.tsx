@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createRoom, deleteRoom, getAllRooms } from '../../api/rooms';
+import { createRoom, deleteRoom, getAllRooms, getRoomQr } from '../../api/rooms';
 import AsyncLayout from '../../components/AsyncLayout';
 import BasicButton from '../../components/BasicButton';
 import BottomActionWrapper from '../../components/BottomActionWrapper';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import PageLayout from '../../components/PageLayout';
 import RoomItem from '../../components/RoomItem';
+import useObjectUrl from '../../hooks/useObjectUrl';
 import { useTranslation } from '../../services/i18n';
 import AsyncState from '../../types/AsyncState';
 import DialogState from '../../types/DialogState';
@@ -17,6 +18,7 @@ import './RoomsDashboardPage.scss';
 export default function RoomsDashboardPage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { createObjectURL } = useObjectUrl();
   const [ rooms, setRooms ] = useState<AsyncState<Room[]>>({
     data: [], inProgress: true, error: false
   });
@@ -27,7 +29,8 @@ export default function RoomsDashboardPage() {
     t,
     onDeleteRoom: deleteRoomMenuHandler,
     onManageLibraries: manageLibrariesMenuHandler,
-    onManageModerators: manageModeratorsMenuHandler
+    onManageModerators: manageModeratorsMenuHandler,
+    onPrintQr: printQrHandler
   });
   useEffect(() => {
     getAllRooms().then(data => {
@@ -36,6 +39,15 @@ export default function RoomsDashboardPage() {
       setRooms({ inProgress: false, error: true, data: [] });
     });
   }, []);
+  function printQrHandler(room: Room): void {
+    getRoomQr(
+      room.id!,
+      t('Pages.RoomsDashboardPage.roomQrHeader')
+    ).then(data => {
+      const url = createObjectURL(data);
+      window.open(url);
+    });
+  }
   function createNewRoomHandler(): void {
     createRoom().then(data => {
       setRooms(old => ({ ...old, data: [ data, ...old.data ] }))
