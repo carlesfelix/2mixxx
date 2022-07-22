@@ -1,8 +1,8 @@
-import { string, object } from 'joi';
+import Joi from 'joi';
 
 export type UserSchema = {
   songId: string;
 };
-export const userSchema = object<UserSchema, UserSchema, UserSchema>({
-  songId: string().uuid().required()
+export const userSchema = Joi.object<UserSchema, UserSchema, UserSchema>({
+  songId: Joi.string().uuid().required()
 });
