@@ -1,5 +1,5 @@
 import { literal } from 'sequelize';
-import { Literal } from 'sequelize/types/lib/utils';
+import { Literal } from 'sequelize/types/utils';
 import LibraryEntity from '../../../core/types/LibraryEntity';
 import ILibraryRepository from '../../../core/repositories/ILibraryRepository';
 import { instancesToJson, instanceToJson } from '../helpers';

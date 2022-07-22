@@ -30,6 +30,7 @@ export const permissions = {
   CHECK_USER_EXISTS: 'CHECK_USER_EXISTS',
   GET_ALL_ROOMS: 'GET_ALL_ROOMS',
   GET_ROOM_BY_ID: 'GET_ROOM_BY_ID',
+  GET_ROOM_QR: 'GET_ROOM_QR',
   CREATE_ROOM: 'CREATE_ROOM',
   DELETE_ROOM: 'DELETE_ROOM',
   ADD_LIBRARY_TO_ROOM: 'ADD_LIBRARY_TO_ROOM',
@@ -73,7 +74,8 @@ export const adminPermissions = [
   permissions.ADD_LIBRARY_TO_ROOM,
   permissions.DELETE_LIBRARY_FROM_ROOM,
   permissions.ADD_MODERATOR_TO_ROOM,
-  permissions.DELETE_MODERATOR_FROM_ROOM
+  permissions.DELETE_MODERATOR_FROM_ROOM,
+  permissions.GET_ROOM_QR
 ];
 
 export const djPermissions = [

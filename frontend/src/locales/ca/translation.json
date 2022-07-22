@@ -182,12 +182,14 @@
         "roomMenuItems": {
           "manageLibraries": "Administrar llibreries",
           "manageModerators": "Administrar moderadors",
+          "printQr": "Imprimir QR",
           "deleteRoom": "Suprimir sala"
         }
       },
       "toolbarTitle": "Sales",
       "bottomActionButton": "Crear una sala nova",
-      "confirmDeleteRoom": "La sala serà suprimida"
+      "confirmDeleteRoom": "La sala serà suprimida",
+      "roomQrHeader": "Demana una cançó"
     },
     "ManageRoomLibrariesPage": {
       "toolbarTitle": "Administrar les llibreries de la sala",

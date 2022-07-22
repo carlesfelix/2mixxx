@@ -42,3 +42,17 @@ export async function addModeratorToRoom(roomId: string, registeredUserId: strin
 export async function deleteModeratorFromRoom(roomId: string, registeredUserId: string): Promise<void> {
   await http.delete(`/rooms/${roomId}/moderators/${registeredUserId}`);
 }
+
+export async function getRoomQr(
+  roomId: string,
+  docHeader: string
+): Promise<Blob> {
+  const { data } = await http.get<Blob>(
+    `/rooms/${roomId}/qr`,
+    {
+      responseType: 'blob',
+      params: { docHeader }
+    }
+  );
+  return data;
+}

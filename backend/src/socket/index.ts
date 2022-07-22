@@ -1,7 +1,3 @@
-import { config } from 'dotenv';
-import { resolve } from 'path';
-config({ path: resolve(__dirname, '../../.env') });
-
 import http from 'http';
 import { Server, ServerOptions } from 'socket.io';
 import environment from '../environment';
@@ -11,9 +7,9 @@ const httpServer = http.createServer((_, res) => res.end());
 
 const socketSeverOpts: Partial<ServerOptions> = {};
 
-if (environment.SOCKET_CORS_ORIGIN) {
+if (environment.WEB_ORIGIN) {
   socketSeverOpts.cors = {
-    origin: environment.SOCKET_CORS_ORIGIN
+    origin: environment.WEB_ORIGIN
   };
 }
 

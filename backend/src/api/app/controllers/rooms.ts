@@ -9,6 +9,7 @@ import RoomEntity from '../../../core/types/RoomEntity';
 import addModeratorToRoom from '../../../core/interactors/rooms/addModeratorToRoom';
 import deleteModeratorFromRoom from '../../../core/interactors/rooms/deleteModeratorFromRoom';
 import roomCodeExists from '../../../core/interactors/rooms/roomCodeExists';
+import generateRoomQr from '../../../core/interactors/rooms/generateRoomQr';
 
 export function getAllRoomsCtrl(
   req: Request, res: Response<RoomEntity[]>, next: NextFunction
@@ -31,6 +32,31 @@ export function getRoomByIdCtrl(
   }).catch(err => {
     next(err);
   });
+}
+
+export function getRoomQrCtrl(
+  req: Request<
+    {roomId: string},
+    unknown,
+    unknown,
+    {docHeader: string}
+  >,
+  res: Response<RoomEntity>,
+  next: NextFunction
+): void {
+  const { params, query } = req;
+  const { roomId } = params;
+  const { docHeader } = query;
+  getRoomById(roomId).then(({ code: roomCode }) => {
+    const stream = res.writeHead(200, {
+      'Content-Type': 'application/pdf'
+    });
+    generateRoomQr({
+      roomCode,
+      stream,
+      docHeader
+    });
+  }).catch(err => next(err))
 }
 
 export function roomCodeExistsCtrl(
