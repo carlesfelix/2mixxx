@@ -14,7 +14,7 @@ export function createToken(
   });
 }
 
-export function verifyToken(secret: string, token: string): Promise<JwtPayload | undefined> {
+export function verifyToken(secret: string, token: string): Promise<string | JwtPayload | undefined> {
   return new Promise((resolve, reject) => {
     verify(token, secret, function(err, payload) {
       if (!err) {
@@ -25,14 +25,18 @@ export function verifyToken(secret: string, token: string): Promise<JwtPayload |
   });
 }
 
-export function verifyAuth0Token(token: string): Promise<JwtPayload | undefined> {
+export function verifyAuth0Token(token: string): Promise<string | JwtPayload | undefined> {
   return new Promise((resolve, reject) => {
     function getKey(
       header: { kid?: string },
       callback: (error: Error | null, signingKey: string) => void
     ): void {
       jwksAuth0Client.getSigningKey(header.kid, function(err, key) {
-        const signingKey = err ? '' : key.getPublicKey();
+        if (err) {
+          callback(err, '');
+          return;
+        }
+        const signingKey = key ? key.getPublicKey() : '';
         callback(err, signingKey);
       });
     }

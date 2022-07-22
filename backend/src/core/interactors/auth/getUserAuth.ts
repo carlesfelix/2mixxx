@@ -31,7 +31,7 @@ const interactorFn = (
     } catch {
       throw new InteractorError(InteractorErrorCodeEnum.UNAUTHORIZED);
     }
-    if (!tokenPayload || !tokenPayload.sub) {
+    if (!tokenPayload || typeof tokenPayload.sub !== 'string') {
       throw new InteractorError(InteractorErrorCodeEnum.GENERIC);
     }
     const roomUser = await roomUserRepo.getUserById(tokenPayload.sub);
@@ -47,14 +47,14 @@ const interactorFn = (
     };
   }
   if (userType === 'registeredUser') {
-    let tokenPayload: JwtPayload | undefined;
+    let tokenPayload: string | JwtPayload | undefined;
     try {
       tokenPayload = await verifyAuth0Token(bearerToken);
     } catch {
       throw new InteractorError(InteractorErrorCodeEnum.UNAUTHORIZED);
     }
 
-    if (!tokenPayload || !tokenPayload.sub) {
+    if (!tokenPayload || typeof tokenPayload.sub !== 'string') {
       throw new InteractorError(InteractorErrorCodeEnum.GENERIC);
     }
     const registeredUser = await registeredUserRepo.getUserBySub(tokenPayload.sub);
