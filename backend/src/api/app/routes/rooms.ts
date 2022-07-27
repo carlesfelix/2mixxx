@@ -7,19 +7,25 @@ import {
   getAllRoomsCtrl, getRoomByIdCtrl, roomCodeExistsCtrl,
   getRoomQrCtrl
 } from '../controllers/rooms';
+import { rateLimiterMid } from '../middlewares/rate-limiter.mid';
 import { userHasSomePermission } from '../middlewares/user-auth.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
+import {
+  checkRoomRateLimiter, generalRateLimiter
+} from '../services/rate-limiters';
 
 const roomsRouter = Router();
 
 roomsRouter.get(
   '/',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.GET_ALL_ROOMS ]),
   getAllRoomsCtrl
 );
 
 roomsRouter.get(
   '/exists',
+  rateLimiterMid(checkRoomRateLimiter, 20),
   [ query('code').isString() ],
   validationErrorMid,
   roomCodeExistsCtrl
@@ -27,6 +33,7 @@ roomsRouter.get(
 
 roomsRouter.get(
   '/:roomId',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.GET_ROOM_BY_ID ]),
   [ param('roomId').isUUID() ],
   validationErrorMid,
@@ -35,6 +42,7 @@ roomsRouter.get(
 
 roomsRouter.get(
   '/:roomId/qr',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.GET_ROOM_QR ]),
   [
     param('roomId').isUUID(),
@@ -46,12 +54,14 @@ roomsRouter.get(
 
 roomsRouter.post(
   '/',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.CREATE_ROOM ]),
   createRoomCtrl
 );
 
 roomsRouter.delete(
   '/:roomId',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.DELETE_ROOM ]),
   [ param('roomId').isUUID() ],
   validationErrorMid,
@@ -60,6 +70,7 @@ roomsRouter.delete(
 
 roomsRouter.post(
   '/:roomId/libraries',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.ADD_LIBRARY_TO_ROOM ]),
   [
     param('roomId').isUUID(),
@@ -72,6 +83,7 @@ roomsRouter.post(
 
 roomsRouter.delete(
   '/:roomId/libraries/:libraryId',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.DELETE_LIBRARY_FROM_ROOM ]),
   [
     param('roomId').isUUID(),
@@ -83,6 +95,7 @@ roomsRouter.delete(
 
 roomsRouter.post(
   '/:roomId/moderators',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.ADD_MODERATOR_TO_ROOM ]),
   [
     param('roomId').isUUID(),
@@ -94,6 +107,7 @@ roomsRouter.post(
 
 roomsRouter.delete(
   '/:roomId/moderators/:registeredUserId',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.DELETE_MODERATOR_FROM_ROOM ]),
   [
     param('roomId').isUUID(),

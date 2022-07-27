@@ -5,7 +5,8 @@ export enum StatusCodeEnum {
   NotFound = 404,
   InternalError = 500,
   Unauthorized = 401,
-  AccessDenied = 403
+  AccessDenied = 403,
+  TooManyRequests = 429
 }
 
 export default class ApiError<Details = unknown> extends BaseError<StatusCodeEnum, Details> {
@@ -20,6 +21,7 @@ export default class ApiError<Details = unknown> extends BaseError<StatusCodeEnu
       [StatusCodeEnum.InternalError]: 'Internal server error',
       [StatusCodeEnum.Unauthorized]: 'Unauthorized',
       [StatusCodeEnum.AccessDenied]: 'Access denied',
+      [StatusCodeEnum.TooManyRequests]: 'Too many requests'
     };
   }
 }

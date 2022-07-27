@@ -10,6 +10,7 @@ import SubmitButton from '../../components/SubmitButton';
 import { createRoomUserAction, useRoomUser } from '../../contexts/room-user';
 import { buildMessage } from '../../helpers/validation-rules';
 import usePrevious from '../../hooks/usePrevious';
+import { isDate } from '../../services/date';
 import { useTranslation } from '../../services/i18n';
 import AppTitle from './components/AppTitle';
 import { getRoomFormValidation } from './helpers';
@@ -44,15 +45,27 @@ export default function HomePage() {
   const roomFormValidation = getRoomFormValidation();
   async function submitHandler(data: { roomCode: string }): Promise<void> {
     const { roomCode } = data;
-    const exists = await roomCodeExists(roomCode);
-    if (exists) {
-      createRoomUserAction(dispatch, roomCode);
-    } else {
-      setError('roomCode', {
-        message: buildMessage(
-          'Pages.HomePage.loginForm.fields.roomCode.errors.invalidRoomCode'
-        )
-      });
+    try {
+      const exists = await roomCodeExists(roomCode);
+      if (exists) {
+        createRoomUserAction(dispatch, roomCode);
+      } else {
+        setError('roomCode', {
+          message: buildMessage(
+            'Pages.HomePage.loginForm.fields.roomCode.errors.invalidRoomCode'
+          )
+        });
+      }
+    } catch (err: any) {
+      const { headers, status } = err.response;
+      const rateLimitReset = headers['x-ratelimit-reset'];
+      if (status === 429 && isDate(rateLimitReset)) {
+        setError('roomCode', {
+          message: buildMessage(
+            'Common.formValidationMessages.tooManyAttempts.generic'
+          )
+        });
+      }
     }
   }
   return (

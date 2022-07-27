@@ -5,13 +5,16 @@ import {
   createUserCtrl, deleteUserCtrl, getAllUsersCtrl,
   updateUserRoleCtrl, userEmailExistsCtrl
 } from '../controllers/registered-users';
+import { rateLimiterMid } from '../middlewares/rate-limiter.mid';
 import { userHasSomePermission } from '../middlewares/user-auth.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
+import { generalRateLimiter } from '../services/rate-limiters';
 
 const registeredUsersRouter = Router();
 
 registeredUsersRouter.post(
   '/',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.CREATE_USER ]),
   [
     body('email').isEmail(),
@@ -27,6 +30,7 @@ registeredUsersRouter.post(
 
 registeredUsersRouter.delete(
   '/:userId',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.DELETE_USER ]),
   [ param('userId').isUUID() ],
   validationErrorMid,
@@ -35,12 +39,14 @@ registeredUsersRouter.delete(
 
 registeredUsersRouter.get(
   '/',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.GET_ALL_USERS ]),
   getAllUsersCtrl
 );
 
 registeredUsersRouter.put(
   '/:userId/role',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.UPDATE_USER_ROLE ]),
   [
     param('userId').isUUID(),
@@ -52,6 +58,7 @@ registeredUsersRouter.put(
 
 registeredUsersRouter.get(
   '/exists',
+  rateLimiterMid(generalRateLimiter, 20),
   userHasSomePermission([ permissions.CHECK_USER_EXISTS ]),
   [ query('email').isEmail() ],
   validationErrorMid,
