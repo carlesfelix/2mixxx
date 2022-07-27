@@ -5,7 +5,6 @@ export function getApiHealthCtrl(
   res: Response
 ): void {
   res.status(200).json({
-    msg: 'Api works!',
-    rateLimiterKey: req.ip
+    msg: 'Api works!'
   });
 }
