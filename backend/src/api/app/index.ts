@@ -12,8 +12,7 @@ app.use(cors({
     'X-RateLimit-Limit',
     'X-RateLimit-Remaining',
     'X-RateLimit-Reset'
-  ],
-  origin: environment.WEB_ORIGIN
+  ]
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
