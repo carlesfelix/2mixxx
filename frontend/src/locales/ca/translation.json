@@ -28,7 +28,18 @@
       "email": "El format de l'email és invalid",
       "strongPassword": "La contrasenya ha de tindre alemnys 8 caràcters, una minúscula, una majúscula i un simbol",
       "emailAlreadyInUse": "Aquest email ja està en ús",
-      "passwordMustMatch": "La contrasenya ha de coincidir"
+      "passwordMustMatch": "La contrasenya ha de coincidir",
+      "tooManyAttempts": {
+        "generic": "Massa intents. Perfavor, prova de nou més tard",
+        "hours_other": "Massa intents. Perfavor, prova de nou en {{count}} hores",
+        "minutes_other": "Massa intents. Perfavor, prova de nou en {{count}} minuts",
+        "seconds_other": "Massa intents. Perfavor, prova de nou en {{count}} segons",
+        "milliseconds_other": "Massa intents. Perfavor, prova de nou en {{count}} mil·lisegons",
+        "hours_one": "Massa intents. Perfavor, prova de nou en {{count}} hora",
+        "minutes_one": "Massa intents. Perfavor, prova de nou en {{count}} minut",
+        "seconds_one": "Massa intents. Perfavor, prova de nou en {{count}} segon",
+        "milliseconds_one": "Massa intents. Perfavor, prova de nou en {{count}} mil·lisegon"
+      }
     }
   },
   "Components": {

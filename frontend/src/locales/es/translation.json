@@ -28,7 +28,18 @@
       "email": "El formato del email no es válido",
       "strongPassword": "La contraseña debe tener alemos 8 caracteres, una minúscula, una mayúscula y un símbolo",
       "emailAlreadyInUse": "Este email ya está en uso",
-      "passwordMustMatch": "La contraseña debe coincidir"
+      "passwordMustMatch": "La contraseña debe coincidir",
+      "tooManyAttempts": {
+        "generic": "Demasiados intentos. Por favor, vuelva a intentarlo más tarde",
+        "hours_other": "Demasiados intentos. Por favor, vuelva a intentarlo en {{count}} horas",
+        "minutes_other": "Demasiados intentos. Por favor, vuelva a intentarlo en {{count}} minutos",
+        "seconds_other": "Demasiados intentos. Por favor, vuelva a intentarlo en {{count}} segundos",
+        "milliseconds_other": "Demasiados intentos. Por favor, vuelva a intentarlo en {{count}} milisegundos",
+        "hours_one": "Demasiados intentos. Por favor, vuelva a intentarlo en {{count}} hora",
+        "minutes_one": "Demasiados intentos. Por favor, vuelva a intentarlo en {{count}} minuto",
+        "seconds_one": "Demasiados intentos. Por favor, vuelva a intentarlo en {{count}} segundo",
+        "milliseconds_one": "Demasiados intentos. Por favor, vuelva a intentarlo en {{count}} milisegundo"
+      }
     }
   },
   "Components": {

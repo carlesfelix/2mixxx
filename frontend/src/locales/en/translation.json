@@ -28,7 +28,18 @@
       "email": "Invalid email format",
       "strongPassword": "Password must contain at least 8 characters, a lowercase, an uppercase and one symbol",
       "emailAlreadyInUse": "This email is already in use",
-      "passwordMustMatch": "Password must match"
+      "passwordMustMatch": "Password must match",
+      "tooManyAttempts": {
+        "generic": "Too many attempts. Please, try again later",
+        "hours_other": "Too many attempts. Please, retry after {{count}} hours",
+        "minutes_other": "Too many attempts. Please, retry after {{count}} minutes",
+        "seconds_other": "Too many attempts. Please, retry after {{count}} seconds",
+        "milliseconds_other": "Too many attempts. Please, retry after {{count}} milliseconds",
+        "hours_one": "Too many attempts. Please, retry after {{count}} hour",
+        "minutes_one": "Too many attempts. Please, retry after {{count}} minute",
+        "seconds_one": "Too many attempts. Please, retry after {{count}} second",
+        "milliseconds_one": "Too many attempts. Please, retry after {{count}} millisecond"
+      }
     }
   },
   "Components": {

@@ -3,6 +3,7 @@ import { param } from 'express-validator';
 import { genericErrorMid, notFoundErrorMid } from '../middlewares/errors.mid';
 import { userAuthMid } from '../middlewares/user-auth.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
+import healthRouter from './health';
 import librariesRouter from './libraries';
 import librarySongsRouter from './library-songs';
 import meRouter from './me';
@@ -15,9 +16,7 @@ const api = Router();
 
 api.use(userAuthMid);
 
-api.get('/', (req, res) => {
-  res.status(200).json({ msg: 'Api works!' });
-});
+api.use('/health', healthRouter);
 
 api.use('/libraries', librariesRouter);
 

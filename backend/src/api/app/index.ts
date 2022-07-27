@@ -5,7 +5,16 @@ import routes from './routes';
 
 const app = express();
 
-app.use(cors());
+app.set('trust proxy', true);
+app.use(cors({
+  exposedHeaders: [
+    'Retry-After',
+    'X-RateLimit-Limit',
+    'X-RateLimit-Remaining',
+    'X-RateLimit-Reset'
+  ],
+  origin: environment.WEB_ORIGIN
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
