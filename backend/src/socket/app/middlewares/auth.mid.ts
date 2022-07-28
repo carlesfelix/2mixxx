@@ -12,6 +12,8 @@ export default function authMid(socket: Socket, next: (error?: Error) => void): 
       }).catch(() => {
         next(new SocketError(StatusCodeEnum.InternalError).toNative());
       });
+    } else {
+      next(new SocketError(StatusCodeEnum.AccessDenied).toNative());
     }
   } else {
     next(new SocketError(StatusCodeEnum.Unauthorized).toNative());

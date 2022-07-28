@@ -5,7 +5,8 @@ export enum StatusCodeEnum {
   NotFound = 2,
   InternalError = 3,
   Unauthorized = 4,
-  AccessDenied = 5
+  AccessDenied = 5,
+  TooManyEmits = 6
 }
 
 export default class SocketError<
@@ -22,7 +23,8 @@ export default class SocketError<
       [StatusCodeEnum.NotFound]: 'Not found',
       [StatusCodeEnum.InternalError]: 'Internal server error',
       [StatusCodeEnum.Unauthorized]: 'Unauthorized',
-      [StatusCodeEnum.AccessDenied]: 'Access denied'
+      [StatusCodeEnum.AccessDenied]: 'Access denied',
+      [StatusCodeEnum.TooManyEmits]: 'TooManyEmits'
     }
   }
 }
