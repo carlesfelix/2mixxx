@@ -74,7 +74,7 @@ export default function ManageRoomLibrariesPage() {
   return (
     <PageLayout
       toolbarTitle={t('Pages.ManageRoomLibrariesPage.toolbarTitle')}
-      toolbarLinkBack="/dashboard/rooms"
+      toolbarLinkBack="/rooms"
       inProgress={room.inProgress}
       error={room.error}
       errorMessage={t('Pages.ManageRoomLibrariesPage.roomLoadError')}

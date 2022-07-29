@@ -74,7 +74,7 @@ export default function ManageRoomModeratorsPage() {
   return (
     <PageLayout
       toolbarTitle={t('Pages.ManageRoomModeratorsPage.toolbarTitle')}
-      toolbarLinkBack="/dashboard/rooms"
+      toolbarLinkBack="/rooms"
       inProgress={room.inProgress}
       error={room.error}
       errorMessage={t('Pages.ManageRoomModeratorsPage.roomLoadError')}

@@ -12,8 +12,8 @@ const addSongRequestInteractor = (
 ): Promise<SongRequestEntity> => {
   if (userAuth && userAuth.type === 'roomUser') {
     const data = await songRequestRepo.addSongRequest({
-      roomId: userAuth.user.roomId,
-      roomUserId: userAuth.user.id!,
+      roomId: userAuth.roomId,
+      roomUserId: userAuth.id!,
       songId: songId
     });
     const songRequest = await songRequestRepo.getSongRequestById(data.id!);

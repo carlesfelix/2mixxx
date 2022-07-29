@@ -16,7 +16,7 @@ type Repositories = {
 const interactorFn = (repositories: Repositories) => async (props: Props): Promise<SongEntity[]> => {
   const { libraryRepo, roomRepo } = repositories;
   const { userAuth, query } = props;
-  const room = await roomRepo.getRoomById(userAuth.user.roomId);
+  const room = await roomRepo.getRoomById(userAuth.roomId);
   if (!room) {
     throw new InteractorError(InteractorErrorCodeEnum.ENTITY_NOT_FOUND);
   }

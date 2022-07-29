@@ -8,7 +8,7 @@ export default function userHasSomePermission(
   props: Props
 ): boolean {
   const { anyUser, permissions } = props;
-  return !!anyUser && !!anyUser.user.permissions && anyUser.user.permissions.some(
+  return !!anyUser && !!anyUser.permissions && anyUser.permissions.some(
     userPermission => permissions.includes(userPermission)
   );
 }

@@ -21,8 +21,8 @@ function meReducer(state: State, action: Action): State {
         error: false,
         inProgress: false,
         user: {
-          type: 'roomUser',
-          user: action.payload.me.user
+          ...action.payload.me,
+          type: 'roomUser' 
         }
       };
     case 'getMeRegisteredSuccess':
@@ -30,8 +30,8 @@ function meReducer(state: State, action: Action): State {
         error: false,
         inProgress: false,
         user: {
-          type: 'registeredUser',
-          user: action.payload.me.user
+          ...action.payload.me,
+          type: 'registeredUser'
         }
       };
     default:

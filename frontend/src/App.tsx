@@ -6,9 +6,12 @@ import { getGuestMeAction, getRegisteredMeAction, useMe } from './contexts/me';
 import { logoutGuestMeAction } from './contexts/me/me.actions';
 import { removeRoomUserAction, useRoomUser } from './contexts/room-user';
 import LoadingPage from './pages/LoadingPage';
-import getMainRoutes from './routes/main';
+import getGuestRoutes from './routes/guest';
+import getRegisteredRoutes from './routes/registered';
+import getRoomRoutes from './routes/room';
 import { setRegisteredTokenFn, setRoomUserConfigFn } from './services/http-auth';
 import { getGuestToken } from './services/room-user-auth';
+import AppRoute from './types/AppRoute';
 
 function App() {
   const { state: roomUserState, dispatch: roomUserAuthDispatch } = useRoomUser();
@@ -48,13 +51,27 @@ function App() {
     getIdTokenClaims, roomUserAuthDispatch
   ]);
 
-  const mainRoutes = getMainRoutes({
-    inProgress: globalInProgress,
-    user: meState.user
-  });
+  function getRoutes(): AppRoute[] {
+    if (meState.user) {
+      if (meState.user.type === 'roomUser') {
+        return getRoomRoutes({ user: meState.user });
+      }
+      if (meState.user.type === 'registeredUser') {
+        return getRegisteredRoutes({ user: meState.user });
+      }
+    }
+    return getGuestRoutes();
+  }
+
   return (
     <div className="App">
-      <Routing routes={mainRoutes} loadingElement={<LoadingPage />} />
+      {
+        globalInProgress ? (
+          <LoadingPage />
+        ) : (
+          <Routing routes={getRoutes()} loadingElement={<LoadingPage />} />
+        )
+      }
     </div>
   );
 }

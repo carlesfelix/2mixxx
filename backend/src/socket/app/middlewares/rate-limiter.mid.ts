@@ -11,7 +11,7 @@ export default function rateLimiterMid(
 ) => void {
   return (_, next) => {
     const anyUser: AnyUserAuth = socket.data.auth;
-    const key = `user|${anyUser.type}|${anyUser.user.id!}`;
+    const key = `user|${anyUser.type}|${anyUser.id!}`;
     generalRateLimiter.consume(key, 20).then(() => {
       next();
     }).catch(() => {

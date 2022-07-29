@@ -11,7 +11,7 @@ const getRoomFromUserFn = (
   roomId: string
 ): Promise<RoomEntity> => {
   const roomModerator = await roomModeratorRepo.getRoomModerator(
-    registeredUser.user.id!,
+    registeredUser.id!,
     roomId
   );
   if (!roomModerator) {

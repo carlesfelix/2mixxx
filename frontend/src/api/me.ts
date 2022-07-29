@@ -1,12 +1,9 @@
 import http from '../services/http';
 import Room from '../types/Room';
-import User from '../types/User';
 import { AnyUserAuth } from '../types/UserMe';
 
-export async function getMe<
-  U extends User = User
->(): Promise<AnyUserAuth<U>> {
-  const { data } = await http.get<AnyUserAuth<U>>('/me');
+export async function getMe<U extends AnyUserAuth>(): Promise<U> {
+  const { data } = await http.get<U>('/me');
   return data;
 }
 

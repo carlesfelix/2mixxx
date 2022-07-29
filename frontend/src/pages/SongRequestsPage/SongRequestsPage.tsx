@@ -18,7 +18,7 @@ export default function SongRequestsPage() {
       toolbarTitle={t('Pages.SongRequestsPage.toolbarTitle')}
       className="SongRequestsPage"
       bottomBar={
-        <BottomLink to="/make-a-song-request">
+        <BottomLink to="/new-request">
           {t('Pages.SongRequestsPage.bottomAction')}
         </BottomLink>
       }

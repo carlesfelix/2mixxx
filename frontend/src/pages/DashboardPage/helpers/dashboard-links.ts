@@ -16,21 +16,21 @@ export function getDashboardLinks(
     {
       label: t('Pages.DashboardPage.cardLinks.manageRooms.title'),
       description: t('Pages.DashboardPage.cardLinks.manageRooms.description'),
-      to: '/dashboard/rooms',
+      to: '/rooms',
       className: 'dashboard-item',
       permission: permissions.PAGE_ROOMS_DASHBOARD
     },
     {
       label: t('Pages.DashboardPage.cardLinks.manageLibraries.title'),
       description: t('Pages.DashboardPage.cardLinks.manageLibraries.description'),
-      to: '/dashboard/libraries',
+      to: '/libraries',
       className: 'dashboard-item',
       permission: permissions.PAGE_LIBRARIES_DASHBOARD
     },
     {
       label: t('Pages.DashboardPage.cardLinks.manageUsers.title'),
       description: t('Pages.DashboardPage.cardLinks.manageUsers.description'),
-      to: '/dashboard/users',
+      to: '/users',
       className: 'dashboard-item',
       permission: permissions.PAGE_USERS_DASHBOARD
     }

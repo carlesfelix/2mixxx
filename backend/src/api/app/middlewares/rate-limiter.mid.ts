@@ -23,7 +23,7 @@ export function rateLimiterMid(rateLimiter: IRateLimiter, points: number): (
       );
     }
     const key = res.locals.auth ?
-      `user|${res.locals.auth.type}|${res.locals.auth.user.id}` :
+      `user|${res.locals.auth.type}|${res.locals.auth.id}` :
       `ip|${req.ip}`;
 
     rateLimiter.consume(key, points).then(rateLimiterRes => {

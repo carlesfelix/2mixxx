@@ -39,11 +39,9 @@ const interactorFn = (
       throw new InteractorError(InteractorErrorCodeEnum.ACCESS_DENIED);
     }
     return {
+      ...roomUser,
       type: 'roomUser',
-      user: {
-        ...roomUser,
-        permissions: roomUserPermissions
-      }
+      permissions: roomUserPermissions
     };
   }
   if (userType === 'registeredUser') {
@@ -62,11 +60,9 @@ const interactorFn = (
       throw new InteractorError(InteractorErrorCodeEnum.ACCESS_DENIED);
     }
     return {
+      ...registeredUser,
       type: 'registeredUser',
-      user: {
-        ...registeredUser,
-        permissions: registeredUser.role === 1 ? adminPermissions : djPermissions
-      }
+      permissions: registeredUser.role === 1 ? adminPermissions : djPermissions
     };
   }
   throw new InteractorError(InteractorErrorCodeEnum.UNAUTHORIZED);

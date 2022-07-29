@@ -9,7 +9,7 @@ const getRoomsFromUserFn = (
   roomModeratorRepo: IRoomModeratorRepository
 ) => async (registeredUser: RegisteredUserAuth): Promise<RoomEntity[]> => {
   const roomModerators = await roomModeratorRepo.getRoomModeratorsByUserId(
-    registeredUser.user.id!
+    registeredUser.id!
   );
   if (roomModerators) {
     return roomModerators.map(({ room }) => room!);
