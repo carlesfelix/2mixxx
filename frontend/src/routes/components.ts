@@ -11,6 +11,5 @@ export const RecommendSongPage = lazy(() => import('../pages/RecommendSongPage')
 export const ManageRoomModeratorsPage = lazy(() => import('../pages/ManageRoomModeratorsPage'));
 export const ModerateRoomsPage = lazy(() => import('../pages/ModerateRoomsPage'));
 export const ModerateRoomPage = lazy(() => import('../pages/ModerateRoomPage'));
-export const RoomPage = lazy(() => import('../pages/RoomPage'));
 export const SongRequestsPage = lazy(() => import('../pages/SongRequestsPage'));
 export const MakeASongRequestPage = lazy(() => import('../pages/MakeASongRequestPage'));
