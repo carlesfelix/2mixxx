@@ -1,5 +1,5 @@
 import RoomUser from "../../types/RoomUser";
 
-export type RoomRoutesProps = {
+export type RoomRootPageProps = {
   roomUser: RoomUser;
 };

@@ -11,52 +11,52 @@ import {
 export default function getRegisteredRoutes(
   props: RegisteredRoutesProps
 ): AppRoute[] {
-  const { user } = props;
+  const { registeredUser } = props;
   return [
     {
       path: '/recommend-song',
       Component: RecommendSongPage,
-      canActivate: () => user.permissions.includes(permissions.PAGE_RECOMMEND_SONG)
+      canActivate: () => registeredUser.permissions.includes(permissions.PAGE_RECOMMEND_SONG)
     },
     {
       path: '/moderate/rooms',
       Component: ModerateRoomsPage,
-      canActivate: () => user.permissions.includes(permissions.PAGE_MODERATE_ROOMS)
+      canActivate: () => registeredUser.permissions.includes(permissions.PAGE_MODERATE_ROOMS)
     },
     {
       path: '/moderate/rooms/:roomId',
       Component: ModerateRoomPage,
-      canActivate: () => user.permissions.includes(permissions.PAGE_MODERATE_ROOM)
+      canActivate: () => registeredUser.permissions.includes(permissions.PAGE_MODERATE_ROOM)
     },
     {
       path: '/',
       Component: DashboardPage,
-      canActivate: () => user.permissions.includes(permissions.PAGE_DASHBOARD)
+      canActivate: () => registeredUser.permissions.includes(permissions.PAGE_DASHBOARD)
     },
     {
       path: '/rooms',
       Component: RoomsDashboardPage,
-      canActivate: () => user.permissions.includes(permissions.PAGE_ROOMS_DASHBOARD)
+      canActivate: () => registeredUser.permissions.includes(permissions.PAGE_ROOMS_DASHBOARD)
     },
     {
       path: '/rooms/:roomId/libraries',
       Component: ManageRoomLibrariesPage,
-      canActivate: () => user.permissions.includes(permissions.PAGE_MANAGE_ROOM_LIBRARIES)
+      canActivate: () => registeredUser.permissions.includes(permissions.PAGE_MANAGE_ROOM_LIBRARIES)
     },
     {
       path: '/rooms/:roomId/moderators',
       Component: ManageRoomModeratorsPage,
-      canActivate: () => user.permissions.includes(permissions.PAGE_MANAGE_ROOM_MODERATORS)
+      canActivate: () => registeredUser.permissions.includes(permissions.PAGE_MANAGE_ROOM_MODERATORS)
     },
     {
       path: '/libraries',
       Component: LibrariesDashboardPage,
-      canActivate: () => user.permissions.includes(permissions.PAGE_LIBRARIES_DASHBOARD)
+      canActivate: () => registeredUser.permissions.includes(permissions.PAGE_LIBRARIES_DASHBOARD)
     },
     {
       path: '/users',
       Component: UsersDashboardPage,
-      canActivate: () => user.permissions.includes(permissions.PAGE_USERS_DASHBOARD)
+      canActivate: () => registeredUser.permissions.includes(permissions.PAGE_USERS_DASHBOARD)
     },
     {
       path: '*',
