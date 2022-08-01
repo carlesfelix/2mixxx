@@ -21,7 +21,7 @@ export default function ManageRoomModeratorsPage() {
     inProgress: true
   });
   const [ registeredUsers, setRegisteredUsers ] = useState<AsyncState<RegisteredUser[]>>({
-    data: [], error: false, inProgress: false
+    data: [], error: false, inProgress: true
   });
   const { roomId } = useParams<{ roomId: string }>();
   useEffect(() => {
