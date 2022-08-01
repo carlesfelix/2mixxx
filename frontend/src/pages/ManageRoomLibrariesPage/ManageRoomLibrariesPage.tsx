@@ -18,10 +18,10 @@ export default function ManageRoomLibrariesPage() {
   const [ room, setRoom ] = useState<AsyncState<Room>>({
     data: defaultRoomDetails,
     error: false,
-    inProgress: false
+    inProgress: true
   });
   const [ libraries, setLibraries ] = useState<AsyncState<Library[]>>({
-    data: [], error: false, inProgress: false
+    data: [], error: false, inProgress: true
   });
   const { roomId } = useParams<{ roomId: string }>();
   useEffect(() => {
