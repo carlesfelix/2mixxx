@@ -257,7 +257,10 @@
       "songsLoadError": "Alguna cosa no ha anat bé :(",
       "emptyQueryMessage": "Comence buscant alguna cançó per a veure resultats",
       "emptyRecords": "No s'han trobat cançons",
-      "bottomAction": "Enviar"
+      "bottomAction": "Enviar",
+      "NotFoundPage": {
+        "notFoundMessage": "La pàgina no existeix :("
+      }
     }
   }
 }

@@ -258,6 +258,9 @@
       "emptyQueryMessage": "Empiece buscando alguna canción para ver resultados",
       "emptyRecords": "No se han encontrado canciones",
       "bottomAction": "Enviar"
+    },
+    "NotFoundPage": {
+      "notFoundMessage": "La página no existe :("
     }
   }
 }

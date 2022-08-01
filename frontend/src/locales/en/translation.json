@@ -258,6 +258,9 @@
       "emptyQueryMessage": "Start searching something in order to see results",
       "emptyRecords": "Songs not found",
       "bottomAction": "Send request"
+    },
+    "NotFoundPage": {
+      "notFoundMessage": "Page not found :("
     }
   }
 }
