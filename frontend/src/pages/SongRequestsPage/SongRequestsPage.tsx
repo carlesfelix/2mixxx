@@ -1,6 +1,7 @@
 import BottomLink from '../../components/BottomLink';
 import PageLayout from '../../components/PageLayout';
 import SocketStatusLayout from '../../components/SocketStatusLayout';
+import RoomSessionProvider from '../../contexts/room-session/RoomSessionProvider';
 import environment from '../../environment';
 import useSocketConnectionManager from '../../hooks/useSocketConnectionManager';
 import useSocketConnectionStatus from '../../hooks/useSocketConnectionStatus';
@@ -29,7 +30,9 @@ export default function SongRequestsPage() {
       >
         {
           !!mainSocket && (
-            <SongRequestsPageContent mainSocket={mainSocket} />
+            <RoomSessionProvider mainSocket={mainSocket}>
+              <SongRequestsPageContent />
+            </RoomSessionProvider>
           )
         }
       </SocketStatusLayout>
