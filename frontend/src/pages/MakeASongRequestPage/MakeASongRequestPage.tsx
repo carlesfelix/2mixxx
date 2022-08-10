@@ -7,10 +7,8 @@ import BottomActionWrapper from '../../components/BottomActionWrapper';
 import InputText from '../../components/forms/inputs/InputText';
 import RadioButtonBox from '../../components/forms/inputs/RadioButtonBox';
 import PageLayout from '../../components/PageLayout';
-import environment from '../../environment';
-import useSocketConnectionManager from '../../hooks/useSocketConnectionManager';
+import { useRoomSession } from '../../contexts/room-session';
 import { useTranslation } from '../../services/i18n';
-import { emitNewSongRequest } from '../../socket/emitters';
 import AsyncState from '../../types/AsyncState';
 import Song from '../../types/Song';
 import SongRequestProgressDialog from './components/SongRequestProgressDialog';
@@ -19,14 +17,15 @@ import './MakeASongRequestPage.scss';
 
 export default function MakeASongRequestPage() {
   const { t } = useTranslation();
-  const mainSocket = useSocketConnectionManager(environment.REACT_APP_SOCKET_BASE_URI);
+  const {
+    sendNewRequest,
+    confirmNewRequestSent,
+    sendNewRequestStatus
+  } = useRoomSession();
   const [ query, setQuery ] = useState<string>('');
   const [ selectedSong, setSelectedSong ] = useState<string>('');
   const [ songs, setSongs ] = useState<AsyncState<Song[]>>({
     data: [], inProgress: false, error: false
-  });
-  const [ requestSent, setRequestSent ] = useState<AsyncState<boolean>>({
-    data: false, inProgress: false, error: false
   });
   const queryTrim = query.trim();
   const [ queryTrimDebounced ] = useDebounce(queryTrim, 500);
@@ -67,23 +66,10 @@ export default function MakeASongRequestPage() {
     setSelectedSong(itemValue);
   }
   function sendRequestHandler(): void {
-    if (mainSocket) {
-      setRequestSent({
-        data: false, inProgress: true,
-        error: false
-      });
-      emitNewSongRequest(mainSocket, selectedSong).then(() => {
-        setRequestSent({
-          data: true, inProgress: false,
-          error: false
-        });
-      }).catch(() => {
-        setRequestSent({
-          data: false, inProgress: false,
-          error: true
-        });
-      });
-    }
+    sendNewRequest(selectedSong);
+  }
+  function confirmNewRequestSentHandler(): void {
+    confirmNewRequestSent();
   }
   return (
     <PageLayout
@@ -106,7 +92,7 @@ export default function MakeASongRequestPage() {
       bottomBar={
         <BottomActionWrapper className="bottom-actions">
           <BasicButton
-            inProgress={requestSent.inProgress}
+            inProgress={sendNewRequestStatus.inProgress}
             disabled={!selectedSong}
             onClick={sendRequestHandler}
             color="primary"
@@ -157,7 +143,10 @@ export default function MakeASongRequestPage() {
           />
         </AsyncLayout>
       </div>
-      <SongRequestProgressDialog isOpen={requestSent.data} />
+      <SongRequestProgressDialog
+        isOpen={!sendNewRequestStatus.data.newRequestConfirmed}
+        onConfirm={confirmNewRequestSentHandler}
+      />
     </PageLayout>
   );
 }

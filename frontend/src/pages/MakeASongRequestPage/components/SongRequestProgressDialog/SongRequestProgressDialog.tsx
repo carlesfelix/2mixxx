@@ -5,10 +5,14 @@ import './SongRequestProgressDialog.scss';
 
 type Props = {
   isOpen: boolean;
+  onConfirm: () => void;
 };
 export default function SongRequestProgressDialog(props: Props) {
-  const { isOpen } = props;
+  const { isOpen, onConfirm } = props;
   const { t } = useTranslation();
+  function confirmHandler(): void {
+    onConfirm();
+  }
   return (
     <Dialog
       isOpen={isOpen}
@@ -16,7 +20,11 @@ export default function SongRequestProgressDialog(props: Props) {
       className="SongRequestProgressDialog"
       footer={
         <div className="song-request-progress-actions">
-          <Link className="btn btn-primary" to="/">
+          <Link
+            className="btn btn-primary"
+            to="/"
+            onClick={confirmHandler}
+          >
             {t('Components.SongRequestProgressDialog.goBack')}
           </Link>
         </div>

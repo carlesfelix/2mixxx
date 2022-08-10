@@ -9,7 +9,7 @@ export type SongRequestItem = {
   deleteInProgress: boolean;
 };
 
-export type State = AsyncState<SongRequestItem[]>;
+export type SongRequests = AsyncState<SongRequestItem[]>;
 
 export type RoomSessionProviderProps = {
   children: ReactNode;
@@ -17,6 +17,13 @@ export type RoomSessionProviderProps = {
 };
 
 export type RoomSessionContext = {
-  songRequests: State;
+  songRequests: SongRequests;
   connectionStatus: SocketConnectionStatus;
+  sendNewRequest: (songId: string) => void;
+  confirmNewRequestSent: () => void;
+  sendNewRequestStatus: SendNewRequestStatus;
 };
+
+export type SendNewRequestStatus = AsyncState<{
+  newRequestConfirmed: boolean
+}>;
