@@ -1,7 +1,11 @@
-type AsyncState<T> = {
+type BaseAsync = {
   inProgress: boolean;
   error: Error | null | boolean;
-  data: T;
 };
+
+type AsyncWithData<T> = BaseAsync & { data: T };
+
+type AsyncState<T = undefined> = T extends undefined ?
+  BaseAsync : AsyncWithData<T>;
 
 export default AsyncState;
