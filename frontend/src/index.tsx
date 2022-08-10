@@ -16,8 +16,7 @@ setupI18n();
 http.setBaseUrl(environment.REACT_APP_API_BASE_URL);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Auth0Provider
+  <Auth0Provider
       domain={environment.REACT_APP_AUTH0_DOMAIN}
       clientId={environment.REACT_APP_AUTH0_CLIENT_ID}
       redirectUri={window.location.origin}
@@ -33,8 +32,7 @@ ReactDOM.render(
           </BrowserRouter>
         </MeProvider>
       </RoomUserProvider>
-    </Auth0Provider>
-  </React.StrictMode>,
+    </Auth0Provider>,
   document.getElementById('root')
 );
 

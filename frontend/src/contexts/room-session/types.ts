@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Socket } from "socket.io-client";
 import AsyncState from "../../types/AsyncState";
+import SocketConnectionStatus from "../../types/SocketConnectionStatus";
 import SongRequest from "../../types/SongRequest";
 
 export type SongRequestItem = {
@@ -17,4 +18,5 @@ export type RoomSessionProviderProps = {
 
 export type RoomSessionContext = {
   songRequests: State;
+  connectionStatus: SocketConnectionStatus;
 };

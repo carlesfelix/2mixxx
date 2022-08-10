@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { SERVER__DELETE_SONG_REQUEST, SERVER__NEW_SONG_REQUEST } from "../../constants/server-socket-actions";
+import useSocketConnectionStatus from "../../hooks/useSocketConnectionStatus";
 import { emitGetSongRequests } from "../../socket/emitters";
 import SocketReponse from "../../types/SocketResponse";
 import SongRequest from "../../types/SongRequest";
@@ -14,6 +15,7 @@ export default function RoomSessionProvider(
     inProgress: true, error: false,
     data: []
   });
+  const connectionStatus = useSocketConnectionStatus(mainSocket);
 
   useEffect(() => {
     function newSongRequestlistener(res: SocketReponse<SongRequest>): void {
@@ -32,38 +34,34 @@ export default function RoomSessionProvider(
         )
       }));
     }
-    if (mainSocket) {
+    setSongRequests({
+      inProgress: true, error: false,
+      data: []
+    });
+    emitGetSongRequests(mainSocket).then(data => {
       setSongRequests({
-        inProgress: true, error: false,
+        inProgress: false, error: false,
+        data: data.data.map(request => ({
+          request, deleteInProgress: false
+        }))
+      });
+    }).catch(error => {
+      setSongRequests({
+        inProgress: false, error,
         data: []
       });
-      emitGetSongRequests(mainSocket).then(data => {
-        setSongRequests({
-          inProgress: false, error: false,
-          data: data.data.map(request => ({
-            request, deleteInProgress: false
-          }))
-        });
-      }).catch(error => {
-        setSongRequests({
-          inProgress: false, error,
-          data: []
-        });
-      });
-      mainSocket.on(SERVER__NEW_SONG_REQUEST, newSongRequestlistener);
-      mainSocket.on(SERVER__DELETE_SONG_REQUEST, deleteSongRequestlistener);
-    }
+    });
+    mainSocket.on(SERVER__NEW_SONG_REQUEST, newSongRequestlistener);
+    mainSocket.on(SERVER__DELETE_SONG_REQUEST, deleteSongRequestlistener);
     return () => {
-      if (mainSocket) {
-        mainSocket.off(SERVER__NEW_SONG_REQUEST, newSongRequestlistener);
-        mainSocket.off(SERVER__DELETE_SONG_REQUEST, deleteSongRequestlistener);
-      }
+      mainSocket.off(SERVER__NEW_SONG_REQUEST, newSongRequestlistener);
+      mainSocket.off(SERVER__DELETE_SONG_REQUEST, deleteSongRequestlistener);
     };
   }, [ mainSocket ]);
 
   return (
     <RoomSessionContext.Provider
-      value={{ songRequests }}
+      value={{ songRequests, connectionStatus }}
     >
       {children}
     </RoomSessionContext.Provider>
