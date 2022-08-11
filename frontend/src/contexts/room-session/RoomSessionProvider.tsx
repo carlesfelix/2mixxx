@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { SERVER__DELETE_SONG_REQUEST, SERVER__NEW_SONG_REQUEST } from "../../constants/server-socket-actions";
+import usePrevious from "../../hooks/usePrevious";
 import useSocketConnectionStatus from "../../hooks/useSocketConnectionStatus";
 import { emitGetSongRequests, emitNewSongRequest } from "../../socket/emitters";
 import SocketReponse from "../../types/SocketResponse";
@@ -22,6 +23,7 @@ export default function RoomSessionProvider(
     data: { newRequestConfirmed: true }
   });
   const connectionStatus = useSocketConnectionStatus(mainSocket);
+  const previousConnectionStatus = usePrevious(connectionStatus);
 
   useEffect(() => {
     function newSongRequestlistener(res: SocketReponse<SongRequest>): void {
@@ -64,6 +66,19 @@ export default function RoomSessionProvider(
       mainSocket.off(SERVER__DELETE_SONG_REQUEST, deleteSongRequestlistener);
     };
   }, [ mainSocket ]);
+
+  useEffect(() => {
+    if (
+      previousConnectionStatus &&
+      previousConnectionStatus.connected &&
+      !connectionStatus.connected
+    ) {
+      setSendNewRequestStatus(({
+        error: false, inProgress: false,
+        data: { newRequestConfirmed: true }
+      }));
+    }
+  }, [ previousConnectionStatus, connectionStatus ]);
 
   const sendNewRequest = useCallback((songId: string) => {
     setSendNewRequestStatus(old => ({

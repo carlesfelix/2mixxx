@@ -20,7 +20,8 @@ export default function MakeASongRequestPage() {
   const {
     sendNewRequest,
     confirmNewRequestSent,
-    sendNewRequestStatus
+    sendNewRequestStatus,
+    connectionStatus
   } = useRoomSession();
   const [ query, setQuery ] = useState<string>('');
   const [ selectedSong, setSelectedSong ] = useState<string>('');
@@ -84,23 +85,26 @@ export default function MakeASongRequestPage() {
             value={query}
             extraProps={{
               placeholder: t('Pages.MakeASongRequestPage.searchForm.fields.query.placeholder'),
-              autoComplete: 'off'
+              autoComplete: 'off',
+              disabled: sendNewRequestStatus.inProgress || !connectionStatus.connected 
             }}
           />
         </div>
       }
       bottomBar={
-        <BottomActionWrapper className="bottom-actions">
-          <BasicButton
-            inProgress={sendNewRequestStatus.inProgress}
-            disabled={!selectedSong}
-            onClick={sendRequestHandler}
-            color="primary"
-            className="bottom-action-btn"
-          >
-            {t('Pages.MakeASongRequestPage.bottomAction')}
-          </BasicButton>
-        </BottomActionWrapper>
+        connectionStatus.connected && (
+          <BottomActionWrapper className="bottom-actions">
+            <BasicButton
+              inProgress={sendNewRequestStatus.inProgress}
+              disabled={!selectedSong}
+              onClick={sendRequestHandler}
+              color="primary"
+              className="bottom-action-btn"
+            >
+              {t('Pages.MakeASongRequestPage.bottomAction')}
+            </BasicButton>
+          </BottomActionWrapper>
+        )
       }
     >
       <div className="page-content song-request-content">
