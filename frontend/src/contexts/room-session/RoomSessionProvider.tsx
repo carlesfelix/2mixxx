@@ -42,23 +42,6 @@ export default function RoomSessionProvider(
         )
       }));
     }
-    setSongRequests({
-      inProgress: true, error: false,
-      data: []
-    });
-    emitGetSongRequests(mainSocket).then(data => {
-      setSongRequests({
-        inProgress: false, error: false,
-        data: data.data.map(request => ({
-          request, deleteInProgress: false
-        }))
-      });
-    }).catch(error => {
-      setSongRequests({
-        inProgress: false, error,
-        data: []
-      });
-    });
     mainSocket.on(SERVER__NEW_SONG_REQUEST, newSongRequestlistener);
     mainSocket.on(SERVER__DELETE_SONG_REQUEST, deleteSongRequestlistener);
     return () => {
@@ -79,6 +62,32 @@ export default function RoomSessionProvider(
       }));
     }
   }, [ previousConnectionStatus, connectionStatus ]);
+
+  useEffect(() => {
+    if (
+      previousConnectionStatus &&
+      !previousConnectionStatus.connected &&
+      connectionStatus.connected
+    ) {
+      setSongRequests({
+        inProgress: true, error: false,
+        data: []
+      });
+      emitGetSongRequests(mainSocket).then(data => {
+        setSongRequests({
+          inProgress: false, error: false,
+          data: data.data.map(request => ({
+            request, deleteInProgress: false
+          }))
+        });
+      }).catch(error => {
+        setSongRequests({
+          inProgress: false, error,
+          data: []
+        });
+      });
+    }
+  }, [ previousConnectionStatus, connectionStatus, mainSocket ]);
 
   const sendNewRequest = useCallback((songId: string) => {
     setSendNewRequestStatus(old => ({
