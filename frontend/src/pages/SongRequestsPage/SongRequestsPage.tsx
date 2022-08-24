@@ -24,7 +24,7 @@ export default function SongRequestsPage() {
         <SongRequestQueue
           className="pending-songs"
           songRequests={songRequests.data}
-        /> 
+        />
       </div>
     </PageLayout>
   );
