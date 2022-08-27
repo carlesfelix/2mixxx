@@ -1,12 +1,13 @@
 import SongRequestEntity from '../types/SongRequestEntity';
 
 export default interface ISongRequestRepository {
+  getSongRequestsCountFromRoom(roomId: string, t: unknown): Promise<number>;
   addSongRequest(data: {
     roomUserId: string,
     songId: string,
     roomId: string
-  }): Promise<SongRequestEntity>;
-  getSongRequestById(id: string): Promise<SongRequestEntity | null>;
+  }, t?: unknown): Promise<SongRequestEntity>;
+  getSongRequestById(id: string, t?: unknown): Promise<SongRequestEntity | null>;
   removeSongRequest(id: string, roomId: string): Promise<number>;
   getSongRequestsFromRoom(roomId: string): Promise<SongRequestEntity[]>;
 }
