@@ -255,7 +255,8 @@
         }
       },
       "songsLoadError": "Algo no ha ido bien :(",
-      "emptyQueryMessage": "Empiece buscando alguna canción para ver resultados",
+      "limitMessage": "No puede enviar nuevas peticiones porque hay demasiadas canciones pendientes. Por favor, espere y pruebe más tarde.",
+      "emptyQueryMessage": "Empiece buscando alguna canción para ver resultados.",
       "emptyRecords": "No se han encontrado canciones",
       "bottomAction": "Enviar"
     },

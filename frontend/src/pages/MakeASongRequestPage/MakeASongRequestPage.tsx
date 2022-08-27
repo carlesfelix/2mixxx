@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { searchSongs } from '../../api/songs';
 import AsyncLayout from '../../components/AsyncLayout';
@@ -21,8 +21,10 @@ export default function MakeASongRequestPage() {
     sendNewRequest,
     confirmNewRequestSent,
     sendNewRequestStatus,
-    connectionStatus
+    connectionStatus,
+    songRequests
   } = useRoomSession();
+  const limitReached = songRequests.data.length >= 25;
   const [ query, setQuery ] = useState<string>('');
   const [ selectedSong, setSelectedSong ] = useState<string>('');
   const [ songs, setSongs ] = useState<AsyncState<Song[]>>({
@@ -72,31 +74,78 @@ export default function MakeASongRequestPage() {
   function confirmNewRequestSentHandler(): void {
     confirmNewRequestSent();
   }
+  function getSearchContent(): ReactNode {
+    if (limitReached) {
+      return (
+        <div className="limit-message-container">
+          <p>
+            {t('Pages.MakeASongRequestPage.limitMessage')}
+          </p>
+        </div>
+      );
+    }
+    if (emptySearch) {
+      return (
+        <div className="empty-message-container">
+          <p>
+            {t('Pages.MakeASongRequestPage.emptyQueryMessage')}
+          </p>
+        </div>
+      );
+    }
+    if (resultsNotFound) {
+      return (
+        <div className="not-found-message-container">
+          <p>
+            {t('Pages.MakeASongRequestPage.emptyRecords')}
+          </p>
+        </div>
+      );
+    }
+    return (
+      <RadioButtonBox
+        onChange={radioButtonBoxChangeHandler}
+        value={selectedSong}
+        className="list"
+        extraProps={{
+          itemClassName: 'card card-primary list-item',
+          items: songs.data.map(song => ({
+            label: (
+              <SongResult song={song} />
+            ),
+            value: song.id
+          }))
+        }}
+      />
+    );
+  }
   return (
     <PageLayout
       className="MakeASongRequestPage"
       toolbarTitle={t('Pages.MakeASongRequestPage.toolbarTitle')}
       toolbarLinkBack="/"
       topBar={
-        <div className="filter-container">
-          <InputText
-            className="search-input"
-            onChange={setQuery}
-            value={query}
-            extraProps={{
-              placeholder: t('Pages.MakeASongRequestPage.searchForm.fields.query.placeholder'),
-              autoComplete: 'off',
-              disabled: sendNewRequestStatus.inProgress || !connectionStatus.connected 
-            }}
-          />
-        </div>
+        !limitReached && (
+          <div className="filter-container">
+            <InputText
+              className="search-input"
+              onChange={setQuery}
+              value={query}
+              extraProps={{
+                placeholder: t('Pages.MakeASongRequestPage.searchForm.fields.query.placeholder'),
+                autoComplete: 'off',
+                disabled: sendNewRequestStatus.inProgress || !connectionStatus.connected 
+              }}
+            />
+          </div>
+        )
       }
       bottomBar={
-        connectionStatus.connected && (
+        !limitReached && (
           <BottomActionWrapper className="bottom-actions">
             <BasicButton
               inProgress={sendNewRequestStatus.inProgress}
-              disabled={!selectedSong}
+              disabled={!selectedSong || !connectionStatus.connected}
               onClick={sendRequestHandler}
               color="primary"
               className="bottom-action-btn"
@@ -113,38 +162,7 @@ export default function MakeASongRequestPage() {
           inProgress={songs.inProgress}
           errorMessage={t('Pages.MakeASongRequestPage.songsLoadError')}
         >
-          {
-            emptySearch && (
-              <div className="empty-message-container">
-                <p>
-                  {t('Pages.MakeASongRequestPage.emptyQueryMessage')}
-                </p>
-              </div>
-            )
-          }
-          {
-            resultsNotFound && (
-              <div className="not-found-message-container">
-                <p>
-                  {t('Pages.MakeASongRequestPage.emptyRecords')}
-                </p>
-              </div>
-            )
-          }
-          <RadioButtonBox
-            onChange={radioButtonBoxChangeHandler}
-            value={selectedSong}
-            className="list"
-            extraProps={{
-              itemClassName: 'card card-primary list-item',
-              items: songs.data.map(song => ({
-                label: (
-                  <SongResult song={song} />
-                ),
-                value: song.id
-              }))
-            }}
-          />
+          {getSearchContent()}
         </AsyncLayout>
       </div>
       <SongRequestProgressDialog

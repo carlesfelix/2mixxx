@@ -20,7 +20,9 @@ div.MakeASongRequestPage {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    div.empty-message-container, div.not-found-message-container {
+    div.empty-message-container,
+    div.not-found-message-container,
+    div.limit-message-container {
       display: flex;
       justify-content: center;
       align-items: center;

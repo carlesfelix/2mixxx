@@ -255,8 +255,9 @@
         }
       },
       "songsLoadError": "Something went wrong :(",
-      "emptyQueryMessage": "Start searching something in order to see results",
-      "emptyRecords": "Songs not found",
+      "limitMessage": "You cannot make new requests because there are too many songs pending. Please wait and try again later.",
+      "emptyQueryMessage": "Start searching something in order to see results.",
+      "emptyRecords": "Songs not found.",
       "bottomAction": "Send request"
     },
     "NotFoundPage": {
