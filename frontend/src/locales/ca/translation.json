@@ -255,9 +255,13 @@
         }
       },
       "songsLoadError": "Alguna cosa no ha anat bé :(",
-      "emptyQueryMessage": "Comence buscant alguna cançó per a veure resultats",
-      "emptyRecords": "No s'han trobat cançons",
-      "bottomAction": "Enviar"
+      "limitMessage": "No pot enviar noves peticions perquè hi ha massa cançons pendents. Per favor, espere i prove més tard.",
+      "emptyQueryMessage": "Comence buscant alguna cançó per a veure resultats.",
+      "emptyRecords": "No s'han trobat cançons.",
+      "bottomAction": "Enviar",
+      "NotFoundPage": {
+        "notFoundMessage": "La pàgina no existeix :("
+      }
     }
   }
 }

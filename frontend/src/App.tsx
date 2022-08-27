@@ -1,12 +1,13 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
 import './App.scss';
-import Routing from './components/Routing';
 import { getGuestMeAction, getRegisteredMeAction, useMe } from './contexts/me';
 import { logoutGuestMeAction } from './contexts/me/me.actions';
 import { removeRoomUserAction, useRoomUser } from './contexts/room-user';
+import DashboardRootPage from './pages/DashboardRootPage';
+import GuestRootPage from './pages/GuestRootPage';
 import LoadingPage from './pages/LoadingPage';
-import getMainRoutes from './routes/main';
+import RoomRootPage from './pages/RoomRootPage';
 import { setRegisteredTokenFn, setRoomUserConfigFn } from './services/http-auth';
 import { getGuestToken } from './services/room-user-auth';
 
@@ -48,13 +49,27 @@ function App() {
     getIdTokenClaims, roomUserAuthDispatch
   ]);
 
-  const mainRoutes = getMainRoutes({
-    inProgress: globalInProgress,
-    user: meState.user
-  });
+  function getRootPage(): JSX.Element {
+    if (meState.user) {
+      if (meState.user.type === 'roomUser') {
+        return <RoomRootPage roomUser={meState.user} />;
+      }
+      if (meState.user.type === 'registeredUser') {
+        return <DashboardRootPage registeredUser={meState.user} />
+      }
+    }
+    return <GuestRootPage />;
+  }
+
   return (
     <div className="App">
-      <Routing routes={mainRoutes} loadingElement={<LoadingPage />} />
+      {
+        globalInProgress ? (
+          <LoadingPage />
+        ) : (
+          getRootPage()
+        )
+      }
     </div>
   );
 }

@@ -58,13 +58,15 @@ export default function HomePage() {
       }
     } catch (err: any) {
       const { headers, status } = err.response;
-      const rateLimitReset = headers['x-ratelimit-reset'];
-      if (status === 429 && isDate(rateLimitReset)) {
-        setError('roomCode', {
-          message: buildMessage(
-            'Common.formValidationMessages.tooManyAttempts.generic'
-          )
-        });
+      if (status === 429 && headers) {
+        const rateLimitReset = headers['x-ratelimit-reset'];
+        isDate(rateLimitReset) && (
+          setError('roomCode', {
+            message: buildMessage(
+              'Common.formValidationMessages.tooManyAttempts.generic'
+            )
+          })
+        );
       }
     }
   }

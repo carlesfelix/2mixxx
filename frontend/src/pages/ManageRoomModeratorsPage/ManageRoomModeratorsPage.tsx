@@ -18,10 +18,10 @@ export default function ManageRoomModeratorsPage() {
   const [ room, setRoom ] = useState<AsyncState<Room>>({
     data: defaultRoomDetails,
     error: false,
-    inProgress: false
+    inProgress: true
   });
   const [ registeredUsers, setRegisteredUsers ] = useState<AsyncState<RegisteredUser[]>>({
-    data: [], error: false, inProgress: false
+    data: [], error: false, inProgress: true
   });
   const { roomId } = useParams<{ roomId: string }>();
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function ManageRoomModeratorsPage() {
   return (
     <PageLayout
       toolbarTitle={t('Pages.ManageRoomModeratorsPage.toolbarTitle')}
-      toolbarLinkBack="/dashboard/rooms"
+      toolbarLinkBack="/rooms"
       inProgress={room.inProgress}
       error={room.error}
       errorMessage={t('Pages.ManageRoomModeratorsPage.roomLoadError')}

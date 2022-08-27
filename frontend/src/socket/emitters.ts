@@ -8,8 +8,10 @@ import { emitWithAckPromise } from '../helpers/socket';
 import SocketReponse from '../types/SocketResponse';
 import SongRequest from '../types/SongRequest';
 
-export async function emitNewSongRequest(socket: Socket, songId: string): Promise<SocketReponse> {
-  const data = await emitWithAckPromise(
+export async function emitNewSongRequest(
+  socket: Socket, songId: string
+): Promise<SocketReponse<SongRequest>> {
+  const data = await emitWithAckPromise<SongRequest>(
     socket,
     CLIENT__ADD_SONG_REQUEST,
     { songId }

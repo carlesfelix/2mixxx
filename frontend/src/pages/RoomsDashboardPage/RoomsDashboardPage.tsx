@@ -60,10 +60,10 @@ export default function RoomsDashboardPage() {
     });
   }
   function manageLibrariesMenuHandler(room: Room): void {
-    navigate(`/dashboard/rooms/${room.id}/libraries`);
+    navigate(`/rooms/${room.id}/libraries`);
   }
   function manageModeratorsMenuHandler(room: Room): void {
-    navigate(`/dashboard/rooms/${room.id}/moderators`);
+    navigate(`/rooms/${room.id}/moderators`);
   }
   function rejectedConfirmDeleteHandler(): void {
     setConfirmDeleteDialog({
@@ -95,7 +95,7 @@ export default function RoomsDashboardPage() {
   return (
     <PageLayout
       toolbarTitle={t('Pages.RoomsDashboardPage.toolbarTitle')}
-      toolbarLinkBack="/dashboard"
+      toolbarLinkBack="/"
       className="RoomsDashboardPage"
       bottomBar={
         <BottomActionWrapper className="bottom-action">

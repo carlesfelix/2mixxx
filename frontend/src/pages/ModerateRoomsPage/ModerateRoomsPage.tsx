@@ -25,7 +25,7 @@ export default function ModerateRoomsPage() {
     <PageLayout
       className="ModerateRoomsPage"
       toolbarTitle={t('Pages.ModerateRoomsPage.toolbarTitle')}
-      toolbarLinkBack="/dashboard"
+      toolbarLinkBack="/"
     >
       <AsyncLayout
         inProgress={rooms.inProgress}

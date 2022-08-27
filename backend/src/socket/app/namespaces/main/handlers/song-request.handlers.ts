@@ -45,7 +45,7 @@ export function addSongRequestHandler(io: Server, socket: Socket): (
 export function getSongRequestsHandler(socket: Socket): (ack: Ack) => Promise<void> {
   return async ack => {
     try {
-      const data = await getSongRequestsFromRoomInteractor(socket.data.auth.user.roomId);
+      const data = await getSongRequestsFromRoomInteractor(socket.data.auth.roomId);
       sendAck(ack, { data });
     } catch (error) {
       sendAck(ack, { error });

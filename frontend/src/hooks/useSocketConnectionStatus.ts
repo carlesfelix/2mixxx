@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Socket } from "socket.io-client";
 import SocketConnectionStatus from "../types/SocketConnectionStatus";
 
-export default function useSocketConnectionStatus(socket?: Socket): SocketConnectionStatus {
+export default function useSocketConnectionStatus(socket: Socket): SocketConnectionStatus {
   const [ status, setStatus ] = useState<SocketConnectionStatus>({
     connected: !!socket?.connected
   });

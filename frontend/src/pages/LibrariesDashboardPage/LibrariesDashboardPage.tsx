@@ -65,7 +65,7 @@ export default function LibrariesDashboardPage() {
   return (
     <PageLayout
       toolbarTitle={t('Pages.LibrariesDashboardPage.toolbarTitle')}
-      toolbarLinkBack="/dashboard"
+      toolbarLinkBack="/"
       className="LibrariesDashboardPage"
       bottomBar={
         <BottomActionWrapper className="bottom-actions">

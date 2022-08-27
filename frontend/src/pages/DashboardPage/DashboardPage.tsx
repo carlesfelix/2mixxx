@@ -9,7 +9,7 @@ export default function DashboardPage() {
   const { state: meState } = useMe();
   const { t } = useTranslation();
   const dashboardLinks = getDashboardLinks(
-    t, meState.user?.user.permissions || []
+    t, meState.user?.permissions || []
   );
   return (
     <PageLayout

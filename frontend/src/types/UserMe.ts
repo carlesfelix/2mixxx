@@ -1,6 +1,4 @@
-import User from './User';
+import RegisteredUser from './RegisteredUser';
+import RoomUser from './RoomUser';
 
-export type AnyUserAuth<U extends User = User> = {
-  type: 'roomUser' | 'registeredUser';
-  user: U;
-};
+export type AnyUserAuth = RoomUser | RegisteredUser;

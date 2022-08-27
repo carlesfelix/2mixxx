@@ -101,7 +101,7 @@ export default function UsersDashboardPage() {
   return (
     <PageLayout
       toolbarTitle={t('Pages.UsersDashboardPage.toolbarTitle')}
-      toolbarLinkBack="/dashboard"
+      toolbarLinkBack="/"
       className="UsersDashboardPage"
       bottomBar={
         <BottomActionWrapper className="bottom-action">

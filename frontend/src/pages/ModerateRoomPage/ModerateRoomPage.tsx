@@ -61,11 +61,7 @@ export default function ModerateRoomPage() {
         className="page-content ModerateRoomPage__content"
         socketConnectionStatus={socketConnectionStatus}
       >
-        {
-          !!moderateRoomSocket && (
-            <SongRequestQueueContent moderateRoomSocket={moderateRoomSocket} />
-          )
-        }
+        <SongRequestQueueContent moderateRoomSocket={moderateRoomSocket} />
       </SocketStatusLayout>
     </PageLayout>
   );
