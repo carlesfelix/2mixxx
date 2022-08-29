@@ -195,7 +195,8 @@
       "toolbarTitle": "Sales",
       "bottomActionButton": "Crear una sala nova",
       "confirmDeleteRoom": "La sala serà suprimida",
-      "roomQrHeader": "Demana una cançó"
+      "roomQrHeader": "Demana una cançó",
+      "emptyRooms": "No existeix ninguna sala"
     },
     "ManageRoomLibrariesPage": {
       "toolbarTitle": "Administrar les llibreries de la sala",

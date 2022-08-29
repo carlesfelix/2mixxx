@@ -195,7 +195,8 @@
       "toolbarTitle": "Rooms",
       "bottomActionButton": "Create a new room",
       "confirmDeleteRoom": "The room will be deleted",
-      "roomQrHeader": "Request a song"
+      "roomQrHeader": "Request a song",
+      "emptyRooms": "There are no rooms"
     },
     "ManageRoomLibrariesPage": {
       "toolbarTitle": "Manage room's libraries",

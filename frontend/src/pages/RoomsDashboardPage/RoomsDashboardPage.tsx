@@ -110,18 +110,27 @@ export default function RoomsDashboardPage() {
           inProgress={rooms.inProgress}
           error={rooms.error}
         >
-          <div className="rooms-grid">
-            {
-              rooms.data.map(room => (
-                <RoomItem
-                  key={room.id}
-                  className="room-item"
-                  room={room}
-                  menu={menu}
-                />
-              ))
-            }
-          </div>
+          {
+            rooms.data.length ? (
+              <div className="rooms-grid">
+                {
+                  rooms.data.map(room => (
+                    <RoomItem
+                      key={room.id}
+                      className="room-item"
+                      room={room}
+                      menu={menu}
+                    />
+                  ))
+                }
+              </div>
+            ) : (
+              <p className="empty-rooms">
+                {t('Pages.RoomsDashboardPage.emptyRooms')}
+              </p>
+            )
+          }
+          
         </AsyncLayout>
       </div>
       <ConfirmDialog
