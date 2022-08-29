@@ -118,7 +118,7 @@ export default function UsersDashboardPage() {
           errorMessage={t('Pages.UsersDashboardPage.usersLoadError')}
         >
           {
-            !users.data.length ? (
+            users.data.length ? (
               <div className="user-list-container">
                 {
                   users.data.map(user => (
