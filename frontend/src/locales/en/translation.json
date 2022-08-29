@@ -181,12 +181,7 @@
     },
     "ModerateRoomPage": {
       "toolbarTitle": "Moderating \"{{value}}\"",
-      "roomLoadError": "Room cannot be loaded :(",
-      "components": {
-        "SongRequestQueueContent": {
-          "pendingSongsLoadError": "Unable to retrieve pending songs"
-        }
-      }
+      "roomLoadError": "Room cannot be loaded :("
     },
     "RoomsDashboardPage": {
       "helpers": {
@@ -242,8 +237,7 @@
     },
     "SongRequestsPage": {
       "toolbarTitle": "Pending songs",
-      "bottomAction": "Request a song",
-      "pendingSongsLoadError": "Unable to retrieve pending songs"
+      "bottomAction": "Request a song"
     },
     "MakeASongRequestPage": {
       "toolbarTitle": "Make a song request",

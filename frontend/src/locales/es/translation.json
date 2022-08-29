@@ -181,12 +181,7 @@
     },
     "ModerateRoomPage": {
       "toolbarTitle": "Moderando \"{{value}}\"",
-      "roomLoadError": "La sala no se ha podido cargar :(",
-      "components": {
-        "SongRequestQueueContent": {
-          "pendingSongsLoadError": "No se han podido obtener las canciones pendientes"
-        }
-      }
+      "roomLoadError": "La sala no se ha podido cargar :("
     },
     "RoomsDashboardPage": {
       "helpers": {
@@ -242,8 +237,7 @@
     },
     "SongRequestsPage": {
       "toolbarTitle": "Canciones pendientes",
-      "bottomAction": "Pedir una canción",
-      "pendingSongsLoadError": "No se han podido obtener las canciones pendientes"
+      "bottomAction": "Pedir una canción"
     },
     "MakeASongRequestPage": {
       "toolbarTitle": "Enviar petición",
