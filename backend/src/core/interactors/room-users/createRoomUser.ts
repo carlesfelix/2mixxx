@@ -20,7 +20,7 @@ const interactorFn = (repositories: Repositories) => async (roomCode: string): P
     environment.JWT_ROOM_USERS_SECRET,
     {
       sub: roomUserId,
-      exp: Math.floor(Date.now() / 1000) + (60 * 60)
+      exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24)
     }
   );
   return token;
