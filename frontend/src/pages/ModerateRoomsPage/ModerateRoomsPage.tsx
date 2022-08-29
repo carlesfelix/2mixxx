@@ -32,18 +32,26 @@ export default function ModerateRoomsPage() {
         error={rooms.error}
       >
         <div className="page-content rooms-container layout layout-center-v">
-          <div className="rooms-grid">
-            {
-              rooms.data.map(room => (
-                <Link to={`/moderate/rooms/${room.id}`} key={room.id}>
-                  <RoomItem
-                    className="room-item mouse-event mouse-event-hover mouse-event-clickable"
-                    room={room}
-                  />
-                </Link>
-              ))
-            }
-          </div>
+          {
+            rooms.data.length ? (
+              <div className="rooms-grid">
+                {
+                  rooms.data.map(room => (
+                    <Link to={`/moderate/rooms/${room.id}`} key={room.id}>
+                      <RoomItem
+                        className="room-item mouse-event mouse-event-hover mouse-event-clickable"
+                        room={room}
+                      />
+                    </Link>
+                  ))
+                }
+              </div>
+            ) : (
+              <p className="empty-rooms">
+                {t('Pages.ModerateRoomsPage.emptyRooms')}
+              </p>
+            )
+          }
         </div>
       </AsyncLayout>
     </PageLayout>

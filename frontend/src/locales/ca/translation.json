@@ -177,7 +177,8 @@
       }
     },
     "ModerateRoomsPage": {
-      "toolbarTitle": "Moderar sales"
+      "toolbarTitle": "Moderar sales",
+      "emptyRooms": "No eres moderador de ninguna sala"
     },
     "ModerateRoomPage": {
       "toolbarTitle": "Moderant \"{{value}}\"",

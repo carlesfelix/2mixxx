@@ -177,7 +177,8 @@
       }
     },
     "ModerateRoomsPage": {
-      "toolbarTitle": "Moderate rooms"
+      "toolbarTitle": "Moderate rooms",
+      "emptyRooms": "You are not moderator of any room"
     },
     "ModerateRoomPage": {
       "toolbarTitle": "Moderating \"{{value}}\"",
