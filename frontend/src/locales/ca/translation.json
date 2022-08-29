@@ -178,7 +178,7 @@
     },
     "ModerateRoomsPage": {
       "toolbarTitle": "Moderar sales",
-      "emptyRooms": "No eres moderador de ninguna sala"
+      "emptyRooms": "No eres moderador de cap sala"
     },
     "ModerateRoomPage": {
       "toolbarTitle": "Moderant \"{{value}}\"",
@@ -197,7 +197,7 @@
       "bottomActionButton": "Crear una sala nova",
       "confirmDeleteRoom": "La sala serà suprimida",
       "roomQrHeader": "Demana una cançó",
-      "emptyRooms": "No existeix ninguna sala"
+      "emptyRooms": "No existeix cap sala"
     },
     "ManageRoomLibrariesPage": {
       "toolbarTitle": "Administrar les llibreries de la sala",
@@ -218,7 +218,7 @@
       "confirmDeleteDialogTitle": "La llibreria i totes les seues cançons es suprimiran",
       "wrongFileDialogTitle": "Arxiu invàlid",
       "wrongFileDialogMessage": "L'arxiu proporcionat està malmés o no és una biblioteca d'iTunes",
-      "emptyLibraries": "No existeix ninguna llibreria",
+      "emptyLibraries": "No existeix cap llibreria",
       "helpers": {
         "libraryMenu": {
           "editInfo": "Editar informació",
@@ -231,6 +231,7 @@
       "bottomActionButton": "Crear un usuari nou",
       "usersLoadError": "Els usuaris no s'han pogut carregar :(",
       "confirmDeleteUserDialogTitle": "L'usuari es suprimirà",
+      "emptyUsers": "No existeix cap usuari",
       "helpers": {
         "userOptions": {
           "editRole": "Editar rol",

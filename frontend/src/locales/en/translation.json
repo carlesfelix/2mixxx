@@ -231,6 +231,7 @@
       "bottomActionButton": "Create a new user",
       "usersLoadError": "Users cannot be loaded :(",
       "confirmDeleteUserDialogTitle": "The user will be deleted",
+      "emptyUsers": "There are no users",
       "helpers": {
         "userOptions": {
           "editRole": "Edit role",

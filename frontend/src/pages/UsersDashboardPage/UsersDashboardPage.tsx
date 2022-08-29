@@ -117,17 +117,26 @@ export default function UsersDashboardPage() {
           error={users.error}
           errorMessage={t('Pages.UsersDashboardPage.usersLoadError')}
         >
-          <div className="user-list-container">
-            {
-              users.data.map(user => (
-                <UserItem
-                  key={user.id} user={user} className="user-item"
-                  onDelete={openConfirmDeleteUserDialogHandler}
-                  onEdit={openEditUserRoleFormDialogHandler}
-                />
-              ))
-            }
-          </div>
+          {
+            !users.data.length ? (
+              <div className="user-list-container">
+                {
+                  users.data.map(user => (
+                    <UserItem
+                      key={user.id} user={user} className="user-item"
+                      onDelete={openConfirmDeleteUserDialogHandler}
+                      onEdit={openEditUserRoleFormDialogHandler}
+                    />
+                  ))
+                }
+              </div>
+            ) : (
+              <p className="empty-users">
+                {t('Pages.UsersDashboardPage.emptyUsers')}
+              </p>
+            )
+          }
+          
         </AsyncLayout>
         <CreateUserFormDialog
           state={newUserFormDialog} onClose={closeUserFormDialogHandler}
