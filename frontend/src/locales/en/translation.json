@@ -218,6 +218,7 @@
       "confirmDeleteDialogTitle": "The library and all its songs will be deleted",
       "wrongFileDialogTitle": "Invalid file",
       "wrongFileDialogMessage": "File provided is corrupted or is not an iTunes library",
+      "emptyLibraries": "There are no libraries",
       "helpers": {
         "libraryMenu": {
           "editInfo": "Edit info",

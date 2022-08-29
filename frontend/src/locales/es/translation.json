@@ -218,6 +218,7 @@
       "confirmDeleteDialogTitle": "La librería y todas sus canciones se eliminarán",
       "wrongFileDialogTitle": "Archivo inválido",
       "wrongFileDialogMessage": "El archivo proporcionado está dañado o no es una biblioteca de iTunes",
+      "emptyLibraries": "No existe ninguna librería",
       "helpers": {
         "libraryMenu": {
           "editInfo": "Editar información",

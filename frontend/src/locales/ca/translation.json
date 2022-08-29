@@ -218,6 +218,7 @@
       "confirmDeleteDialogTitle": "La llibreria i totes les seues cançons es suprimiran",
       "wrongFileDialogTitle": "Arxiu invàlid",
       "wrongFileDialogMessage": "L'arxiu proporcionat està malmés o no és una biblioteca d'iTunes",
+      "emptyLibraries": "No existeix ninguna llibreria",
       "helpers": {
         "libraryMenu": {
           "editInfo": "Editar informació",
