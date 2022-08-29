@@ -177,16 +177,12 @@
       }
     },
     "ModerateRoomsPage": {
-      "toolbarTitle": "Moderar salas"
+      "toolbarTitle": "Moderar salas",
+      "emptyRooms": "No eres moderador de ninguna sala"
     },
     "ModerateRoomPage": {
       "toolbarTitle": "Moderando \"{{value}}\"",
-      "roomLoadError": "La sala no se ha podido cargar :(",
-      "components": {
-        "SongRequestQueueContent": {
-          "pendingSongsLoadError": "No se han podido obtener las canciones pendientes"
-        }
-      }
+      "roomLoadError": "La sala no se ha podido cargar :("
     },
     "RoomsDashboardPage": {
       "helpers": {
@@ -200,7 +196,8 @@
       "toolbarTitle": "Salas",
       "bottomActionButton": "Crear una sala nueva",
       "confirmDeleteRoom": "La sala será eliminada",
-      "roomQrHeader": "Pide una canción"
+      "roomQrHeader": "Pide una canción",
+      "emptyRooms": "No existe ninguna sala"
     },
     "ManageRoomLibrariesPage": {
       "toolbarTitle": "Administrar las librerías de la sala",
@@ -221,6 +218,7 @@
       "confirmDeleteDialogTitle": "La librería y todas sus canciones se eliminarán",
       "wrongFileDialogTitle": "Archivo inválido",
       "wrongFileDialogMessage": "El archivo proporcionado está dañado o no es una biblioteca de iTunes",
+      "emptyLibraries": "No existe ninguna librería",
       "helpers": {
         "libraryMenu": {
           "editInfo": "Editar información",
@@ -233,6 +231,7 @@
       "bottomActionButton": "Crear un usuario nuevo",
       "usersLoadError": "Los usuarios no se han podido cargar :(",
       "confirmDeleteUserDialogTitle": "El usuario se eliminará",
+      "emptyUsers": "No existe ningún usuario",
       "helpers": {
         "userOptions": {
           "editRole": "Editar rol",
@@ -242,8 +241,7 @@
     },
     "SongRequestsPage": {
       "toolbarTitle": "Canciones pendientes",
-      "bottomAction": "Pedir una canción",
-      "pendingSongsLoadError": "No se han podido obtener las canciones pendientes"
+      "bottomAction": "Pedir una canción"
     },
     "MakeASongRequestPage": {
       "toolbarTitle": "Enviar petición",

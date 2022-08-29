@@ -10,3 +10,4 @@ services:
       - 3306:3306
     volumes:
       - ./.data/db:/var/lib/mysql
+      - ./src/data-sources/sequelize-mysql/migrations/1.0.0:/docker-entrypoint-initdb.d/

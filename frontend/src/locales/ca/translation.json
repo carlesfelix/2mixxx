@@ -177,16 +177,12 @@
       }
     },
     "ModerateRoomsPage": {
-      "toolbarTitle": "Moderar sales"
+      "toolbarTitle": "Moderar sales",
+      "emptyRooms": "No eres moderador de cap sala"
     },
     "ModerateRoomPage": {
       "toolbarTitle": "Moderant \"{{value}}\"",
-      "roomLoadError": "La sala no s'ha pogut carregar :(",
-      "components": {
-        "SongRequestQueueContent": {
-          "pendingSongsLoadError": "No s'han pogut obtindre les cançons pendents"
-        }
-      }
+      "roomLoadError": "La sala no s'ha pogut carregar :("
     },
     "RoomsDashboardPage": {
       "helpers": {
@@ -200,7 +196,8 @@
       "toolbarTitle": "Sales",
       "bottomActionButton": "Crear una sala nova",
       "confirmDeleteRoom": "La sala serà suprimida",
-      "roomQrHeader": "Demana una cançó"
+      "roomQrHeader": "Demana una cançó",
+      "emptyRooms": "No existeix cap sala"
     },
     "ManageRoomLibrariesPage": {
       "toolbarTitle": "Administrar les llibreries de la sala",
@@ -221,6 +218,7 @@
       "confirmDeleteDialogTitle": "La llibreria i totes les seues cançons es suprimiran",
       "wrongFileDialogTitle": "Arxiu invàlid",
       "wrongFileDialogMessage": "L'arxiu proporcionat està malmés o no és una biblioteca d'iTunes",
+      "emptyLibraries": "No existeix cap llibreria",
       "helpers": {
         "libraryMenu": {
           "editInfo": "Editar informació",
@@ -233,6 +231,7 @@
       "bottomActionButton": "Crear un usuari nou",
       "usersLoadError": "Els usuaris no s'han pogut carregar :(",
       "confirmDeleteUserDialogTitle": "L'usuari es suprimirà",
+      "emptyUsers": "No existeix cap usuari",
       "helpers": {
         "userOptions": {
           "editRole": "Editar rol",
@@ -242,8 +241,7 @@
     },
     "SongRequestsPage": {
       "toolbarTitle": "Cançons pendents",
-      "bottomAction": "Demanar una cançó",
-      "pendingSongsLoadError": "No s'han pogut obtindre les cançons pendents"
+      "bottomAction": "Demanar una cançó"
     },
     "MakeASongRequestPage": {
       "toolbarTitle": "Enviar petició",

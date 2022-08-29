@@ -81,21 +81,29 @@ export default function LibrariesDashboardPage() {
           inProgress={libraries.libraries.inProgress}
           errorMessage={t('Pages.LibrariesDashboardPage.librariesLoadError')}
         >
-          <div className="libraries-grid">
-            {
-              libraries.libraries.data.map((library) => (
-                <LibraryItem
-                  key={library.id} library={library}
-                  onStartDelete={openConfirmDeleteDialog}
-                  onStartEdit={openEditLibraryDialog}
-                  onDeleteSongs={deleteSongsHandler}
-                  onImportSongs={importSongsHandler}
-                  importProgress={libraries.importProgress[library.id!]}
-                  deleteSongsInProgress={libraries.deleteInProgress[library.id!]}
-                />
-              ))
-            }
-          </div>
+          {
+            libraries.libraries.data.length ? (
+              <div className="libraries-grid">
+                {
+                  libraries.libraries.data.map((library) => (
+                    <LibraryItem
+                      key={library.id} library={library}
+                      onStartDelete={openConfirmDeleteDialog}
+                      onStartEdit={openEditLibraryDialog}
+                      onDeleteSongs={deleteSongsHandler}
+                      onImportSongs={importSongsHandler}
+                      importProgress={libraries.importProgress[library.id!]}
+                      deleteSongsInProgress={libraries.deleteInProgress[library.id!]}
+                    />
+                  ))
+                }
+              </div>
+            ) : (
+              <p className="empty-libraries">
+                {t('Pages.LibrariesDashboardPage.emptyLibraries')}
+              </p>
+            )
+          }
         </AsyncLayout>
         <LibraryInfoDialog
           state={libraries.addLibraryDialog} onSubmit={addLibrarySubmitHandler}

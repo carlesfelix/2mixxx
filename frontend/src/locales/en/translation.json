@@ -177,16 +177,12 @@
       }
     },
     "ModerateRoomsPage": {
-      "toolbarTitle": "Moderate rooms"
+      "toolbarTitle": "Moderate rooms",
+      "emptyRooms": "You are not moderator of any room"
     },
     "ModerateRoomPage": {
       "toolbarTitle": "Moderating \"{{value}}\"",
-      "roomLoadError": "Room cannot be loaded :(",
-      "components": {
-        "SongRequestQueueContent": {
-          "pendingSongsLoadError": "Unable to retrieve pending songs"
-        }
-      }
+      "roomLoadError": "Room cannot be loaded :("
     },
     "RoomsDashboardPage": {
       "helpers": {
@@ -200,7 +196,8 @@
       "toolbarTitle": "Rooms",
       "bottomActionButton": "Create a new room",
       "confirmDeleteRoom": "The room will be deleted",
-      "roomQrHeader": "Request a song"
+      "roomQrHeader": "Request a song",
+      "emptyRooms": "There are no rooms"
     },
     "ManageRoomLibrariesPage": {
       "toolbarTitle": "Manage room's libraries",
@@ -221,6 +218,7 @@
       "confirmDeleteDialogTitle": "The library and all its songs will be deleted",
       "wrongFileDialogTitle": "Invalid file",
       "wrongFileDialogMessage": "File provided is corrupted or is not an iTunes library",
+      "emptyLibraries": "There are no libraries",
       "helpers": {
         "libraryMenu": {
           "editInfo": "Edit info",
@@ -233,6 +231,7 @@
       "bottomActionButton": "Create a new user",
       "usersLoadError": "Users cannot be loaded :(",
       "confirmDeleteUserDialogTitle": "The user will be deleted",
+      "emptyUsers": "There are no users",
       "helpers": {
         "userOptions": {
           "editRole": "Edit role",
@@ -242,8 +241,7 @@
     },
     "SongRequestsPage": {
       "toolbarTitle": "Pending songs",
-      "bottomAction": "Request a song",
-      "pendingSongsLoadError": "Unable to retrieve pending songs"
+      "bottomAction": "Request a song"
     },
     "MakeASongRequestPage": {
       "toolbarTitle": "Make a song request",
