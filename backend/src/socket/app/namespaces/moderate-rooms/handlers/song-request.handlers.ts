@@ -10,8 +10,8 @@ export function getSongRequestsHandler(socket: Socket): (ack: Ack) => Promise<vo
     try {
       const data = await getSongRequestsFromRoomInteractor(socket.data.params.roomId);
       sendAck(ack, { data });
-    } catch (err) {
-      sendAck(ack, { error: err });
+    } catch (error) {
+      sendAck(ack, { error });
     }
   };
 }
@@ -35,8 +35,8 @@ export function deleteSongRequestHandler(io: Server, socket: Socket): (
         deleteSongPayload
       );
       sendAck(ack);
-    } catch (err) {
-      sendAck(ack);
+    } catch (error) {
+      sendAck(ack, { error });
     }
   };
 }

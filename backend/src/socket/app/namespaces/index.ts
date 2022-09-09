@@ -1,8 +1,8 @@
-import { Server } from 'socket.io';
-import MainNsp from './main';
-import ModerateRoomsNsp from './moderate-rooms';
+import { Server } from "socket.io";
+import moderateRoomsNsp from "./moderate-rooms";
+import songRequestsNsp from "./song-requests";
 
-export default function app(io: Server): void {
-  MainNsp(io);
-  ModerateRoomsNsp(io);
+export default function namespaces(io: Server): void {
+  moderateRoomsNsp(io);
+  songRequestsNsp(io);
 }

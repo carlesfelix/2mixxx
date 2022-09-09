@@ -1,11 +1,13 @@
 import http from 'http';
 import { Server, ServerOptions } from 'socket.io';
 import environment from '../environment';
-import app from './app/namespaces';
+import app from './app';
 
 const httpServer = http.createServer((_, res) => res.end());
 
-const socketSeverOpts: Partial<ServerOptions> = {};
+const socketSeverOpts: Partial<ServerOptions> = {
+  serveClient: false
+};
 
 if (environment.WEB_ORIGIN) {
   socketSeverOpts.cors = {
