@@ -10,12 +10,18 @@ import addModeratorToRoom from '../../../core/interactors/rooms/addModeratorToRo
 import deleteModeratorFromRoom from '../../../core/interactors/rooms/deleteModeratorFromRoom';
 import roomCodeExists from '../../../core/interactors/rooms/roomCodeExists';
 import generateRoomQr from '../../../core/interactors/rooms/generateRoomQr';
+import { RegisteredUserAuth } from '../../../core/types/UserAuth';
 
 export function getAllRoomsCtrl(
-  req: Request, res: Response<RoomEntity[]>, next: NextFunction
+  req: Request,
+  res: Response<
+    RoomEntity[],
+    { auth: RegisteredUserAuth }
+  >,
+  next: NextFunction
 ): void {
-  getAllRooms().then(data => {
-    res.status(200).json(data)
+  getAllRooms(res.locals.auth.id!).then(data => {
+    res.status(200).json(data);
   }).catch(err => {
     next(err);
   });

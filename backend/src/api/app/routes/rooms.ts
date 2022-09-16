@@ -8,7 +8,7 @@ import {
   getRoomQrCtrl
 } from '../controllers/rooms';
 import { rateLimiterMid } from '../middlewares/rate-limiter.mid';
-import { userHasSomePermission } from '../middlewares/user-auth.mid';
+import { userHasSomePermission, userIsAuthenticated } from '../middlewares/user-auth.mid';
 import { validationErrorMid } from '../middlewares/validation.mid';
 import {
   checkRoomRateLimiter, generalRateLimiter
@@ -19,6 +19,7 @@ const roomsRouter = Router();
 roomsRouter.get(
   '/',
   rateLimiterMid(generalRateLimiter, 20),
+  userIsAuthenticated('registeredUser'),
   userHasSomePermission([ permissions.GET_ALL_ROOMS ]),
   getAllRoomsCtrl
 );

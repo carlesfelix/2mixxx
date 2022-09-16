@@ -1,3 +1,4 @@
+import { literal } from 'sequelize';
 import IRoomsRepository from '../../../core/repositories/IRoomsRepository';
 import RoomEntity from '../../../core/types/RoomEntity';
 import { instancesToJson, instanceToJson } from '../helpers';
@@ -76,10 +77,33 @@ export default class Room implements IRoomsRepository {
     });
     return instanceToJson<RoomEntity>(data);
   }
-  async getAllRooms(): Promise<RoomEntity[]> {
+  async getAllRooms(registeredUserId: string): Promise<RoomEntity[]> {
     const data = await models.Room.model.findAll({
-      order: [['createdAt', 'DESC']]
+      order: [['createdAt', 'DESC']],
+      replacements: {
+        registeredUserId
+      },
+      attributes: {
+        include: [
+          [
+            literal(`(
+              SELECT EXISTS(
+                SELECT id
+                FROM rooms_moderators AS roomModerator
+                WHERE
+                  roomModerator.registeredUserId = :registeredUserId
+                  AND
+                  roomModerator.roomId = room.id
+              )
+            )`),
+            'canModerate'
+          ]
+        ]
+      }
     });
-    return instancesToJson<RoomEntity>(data);
+    return instancesToJson<RoomEntity>(data).map(eachData => ({
+      ...eachData,
+      canModerate: !!eachData.canModerate
+    }));
   }
 }

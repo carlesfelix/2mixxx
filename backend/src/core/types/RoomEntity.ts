@@ -7,6 +7,7 @@ type RoomEntity = {
   allowSongRequests: boolean;
   libraries?: LibraryEntity[];
   moderators?: RegisteredUserEntity[];
+  canModerate?: boolean;
 } & BaseEntity;
 
 export default RoomEntity;
