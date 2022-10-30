@@ -1,0 +1,59 @@
+@keyframes Spinner__ring-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+div.Spinner {
+  display: inline-block;
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+
+  & div.Spinner__ring {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    margin: 0;
+    border: 0.5rem solid;
+    border-radius: 50%;
+    animation: Spinner__ring-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+
+    &:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+  }
+
+  &.Spinner--primary {
+    & div.Spinner__ring {
+      border-color: var(--theme-primary-500) transparent transparent;
+    }
+  }
+
+  &.Spinner--secondary {
+    & div.Spinner__ring {
+      border-color: var(--theme-secondary-500) transparent transparent;
+    }
+  }
+
+  &.Spinner--current {
+    & div.Spinner__ring {
+      border-color: currentcolor transparent transparent;
+    }
+  }
+}

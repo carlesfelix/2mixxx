@@ -1,11 +1,11 @@
 import { Route } from '@/core/core-router';
-import { RegisteredUserRoomsPage, NotFoundPage } from '@/pages';
+import { RegisteredUserEventsPage, NotFoundPage } from '@/pages';
 
 export default function registeredUserMainRoutes(): Route[] {
   return [
     {
       path: '/',
-      Component: RegisteredUserRoomsPage
+      Component: RegisteredUserEventsPage
     },
     {
       path: '/404',

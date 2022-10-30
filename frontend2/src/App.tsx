@@ -1,12 +1,15 @@
-import { BrowserRouter } from "react-router-dom"
-import RootLayout from "@/components/layout/RootLayout"
+import RootLayout from "@/components/layout/RootLayout";
+import { BrowserRouter } from "react-router-dom";
+import { PointerElementProvider } from "./core/core-pointer-element";
 
 function App() {
   return (
-    <BrowserRouter>
-      <RootLayout />
-    </BrowserRouter>
-  )
+    <PointerElementProvider>
+      <BrowserRouter>
+        <RootLayout />
+      </BrowserRouter>
+    </PointerElementProvider>
+  );
 }
 
-export default App
+export default App;

@@ -1,7 +1,8 @@
 {
   "extends": "stylelint-config-standard",
   "rules": {
-    "selector-class-pattern": null
+    "selector-class-pattern": null,
+    "keyframes-name-pattern": null
   },
   "ignoreFiles": [
     "./node_modules/**/*.css"

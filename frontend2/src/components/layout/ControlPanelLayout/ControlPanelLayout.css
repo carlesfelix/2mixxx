@@ -1,0 +1,38 @@
+@import "/src/styles/utils/index.css";
+
+div.ControlPanelLayout {
+  height: 100%;
+  display: flex;
+
+  & .ControlPanelLayout__navigation-bar {
+    background-color: var(--theme-surface-toolbar);
+    color: var(--theme-surface-toolbar-contrast);
+    text-align: right;
+    padding: 0.75rem;
+    border-bottom: var(--theme-surface-toolbar-border) 1px solid;
+  }
+
+  & .ControlPanelLayout__main-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .ControlPanelLayout__menu-container {
+    background-color: var(--theme-surface-sidebar-menu);
+    color: var(--theme-surface-sidebar-menu-contrast);
+    width: 15rem;
+    display: none;
+  }
+
+  @media (--min-lg-window) {
+    & .ControlPanelLayout__menu-container {
+      display: block;
+    }
+  }
+
+  & .ControlPanelLayout__page-container {
+    overflow: auto;
+    flex-grow: 1;
+  }
+}

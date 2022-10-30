@@ -4,7 +4,7 @@ import { lazy } from 'react';
  * Main pages
  */
 export const NoUserMainPage = lazy(() => import('@/pages/NoUserMainPage'));
-export const RoomUserMainPage = lazy(() => import('@/pages/RoomUserMainPage'));
+export const EventUserMainPage = lazy(() => import('@/pages/EventUserMainPage'));
 export const RegisteredUserMainPage = lazy(() => import('@/pages/RegisteredUserMainPage'));
 
 /**
@@ -15,7 +15,7 @@ export const LoginPage = lazy(() => import('@/pages/LoginPage'));
 /**
  * Registered user pages
  */
-export const RegisteredUserRoomsPage = lazy(() => import('@/pages/RegisteredUserRoomsPage'));
+export const RegisteredUserEventsPage = lazy(() => import('@/pages/RegisteredUserEventsPage'));
 
 /**
  * Generic pages

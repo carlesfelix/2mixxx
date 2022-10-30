@@ -1,3 +1,3 @@
-type UserType = "registered" | "room" | "none";
+type UserType = "registered" | "event" | "none";
 
 export default UserType;

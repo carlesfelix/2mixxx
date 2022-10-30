@@ -1,7 +1,7 @@
 import { Route } from "@/core/core-router";
 import {
   NoUserMainPage,
-  RoomUserMainPage,
+  EventUserMainPage,
   RegisteredUserMainPage
 } from "@/pages";
 import UserType from "@/types/UserType";
@@ -15,8 +15,8 @@ export default function mainRoutes(userType: UserType): Route[] {
     },
     {
       path: '*',
-      Component: RoomUserMainPage,
-      activate: userType === 'room'
+      Component: EventUserMainPage,
+      activate: userType === 'event'
     },
     {
       path: '*',

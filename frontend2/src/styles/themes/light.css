@@ -1,0 +1,37 @@
+/* #046aae */
+
+:root {
+  --theme-primary-50: #eaeaf9;
+  --theme-primary-100: #c9caf0;
+  --theme-primary-200: #a5a9e5;
+  --theme-primary-300: #8287db;
+  --theme-primary-400: #676bd2;
+
+  /* Base primary */
+  --theme-primary-500: #4e4fc9;
+  --theme-primary-600: #4847be;
+  --theme-primary-700: #403cb2;
+  --theme-primary-800: #3831a6;
+  --theme-primary-900: #2d1d8f;
+  --theme-secondary-50: #faf6ff;
+  --theme-secondary-100: #f4f0ff;
+  --theme-secondary-200: #ebe8ff;
+  --theme-secondary-300: #dcd8f2;
+  --theme-secondary-400: #b8b5cd;
+  --theme-secondary-500: #9996ad;
+  --theme-secondary-600: #706d83;
+  --theme-secondary-700: #5c5a6f;
+
+  /* Base secondary */
+  --theme-secondary-800: #3d3b4f;
+  --theme-secondary-900: #1c1b2d;
+
+  /* SURFACES */
+  --theme-surface-toolbar: #fafaff;
+  --theme-surface-toolbar-menu: #dbdee6;
+  --theme-surface-toolbar-border: #f1effb;
+  --theme-surface-sidebar-menu: #2a52a2;
+  --theme-surface-sidebar-menu-contrast: white;
+
+  /* https://material.io/design/color/the-color-system.html#tools-for-picking-colors */
+}
