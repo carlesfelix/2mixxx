@@ -1,3 +1,4 @@
+import ButtonSize from "@/types/ButtonSize";
 import ThemeColor from "@/types/ThemeColor";
 import { MouseEventHandler, ReactNode } from "react"
 
@@ -6,5 +7,5 @@ export type OutlinedButtonProps = {
   color?: ThemeColor;
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  size?: 'sm' | 'md' | 'lg';
+  size?: ButtonSize;
 };
