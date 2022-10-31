@@ -1,6 +1,6 @@
-import { usePointerElementRef } from "@/core/core-pointer-element";
+import { useFocusHighlight } from "@/core/core-pointer-element";
 import classNames from "classnames";
-import { FocusEvent, ForwardedRef, forwardRef, useState } from "react";
+import { FocusEvent, ForwardedRef, forwardRef } from "react";
 import { BasicButtonProps } from "./types";
 
 function BasicButtonWithRef(
@@ -14,8 +14,7 @@ function BasicButtonWithRef(
     size = 'md',
     onClick
   } = props;
-  const pointerElementRef = usePointerElementRef();
-  const [ isHighlighted, setIsHighlighted ] = useState<boolean>(false);
+  const { isHighlighted, focus, blur } = useFocusHighlight();
 
   const rootClassName = classNames(
     'BasicButton',
@@ -28,13 +27,11 @@ function BasicButtonWithRef(
   );
 
   function focusHandler(event: FocusEvent): void {
-    if (event.target !== pointerElementRef.current) {
-      setIsHighlighted(true);
-    }
+    focus(event);
   }
 
   function blurHander(): void {
-    setIsHighlighted(false);
+    blur();
   }
 
   return (
