@@ -245,6 +245,8 @@
   }
 
   &._button--icon:not(:disabled)._button--highlighted {
-    border-color: currentcolor;
+    &::after {
+      opacity: 0.1;
+    }
   }
 }
