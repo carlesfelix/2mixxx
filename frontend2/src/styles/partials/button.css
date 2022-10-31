@@ -215,32 +215,38 @@
   &._button--icon._button--sm {
     width: 2.125rem;
     height: 2.125rem;
+    font-size: 0.625rem;
   }
 
   &._button--icon._button--md {
     width: 2.625rem;
     height: 2.625rem;
+    font-size: 1.125rem;
   }
 
   &._button--icon._button--lg {
     width: 3.125rem;
     height: 3.125rem;
+    font-size: 1.625rem;
   }
 
   @media (--min-lg-window) {
     &._button--icon._button--sm {
       width: 2.625rem;
       height: 2.625rem;
+      font-size: 1.125rem;
     }
 
     &._button--icon._button--md {
       width: 3.125rem;
       height: 3.125rem;
+      font-size: 1.625rem;
     }
 
     &._button--icon._button--lg {
       height: 3.625rem;
       width: 3.625rem;
+      font-size: 2.125rem;
     }
   }
 
