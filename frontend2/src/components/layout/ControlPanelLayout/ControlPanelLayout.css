@@ -3,13 +3,15 @@
 div.ControlPanelLayout {
   height: 100%;
   display: flex;
+  position: relative;
 
   & .ControlPanelLayout__navigation-bar {
     background-color: var(--theme-surface-toolbar);
     color: var(--theme-surface-toolbar-contrast);
     text-align: right;
-    padding: 0.75rem;
+    padding: 0 1rem;
     border-bottom: var(--theme-surface-toolbar-border) 1px solid;
+    height: 3.375rem;
   }
 
   & .ControlPanelLayout__main-container {
@@ -21,14 +23,55 @@ div.ControlPanelLayout {
   & .ControlPanelLayout__menu-container {
     background-color: var(--theme-surface-sidebar-menu);
     color: var(--theme-surface-sidebar-menu-contrast);
-    width: 15rem;
-    display: none;
+    width: 20rem;
+    flex-shrink: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    transform: translate(-100%);
   }
 
   @media (--min-lg-window) {
     & .ControlPanelLayout__menu-container {
-      display: block;
+      position: relative;
+      z-index: 0;
+      transform: none;
     }
+  }
+
+  & .ControlPanelLayout__menu-header {
+    height: 3.375rem;
+    padding-left: 0.5rem;
+    padding-right: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (--min-lg-window) {
+    & .ControlPanelLayout__menu-header {
+      padding-left: 1.5rem;
+    }
+  }
+
+  @media (--min-lg-window) {
+    & .ControlPanelLayout__menu-btn {
+      display: none;
+    }
+  }
+
+  & .ControlPanelLayout__title-container {
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  & .ControlPanelLayout__title {
+    margin: 0;
+  }
+
+  & .ControlPanelLayout__menu-content {
+    padding: 1rem 1.5rem;
   }
 
   & .ControlPanelLayout__page-container {
