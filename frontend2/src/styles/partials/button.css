@@ -1,3 +1,5 @@
+@import "/src/styles/utils/index.css";
+
 ._button {
   outline: none;
   border-radius: 0.25rem;
@@ -9,6 +11,7 @@
     cursor: pointer;
   }
 
+  /* Global sizes */
   &._button--sm {
     font-size: 0.875rem;
   }
@@ -23,11 +26,25 @@
     line-height: 1.25rem;
   }
 
+  @media (--min-lg-window) {
+    &._button--md {
+      font-size: 1rem;
+      line-height: 1.25rem;
+    }
+
+    &._button--lg {
+      font-size: 1.125rem;
+      line-height: 1.5rem;
+    }
+  }
+
+  /* Text button */
   &._button--primary-text {
     background-color: transparent;
     color: var(--theme-primary-400);
   }
 
+  /* Outlined button */
   &._button--outlined {
     border: currentcolor solid 0.063rem;
     background-color: transparent;
@@ -56,6 +73,45 @@
     padding: 0.875rem 2rem;
   }
 
+  @media (--min-lg-window) {
+    &._button--outlined._button--md {
+      padding: 0.875rem 2rem;
+    }
+
+    &._button--outlined._button--lg {
+      padding: 1rem 2.5rem;
+    }
+  }
+
+  &._button--outlined:not(:disabled)._button--highlighted {
+    border-width: 0.125rem;
+
+    &._button--sm {
+      padding: 0.438rem 0.813rem;
+    }
+
+    &._button--md {
+      padding: 0.562rem 1.437rem;
+    }
+
+    &._button--lg {
+      padding: 0.812rem 1.937rem;
+    }
+  }
+
+  @media (--min-lg-window) {
+    &._button--outlined:not(:disabled)._button--highlighted {
+      &._button--md {
+        padding: 0.812rem 1.937rem;
+      }
+
+      &._button--lg {
+        padding: 0.937rem 2.437rem;
+      }
+    }
+  }
+
+  /* Basic button */
   &._button--basic {
     font-weight: bold;
     transition-property: filter;
@@ -84,25 +140,17 @@
     padding: 0.938rem 2.063rem;
   }
 
-  &:not(:disabled)._button--highlighted {
-    &._button--outlined {
-      border-width: 0.125rem;
+  @media (--min-lg-window) {
+    &._button--basic._button--md {
+      padding: 0.938rem 2.063rem;
     }
 
-    &._button--outlined._button--sm {
-      padding: 0.438rem 0.813rem;
+    &._button--basic._button--lg {
+      padding: 1.063rem 2.563rem;
     }
+  }
 
-    &._button--outlined._button--md {
-      padding: 0.562rem 1.437rem;
-    }
-
-    &._button--outlined._button--lg {
-      padding: 0.812rem 1.937rem;
-    }
-
-    &._button--basic {
-      filter: brightness(1.2);
-    }
+  &._button--basic:not(:disabled)._button--highlighted {
+    filter: brightness(1.2);
   }
 }
