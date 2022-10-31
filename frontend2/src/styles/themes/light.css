@@ -2,29 +2,49 @@
 
 :root {
   --theme-primary-50: #eaeaf9;
+  --theme-primary-contrast-50: #3d3b4f;
   --theme-primary-100: #c9caf0;
+  --theme-primary-contrast-100: #3d3b4f;
   --theme-primary-200: #a5a9e5;
+  --theme-primary-contrast-200: #3d3b4f;
   --theme-primary-300: #8287db;
+  --theme-primary-contrast-300: #3d3b4f;
   --theme-primary-400: #676bd2;
+  --theme-primary-contrast-400: #fff;
 
   /* Base primary */
   --theme-primary-500: #4e4fc9;
+  --theme-primary-contrast-500: #fff;
   --theme-primary-600: #4847be;
+  --theme-primary-contrast-600: #fff;
   --theme-primary-700: #403cb2;
+  --theme-primary-contrast-700: #fff;
   --theme-primary-800: #3831a6;
+  --theme-primary-contrast-800: #fff;
   --theme-primary-900: #2d1d8f;
+  --theme-primary-contrast-900: #fff;
   --theme-secondary-50: #faf6ff;
+  --theme-secondary-contrast-50: #3d3b4f;
   --theme-secondary-100: #f4f0ff;
+  --theme-secondary-contrast-100: #3d3b4f;
   --theme-secondary-200: #ebe8ff;
+  --theme-secondary-contrast-200: #3d3b4f;
   --theme-secondary-300: #dcd8f2;
+  --theme-secondary-contrast-300: #3d3b4f;
   --theme-secondary-400: #b8b5cd;
+  --theme-secondary-contrast-400: #3d3b4f;
   --theme-secondary-500: #9996ad;
+  --theme-secondary-contrast-500: #fff;
   --theme-secondary-600: #706d83;
+  --theme-secondary-contrast-600: #fff;
   --theme-secondary-700: #5c5a6f;
+  --theme-secondary-contrast-700: #fff;
 
   /* Base secondary */
   --theme-secondary-800: #3d3b4f;
+  --theme-secondary-contrast-800: #fff;
   --theme-secondary-900: #1c1b2d;
+  --theme-secondary-contrast-900: #fff;
 
   /* SURFACES */
   --theme-surface-toolbar: #fafaff;
@@ -32,6 +52,9 @@
   --theme-surface-toolbar-border: #f1effb;
   --theme-surface-sidebar-menu: #2a52a2;
   --theme-surface-sidebar-menu-contrast: white;
+
+  /* FOREGROUNDS */
+  --theme-foreground-main-text: #3d3b4f;
 
   /* https://material.io/design/color/the-color-system.html#tools-for-picking-colors */
 }
