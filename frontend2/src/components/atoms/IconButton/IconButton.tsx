@@ -28,7 +28,7 @@ function IconButtonWithRef(
   );
 
   function focusHandler(event: FocusEvent): void {
-    if (event.target !== pointerElementRef.current) {
+    if (event.target !== pointerElementRef.current && !event.target.contains(pointerElementRef.current)) {
       setIsHighlighted(true);
     }
   }
