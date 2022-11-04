@@ -24,7 +24,7 @@ div.MobileMainMenu {
   }
 
   & .MobileMainMenu__menu-content {
-    padding: 1rem 1.5rem;
+    padding: 0.75rem;
   }
 }
 
