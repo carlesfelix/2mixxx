@@ -1,28 +1,32 @@
-import { ControlPanelLayoutProps } from "./types";
-import "./ControlPanelLayout.css";
-import IconButton from "@/components/atoms/IconButton";
 import { ReactComponent as MenuIcon } from '@/assets/svg/Menu.svg';
+import IconButton from "@/components/atoms/IconButton";
+import DesktopMainMenu from '@/components/molecules/DesktopMainMenu';
+import MobileMainMenuSidebar from "@/components/molecules/MobileMainMenuSidebar";
+import { useState } from "react";
+import "./ControlPanelLayout.css";
+import { ControlPanelLayoutProps } from "./types";
 
 export default function ControlPanelLayout(props: ControlPanelLayoutProps) {
   const { children } = props;
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  function toggleBurgerButtonHandler(): void {
+    setIsOpen(old => !old);
+  }
+
   return (
     <div className="ControlPanelLayout">
-      <div className="ControlPanelLayout__menu-container">
-        <div className="ControlPanelLayout__menu-header">
-          <IconButton className="ControlPanelLayout__menu-btn" size="lg">
-            <MenuIcon />
-          </IconButton>
-          <div className="ControlPanelLayout__title-container">
-            <h3 className="_text _text--h3 ControlPanelLayout__title">2MIXX</h3>
-          </div>
-        </div>
-        <div className="ControlPanelLayout__menu-content">
-          Menu content
-        </div>
-      </div>
+      <MobileMainMenuSidebar
+        className="ControlPanelLayout__mobile-menu"
+        isOpen={isOpen}
+        onClickBurgerButton={toggleBurgerButtonHandler}
+      />
+      <DesktopMainMenu className="ControlPanelLayout__desktop-menu" />
       <div className="ControlPanelLayout__main-container">
         <nav className="ControlPanelLayout__navigation-bar">
-          nav here
+          <IconButton onClick={toggleBurgerButtonHandler}>
+            <MenuIcon />
+          </IconButton>
         </nav>
         <div className="ControlPanelLayout__page-container">
           {children}

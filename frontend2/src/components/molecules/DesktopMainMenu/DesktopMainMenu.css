@@ -1,0 +1,36 @@
+@import "/src/styles/utils/index.css";
+
+div.DesktopMainMenu {
+  background-color: var(--theme-surface-sidebar-menu);
+  color: var(--theme-surface-sidebar-menu-contrast);
+  height: 100%;
+  display: none;
+  width: 23.438rem;
+
+  & .DesktopMainMenu__menu-header {
+    height: 3.375rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  & .DesktopMainMenu__title-container {
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  & .DesktopMainMenu__title {
+    margin: 0;
+  }
+
+  & .DesktopMainMenu__menu-content {
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (--min-lg-window) {
+  div.DesktopMainMenu {
+    display: block;
+  }
+}

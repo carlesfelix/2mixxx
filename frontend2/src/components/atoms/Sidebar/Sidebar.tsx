@@ -2,11 +2,12 @@ import useOverlayRootElement from "@/hooks/useOverlayRootElement";
 import classNames from "classnames";
 import { AnimationEvent, useState } from "react";
 import { createPortal } from "react-dom";
+import SidebarContent from "./components/SidebarContent";
 import './Sidebar.css';
 import { SidebarProps, SidebarStatus } from "./types";
 
 export default function Sidebar(props: SidebarProps) {
-  const { isOpen, children, className } = props;
+  const { isOpen, children, className, contentClassName } = props;
   const [ status, setStatus ] = useState<SidebarStatus>(isOpen ? 'opened' : 'closed');
   const overlayRootElement = useOverlayRootElement();
 
@@ -43,7 +44,9 @@ export default function Sidebar(props: SidebarProps) {
         onAnimationStart={animationStartHandler}
         onAnimationEnd={animationEndHandler}
       >
-        {children}
+        <SidebarContent className={contentClassName}>
+          {children}
+        </SidebarContent>
       </div>
     )
   ), overlayRootElement); 
