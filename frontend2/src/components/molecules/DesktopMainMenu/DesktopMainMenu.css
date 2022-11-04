@@ -9,8 +9,7 @@ div.DesktopMainMenu {
 
   & .DesktopMainMenu__menu-header {
     height: 3.375rem;
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
+    padding: 0 2rem;
     display: flex;
     align-items: center;
   }
@@ -25,7 +24,7 @@ div.DesktopMainMenu {
   }
 
   & .DesktopMainMenu__menu-content {
-    padding: 1rem 1.5rem;
+    padding: 0.75rem;
   }
 }
 

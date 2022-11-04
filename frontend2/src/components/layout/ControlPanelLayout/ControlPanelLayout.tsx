@@ -24,9 +24,16 @@ export default function ControlPanelLayout(props: ControlPanelLayoutProps) {
       <DesktopMainMenu className="ControlPanelLayout__desktop-menu" />
       <div className="ControlPanelLayout__main-container">
         <nav className="ControlPanelLayout__navigation-bar">
-          <IconButton onClick={toggleBurgerButtonHandler}>
-            <MenuIcon />
-          </IconButton>
+          <div className="ControlPanelLayout__navigation-bar-left-content">
+            <IconButton
+              size="lg"
+              onClick={toggleBurgerButtonHandler}
+              color="primary"
+            >
+              <MenuIcon />
+            </IconButton>
+          </div>
+          
         </nav>
         <div className="ControlPanelLayout__page-container">
           {children}

@@ -8,7 +8,7 @@ div.MobileMainMenu {
 
   & .MobileMainMenu__menu-header {
     height: 3.375rem;
-    padding-left: 0.5rem;
+    padding-left: 0.75rem;
     padding-right: 1.5rem;
     display: flex;
     align-items: center;

@@ -8,10 +8,30 @@ div.ControlPanelLayout {
   & .ControlPanelLayout__navigation-bar {
     background-color: var(--theme-surface-toolbar);
     color: var(--theme-surface-toolbar-contrast);
-    text-align: right;
-    padding: 0 1rem;
+    padding-right: 1.5rem;
+    padding-left: 0.75rem;
     border-bottom: var(--theme-surface-toolbar-border) 0.063rem solid;
     height: 3.375rem;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (--min-lg-window) {
+    & .ControlPanelLayout__navigation-bar {
+      padding-left: 1.5rem;
+    }
+  }
+
+  & .ControlPanelLayout__navigation-bar-left-content {
+    display: flex;
+    align-items: center;
+    width: 16.5rem;
+  }
+
+  @media (--min-lg-window) {
+    & .ControlPanelLayout__navigation-bar-left-content {
+      display: none;
+    }
   }
 
   & .ControlPanelLayout__main-container {

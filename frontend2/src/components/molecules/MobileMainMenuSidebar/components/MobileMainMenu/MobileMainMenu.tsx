@@ -11,7 +11,7 @@ export default function MobileMainMenu(props: MobileMainMenuProps) {
   return (
     <div className={rootClassName}>
       <div className="MobileMainMenu__menu-header">
-        <IconButton className="MobileMainMenu__menu-btn" onClick={onClickBurgerButton}>
+        <IconButton className="MobileMainMenu__menu-btn" onClick={onClickBurgerButton} size="lg">
           <MenuIcon />
         </IconButton>
         <div className="MobileMainMenu__title-container">
