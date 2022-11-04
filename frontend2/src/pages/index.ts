@@ -16,6 +16,7 @@ export const LoginPage = lazy(() => import('@/pages/LoginPage'));
  * Registered user pages
  */
 export const RegisteredUserEventsPage = lazy(() => import('@/pages/RegisteredUserEventsPage'));
+export const RegisteredUserCreateEventPage = lazy(() => import('@/pages/RegisteredUserCreateEventPage'));
 
 /**
  * Generic pages
