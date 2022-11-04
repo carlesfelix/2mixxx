@@ -52,6 +52,7 @@
   --theme-surface-toolbar-border: #f1effb;
   --theme-surface-sidebar-menu: #2a52a2;
   --theme-surface-sidebar-menu-contrast: white;
+  --theme-surface-overlay-mask: rgb(0 0 0 / 40%);
 
   /* FOREGROUNDS */
   --theme-foreground-main-text: #3d3b4f;

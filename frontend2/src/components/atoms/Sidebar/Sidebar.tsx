@@ -31,10 +31,11 @@ export default function Sidebar(props: SidebarProps) {
     'Sidebar',
     {
       'Sidebar--opened': isOpen,
-      'Sidebar--closing': !isOpen
+      'Sidebar--closed': !isOpen
     },
     className
   );
+  const sidebarContentClassName = classNames('Sidebar__content', contentClassName);
 
   const showSidebar = isOpen || status !== 'closed';
   return createPortal((
@@ -44,7 +45,8 @@ export default function Sidebar(props: SidebarProps) {
         onAnimationStart={animationStartHandler}
         onAnimationEnd={animationEndHandler}
       >
-        <SidebarContent className={contentClassName}>
+        <div className="Sidebar__mask"></div>
+        <SidebarContent className={sidebarContentClassName}>
           {children}
         </SidebarContent>
       </div>

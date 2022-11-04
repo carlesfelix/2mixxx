@@ -18,21 +18,68 @@
   }
 }
 
-div.Sidebar {
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  transform: translateX(-100%);
-
-  &.Sidebar--opened {
-    transform: translateX(0);
-    animation: Sidebar__fadein 150ms;
+@keyframes Sidebar__mask-fadein {
+  0% {
+    background-color: transparent;
   }
 
-  &.Sidebar--closing {
+  100% {
+    background-color: var(--theme-surface-overlay-mask);
+  }
+}
+
+@keyframes Sidebar__mask-fadeout {
+  0% {
+    background-color: var(--theme-surface-overlay-mask);
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+div.Sidebar {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  & .Sidebar__content {
     transform: translateX(-100%);
-    animation: Sidebar__fadeout 150ms;
+  }
+
+  & .Sidebar__mask {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: var(--theme-surface-overlay-mask);
+  }
+
+  &.Sidebar--opened {
+    & .Sidebar__content {
+      transform: translateX(0);
+      background-color: var(--theme-surface-overlay-mask);
+      animation: Sidebar__fadein 150ms;
+    }
+
+    & .Sidebar__mask {
+      animation: Sidebar__mask-fadein 150ms;
+    }
+  }
+
+  &.Sidebar--closed {
+    & .Sidebar__content {
+      transform: translateX(-100%);
+      animation: Sidebar__fadeout 150ms;
+    }
+
+    & .Sidebar__mask {
+      background-color: transparent;
+      animation: Sidebar__mask-fadeout 150ms;
+    }
   }
 }
