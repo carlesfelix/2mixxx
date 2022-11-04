@@ -6,7 +6,14 @@ export type Route = {
   activate?: boolean | { redirectTo: string };
 };
 
-export type RouterProps = {
+export type RoutesProps = {
   routes: Route[];
   loadingElement?: ReactNode;
+};
+
+export type NavLinkProps = {
+  children: ReactNode;
+  to: string;
+  className?: string;
+  activeClassName?: string;
 };

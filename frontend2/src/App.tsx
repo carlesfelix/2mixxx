@@ -1,6 +1,6 @@
 import RootLayout from "@/components/layout/RootLayout";
-import { BrowserRouter } from "react-router-dom";
 import { PointerElementProvider } from "./core/core-pointer-element";
+import { BrowserRouter } from "@/core/core-router";
 
 function App() {
   return (

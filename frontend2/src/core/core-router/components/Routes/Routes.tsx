@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { RouterProps } from './types';
+import { Navigate, Route, Routes as ReactRouterRoutes } from 'react-router-dom';
+import { RoutesProps } from '../../types';
 
-export function Router(props: RouterProps): JSX.Element {
+export default function Routes(props: RoutesProps): JSX.Element {
   const { routes, loadingElement } = props;
   const allowedRoutes = routes
     .map(({ activate = true, ...rest }) => ({
@@ -11,7 +11,7 @@ export function Router(props: RouterProps): JSX.Element {
     }))
     .filter(({ activate }) => activate);
   return (
-    <Routes>
+    <ReactRouterRoutes>
       {
         allowedRoutes.map(({
           path, Component: PageComponent, activate
@@ -33,6 +33,6 @@ export function Router(props: RouterProps): JSX.Element {
           );
         })
       }
-    </Routes>
+    </ReactRouterRoutes>
   );
 }
