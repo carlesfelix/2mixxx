@@ -2,7 +2,7 @@
 
 div.MobileMainMenu {
   background-color: var(--theme-surface-sidebar-menu);
-  color: var(--theme-surface-sidebar-menu-contrast);
+  color: var(--theme-foreground-sidebar-menu);
   height: 100%;
   width: 18.75rem;
 
@@ -21,10 +21,6 @@ div.MobileMainMenu {
 
   & .MobileMainMenu__title {
     margin: 0;
-  }
-
-  & .MobileMainMenu__menu-content {
-    padding: 0.75rem;
   }
 }
 

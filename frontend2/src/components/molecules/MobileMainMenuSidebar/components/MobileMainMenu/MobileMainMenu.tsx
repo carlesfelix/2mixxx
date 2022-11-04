@@ -1,5 +1,7 @@
 import { ReactComponent as MenuIcon } from '@/assets/svg/Menu.svg';
 import IconButton from "@/components/atoms/IconButton";
+import MainMenuLinks from '@/components/molecules/MainMenuLinks';
+import { MAIN_MENU_LINKS } from '@/constants/links';
 import classNames from "classnames";
 import { MobileMainMenuProps } from "../../types";
 import "./MobileMainMenu.css";
@@ -19,7 +21,7 @@ export default function MobileMainMenu(props: MobileMainMenuProps) {
         </div>
       </div>
       <div className="MobileMainMenu__menu-content">
-        Links here
+        <MainMenuLinks linkItems={MAIN_MENU_LINKS} />
       </div>
     </div>
   );

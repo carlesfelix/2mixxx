@@ -2,10 +2,10 @@
 
 div.DesktopMainMenu {
   background-color: var(--theme-surface-sidebar-menu);
-  color: var(--theme-surface-sidebar-menu-contrast);
+  color: var(--theme-foreground-sidebar-menu);
   height: 100%;
   display: none;
-  width: 23.438rem;
+  width: 15.625rem;
 
   & .DesktopMainMenu__menu-header {
     height: 3.375rem;
@@ -21,10 +21,6 @@ div.DesktopMainMenu {
 
   & .DesktopMainMenu__title {
     margin: 0;
-  }
-
-  & .DesktopMainMenu__menu-content {
-    padding: 0.75rem;
   }
 }
 

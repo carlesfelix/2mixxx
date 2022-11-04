@@ -1,6 +1,7 @@
 /* #046aae */
 
 :root {
+  --theme-common-white: #fff;
   --theme-primary-50: #eaeaf9;
   --theme-primary-contrast-50: #3d3b4f;
   --theme-primary-100: #c9caf0;
@@ -10,19 +11,19 @@
   --theme-primary-300: #8287db;
   --theme-primary-contrast-300: #3d3b4f;
   --theme-primary-400: #676bd2;
-  --theme-primary-contrast-400: #fff;
+  --theme-primary-contrast-400: var(--theme-common-white);
 
   /* Base primary */
   --theme-primary-500: #4e4fc9;
-  --theme-primary-contrast-500: #fff;
+  --theme-primary-contrast-500: var(--theme-common-white);
   --theme-primary-600: #4847be;
-  --theme-primary-contrast-600: #fff;
+  --theme-primary-contrast-600: var(--theme-common-white);
   --theme-primary-700: #403cb2;
-  --theme-primary-contrast-700: #fff;
+  --theme-primary-contrast-700: var(--theme-common-white);
   --theme-primary-800: #3831a6;
-  --theme-primary-contrast-800: #fff;
+  --theme-primary-contrast-800: var(--theme-common-white);
   --theme-primary-900: #2d1d8f;
-  --theme-primary-contrast-900: #fff;
+  --theme-primary-contrast-900: var(--theme-common-white);
   --theme-secondary-50: #faf6ff;
   --theme-secondary-contrast-50: #3d3b4f;
   --theme-secondary-100: #f4f0ff;
@@ -34,28 +35,31 @@
   --theme-secondary-400: #b8b5cd;
   --theme-secondary-contrast-400: #3d3b4f;
   --theme-secondary-500: #9996ad;
-  --theme-secondary-contrast-500: #fff;
+  --theme-secondary-contrast-500: var(--theme-common-white);
   --theme-secondary-600: #706d83;
-  --theme-secondary-contrast-600: #fff;
+  --theme-secondary-contrast-600: var(--theme-common-white);
   --theme-secondary-700: #5c5a6f;
-  --theme-secondary-contrast-700: #fff;
+  --theme-secondary-contrast-700: var(--theme-common-white);
 
   /* Base secondary */
   --theme-secondary-800: #3d3b4f;
-  --theme-secondary-contrast-800: #fff;
+  --theme-secondary-contrast-800: var(--theme-common-white);
   --theme-secondary-900: #1c1b2d;
-  --theme-secondary-contrast-900: #fff;
+  --theme-secondary-contrast-900: var(--theme-common-white);
 
   /* SURFACES */
   --theme-surface-toolbar: #fafaff;
   --theme-surface-toolbar-menu: #dbdee6;
   --theme-surface-toolbar-border: #f1effb;
   --theme-surface-sidebar-menu: #2a52a2;
-  --theme-surface-sidebar-menu-contrast: white;
   --theme-surface-overlay-mask: rgb(0 0 0 / 40%);
+  --theme-surface-sidebar-menu-btn-active: var(--theme-primary-500);
 
   /* FOREGROUNDS */
   --theme-foreground-main-text: #3d3b4f;
+  --theme-foreground-sidebar-menu: var(--theme-common-white);
+  --theme-foreground-sidebar-menu-btn-inactive: var(--theme-primary-50);
+  --theme-foreground-sidebar-menu-btn-active: var(--theme-common-white);
 
   /* https://material.io/design/color/the-color-system.html#tools-for-picking-colors */
 }

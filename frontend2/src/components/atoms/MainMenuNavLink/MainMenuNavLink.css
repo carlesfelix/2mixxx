@@ -1,0 +1,29 @@
+.MainMenuNavLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1.5rem;
+  height: 2.5rem;
+  outline: none;
+  border: solid 0.063rem transparent;
+  color: var(--theme-foreground-sidebar-menu-btn-inactive);
+
+  &.MainMenuNavLink--highlighted {
+    border-color: currentcolor;
+  }
+
+  &.MainMenuNavLink--active {
+    background-color: var(--theme-surface-sidebar-menu-btn-active);
+    color: var(--theme-foreground-sidebar-menu-btn-active);
+  }
+
+  & .MainMenuNavLink__icon {
+    font-size: 1.625rem;
+    margin-right: 1.5rem;
+  }
+
+  & .MainMenuNavLink__label {
+    font-size: 0.875rem;
+    font-size: 1rem;
+  }
+}

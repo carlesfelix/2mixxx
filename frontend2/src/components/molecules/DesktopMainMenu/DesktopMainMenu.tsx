@@ -1,4 +1,6 @@
+import { MAIN_MENU_LINKS } from "@/constants/links";
 import classNames from "classnames";
+import MainMenuLinks from "../MainMenuLinks";
 import "./DesktopMainMenu.css";
 import { DesktopMainMenuProps } from "./types";
 
@@ -14,7 +16,7 @@ export default function DesktopMainMenu(props: DesktopMainMenuProps) {
         </div>
       </div>
       <div className="DesktopMainMenu__menu-content">
-        Links here desktop
+        <MainMenuLinks linkItems={MAIN_MENU_LINKS} />
       </div>
     </div>
   );

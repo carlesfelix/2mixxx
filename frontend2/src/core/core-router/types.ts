@@ -1,4 +1,4 @@
-import { LazyExoticComponent, ReactNode } from 'react';
+import { FocusEvent, LazyExoticComponent, ReactNode } from 'react';
 
 export type Route = {
   path: string;
@@ -16,4 +16,7 @@ export type NavLinkProps = {
   to: string;
   className?: string;
   activeClassName?: string;
+  end?: boolean;
+  onFocus?: (event: FocusEvent<HTMLAnchorElement>) => void;
+  onBlur?: (event: FocusEvent<HTMLAnchorElement>) => void;
 };
