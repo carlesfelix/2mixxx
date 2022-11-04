@@ -62,11 +62,11 @@ div.Sidebar {
   &.Sidebar--opened {
     & .Sidebar__content {
       transform: translateX(0);
-      background-color: var(--theme-surface-overlay-mask);
       animation: Sidebar__fadein 150ms;
     }
 
     & .Sidebar__mask {
+      background-color: var(--theme-surface-overlay-mask);
       animation: Sidebar__mask-fadein 150ms;
     }
   }
