@@ -7,13 +7,22 @@ import { MobileMainMenuProps } from "../../types";
 import "./MobileMainMenu.css";
 
 export default function MobileMainMenu(props: MobileMainMenuProps) {
-  const { className, onClickBurgerButton } = props;
+  const { className, onClose } = props;
+
+  function clickHandler(): void {
+    onClose && onClose();
+  }
+
   const rootClassName = classNames('MobileMainMenu', className);
 
   return (
     <div className={rootClassName}>
       <div className="MobileMainMenu__menu-header">
-        <IconButton className="MobileMainMenu__menu-btn" onClick={onClickBurgerButton} size="lg">
+        <IconButton
+          className="MobileMainMenu__menu-btn"
+          onClick={clickHandler}
+          size="lg"
+        >
           <MenuIcon />
         </IconButton>
         <div className="MobileMainMenu__title-container">

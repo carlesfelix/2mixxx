@@ -10,8 +10,12 @@ export default function ControlPanelLayout(props: ControlPanelLayoutProps) {
   const { children } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  function toggleBurgerButtonHandler(): void {
-    setIsOpen(old => !old);
+  function closeSidebarHandler(): void {
+    setIsOpen(false);
+  }
+
+  function openSidebarHandler(): void {
+    setIsOpen(true);
   }
 
   return (
@@ -19,7 +23,7 @@ export default function ControlPanelLayout(props: ControlPanelLayoutProps) {
       <MobileMainMenuSidebar
         className="ControlPanelLayout__mobile-menu"
         isOpen={isOpen}
-        onClickBurgerButton={toggleBurgerButtonHandler}
+        onClose={closeSidebarHandler}
       />
       <DesktopMainMenu className="ControlPanelLayout__desktop-menu" />
       <div className="ControlPanelLayout__main-container">
@@ -27,7 +31,7 @@ export default function ControlPanelLayout(props: ControlPanelLayoutProps) {
           <div className="ControlPanelLayout__navigation-bar-left-content">
             <IconButton
               size="lg"
-              onClick={toggleBurgerButtonHandler}
+              onClick={openSidebarHandler}
               color="primary"
             >
               <MenuIcon />

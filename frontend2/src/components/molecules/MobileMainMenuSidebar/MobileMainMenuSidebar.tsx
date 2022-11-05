@@ -5,12 +5,12 @@ import { MobileMainMenuSidebarProps } from "./types";
 import "./MobileMainMenuSidebar.css";
 
 export default function MobileMainMenuSidebar(props: MobileMainMenuSidebarProps) {
-  const { className, onClickBurgerButton, isOpen } = props;
+  const { className, onClose, isOpen } = props;
   const rootClassName = classNames('MobileMainMenuSidebar', className);
   return (
-    <Sidebar className={rootClassName} isOpen={isOpen}>
+    <Sidebar className={rootClassName} isOpen={isOpen} onClose={onClose}>
       <MobileMainMenu
-        onClickBurgerButton={onClickBurgerButton}
+        onClose={onClose}
         className="MobileMainMenuSidebar__menu"
       />
     </Sidebar>

@@ -6,6 +6,7 @@ export type SidebarProps = {
   children: ReactNode;
   className?: string;
   contentClassName?: string;
+  onClose?: () => void;
 };
 
 export type SidebarContentProps = {
