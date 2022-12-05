@@ -1,7 +1,8 @@
 import { IHttp } from "@/core/core-http";
 import { ReactNode } from "react";
 
-export type QueryApiRestProviderProps = {
+export type QueryProviderProps = {
   children: ReactNode;
   http: IHttp;
+  httpMethod?: "get" | "post";
 };
