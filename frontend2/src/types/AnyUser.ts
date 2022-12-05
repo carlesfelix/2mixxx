@@ -1,4 +1,4 @@
-import BaseEntity from "./BaseEntity";
+import BaseEntity from "@/core/core-types/BaseEntity";
 import UserType from "./UserType"
 
 type AnyUser = {
