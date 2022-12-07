@@ -5,7 +5,7 @@ import {
   RegisteredUserCreateEventPage
 } from '@/pages';
 
-export default function registeredUserMainRoutes(): Route[] {
+export default function registeredUserMainRoutes (): Route[] {
   return [
     {
       path: '/',

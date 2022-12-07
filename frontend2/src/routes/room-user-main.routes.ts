@@ -1,7 +1,7 @@
 import { Route } from '@/core/core-router';
 import { NotFoundPage } from '@/pages';
 
-export default function roomUserMainRoutes(): Route[] {
+export default function roomUserMainRoutes (): Route[] {
   return [
     {
       path: '/404',

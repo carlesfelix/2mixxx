@@ -1,12 +1,12 @@
-import { Route } from "@/core/core-router";
+import { Route } from '@/core/core-router';
 import {
   NoUserMainPage,
   EventUserMainPage,
   RegisteredUserMainPage
-} from "@/pages";
-import UserType from "@/types/UserType";
+} from '@/pages';
+import UserType from '@/types/UserType';
 
-export default function mainRoutes(userType: UserType): Route[] {
+export default function mainRoutes (userType: UserType): Route[] {
   return [
     {
       path: '*',

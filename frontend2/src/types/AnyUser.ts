@@ -1,5 +1,5 @@
-import BaseEntity from "@/core/core-types/BaseEntity";
-import UserType from "./UserType"
+import BaseEntity from '@/core/core-types/BaseEntity';
+import UserType from './UserType';
 
 type AnyUser = {
   type: UserType;

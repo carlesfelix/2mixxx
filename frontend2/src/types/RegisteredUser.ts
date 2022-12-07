@@ -1,4 +1,4 @@
-import AnyUser from "./AnyUser";
+import AnyUser from './AnyUser';
 
 type RegisteredUser = {
   email: string;
