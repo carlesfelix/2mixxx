@@ -1,10 +1,10 @@
-import Spinner from "@/components/atoms/Spinner";
-import { Routes } from "@/core/core-router";
-import mainRoutes from "@/routes/main.routes";
-import UserType from "@/types/UserType";
+import Spinner from '@/components/atoms/Spinner'
+import { Routes } from '@/core/core-router'
+import mainRoutes from '@/routes/main.routes'
+import UserType from '@/types/UserType'
 
-export default function RootLayout() {
-  const userType: UserType = "registered";
+export default function RootLayout () {
+  const userType: UserType = 'registered'
   return (
     <Routes
       loadingElement={
@@ -14,5 +14,5 @@ export default function RootLayout() {
       }
       routes={mainRoutes(userType)}
     />
-  );
+  )
 }

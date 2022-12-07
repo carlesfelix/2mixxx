@@ -1,2 +1,2 @@
-export { default } from "./DesktopMainMenu";
-export * from "./types";
+export { default } from './DesktopMainMenu'
+export * from './types'

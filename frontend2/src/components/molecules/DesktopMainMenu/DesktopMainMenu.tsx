@@ -1,12 +1,12 @@
-import { MAIN_MENU_LINKS } from "@/constants/links";
-import classNames from "classnames";
-import MainMenuLinks from "../MainMenuLinks";
-import "./DesktopMainMenu.css";
-import { DesktopMainMenuProps } from "./types";
+import { MAIN_MENU_LINKS } from '@/constants/links'
+import classNames from 'classnames'
+import MainMenuLinks from '../MainMenuLinks'
+import './DesktopMainMenu.css'
+import { DesktopMainMenuProps } from './types'
 
-export default function DesktopMainMenu(props: DesktopMainMenuProps) {
-  const { className } = props;
-  const rootClassName = classNames('DesktopMainMenu', className);
+export default function DesktopMainMenu (props: DesktopMainMenuProps) {
+  const { className } = props
+  const rootClassName = classNames('DesktopMainMenu', className)
 
   return (
     <div className={rootClassName}>
@@ -19,5 +19,5 @@ export default function DesktopMainMenu(props: DesktopMainMenuProps) {
         <MainMenuLinks linkItems={MAIN_MENU_LINKS} />
       </div>
     </div>
-  );
+  )
 }

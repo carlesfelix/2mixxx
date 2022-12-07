@@ -1,19 +1,19 @@
-import { ReactComponent as MenuIcon } from '@/assets/svg/Menu.svg';
-import IconButton from "@/components/atoms/IconButton";
-import MainMenuLinks from '@/components/molecules/MainMenuLinks';
-import { MAIN_MENU_LINKS } from '@/constants/links';
-import classNames from "classnames";
-import { MobileMainMenuProps } from "../../types";
-import "./MobileMainMenu.css";
+import { ReactComponent as MenuIcon } from '@/assets/svg/Menu.svg'
+import IconButton from '@/components/atoms/IconButton'
+import MainMenuLinks from '@/components/molecules/MainMenuLinks'
+import { MAIN_MENU_LINKS } from '@/constants/links'
+import classNames from 'classnames'
+import { MobileMainMenuProps } from '../../types'
+import './MobileMainMenu.css'
 
-export default function MobileMainMenu(props: MobileMainMenuProps) {
-  const { className, onClose } = props;
+export default function MobileMainMenu (props: MobileMainMenuProps) {
+  const { className, onClose } = props
 
-  function clickHandler(): void {
-    onClose && onClose();
+  function clickHandler (): void {
+    onClose && onClose()
   }
 
-  const rootClassName = classNames('MobileMainMenu', className);
+  const rootClassName = classNames('MobileMainMenu', className)
 
   return (
     <div className={rootClassName}>
@@ -33,5 +33,5 @@ export default function MobileMainMenu(props: MobileMainMenuProps) {
         <MainMenuLinks linkItems={MAIN_MENU_LINKS} />
       </div>
     </div>
-  );
+  )
 }

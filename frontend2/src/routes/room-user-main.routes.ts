@@ -1,5 +1,5 @@
-import { Route } from '@/core/core-router';
-import { NotFoundPage } from '@/pages';
+import { Route } from '@/core/core-router'
+import { NotFoundPage } from '@/pages'
 
 export default function roomUserMainRoutes (): Route[] {
   return [
@@ -11,5 +11,5 @@ export default function roomUserMainRoutes (): Route[] {
       path: '*',
       activate: { redirectTo: '/404' }
     }
-  ];
+  ]
 }

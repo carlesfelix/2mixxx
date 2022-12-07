@@ -1,11 +1,11 @@
-import { useRef } from "react";
+import { useRef } from 'react'
 
-export default function useCreateInstance<Instance extends object>(
+export default function useCreateInstance<Instance extends object> (
   instanceBuilder: () => Instance
 ): Instance {
-  const ref = useRef<Instance | null>(null);
+  const ref = useRef<Instance | null>(null)
   if (ref.current === null) {
-    ref.current = instanceBuilder();
+    ref.current = instanceBuilder()
   }
-  return ref.current;
+  return ref.current
 }

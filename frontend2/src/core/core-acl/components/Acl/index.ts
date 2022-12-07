@@ -1,1 +1,1 @@
-export { default } from "./Acl";
+export { default } from './Acl'

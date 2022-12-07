@@ -1,7 +1,7 @@
-export default function RegisteredUserCreateEventPage() {
+export default function RegisteredUserCreateEventPage () {
   return (
     <div className="RegisteredUserCreateEventPage">
       RegisteredUserCreateEventPage
     </div>
-  );
+  )
 }

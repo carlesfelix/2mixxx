@@ -1,7 +1,7 @@
-export default function NotFoundPage() {
+export default function NotFoundPage () {
   return (
     <div className="NotFoundPage">
       NotFoundPage
     </div>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react'
 
 export type SidebarStatus = 'opening' | 'closing' | 'opened' | 'closed';
 export type SidebarProps = {

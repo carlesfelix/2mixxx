@@ -1,23 +1,23 @@
-import { useFocusHighlight } from '@/core/core-pointer-element';
-import { NavLink } from '@/core/core-router';
-import classNames from 'classnames';
-import { FocusEvent } from 'react';
-import './MainMenuNavLink.css';
-import { MainMenuNavLinkProps } from './types';
+import { useFocusHighlight } from '@/core/core-pointer-element'
+import { NavLink } from '@/core/core-router'
+import classNames from 'classnames'
+import { FocusEvent } from 'react'
+import './MainMenuNavLink.css'
+import { MainMenuNavLinkProps } from './types'
 
-export default function MainMenuNavLink(props: MainMenuNavLinkProps) {
-  const { icon, label, to } = props;
-  const { blur, focus, isHighlighted } = useFocusHighlight();
-  function focusHandler(event: FocusEvent<HTMLAnchorElement>): void {
-    focus(event);
+export default function MainMenuNavLink (props: MainMenuNavLinkProps) {
+  const { icon, label, to } = props
+  const { blur, focus, isHighlighted } = useFocusHighlight()
+  function focusHandler (event: FocusEvent<HTMLAnchorElement>): void {
+    focus(event)
   }
-  function blurHandler(): void {
-    blur();
+  function blurHandler (): void {
+    blur()
   }
   const rootClassName = classNames(
     'MainMenuNavLink',
     { 'MainMenuNavLink--highlighted': isHighlighted }
-  );
+  )
   return (
     <NavLink
       to={to}
@@ -33,5 +33,5 @@ export default function MainMenuNavLink(props: MainMenuNavLinkProps) {
         {label}
       </span>
     </NavLink>
-  );
+  )
 }

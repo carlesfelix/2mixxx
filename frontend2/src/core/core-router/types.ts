@@ -1,4 +1,4 @@
-import { FocusEvent, LazyExoticComponent, ReactNode } from 'react';
+import { FocusEvent, LazyExoticComponent, ReactNode } from 'react'
 
 export type Route = {
   path: string;

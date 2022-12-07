@@ -1,20 +1,20 @@
-import { AsyncLayoutProps } from "./types";
+import { AsyncLayoutProps } from './types'
 
-export function AsyncLayout(props: AsyncLayoutProps) {
+export function AsyncLayout (props: AsyncLayoutProps) {
   const {
     children,
     error,
     errorContent,
     inProgress,
     inProgressContent
-  } = props;
+  } = props
 
   if (inProgress) {
-    return <>{inProgressContent}</>;
+    return <>{inProgressContent}</>
   }
 
   if (error) {
-    return <>{errorContent}</>;
+    return <>{errorContent}</>
   }
 
   return <>{children}</>

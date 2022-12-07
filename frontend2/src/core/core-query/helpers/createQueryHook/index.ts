@@ -1,2 +1,2 @@
-export { default } from "./createQueryHook";
-export * from "./types";
+export { default } from './createQueryHook'
+export * from './types'

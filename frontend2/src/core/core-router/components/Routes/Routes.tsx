@@ -1,15 +1,15 @@
-import { Suspense } from 'react';
-import { Navigate, Route, Routes as ReactRouterRoutes } from 'react-router-dom';
-import { RoutesProps } from '../../types';
+import { Suspense } from 'react'
+import { Navigate, Route, Routes as ReactRouterRoutes } from 'react-router-dom'
+import { RoutesProps } from '../../types'
 
-export default function Routes(props: RoutesProps): JSX.Element {
-  const { routes, loadingElement } = props;
+export default function Routes (props: RoutesProps): JSX.Element {
+  const { routes, loadingElement } = props
   const allowedRoutes = routes
     .map(({ activate = true, ...rest }) => ({
       ...rest,
       activate
     }))
-    .filter(({ activate }) => activate);
+    .filter(({ activate }) => activate)
   return (
     <ReactRouterRoutes>
       {
@@ -21,18 +21,20 @@ export default function Routes(props: RoutesProps): JSX.Element {
               path={path}
               key={iRoute}
               element={
-                typeof activate === 'boolean' ? (
+                typeof activate === 'boolean'
+                  ? (
                   <Suspense fallback={loadingElement}>
                     {PageComponent && <PageComponent />}
                   </Suspense>
-                ) : (
+                    )
+                  : (
                   <Navigate to={activate.redirectTo} />
-                )
+                    )
               }
             />
-          );
+          )
         })
       }
     </ReactRouterRoutes>
-  );
+  )
 }

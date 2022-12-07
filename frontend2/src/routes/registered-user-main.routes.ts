@@ -1,9 +1,9 @@
-import { Route } from '@/core/core-router';
+import { Route } from '@/core/core-router'
 import {
   RegisteredUserEventsPage,
   NotFoundPage,
   RegisteredUserCreateEventPage
-} from '@/pages';
+} from '@/pages'
 
 export default function registeredUserMainRoutes (): Route[] {
   return [
@@ -23,5 +23,5 @@ export default function registeredUserMainRoutes (): Route[] {
       path: '*',
       activate: { redirectTo: '/404' }
     }
-  ];
+  ]
 }

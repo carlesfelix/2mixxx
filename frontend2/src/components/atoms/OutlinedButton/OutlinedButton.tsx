@@ -1,9 +1,9 @@
-import { useFocusHighlight } from "@/core/core-pointer-element";
-import classNames from "classnames";
-import { FocusEvent, ForwardedRef, forwardRef } from "react";
-import { OutlinedButtonProps } from "./types";
+import { useFocusHighlight } from '@/core/core-pointer-element'
+import classNames from 'classnames'
+import { FocusEvent, ForwardedRef, forwardRef } from 'react'
+import { OutlinedButtonProps } from './types'
 
-function OutlinedButtonWithRef(
+function OutlinedButtonWithRef (
   props: OutlinedButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
@@ -13,8 +13,8 @@ function OutlinedButtonWithRef(
     color = 'current',
     size = 'md',
     onClick
-  } = props;
-  const { isHighlighted, focus, blur } = useFocusHighlight();
+  } = props
+  const { isHighlighted, focus, blur } = useFocusHighlight()
 
   const rootClassName = classNames(
     'OutlinedButton',
@@ -24,14 +24,14 @@ function OutlinedButtonWithRef(
     `_button--${size}`,
     { '_button--highlighted': isHighlighted },
     className
-  );
+  )
 
-  function focusHandler(event: FocusEvent): void {
-    focus(event);
+  function focusHandler (event: FocusEvent): void {
+    focus(event)
   }
 
-  function blurHander(): void {
-    blur();
+  function blurHander (): void {
+    blur()
   }
 
   return (
@@ -44,8 +44,8 @@ function OutlinedButtonWithRef(
     >
       {children}
     </button>
-  );
+  )
 }
 
-const OutlinedButton = forwardRef(OutlinedButtonWithRef);
-export default OutlinedButton;
+const OutlinedButton = forwardRef(OutlinedButtonWithRef)
+export default OutlinedButton

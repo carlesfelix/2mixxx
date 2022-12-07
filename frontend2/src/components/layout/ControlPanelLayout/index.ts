@@ -1,2 +1,2 @@
-export { default } from "./ControlPanelLayout";
-export * from "./types";
+export { default } from './ControlPanelLayout'
+export * from './types'

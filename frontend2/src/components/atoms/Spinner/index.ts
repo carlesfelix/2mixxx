@@ -1,2 +1,2 @@
-export { default } from "./Spinner";
-export * from "./types";
+export { default } from './Spinner'
+export * from './types'

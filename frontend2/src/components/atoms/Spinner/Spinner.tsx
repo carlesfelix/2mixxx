@@ -1,9 +1,9 @@
-import classNames from "classnames";
-import "./Spinner.css";
-import { SpinnerProps } from "./types";
+import classNames from 'classnames'
+import './Spinner.css'
+import { SpinnerProps } from './types'
 
-export default function Spinner(props: SpinnerProps) {
-  const { color = 'current', className } = props;
+export default function Spinner (props: SpinnerProps) {
+  const { color = 'current', className } = props
   const rootClassName = classNames(
     'Spinner',
     `Spinner--${color}`,

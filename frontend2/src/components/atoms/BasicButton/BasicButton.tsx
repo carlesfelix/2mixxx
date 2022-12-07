@@ -1,9 +1,9 @@
-import { useFocusHighlight } from "@/core/core-pointer-element";
-import classNames from "classnames";
-import { FocusEvent, ForwardedRef, forwardRef } from "react";
-import { BasicButtonProps } from "./types";
+import { useFocusHighlight } from '@/core/core-pointer-element'
+import classNames from 'classnames'
+import { FocusEvent, ForwardedRef, forwardRef } from 'react'
+import { BasicButtonProps } from './types'
 
-function BasicButtonWithRef(
+function BasicButtonWithRef (
   props: BasicButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
@@ -13,8 +13,8 @@ function BasicButtonWithRef(
     color = 'current',
     size = 'md',
     onClick
-  } = props;
-  const { isHighlighted, focus, blur } = useFocusHighlight();
+  } = props
+  const { isHighlighted, focus, blur } = useFocusHighlight()
 
   const rootClassName = classNames(
     'BasicButton',
@@ -24,14 +24,14 @@ function BasicButtonWithRef(
     `_button--${size}`,
     { '_button--highlighted': isHighlighted },
     className
-  );
+  )
 
-  function focusHandler(event: FocusEvent): void {
-    focus(event);
+  function focusHandler (event: FocusEvent): void {
+    focus(event)
   }
 
-  function blurHander(): void {
-    blur();
+  function blurHander (): void {
+    blur()
   }
 
   return (
@@ -44,8 +44,8 @@ function BasicButtonWithRef(
     >
       {children}
     </button>
-  );
+  )
 }
 
-const BasicButton = forwardRef(BasicButtonWithRef);
-export default BasicButton;
+const BasicButton = forwardRef(BasicButtonWithRef)
+export default BasicButton

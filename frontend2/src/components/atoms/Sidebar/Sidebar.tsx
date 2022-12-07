@@ -1,56 +1,56 @@
-import useOverlayRootElement from "@/hooks/useOverlayRootElement";
-import classNames from "classnames";
+import useOverlayRootElement from '@/hooks/useOverlayRootElement'
+import classNames from 'classnames'
 import {
   AnimationEvent,
   KeyboardEvent,
   MouseEvent,
   useRef,
   useState
-} from "react";
-import { createPortal } from "react-dom";
-import SidebarContent from "./components/SidebarContent";
-import './Sidebar.css';
-import { SidebarProps, SidebarStatus } from "./types";
+} from 'react'
+import { createPortal } from 'react-dom'
+import SidebarContent from './components/SidebarContent'
+import './Sidebar.css'
+import { SidebarProps, SidebarStatus } from './types'
 
-export default function Sidebar(props: SidebarProps) {
+export default function Sidebar (props: SidebarProps) {
   const {
     isOpen,
     children,
     className,
     contentClassName,
     onClose
-  } = props;
-  const [ status, setStatus ] = useState<SidebarStatus>(isOpen ? 'opened' : 'closed');
-  const overlayRootElement = useOverlayRootElement();
-  const sidebarContentRef = useRef<HTMLDivElement>(null);
+  } = props
+  const [status, setStatus] = useState<SidebarStatus>(isOpen ? 'opened' : 'closed')
+  const overlayRootElement = useOverlayRootElement()
+  const sidebarContentRef = useRef<HTMLDivElement>(null)
 
-  function animationEndHandler(event: AnimationEvent): void {
+  function animationEndHandler (event: AnimationEvent): void {
     if (event.animationName === 'Sidebar__fadein') {
-      setStatus('opened');
+      setStatus('opened')
     } else if (event.animationName === 'Sidebar__fadeout') {
-      setStatus('closed');
+      setStatus('closed')
     }
   }
 
-  function animationStartHandler(event: AnimationEvent): void {
+  function animationStartHandler (event: AnimationEvent): void {
     if (event.animationName === 'Sidebar__fadein') {
-      setStatus('opening');
+      setStatus('opening')
     } else if (event.animationName === 'Sidebar__fadeout') {
-      setStatus('closing');
+      setStatus('closing')
     }
   }
-  
-  function clickHandler(event: MouseEvent<HTMLDivElement>): void {
+
+  function clickHandler (event: MouseEvent<HTMLDivElement>): void {
     if (
       !sidebarContentRef.current?.contains(event.target as Node)
     ) {
-      onClose && onClose();
+      onClose && onClose()
     }
   }
 
-  function keydownHandler(event: KeyboardEvent<HTMLDivElement>): void {
+  function keydownHandler (event: KeyboardEvent<HTMLDivElement>): void {
     if (event.code === 'Escape') {
-      onClose && onClose();
+      onClose && onClose()
     }
   }
 
@@ -61,12 +61,13 @@ export default function Sidebar(props: SidebarProps) {
       'Sidebar--closed': !isOpen
     },
     className
-  );
-  const sidebarContentClassName = classNames('Sidebar__content', contentClassName);
+  )
+  const sidebarContentClassName = classNames('Sidebar__content', contentClassName)
 
-  const showSidebar = isOpen || status !== 'closed';
+  const showSidebar = isOpen || status !== 'closed'
   return createPortal((
     showSidebar && (
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div
         className={rootClassName}
         onAnimationStart={animationStartHandler}
@@ -80,5 +81,5 @@ export default function Sidebar(props: SidebarProps) {
         </SidebarContent>
       </div>
     )
-  ), overlayRootElement); 
+  ), overlayRootElement)
 }

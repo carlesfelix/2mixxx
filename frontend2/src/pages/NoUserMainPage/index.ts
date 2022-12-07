@@ -1,3 +1,3 @@
-import NoUserMainPage from "./NoUserMainPage";
+import NoUserMainPage from './NoUserMainPage'
 
-export default NoUserMainPage;
+export default NoUserMainPage

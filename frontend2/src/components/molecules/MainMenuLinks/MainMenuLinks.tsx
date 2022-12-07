@@ -1,11 +1,11 @@
-import MainMenuNavLink from "@/components/atoms/MainMenuNavLink";
-import classNames from "classnames";
-import "./MainMenuLinks.css";
-import { MainMenuLinksProps } from "./types";
+import MainMenuNavLink from '@/components/atoms/MainMenuNavLink'
+import classNames from 'classnames'
+import './MainMenuLinks.css'
+import { MainMenuLinksProps } from './types'
 
-export default function MainMenuLinks(props: MainMenuLinksProps) {
-  const { linkItems, className } = props;
-  const rootClassName = classNames('MainMenuLinks', className);
+export default function MainMenuLinks (props: MainMenuLinksProps) {
+  const { linkItems, className } = props
+  const rootClassName = classNames('MainMenuLinks', className)
   return (
     <ul className={rootClassName}>
       {
@@ -20,5 +20,5 @@ export default function MainMenuLinks(props: MainMenuLinksProps) {
         ))
       }
     </ul>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import IHttp from "./IHttp";
+import IHttp from './IHttp'
 
 export default interface IHttpBuilder {
   getInstance(): IHttp;

@@ -1,1 +1,1 @@
-export { default } from "./useAllEvents";
+export { default } from './useAllEvents'

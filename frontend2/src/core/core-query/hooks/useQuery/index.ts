@@ -1,2 +1,2 @@
-export { default } from "./useQuery";
-export * from "./types";
+export { default } from './useQuery'
+export * from './types'

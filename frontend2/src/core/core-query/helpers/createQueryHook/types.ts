@@ -1,12 +1,15 @@
 export type HookFactoryItem<
-  HookArgs extends any[] = [],
-  HookReturn = any
+  HookArgs extends unknown[] = [],
+  HookReturn = unknown
 > = {
   environments: string[];
   hook: (...args: HookArgs) => HookReturn;
 };
 
-export type CreateQueryHookProps<HookArgs extends any[] = [], HookReturn = any> = {
+export type CreateQueryHookProps<
+  HookArgs extends unknown[] = [],
+  HookReturn = unknown
+> = {
   environment: string,
   hookFactory: HookFactoryItem<HookArgs, HookReturn>[];
 };

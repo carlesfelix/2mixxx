@@ -1,8 +1,8 @@
-import Spinner from "@/components/atoms/Spinner";
-import { Routes } from "@/core/core-router";
-import noUserMainRoutes from "@/routes/no-user-main.routes";
+import Spinner from '@/components/atoms/Spinner'
+import { Routes } from '@/core/core-router'
+import noUserMainRoutes from '@/routes/no-user-main.routes'
 
-export default function NoUserMainPage() {
+export default function NoUserMainPage () {
   return (
     <div className="NoUserMainPage">
       <Routes
@@ -14,5 +14,5 @@ export default function NoUserMainPage() {
         routes={noUserMainRoutes()}
       />
     </div>
-  );
+  )
 }

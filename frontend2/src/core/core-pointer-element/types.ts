@@ -1,4 +1,4 @@
-import { FocusEvent, ReactNode } from "react";
+import { FocusEvent, ReactNode } from 'react'
 
 export type PointerElementProviderProps = {
   children: ReactNode;

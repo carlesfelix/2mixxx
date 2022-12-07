@@ -4,4 +4,4 @@ type BaseEntity = {
   createdAt?: string;
 };
 
-export default BaseEntity;
+export default BaseEntity

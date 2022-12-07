@@ -1,13 +1,13 @@
-import createQueryHook from "@/core/core-query/helpers/createQueryHook";
-import useAllEventsApiRest from "./useAllEventsApiRest";
+import createQueryHook from '@/core/core-query/helpers/createQueryHook'
+import useAllEventsApiRest from './useAllEventsApiRest'
 
 const useAllEvents = createQueryHook({
-  environment: "DEVELOPMENT",
+  environment: 'DEVELOPMENT',
   hookFactory: [
     {
-      environments: ["DEVELOPMENT", "PRODUCTION"],
+      environments: ['DEVELOPMENT', 'PRODUCTION'],
       hook: useAllEventsApiRest
     }
   ]
-});
-export default useAllEvents;
+})
+export default useAllEvents

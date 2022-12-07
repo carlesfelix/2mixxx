@@ -1,3 +1,3 @@
-import RegisteredUserMainPage from "./RegisteredUserMainPage";
+import RegisteredUserMainPage from './RegisteredUserMainPage'
 
-export default RegisteredUserMainPage;
+export default RegisteredUserMainPage

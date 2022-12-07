@@ -1,5 +1,5 @@
-import Async from "@/core/core-types/Async";
-import BaseEntity from "@/core/core-types/BaseEntity";
+import Async from '@/core/core-types/Async'
+import BaseEntity from '@/core/core-types/BaseEntity'
 
 export type EventEntity = {
   code: string;

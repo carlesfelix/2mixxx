@@ -1,15 +1,19 @@
-import BasicButton from "@/components/atoms/BasicButton";
-import IconButton from "@/components/atoms/IconButton";
-import OutlinedButton from "@/components/atoms/OutlinedButton";
-import useAllEvents from "@/query-hooks/useAllEvents";
+import BasicButton from '@/components/atoms/BasicButton'
+import IconButton from '@/components/atoms/IconButton'
+import OutlinedButton from '@/components/atoms/OutlinedButton'
+import useAllEvents from '@/query-hooks/useAllEvents'
 
-export default function RegisteredUserEventsPage() {
-  const { events, removeEvent } = useAllEvents();
+export default function RegisteredUserEventsPage () {
+  const { events, removeEvent } = useAllEvents()
 
-  function removeEventHandler(): void {
-    removeEvent('e3ef7592-3ebe-409a-a4a5-7bad9869246d');
+  function removeEventHandler (): void {
+    removeEvent('e3ef7592-3ebe-409a-a4a5-7bad9869246d').then(() => {
+      console.log('Removed')
+    }).catch(() => {
+      console.log('error')
+    })
   }
-  console.log(events);
+  console.log(events)
   return (
     <div className="RegisteredUserEventsPage">
       <OutlinedButton size="sm" color="primary" onClick={removeEventHandler}>
@@ -67,5 +71,5 @@ export default function RegisteredUserEventsPage() {
         X
       </IconButton>
     </div>
-  );
+  )
 }

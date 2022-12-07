@@ -1,5 +1,5 @@
-import AnyUser from './AnyUser';
+import AnyUser from './AnyUser'
 
 type RoomUser = AnyUser;
 
-export default RoomUser;
+export default RoomUser

@@ -1,12 +1,12 @@
-import Sidebar from '@/components/atoms/Sidebar';
-import classNames from "classnames";
-import MobileMainMenu from './components/MobileMainMenu';
-import { MobileMainMenuSidebarProps } from "./types";
-import "./MobileMainMenuSidebar.css";
+import Sidebar from '@/components/atoms/Sidebar'
+import classNames from 'classnames'
+import MobileMainMenu from './components/MobileMainMenu'
+import { MobileMainMenuSidebarProps } from './types'
+import './MobileMainMenuSidebar.css'
 
-export default function MobileMainMenuSidebar(props: MobileMainMenuSidebarProps) {
-  const { className, onClose, isOpen } = props;
-  const rootClassName = classNames('MobileMainMenuSidebar', className);
+export default function MobileMainMenuSidebar (props: MobileMainMenuSidebarProps) {
+  const { className, onClose, isOpen } = props
+  const rootClassName = classNames('MobileMainMenuSidebar', className)
   return (
     <Sidebar className={rootClassName} isOpen={isOpen} onClose={onClose}>
       <MobileMainMenu
@@ -14,5 +14,5 @@ export default function MobileMainMenuSidebar(props: MobileMainMenuSidebarProps)
         className="MobileMainMenuSidebar__menu"
       />
     </Sidebar>
-  );
+  )
 }

@@ -1,1 +1,1 @@
-export { default } from './createAppendChildElementHook';
+export { default } from './createAppendChildElementHook'
