@@ -19,5 +19,5 @@ export default function useAllEventsApiRest(): UseAllEventsReturn {
   return {
     events: state,
     removeEvent
-  }
+  };
 }

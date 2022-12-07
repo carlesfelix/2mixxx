@@ -2,7 +2,7 @@ import { HttpRequestOptions } from "@/core/core-http";
 
 export type UseQueryOptions<Data> = HttpRequestOptions & {
   defaultData?: Data;
-  httpMethod?: "get" | "post";
+  httpData?: any;
 };
 
 export type UseQueryState<Data> = {
