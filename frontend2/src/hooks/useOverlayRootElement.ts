@@ -1,4 +1,4 @@
-import { useOverlayRootElementHOH } from '@/core/core-hooks';
+import createAppendChildElementHook from '@/core/core-append-child-element';
 
-const useOverlayRootElement = useOverlayRootElementHOH('__app-2mixx__overlay-root');
+const useOverlayRootElement = createAppendChildElementHook('__app-2mixx__overlay-root');
 export default useOverlayRootElement;
