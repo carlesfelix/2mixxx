@@ -1,6 +1,9 @@
 import { HttpRequestOptions } from "@/core/core-http";
 
-export type UseQueryOptions<Data> = HttpRequestOptions & { defaultData?: Data };
+export type UseQueryOptions<Data> = HttpRequestOptions & {
+  defaultData?: Data;
+  httpMethod?: "get" | "post";
+};
 
 export type UseQueryState<Data> = {
   inProgress: boolean;

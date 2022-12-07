@@ -3,11 +3,12 @@ import { SWRConfig } from "swr";
 import { QueryProviderProps } from "./types";
 
 export default function QueryProvider(props: QueryProviderProps) {
-  const { children, http, httpMethod = "get" } = props;
+  const { children, http } = props;
   return (
     <SWRConfig value={{
       fetcher: (
         url: string,
+        httpMethod: "get" | "post",
         options?: HttpRequestOptions
       ) => http[httpMethod](url, options).then(res => res.data)
     }}>

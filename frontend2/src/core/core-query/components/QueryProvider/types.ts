@@ -4,5 +4,4 @@ import { ReactNode } from "react";
 export type QueryProviderProps = {
   children: ReactNode;
   http: IHttp;
-  httpMethod?: "get" | "post";
 };

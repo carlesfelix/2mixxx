@@ -5,8 +5,10 @@ export default function useQuery<Data>(
   key: string,
   options: UseQueryOptions<Data> = {}
 ): UseQueryReturn<Data> {
-  const { defaultData, ...fetcherDeps } = options;
-  const { data, error, isValidating, mutate } = useSWR([key, fetcherDeps]);
+  const { defaultData, httpMethod = "get", ...fetcherDeps } = options;
+  const { data, error, isValidating, mutate } = useSWR([
+    key, httpMethod, fetcherDeps
+  ]);
   return {
     state: {
       data: data || defaultData,
