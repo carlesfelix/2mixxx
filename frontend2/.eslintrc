@@ -21,8 +21,8 @@
       "version": "detect"
     }
   },
-  "rules": {
-    "semi": [2, "always"]
+  "globals": {
+    "JSX": "readonly"
   },
   "extends": [
     "eslint:recommended",
