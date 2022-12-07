@@ -8,7 +8,6 @@
     "browser": true,
     "node": true
   },
-  "root": true,
   "parserOptions": {
     "project": "**/tsconfig.json",
     "ecmaVersion": "latest",
@@ -23,7 +22,6 @@
     }
   },
   "rules": {
-    "no-console": "error",
     "semi": [2, "always"]
   },
   "extends": [
