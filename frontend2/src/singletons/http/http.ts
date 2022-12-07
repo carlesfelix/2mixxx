@@ -1,7 +1,7 @@
-import createHttp, { IHttpBuilder } from "@/core/core-http";
-import RemoteApiHttpBuilder from "./RemoteApiHttpBuilder";
+import createHttp, { IHttpBuilder } from '@/core/core-http';
+import RemoteApiHttpBuilder from './RemoteApiHttpBuilder';
 
-function getHttpBuilder(): IHttpBuilder {
+function getHttpBuilder (): IHttpBuilder {
   return new RemoteApiHttpBuilder('http://localhost:3001/api');
 }
 
