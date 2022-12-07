@@ -7,7 +7,7 @@
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint": "eslint ./**/*.{ts,tsx}",
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
