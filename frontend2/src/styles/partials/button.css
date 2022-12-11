@@ -126,18 +126,28 @@
 
   /* Basic button */
   &._button--basic {
-    transition-property: filter;
+    outline: transparent solid 0.125rem;
+    outline-offset: 0.125rem;
+    transition-property: outline-color;
     transition-duration: 200ms;
   }
 
   &._button--basic-primary {
     background-color: var(--theme-primary-400);
     color: var(--theme-primary-contrast-400);
+
+    &._button--basic:not(:disabled)._button--highlighted {
+      outline-color: var(--theme-primary-400);
+    }
   }
 
   &._button--basic-secondary {
     background-color: var(--theme-secondary-800);
     color: var(--theme-secondary-contrast-800);
+
+    &._button--basic:not(:disabled)._button--highlighted {
+      outline-color: var(--theme-secondary-800);
+    }
   }
 
   &._button--basic._button--sm {
@@ -166,10 +176,6 @@
     }
   }
 
-  &._button--basic:not(:disabled)._button--highlighted {
-    filter: brightness(1.2);
-  }
-
   /* Icon button */
   &._button--icon {
     border: 0.125rem solid transparent;
@@ -181,27 +187,8 @@
     justify-content: center;
     align-items: center;
     position: relative;
-
-    &::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: currentcolor;
-      opacity: 0;
-      pointer-events: none;
-      transition-property: opacity;
-      transition-duration: 200ms;
-    }
-  }
-
-  &._button--icon:not(:disabled):hover {
-    &::after {
-      opacity: 0.1;
-    }
+    transition-property: border-color;
+    transition-duration: 200ms;
   }
 
   &._button--icon-primary {
@@ -251,8 +238,6 @@
   }
 
   &._button--icon:not(:disabled)._button--highlighted {
-    &::after {
-      opacity: 0.1;
-    }
+    border-color: currentcolor;
   }
 }
