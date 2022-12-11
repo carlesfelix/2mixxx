@@ -4,7 +4,7 @@ import mainRoutes from '@/routes/main.routes'
 import UserType from '@/types/UserType'
 
 export default function RootLayout () {
-  const userType: UserType = 'registered'
+  const userType: UserType = 'none'
   return (
     <Routes
       loadingElement={
