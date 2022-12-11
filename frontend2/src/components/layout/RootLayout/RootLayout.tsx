@@ -1,18 +1,27 @@
 import Spinner from '@/components/atoms/Spinner'
+import { AsyncLayout } from '@/core/core-async-layout'
 import { Routes } from '@/core/core-router'
+import useUserType from '@/hooks/useUserType'
 import mainRoutes from '@/routes/main.routes'
-import UserType from '@/types/UserType'
 
 export default function RootLayout () {
-  const userType: UserType = 'none'
+  const { inProgress, type } = useUserType()
+
+  const progressContent = (
+    <div className="_layout _layout--center">
+      <Spinner color="primary" />
+    </div>
+  )
+
   return (
-    <Routes
-      loadingElement={
-        <div className="_layout _layout--center">
-          <Spinner color="primary" />
-        </div>
-      }
-      routes={mainRoutes(userType)}
-    />
+    <AsyncLayout
+      inProgress={inProgress}
+      inProgressContent={progressContent}
+    >
+      <Routes
+        loadingElement={progressContent}
+        routes={mainRoutes(type)}
+      />
+    </AsyncLayout>
   )
 }
