@@ -24,7 +24,7 @@ export default function Routes (props: RoutesProps): JSX.Element {
                 typeof activate === 'boolean'
                   ? (
                   <Suspense fallback={loadingElement}>
-                    {PageComponent && <PageComponent />}
+                    {(PageComponent != null) && <PageComponent />}
                   </Suspense>
                     )
                   : (

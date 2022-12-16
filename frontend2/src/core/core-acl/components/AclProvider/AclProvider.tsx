@@ -1,8 +1,10 @@
-import { useCallback, useState } from 'react'
+import { ReactElement, useCallback, useState } from 'react'
 import { ACL_CONTEXT } from '../../constants'
 import { AclProviderProps } from '../../types'
 
-export default function AclProvider (props: AclProviderProps) {
+export default function AclProvider (
+  props: AclProviderProps
+): ReactElement {
   const {
     children,
     initialPermissions = []

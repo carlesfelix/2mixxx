@@ -1,0 +1,41 @@
+@import "/src/styles/utils/index.css";
+
+.EventCard {
+  & .EventCard__header {
+    display: flex;
+    align-items: center;
+    gap: 2ch;
+  }
+
+  & .EventCard__header-title {
+    flex-grow: 1;
+    margin: 0;
+    display: contents;
+  }
+
+  & .EventCard__title-ellipsis {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & .EventCard__title {
+    white-space: nowrap;
+  }
+
+  & .EventCard__header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5ch;
+  }
+
+  & .EventCard__header-menu {
+    margin-right: -0.563rem;
+  }
+
+  @media (--min-lg-window) {
+    & .EventCard__header-menu {
+      margin-right: -0.625rem;
+    }
+  }
+}

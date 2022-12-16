@@ -2,11 +2,13 @@ import { ReactComponent as MenuIcon } from '@/assets/svg/Menu.svg'
 import IconButton from '@/components/atoms/IconButton'
 import DesktopMainMenu from '@/components/molecules/DesktopMainMenu'
 import MobileMainMenuSidebar from '@/components/molecules/MobileMainMenuSidebar'
-import { useState } from 'react'
+import { ReactElement, useState } from 'react'
 import './ControlPanelLayout.css'
 import { ControlPanelLayoutProps } from './types'
 
-export default function ControlPanelLayout (props: ControlPanelLayoutProps) {
+export default function ControlPanelLayout (
+  props: ControlPanelLayoutProps
+): ReactElement {
   const { children } = props
   const [isOpen, setIsOpen] = useState<boolean>(false)
 

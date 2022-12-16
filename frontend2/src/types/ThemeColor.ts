@@ -1,3 +1,3 @@
-type ThemeColor = 'primary' | 'secondary';
+type ThemeColor = 'primary' | 'secondary'
 
 export default ThemeColor

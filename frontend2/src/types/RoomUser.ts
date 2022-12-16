@@ -1,5 +1,3 @@
 import AnyUser from './AnyUser'
 
-type RoomUser = AnyUser;
-
-export default RoomUser
+export default interface RoomUser extends AnyUser {}

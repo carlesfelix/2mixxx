@@ -1,11 +1,11 @@
 import { FocusEvent, ReactNode } from 'react'
 
-export type PointerElementProviderProps = {
-  children: ReactNode;
-};
+export interface PointerElementProviderProps {
+  children: ReactNode
+}
 
-export type UseFocusHighlightReturn = {
-  focus: (event: FocusEvent) => void;
-  blur: () => void;
-  isHighlighted: boolean;
-};
+export interface UseFocusHighlightReturn {
+  focus: (event: FocusEvent) => void
+  blur: () => void
+  isHighlighted: boolean
+}

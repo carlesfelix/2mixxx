@@ -3,10 +3,13 @@ import IconButton from '@/components/atoms/IconButton'
 import MainMenuLinks from '@/components/molecules/MainMenuLinks'
 import { MAIN_MENU_LINKS } from '@/constants/links'
 import classNames from 'classnames'
+import { ReactElement } from 'react'
 import { MobileMainMenuProps } from '../../types'
 import './MobileMainMenu.css'
 
-export default function MobileMainMenu (props: MobileMainMenuProps) {
+export default function MobileMainMenu (
+  props: MobileMainMenuProps
+): ReactElement {
   const { className, onClose } = props
 
   function clickHandler (): void {

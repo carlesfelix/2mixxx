@@ -1,7 +1,9 @@
 import { RefObject, useEffect } from 'react'
 import { tabbable } from 'tabbable'
 
-export default function useFocusTrap<RootElement extends HTMLElement> (ref: RefObject<RootElement>): void {
+export default function useFocusTrap<
+  RootElement extends HTMLElement
+> (ref: RefObject<RootElement>): void {
   useEffect(() => {
     const currentRef = ref.current
     function keydownHandler (event: KeyboardEvent): void {

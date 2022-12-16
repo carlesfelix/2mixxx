@@ -1,9 +1,12 @@
 import MainMenuNavLink from '@/components/atoms/MainMenuNavLink'
 import classNames from 'classnames'
+import { ReactElement } from 'react'
 import './MainMenuLinks.css'
 import { MainMenuLinksProps } from './types'
 
-export default function MainMenuLinks (props: MainMenuLinksProps) {
+export default function MainMenuLinks (
+  props: MainMenuLinksProps
+): ReactElement {
   const { linkItems, className } = props
   const rootClassName = classNames('MainMenuLinks', className)
   return (

@@ -1,7 +1,7 @@
-export type HttpRequestHeaders = Record<string, string | number | boolean>;
+export type HttpRequestHeaders = Record<string, string | number | boolean>
 export type HttpResponseHeaders = Partial<Record<string, string> & {
   'set-cookie'?: string[]
-}>;
+}>
 
 export type HttpResponseType =
   | 'arraybuffer'
@@ -9,20 +9,20 @@ export type HttpResponseType =
   | 'document'
   | 'json'
   | 'text'
-  | 'stream';
+  | 'stream'
 
-export type HttpResponse<Data = unknown> = {
-  data: Data;
-  status: number;
-  headers: HttpResponseHeaders;
-};
+export interface HttpResponse<Data = unknown> {
+  data: Data
+  status: number
+  headers: HttpResponseHeaders
+}
 
-export type HttpRequestOptions = {
-  params?: unknown;
-  headers?: HttpRequestHeaders;
-  responseType?: HttpResponseType;
-};
-export type RequestHeadersInterceptor = () => Promise<HttpRequestHeaders>;
-export type AxiosHttpConfig = {
-  baseUrl: string;
-};
+export interface HttpRequestOptions {
+  params?: unknown
+  headers?: HttpRequestHeaders
+  responseType?: HttpResponseType
+}
+export type RequestHeadersInterceptor = () => Promise<HttpRequestHeaders>
+export interface AxiosHttpConfig {
+  baseUrl: string
+}

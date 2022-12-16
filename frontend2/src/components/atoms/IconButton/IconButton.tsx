@@ -1,12 +1,12 @@
 import { useFocusHighlight } from '@/core/core-pointer-element'
 import classNames from 'classnames'
-import { FocusEvent, ForwardedRef, forwardRef } from 'react'
+import { FocusEvent, ForwardedRef, forwardRef, ReactElement } from 'react'
 import { IconButtonProps } from './types'
 
 function IconButtonWithRef (
   props: IconButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
-) {
+): ReactElement {
   const {
     children,
     className,

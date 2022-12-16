@@ -1,11 +1,13 @@
 import { useFocusHighlight } from '@/core/core-pointer-element'
 import { NavLink } from '@/core/core-router'
 import classNames from 'classnames'
-import { FocusEvent } from 'react'
+import { FocusEvent, ReactElement } from 'react'
 import './MainMenuNavLink.css'
 import { MainMenuNavLinkProps } from './types'
 
-export default function MainMenuNavLink (props: MainMenuNavLinkProps) {
+export default function MainMenuNavLink (
+  props: MainMenuNavLinkProps
+): ReactElement {
   const { icon, label, to } = props
   const { blur, focus, isHighlighted } = useFocusHighlight()
   function focusHandler (event: FocusEvent<HTMLAnchorElement>): void {

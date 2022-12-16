@@ -1,9 +1,7 @@
-import BaseEntity from '@/core/core-types/BaseEntity'
+import BaseEntity from '@/types/BaseEntity'
 import UserType from './UserType'
 
-type AnyUser = {
-  type: UserType;
-  permissions: string[];
-} & BaseEntity;
-
-export default AnyUser
+export default interface AnyUser extends BaseEntity {
+  type: UserType
+  permissions: string[]
+}

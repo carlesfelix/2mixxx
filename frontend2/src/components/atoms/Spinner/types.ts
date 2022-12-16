@@ -1,6 +1,6 @@
 import ThemeColor from '@/types/ThemeColor'
 
-export type SpinnerProps = {
-  className?: string;
-  color?: ThemeColor;
-};
+export interface SpinnerProps {
+  className?: string
+  color?: ThemeColor
+}

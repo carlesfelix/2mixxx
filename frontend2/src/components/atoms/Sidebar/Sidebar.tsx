@@ -4,6 +4,7 @@ import {
   AnimationEvent,
   KeyboardEvent,
   MouseEvent,
+  ReactElement,
   useRef,
   useState
 } from 'react'
@@ -12,7 +13,7 @@ import SidebarContent from './components/SidebarContent'
 import './Sidebar.css'
 import { SidebarProps, SidebarStatus } from './types'
 
-export default function Sidebar (props: SidebarProps) {
+export default function Sidebar (props: SidebarProps): ReactElement {
   const {
     isOpen,
     children,

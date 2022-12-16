@@ -1,13 +1,13 @@
 import Async from '@/core/core-types/Async'
-import BaseEntity from '@/core/core-types/BaseEntity'
+import BaseEntity from '@/types/BaseEntity'
 
 export type EventEntity = {
-  code: string;
-  allowSongRequests: boolean;
-  canModerate: boolean;
-} & BaseEntity;
+  code: string
+  allowSongRequests: boolean
+  canModerate: boolean
+} & BaseEntity
 
-export type UseAllEventsReturn = {
-  events: Async<EventEntity[]>;
-  removeEvent: (eventId: string) => Promise<void>;
-};
+export interface UseAllEventsReturn {
+  events: Async<EventEntity[]>
+  removeEvent: (eventId: string) => Promise<void>
+}

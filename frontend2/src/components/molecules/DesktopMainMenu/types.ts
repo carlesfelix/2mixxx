@@ -1,3 +1,3 @@
-export type DesktopMainMenuProps = {
-  className?: string;
-};
+export interface DesktopMainMenuProps {
+  className?: string
+}

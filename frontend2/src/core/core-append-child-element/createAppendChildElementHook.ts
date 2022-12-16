@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 export default function createAppendChildElementHook (
   targetElementId: string,
   childElementTagName: keyof HTMLElementTagNameMap = 'div'
-) {
+): () => HTMLElement {
   const targetElement = window.document.getElementById(targetElementId)
 
   function useAppendChildElement (): HTMLElement {

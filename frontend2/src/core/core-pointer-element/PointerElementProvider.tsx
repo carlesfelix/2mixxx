@@ -1,8 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { ReactElement, useEffect, useRef } from 'react'
 import { POINTER_ELEMENT_CONTEXT } from './constants'
 import { PointerElementProviderProps } from './types'
 
-export default function PointerElementProvider (props: PointerElementProviderProps) {
+export default function PointerElementProvider (
+  props: PointerElementProviderProps
+): ReactElement {
   const { children } = props
   const elementRef = useRef<Element | null>(null)
 

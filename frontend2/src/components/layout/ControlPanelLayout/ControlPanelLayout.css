@@ -24,6 +24,8 @@ div.ControlPanelLayout {
 
   & .ControlPanelLayout__page-container {
     flex-grow: 1;
+    height: 0;
+    overflow: auto;
   }
 
   & .ControlPanelLayout__navigation-bar-left-content {

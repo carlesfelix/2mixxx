@@ -200,40 +200,40 @@
   }
 
   &._button--icon._button--sm {
-    width: 2.125rem;
-    height: 2.125rem;
-    font-size: 0.625rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
   }
 
   &._button--icon._button--md {
-    width: 2.625rem;
-    height: 2.625rem;
-    font-size: 1.125rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.25rem;
   }
 
   &._button--icon._button--lg {
-    width: 3.125rem;
-    height: 3.125rem;
-    font-size: 1.625rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
   }
 
   @media (--min-lg-window) {
     &._button--icon._button--sm {
-      width: 2.625rem;
-      height: 2.625rem;
-      font-size: 1.125rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      font-size: 1.25rem;
     }
 
     &._button--icon._button--md {
-      width: 3.125rem;
-      height: 3.125rem;
-      font-size: 1.625rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 1.5rem;
     }
 
     &._button--icon._button--lg {
-      height: 3.625rem;
-      width: 3.625rem;
-      font-size: 2.125rem;
+      height: 2.75rem;
+      width: 2.75rem;
+      font-size: 1.75rem;
     }
   }
 

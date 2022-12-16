@@ -1,3 +1,3 @@
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonSize = 'sm' | 'md' | 'lg'
 
 export default ButtonSize

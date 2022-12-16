@@ -19,8 +19,8 @@ export default function useAuth0Adapter (): UseOAuth2Return {
     auth0Logout(options)
   }, [auth0Logout])
 
-  const loginWithRedirect = useCallback((options?: LoginWithRedirectOptions) => {
-    return auth0LoginWithRedirect(options)
+  const loginWithRedirect = useCallback(async (options?: LoginWithRedirectOptions) => {
+    return await auth0LoginWithRedirect(options)
   }, [auth0LoginWithRedirect])
 
   return {

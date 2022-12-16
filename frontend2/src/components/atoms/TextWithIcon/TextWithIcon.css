@@ -1,0 +1,9 @@
+span.TextWithIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: 1ch;
+
+  & *:first-child {
+    font-size: 1.25em;
+  }
+}

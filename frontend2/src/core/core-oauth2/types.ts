@@ -1,21 +1,21 @@
-import { ReactNode } from 'react'
+import { FunctionComponent, ReactNode } from 'react'
 
-export type LoginWithRedirectOptions = {
-  appState?: string;
+export interface LoginWithRedirectOptions {
+  appState?: string
 }
 
-export type LogoutOptions = {
-  returnTo: string;
+export interface LogoutOptions {
+  returnTo: string
 }
 
-export type UseOAuth2Return = {
-  isAuthenticated: boolean;
-  inProgress: boolean;
-  getAccessTokenSilently: () => Promise<string>;
-  loginWithRedirect: (options?: LoginWithRedirectOptions) => Promise<void>;
-  logout: (options: LogoutOptions) => void;
+export interface UseOAuth2Return {
+  isAuthenticated: boolean
+  inProgress: boolean
+  getAccessTokenSilently: () => Promise<string>
+  loginWithRedirect: (options?: LoginWithRedirectOptions) => Promise<void>
+  logout: (options: LogoutOptions) => void
 }
 
 export type UseOAuth2 = () => UseOAuth2Return
 
-export type OAuth2ProviderComponent = (props: { children: ReactNode }) => JSX.Element
+export type OAuth2ProviderComponent = FunctionComponent<{ children: ReactNode }>

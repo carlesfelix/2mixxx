@@ -6,7 +6,6 @@ import {
   Auth0ProviderOptions
 } from '@auth0/auth0-react'
 import useAuth0Adapter from '../../hooks/useAuth0Adapter'
-import { ReactNode } from 'react'
 
 export default class Auth0Builder implements IOAuth2Builder {
   #options: Auth0ProviderOptions
@@ -16,7 +15,7 @@ export default class Auth0Builder implements IOAuth2Builder {
   }
 
   getOAuth2Provider (): OAuth2ProviderComponent {
-    const OAuth2Provider = (props: { children: ReactNode }) => (
+    const OAuth2Provider: OAuth2ProviderComponent = (props) => (
       <Auth0ProviderLib {...this.#options}>
         {props.children}
       </Auth0ProviderLib>

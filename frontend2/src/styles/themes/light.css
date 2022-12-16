@@ -1,51 +1,56 @@
 /* #046aae */
 
 :root {
-  --theme-common-white: #fff;
+  --theme-internal-white: #fff;
+  --theme-internal-success: #57c288;
+  --theme-internal-warning: #facc48;
+  --theme-internal-danger: #d93e26;
+  --theme-internal-gray-100: #3d3b4f;
+  --theme-internal-gray-200: #1c1b2d;
   --theme-primary-50: #eaeaf9;
-  --theme-primary-contrast-50: #3d3b4f;
+  --theme-primary-contrast-50: var(--theme-internal-gray-100);
   --theme-primary-100: #c9caf0;
-  --theme-primary-contrast-100: #3d3b4f;
+  --theme-primary-contrast-100: var(--theme-internal-gray-100);
   --theme-primary-200: #a5a9e5;
-  --theme-primary-contrast-200: #3d3b4f;
+  --theme-primary-contrast-200: var(--theme-internal-gray-100);
   --theme-primary-300: #8287db;
-  --theme-primary-contrast-300: #3d3b4f;
+  --theme-primary-contrast-300: var(--theme-internal-gray-100);
   --theme-primary-400: #676bd2;
-  --theme-primary-contrast-400: var(--theme-common-white);
+  --theme-primary-contrast-400: var(--theme-internal-white);
 
   /* Base primary */
   --theme-primary-500: #4e4fc9;
-  --theme-primary-contrast-500: var(--theme-common-white);
+  --theme-primary-contrast-500: var(--theme-internal-white);
   --theme-primary-600: #4847be;
-  --theme-primary-contrast-600: var(--theme-common-white);
+  --theme-primary-contrast-600: var(--theme-internal-white);
   --theme-primary-700: #403cb2;
-  --theme-primary-contrast-700: var(--theme-common-white);
+  --theme-primary-contrast-700: var(--theme-internal-white);
   --theme-primary-800: #3831a6;
-  --theme-primary-contrast-800: var(--theme-common-white);
+  --theme-primary-contrast-800: var(--theme-internal-white);
   --theme-primary-900: #2d1d8f;
-  --theme-primary-contrast-900: var(--theme-common-white);
+  --theme-primary-contrast-900: var(--theme-internal-white);
   --theme-secondary-50: #faf6ff;
-  --theme-secondary-contrast-50: #3d3b4f;
+  --theme-secondary-contrast-50: var(--theme-internal-gray-100);
   --theme-secondary-100: #f4f0ff;
-  --theme-secondary-contrast-100: #3d3b4f;
+  --theme-secondary-contrast-100: var(--theme-internal-gray-100);
   --theme-secondary-200: #ebe8ff;
-  --theme-secondary-contrast-200: #3d3b4f;
+  --theme-secondary-contrast-200: var(--theme-internal-gray-100);
   --theme-secondary-300: #dcd8f2;
-  --theme-secondary-contrast-300: #3d3b4f;
+  --theme-secondary-contrast-300: var(--theme-internal-gray-100);
   --theme-secondary-400: #b8b5cd;
-  --theme-secondary-contrast-400: #3d3b4f;
+  --theme-secondary-contrast-400: var(--theme-internal-gray-100);
   --theme-secondary-500: #9996ad;
-  --theme-secondary-contrast-500: var(--theme-common-white);
+  --theme-secondary-contrast-500: var(--theme-internal-white);
   --theme-secondary-600: #706d83;
-  --theme-secondary-contrast-600: var(--theme-common-white);
+  --theme-secondary-contrast-600: var(--theme-internal-white);
   --theme-secondary-700: #5c5a6f;
-  --theme-secondary-contrast-700: var(--theme-common-white);
+  --theme-secondary-contrast-700: var(--theme-internal-white);
 
   /* Base secondary */
-  --theme-secondary-800: #3d3b4f;
-  --theme-secondary-contrast-800: var(--theme-common-white);
-  --theme-secondary-900: #1c1b2d;
-  --theme-secondary-contrast-900: var(--theme-common-white);
+  --theme-secondary-800: var(--theme-internal-gray-100);
+  --theme-secondary-contrast-800: var(--theme-internal-white);
+  --theme-secondary-900: var(--theme-internal-gray-200);
+  --theme-secondary-contrast-900: var(--theme-internal-white);
 
   /* SURFACES */
   --theme-surface-toolbar: #fafaff;
@@ -54,12 +59,18 @@
   --theme-surface-sidebar-menu: #2a52a2;
   --theme-surface-overlay-mask: rgb(0 0 0 / 40%);
   --theme-surface-sidebar-menu-btn-active: var(--theme-primary-500);
+  --theme-surface-pill-success: var(--theme-internal-success);
+  --theme-surface-pill-warning: var(--theme-internal-warning);
+  --theme-surface-pill-danger: var(--theme-internal-danger);
 
   /* FOREGROUNDS */
-  --theme-foreground-main-text: #3d3b4f;
-  --theme-foreground-sidebar-menu: var(--theme-common-white);
+  --theme-foreground-main-text: var(--theme-internal-gray-100);
+  --theme-foreground-sidebar-menu: var(--theme-internal-white);
   --theme-foreground-sidebar-menu-btn-inactive: var(--theme-primary-50);
-  --theme-foreground-sidebar-menu-btn-active: var(--theme-common-white);
+  --theme-foreground-sidebar-menu-btn-active: var(--theme-internal-white);
+  --theme-foreground-pill-success: var(--theme-internal-gray-100);
+  --theme-foreground-pill-warning: var(--theme-internal-gray-100);
+  --theme-foreground-pill-danger: var(--theme-internal-white);
 
   /* https://material.io/design/color/the-color-system.html#tools-for-picking-colors */
 }

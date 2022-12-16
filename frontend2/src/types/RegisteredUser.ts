@@ -1,8 +1,6 @@
 import AnyUser from './AnyUser'
 
-type RegisteredUser = {
-  email: string;
-  role: string;
-} & AnyUser;
-
-export default RegisteredUser
+export default interface RegisteredUser extends AnyUser {
+  email: string
+  role: string
+}

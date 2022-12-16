@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
 
-export type ControlPanelLayoutProps = {
-  children: ReactNode;
-};
+export interface ControlPanelLayoutProps {
+  children: ReactNode
+}

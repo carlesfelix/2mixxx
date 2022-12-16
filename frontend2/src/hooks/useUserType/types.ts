@@ -1,6 +1,6 @@
 import UserType from '@/types/UserType'
 
-export type UseUserTypeReturn = {
-  type: UserType;
-  inProgress: boolean;
+export interface UseUserTypeReturn {
+  type: UserType
+  inProgress: boolean
 }

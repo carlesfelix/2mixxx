@@ -1,8 +1,11 @@
 import { HttpRequestOptions } from '@/core/core-http'
+import { ReactElement } from 'react'
 import { SWRConfig } from 'swr'
 import { QueryProviderProps } from './types'
 
-export default function QueryProvider (props: QueryProviderProps) {
+export default function QueryProvider (
+  props: QueryProviderProps
+): ReactElement {
   const { children, http } = props
   return (
     <SWRConfig value={{
