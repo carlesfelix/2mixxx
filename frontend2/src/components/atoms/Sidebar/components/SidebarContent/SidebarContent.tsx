@@ -13,7 +13,7 @@ function SidebarContentWithRef (
   useEffect(() => {
     internalRef.current?.focus()
   }, [ref])
-  useFocusTrap(internalRef)
+  useFocusTrap(internalRef.current)
   const rootClassName = classNames('SidebarContent', className)
 
   function refCallback (element: HTMLDivElement): void {

@@ -1,14 +1,13 @@
-import { RefObject, useEffect } from 'react'
+import { useEffect } from 'react'
 import { tabbable } from 'tabbable'
 
 export default function useFocusTrap<
   RootElement extends HTMLElement
-> (ref: RefObject<RootElement>): void {
+> (rootElement: RootElement | null): void {
   useEffect(() => {
-    const currentRef = ref.current
     function keydownHandler (event: KeyboardEvent): void {
-      if (event.code === 'Tab' && currentRef) {
-        const focusableElements = tabbable(currentRef)
+      if (event.code === 'Tab' && rootElement) {
+        const focusableElements = tabbable(rootElement)
         const focusableElementsLength = focusableElements.length
         const lastFocusableEl = focusableElementsLength ? focusableElements[focusableElementsLength - 1] : null
         const firstFocusableEl = focusableElements[0] || null
@@ -24,9 +23,9 @@ export default function useFocusTrap<
       }
     }
 
-    currentRef?.addEventListener('keydown', keydownHandler)
+    rootElement?.addEventListener('keydown', keydownHandler)
     return () => {
-      currentRef?.removeEventListener('keydown', keydownHandler)
+      rootElement?.removeEventListener('keydown', keydownHandler)
     }
-  }, [ref])
+  }, [rootElement])
 }

@@ -62,6 +62,8 @@
   --theme-surface-pill-success: var(--theme-internal-success);
   --theme-surface-pill-warning: var(--theme-internal-warning);
   --theme-surface-pill-danger: var(--theme-internal-danger);
+  --theme-surface-popup: var(--theme-internal-white);
+  --theme-surface-popup-shadow: rgb(0 0 0 / 10%);
 
   /* FOREGROUNDS */
   --theme-foreground-main-text: var(--theme-internal-gray-100);
@@ -71,6 +73,7 @@
   --theme-foreground-pill-success: var(--theme-internal-gray-100);
   --theme-foreground-pill-warning: var(--theme-internal-gray-100);
   --theme-foreground-pill-danger: var(--theme-internal-white);
+  --theme-foreground-popup: var(--theme-internal-gray-100);
 
   /* https://material.io/design/color/the-color-system.html#tools-for-picking-colors */
 }

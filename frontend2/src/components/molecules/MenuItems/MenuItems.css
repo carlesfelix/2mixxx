@@ -1,0 +1,11 @@
+.MenuItems {
+  list-style: none;
+  padding: 0.25rem 0;
+  margin: 0;
+  min-width: 11rem;
+  outline: none;
+
+  & .MenuItems__item {
+    display: block;
+  }
+}

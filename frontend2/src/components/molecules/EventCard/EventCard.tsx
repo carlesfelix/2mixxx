@@ -1,14 +1,44 @@
 import Card from '@/components/atoms/Card'
 import { ReactComponent as CalendarTodayIcon } from '@/assets/svg/CalendarToday.svg'
 import { ReactComponent as PlaceIcon } from '@/assets/svg/Place.svg'
-import { ReactComponent as MoreVertIcon } from '@/assets/svg/MoreVert.svg'
 import TextWithIcon from '@/components/atoms/TextWithIcon'
 import './EventCard.css'
-import IconButton from '@/components/atoms/IconButton'
 import { ReactElement } from 'react'
 import { EventCardProps } from './types'
 import EventStatusPill from '../EventStatusPill'
 import classNames from 'classnames'
+import PopupMenu from '@/components/molecules/PopupMenu'
+import { MenuItem } from '@/components/molecules/MenuItems'
+
+const items: MenuItem[] = [
+  {
+    type: 'link',
+    label: 'Details',
+    to: '/events/create'
+  },
+  {
+    type: 'link',
+    label: 'Assign/Un-assign Deejays',
+    to: '/events/create'
+  },
+  {
+    type: 'link',
+    label: 'Edit',
+    to: '/events/create'
+  },
+  {
+    type: 'button',
+    label: 'Change Status'
+  },
+  {
+    type: 'button',
+    label: 'Delete',
+    icon: <span>X</span>,
+    onClick: (event) => {
+      console.log('onClick', event)
+    }
+  }
+]
 
 export default function EventCard (props: EventCardProps): ReactElement {
   const {
@@ -35,9 +65,12 @@ export default function EventCard (props: EventCardProps): ReactElement {
           </h3>
           <span className="EventCard__header-right">
             <EventStatusPill status={status} className="EventCard__header-pill" />
-            <IconButton size="md" className="EventCard__header-menu" color="secondary">
-              <MoreVertIcon />
-            </IconButton>
+            <PopupMenu
+              className="EventCard__header-menu"
+              color="secondary"
+              size="sm"
+              items={items}
+            />
           </span>
         </div>
       }

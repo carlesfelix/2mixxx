@@ -1,0 +1,19 @@
+.MenuButtonItem {
+  font-family: Poppins, Inter, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1em;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  display: flex;
+  text-decoration: none;
+  outline-color: transparent;
+  color: currentcolor;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+
+  &.MenuButtonItem--highlighted {
+    outline-color: currentcolor;
+  }
+}

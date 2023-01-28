@@ -1,12 +1,30 @@
-// import BasicButton from '@/components/atoms/BasicButton'
-// import IconButton from '@/components/atoms/IconButton'
-// import OutlinedButton from '@/components/atoms/OutlinedButton'
-// import EventCard from '@/components/molecules/EventCard'
-// import { useDate } from '@/core/core-hooks'
-// import EventStatusEnum from '@/enums/EventStatusEnum'
-// import useAllEvents from '@/query-hooks/useAllEvents'
 import EventCardListLayout from '@/components/layout/EventCardListLayout'
+import { MenuItem } from '@/components/molecules/MenuItems'
+import PopupMenu from '@/components/molecules/PopupMenu'
 import { ReactElement } from 'react'
+
+const items: MenuItem[] = [
+  {
+    type: 'link',
+    label: 'Link 1',
+    to: '/events/create'
+  },
+  {
+    type: 'link',
+    label: 'Link 2',
+    to: '/events/create'
+  },
+  {
+    type: 'button',
+    label: 'Button 1',
+    icon: <span>X</span>
+  },
+  {
+    type: 'link',
+    label: 'Link 3',
+    to: '/events/create'
+  }
+]
 
 export default function RegisteredUserEventsPage (): ReactElement {
   // const { events, removeEvent } = useAllEvents()
@@ -26,6 +44,7 @@ export default function RegisteredUserEventsPage (): ReactElement {
           Events
         </h2>
       </header>
+      <PopupMenu items={items} />
       <EventCardListLayout className="_layout _layout--page-content" />
     </div>
   )
