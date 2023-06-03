@@ -9,6 +9,7 @@ import {
 } from 'react'
 import { createPortal } from 'react-dom'
 import { usePopper } from 'react-popper'
+import { useListenKeyboard } from '@/core/core-listen-keyboard'
 import DefaultPopoverPortal from './components/DefaultPopoverPortal'
 import './Popover.css'
 import { PopoverInstance, PopoverProps } from './types'
@@ -35,6 +36,22 @@ function PopoverWithRef (
       placement
     }
   )
+
+  const { onKeydown } = useListenKeyboard()
+
+  useEffect(() => {
+    if (open) {
+      const unlisten = onKeydown({
+        code: 'Escape',
+        callback: () => {
+          setOpen(false)
+        }
+      })
+      return () => {
+        unlisten()
+      }
+    }
+  }, [onKeydown, setOpen, popperElement, open])
 
   useImperativeHandle(ref, () => ({
     close () {
