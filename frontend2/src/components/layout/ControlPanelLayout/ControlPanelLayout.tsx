@@ -15,16 +15,18 @@ export default function ControlPanelLayout (
   const { onKeydown } = useListenKeyboard()
 
   useEffect(() => {
-    const unlisten = onKeydown({
-      code: 'Escape',
-      callback: () => {
-        setIsOpen(false)
+    if (isOpen) {
+      const unlisten = onKeydown({
+        code: 'Escape',
+        callback: () => {
+          setIsOpen(false)
+        }
+      })
+      return () => {
+        unlisten()
       }
-    })
-    return () => {
-      unlisten()
     }
-  }, [onKeydown, setIsOpen])
+  }, [onKeydown, setIsOpen, isOpen])
 
   function closeSidebarHandler (): void {
     setIsOpen(false)
