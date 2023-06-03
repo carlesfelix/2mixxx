@@ -1,4 +1,3 @@
-import { useFocusTrap } from '@/core/core-hooks'
 import classNames from 'classnames'
 import { ForwardedRef, forwardRef, ReactElement, useEffect, useRef } from 'react'
 import { SidebarContentProps } from '../../types'
@@ -13,7 +12,7 @@ function SidebarContentWithRef (
   useEffect(() => {
     internalRef.current?.focus()
   }, [ref])
-  useFocusTrap(internalRef.current)
+
   const rootClassName = classNames('SidebarContent', className)
 
   function refCallback (element: HTMLDivElement): void {

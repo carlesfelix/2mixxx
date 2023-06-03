@@ -7,12 +7,10 @@ import {
 } from 'react'
 import { ButtonMenuItem, LinkMenuItem, MenuItemsProps } from './types'
 import './MenuItems.css'
-import { useFocusTrap } from '@/core/core-hooks'
 
 export default function MenuItems (props: MenuItemsProps): ReactElement {
   const { items, onClickItem } = props
   const [ref, setRef] = useState<HTMLUListElement | null>(null)
-  useFocusTrap(ref)
   useEffect(() => {
     ref?.focus()
   }, [ref])
