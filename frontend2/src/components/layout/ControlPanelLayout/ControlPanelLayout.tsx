@@ -2,7 +2,8 @@ import { ReactComponent as MenuIcon } from '@/assets/svg/Menu.svg'
 import IconButton from '@/components/atoms/IconButton'
 import DesktopMainMenu from '@/components/molecules/DesktopMainMenu'
 import MobileMainMenuSidebar from '@/components/molecules/MobileMainMenuSidebar'
-import { ReactElement, useState } from 'react'
+import { useListenKeyboard } from '@/core/core-listen-keyboard'
+import { ReactElement, useEffect, useState } from 'react'
 import './ControlPanelLayout.css'
 import { ControlPanelLayoutProps } from './types'
 
@@ -11,6 +12,19 @@ export default function ControlPanelLayout (
 ): ReactElement {
   const { children } = props
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const { onKeydown } = useListenKeyboard()
+
+  useEffect(() => {
+    const unlisten = onKeydown({
+      code: 'Escape',
+      callback: () => {
+        setIsOpen(false)
+      }
+    })
+    return () => {
+      unlisten()
+    }
+  }, [onKeydown, setIsOpen])
 
   function closeSidebarHandler (): void {
     setIsOpen(false)
