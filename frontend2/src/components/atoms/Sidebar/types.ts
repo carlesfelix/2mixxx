@@ -7,6 +7,7 @@ export interface SidebarProps {
   className?: string
   contentClassName?: string
   onClose?: () => void
+  onEscape?: () => void
 }
 
 export interface SidebarContentProps {

@@ -1,4 +1,5 @@
-import { useFocusHighlight } from '@/core/core-pointer-element'
+import { useInternalRef } from '@/core/core-hooks'
+import { useKeyboardAccessibility } from '@/core/core-keyboard-accessibility'
 import classNames from 'classnames'
 import { FocusEvent, ForwardedRef, forwardRef, ReactElement } from 'react'
 import { BasicButtonProps } from './types'
@@ -14,7 +15,8 @@ function BasicButtonWithRef (
     size = 'md',
     onClick
   } = props
-  const { isHighlighted, focus, blur } = useFocusHighlight()
+  const { isHighlighted, focus, blur } = useKeyboardAccessibility()
+  const [refCallback, internalRef] = useInternalRef(ref)
 
   const rootClassName = classNames(
     'BasicButton',
@@ -22,16 +24,16 @@ function BasicButtonWithRef (
     '_button--basic',
     `_button--basic-${color}`,
     `_button--${size}`,
-    { '_button--highlighted': isHighlighted },
+    { '_button--highlighted': isHighlighted(internalRef) },
     className
   )
 
-  function focusHandler (event: FocusEvent): void {
+  function focusHandler (event: FocusEvent<HTMLButtonElement>): void {
     focus(event)
   }
 
-  function blurHander (): void {
-    blur()
+  function blurHander (event: FocusEvent<HTMLButtonElement>): void {
+    blur(event)
   }
 
   return (
@@ -40,7 +42,7 @@ function BasicButtonWithRef (
       onFocus={focusHandler}
       onBlur={blurHander}
       className={rootClassName}
-      ref={ref}
+      ref={refCallback}
     >
       {children}
     </button>

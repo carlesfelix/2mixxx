@@ -19,7 +19,8 @@ export default function Sidebar (props: SidebarProps): ReactElement {
     children,
     className,
     contentClassName,
-    onClose
+    onClose,
+    onEscape
   } = props
   const [status, setStatus] = useState<SidebarStatus>(isOpen ? 'opened' : 'closed')
   const overlayRootElement = useOverlayRootElement()
@@ -51,7 +52,7 @@ export default function Sidebar (props: SidebarProps): ReactElement {
 
   function keydownHandler (event: KeyboardEvent<HTMLDivElement>): void {
     if (event.code === 'Escape') {
-      onClose && onClose()
+      onEscape && onEscape()
     }
   }
 

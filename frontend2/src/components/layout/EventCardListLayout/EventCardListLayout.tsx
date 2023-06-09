@@ -19,35 +19,35 @@ export default function EventCardListLayout (
       <EventCard
         className="EventCardListLayout__card-item"
         placeName="Las 5 hermanas"
-        startsAt={d}
+        startsAt={d.current}
         status={EventStatusEnum.Ended}
         title="Comunió de Carles"
       />
       <EventCard
         className="EventCardListLayout__card-item"
         placeName="Las 5 hermanas"
-        startsAt={d}
+        startsAt={d.current}
         status={EventStatusEnum.Started}
         title="Comunió de Alicia"
       />
       <EventCard
         className="EventCardListLayout__card-item"
         placeName="El Palmar"
-        startsAt={d}
+        startsAt={d.current}
         status={EventStatusEnum.NotStarted}
         title="Boda de Bea"
       />
       <EventCard
         className="EventCardListLayout__card-item"
         placeName="El Palmar"
-        startsAt={d}
+        startsAt={d.current}
         status={EventStatusEnum.NotStarted}
         title="Boda de Juanito"
       />
       <EventCard
         className="EventCardListLayout__card-item"
         placeName="El Palmar"
-        startsAt={d}
+        startsAt={d.current}
         status={EventStatusEnum.NotStarted}
         title="Bateig de firulais"
       />

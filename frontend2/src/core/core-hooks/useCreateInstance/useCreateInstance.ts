@@ -1,11 +1,11 @@
-import { useRef } from 'react'
+import { MutableRefObject, useRef } from 'react'
 
-export default function useCreateInstance<Instance extends object> (
-  instanceBuilder: () => Instance
-): Instance {
-  const ref = useRef<Instance | null>(null)
+export default function useCreateInstance<T> (
+  instanceBuilder: () => T
+): MutableRefObject<T> {
+  const ref = useRef<T | null>(null)
   if (ref.current === null) {
     ref.current = instanceBuilder()
   }
-  return ref.current
+  return ref as MutableRefObject<T>
 }

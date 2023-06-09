@@ -7,7 +7,7 @@ import { MainMenuLinksProps } from './types'
 export default function MainMenuLinks (
   props: MainMenuLinksProps
 ): ReactElement {
-  const { linkItems, className } = props
+  const { linkItems, className, itemOnKeyDown } = props
   const rootClassName = classNames('MainMenuLinks', className)
   return (
     <ul className={rootClassName}>
@@ -18,6 +18,7 @@ export default function MainMenuLinks (
               to={to}
               icon={icon}
               label={label}
+              onKeyDown={itemOnKeyDown}
             />
           </li>
         ))

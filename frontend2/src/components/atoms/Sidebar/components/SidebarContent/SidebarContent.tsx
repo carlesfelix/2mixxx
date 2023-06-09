@@ -1,5 +1,6 @@
+import { useInternalRef } from '@/core/core-hooks'
 import classNames from 'classnames'
-import { ForwardedRef, forwardRef, ReactElement, useEffect, useRef } from 'react'
+import { ForwardedRef, forwardRef, ReactElement, useEffect } from 'react'
 import { SidebarContentProps } from '../../types'
 import './SidebarContent.css'
 
@@ -8,21 +9,14 @@ function SidebarContentWithRef (
   ref: ForwardedRef<HTMLDivElement>
 ): ReactElement {
   const { children, className } = props
-  const internalRef = useRef<HTMLDivElement | null>(null)
+  const [refCallback, internalRef] = useInternalRef(ref)
+
   useEffect(() => {
     internalRef.current?.focus()
-  }, [ref])
+  }, [internalRef])
 
   const rootClassName = classNames('SidebarContent', className)
 
-  function refCallback (element: HTMLDivElement): void {
-    internalRef.current = element
-    if (typeof ref === 'function') {
-      ref(element)
-    } else if (ref !== null) {
-      ref.current = element
-    }
-  }
   return (
     <div className={rootClassName} ref={refCallback} tabIndex={-1} role="complementary">
       {children}

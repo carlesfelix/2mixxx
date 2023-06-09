@@ -9,10 +9,10 @@ import {
 } from 'react'
 import { createPortal } from 'react-dom'
 import { usePopper } from 'react-popper'
-import { useListenKeyboard } from '@/core/core-listen-keyboard'
 import DefaultPopoverPortal from './components/DefaultPopoverPortal'
 import './Popover.css'
 import { PopoverInstance, PopoverProps } from './types'
+import { useKeyBoard } from '../core-hooks'
 
 function PopoverWithRef (
   props: PopoverProps,
@@ -37,21 +37,13 @@ function PopoverWithRef (
     }
   )
 
-  const { onKeydown } = useListenKeyboard()
-
-  useEffect(() => {
-    if (open) {
-      const unlisten = onKeydown({
-        code: 'Escape',
-        callback: () => {
-          setOpen(false)
-        }
-      })
-      return () => {
-        unlisten()
-      }
-    }
-  }, [onKeydown, setOpen, popperElement, open])
+  useKeyBoard({
+    listener () {
+      setOpen(false)
+    },
+    code: 'Escape',
+    listen: open
+  })
 
   useImperativeHandle(ref, () => ({
     close () {

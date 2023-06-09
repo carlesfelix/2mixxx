@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { KeyboardEventHandler, ReactNode } from 'react'
 
 export interface MainMenuLinkItem {
   icon: ReactNode
@@ -9,4 +9,5 @@ export interface MainMenuLinkItem {
 export interface MainMenuLinksProps {
   className?: string
   linkItems: MainMenuLinkItem[]
+  itemOnKeyDown?: KeyboardEventHandler<HTMLElement>
 }

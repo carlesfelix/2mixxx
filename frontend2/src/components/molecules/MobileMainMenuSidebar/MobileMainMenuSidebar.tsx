@@ -8,13 +8,24 @@ import { ReactElement } from 'react'
 export default function MobileMainMenuSidebar (
   props: MobileMainMenuSidebarProps
 ): ReactElement {
-  const { className, onClose, isOpen } = props
+  const { className, onClose, isOpen, onCloseWithKeyboard, menuItemOnKeyDown } = props
   const rootClassName = classNames('MobileMainMenuSidebar', className)
+
+  function closeWithKeyboardHandler (): void {
+    onCloseWithKeyboard && onCloseWithKeyboard()
+  }
   return (
-    <Sidebar className={rootClassName} isOpen={isOpen} onClose={onClose}>
+    <Sidebar
+      className={rootClassName}
+      isOpen={isOpen}
+      onClose={onClose}
+      onEscape={closeWithKeyboardHandler}
+    >
       <MobileMainMenu
-        onClose={onClose}
         className="MobileMainMenuSidebar__menu"
+        onClose={onClose}
+        onCloseWithKeyboard={closeWithKeyboardHandler}
+        menuItemOnKeyDown={menuItemOnKeyDown}
       />
     </Sidebar>
   )
