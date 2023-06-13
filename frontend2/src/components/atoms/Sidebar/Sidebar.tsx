@@ -1,3 +1,4 @@
+import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
 import useOverlayRootElement from '@/hooks/useOverlayRootElement'
 import classNames from 'classnames'
 import {
@@ -69,19 +70,22 @@ export default function Sidebar (props: SidebarProps): ReactElement {
   const showSidebar = isOpen || status !== 'closed'
   return createPortal((
     showSidebar && (
-      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-      <div
-        className={rootClassName}
-        onAnimationStart={animationStartHandler}
-        onAnimationEnd={animationEndHandler}
-        onClick={clickHandler}
-        onKeyDown={keydownHandler}
-      >
-        <div className="Sidebar__mask"></div>
-        <SidebarContent className={sidebarContentClassName} ref={sidebarContentRef}>
-          {children}
-        </SidebarContent>
-      </div>
+      <FocusWithKeyboard>
+        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+        <div
+          className={rootClassName}
+          onAnimationStart={animationStartHandler}
+          onAnimationEnd={animationEndHandler}
+          onClick={clickHandler}
+          onKeyDown={keydownHandler}
+          tabIndex={-1}
+        >
+          <div className="Sidebar__mask" />
+          <SidebarContent className={sidebarContentClassName} ref={sidebarContentRef}>
+            {children}
+          </SidebarContent>
+        </div>
+      </FocusWithKeyboard>
     )
   ), overlayRootElement)
 }

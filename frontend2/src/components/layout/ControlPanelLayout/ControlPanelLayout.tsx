@@ -3,7 +3,7 @@ import IconButton from '@/components/atoms/IconButton'
 import DesktopMainMenu from '@/components/molecules/DesktopMainMenu'
 import MobileMainMenuSidebar from '@/components/molecules/MobileMainMenuSidebar'
 import { useKeyBoard, usePrevious } from '@/core/core-hooks'
-import { useKeyboardAccessibility } from '@/core/core-keyboard-accessibility'
+import { FocusWithKeyboard, useKeyboardAccessibility } from '@/core/core-keyboard-accessibility'
 import { KeyboardEvent, ReactElement, useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import './ControlPanelLayout.css'
@@ -72,25 +72,26 @@ export default function ControlPanelLayout (
         onCloseWithKeyboard={closeWithKeyboardSidebarHandler}
         menuItemOnKeyDown={menuItemOnKeyDownHandler}
       />
-      <DesktopMainMenu className="ControlPanelLayout__desktop-menu" />
-      <div className="ControlPanelLayout__main-container">
-        <nav className="ControlPanelLayout__navigation-bar">
-          <div className="ControlPanelLayout__navigation-bar-left-content">
-            <IconButton
-              size="lg"
-              onClick={openSidebarHandler}
-              color="primary"
-              ref={btnRef}
-            >
-              <MenuIcon />
-            </IconButton>
+      <FocusWithKeyboard trap={false}>
+        <DesktopMainMenu className="ControlPanelLayout__desktop-menu" />
+        <div className="ControlPanelLayout__main-container">
+          <nav className="ControlPanelLayout__navigation-bar">
+            <div className="ControlPanelLayout__navigation-bar-left-content">
+              <IconButton
+                size="lg"
+                onClick={openSidebarHandler}
+                color="primary"
+                ref={btnRef}
+              >
+                <MenuIcon />
+              </IconButton>
+            </div>
+          </nav>
+          <div className="ControlPanelLayout__page-container">
+            {children}
           </div>
-
-        </nav>
-        <div className="ControlPanelLayout__page-container">
-          {children}
         </div>
-      </div>
+      </FocusWithKeyboard>
     </div>
   )
 }

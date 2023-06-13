@@ -10,16 +10,14 @@ function MenuButtonItemWithRef (
   ref: ForwardedRef<HTMLButtonElement>
 ): ReactElement {
   const { children, className, onClick, onBlur, onFocus } = props
-  const { isHighlighted, focus, blur } = useKeyboardAccessibility()
+  const { isHighlighted } = useKeyboardAccessibility()
   const [refCallback, internalRef] = useInternalRef(ref)
 
   function focusHandler (event: FocusEvent<HTMLButtonElement>): void {
-    focus(event)
     onFocus && onFocus(event)
   }
 
   function blurHander (event: FocusEvent<HTMLButtonElement>): void {
-    blur(event)
     onBlur && onBlur(event)
   }
 

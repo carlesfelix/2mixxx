@@ -7,11 +7,11 @@ export interface KeyboardAccessibilityProviderProps {
 
 export interface KeyboardAccessibilityContextReturn {
   pointedElement: Element | null
-  highlightedElement: HTMLElement | null
-  isHighlighted: (elementRef: MutableRefObject<HTMLElement | null>) => boolean
-  focus: (event: FocusEvent<HTMLElement>) => void
-  blur: (event?: FocusEvent<HTMLElement>) => void
-  highlight: (element: HTMLElement | null) => void
+  highlightedElement: FocusableElement | null
+  isHighlighted: (elementRef: MutableRefObject<FocusableElement | null>) => boolean
+  focus: (event: FocusEvent<FocusableElement>) => void
+  blur: (event?: FocusEvent<FocusableElement>) => void
+  highlight: (element: FocusableElement | null) => void
 }
 
 export interface NextElementIndexCallbackData {
@@ -22,10 +22,11 @@ export interface NextElementIndexCallbackData {
 
 export type NextElementIndexCallback = (data: NextElementIndexCallbackData) => number
 
-export interface FocusTrapProps {
+export interface FocusWithKeyboardProps {
   children: ReactNode
   disabled?: boolean
   nextCode?: string
   previousCode?: string
   nextElementIndexCallback?: NextElementIndexCallback
+  trap?: boolean
 }

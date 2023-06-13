@@ -1,4 +1,5 @@
 import { FocusEvent, MutableRefObject, ReactElement, useCallback, useEffect, useState } from 'react'
+import { FocusableElement } from 'tabbable'
 import KeyboardAccessibilityContext from '../../contexts/KeyboardAccessibilityContext'
 import { KeyboardAccessibilityContextReturn, KeyboardAccessibilityProviderProps } from '../../types'
 
@@ -7,7 +8,7 @@ export default function KeyboardAccessibilityProvider (
 ): ReactElement {
   const { children } = props
   const [pointerElement, setPointerElement] = useState<Element | null>(null)
-  const [highlightedElement, setHighlightedElement] = useState<HTMLElement | null>(null)
+  const [highlightedElement, setHighlightedElement] = useState<FocusableElement | null>(null)
 
   useEffect(() => {
     function pointerDownHandler (event: PointerEvent): void {
@@ -29,7 +30,7 @@ export default function KeyboardAccessibilityProvider (
     }
   }, [setPointerElement])
 
-  const focus = useCallback((event?: FocusEvent<HTMLElement>) => {
+  const focus = useCallback((event?: FocusEvent<FocusableElement>) => {
     if (event === undefined) {
       setHighlightedElement(null)
     } else if (
@@ -40,11 +41,11 @@ export default function KeyboardAccessibilityProvider (
     }
   }, [pointerElement])
 
-  const highlight = useCallback((element: HTMLElement | null) => {
+  const highlight = useCallback((element: FocusableElement | null) => {
     setHighlightedElement(element)
   }, [setHighlightedElement])
 
-  const blur = useCallback((event?: FocusEvent<HTMLElement>) => {
+  const blur = useCallback((event?: FocusEvent<FocusableElement>) => {
     setHighlightedElement(old => {
       if (!event || old === event.target) {
         return null
@@ -53,7 +54,7 @@ export default function KeyboardAccessibilityProvider (
     })
   }, [setHighlightedElement])
 
-  const isHighlighted = useCallback((elementRef: MutableRefObject<HTMLElement | null>) => {
+  const isHighlighted = useCallback((elementRef: MutableRefObject<FocusableElement | null>) => {
     return elementRef.current !== null && highlightedElement === elementRef.current
   }, [highlightedElement])
 
