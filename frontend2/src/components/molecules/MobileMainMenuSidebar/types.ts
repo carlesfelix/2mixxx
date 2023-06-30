@@ -1,16 +1,17 @@
-import { KeyboardEventHandler } from 'react'
+import { MouseEvent, RefObject } from 'react'
 
 export interface MobileMainMenuSidebarProps {
   className?: string
-  onClose?: () => void
-  onCloseWithKeyboard?: () => void
-  menuItemOnKeyDown?: KeyboardEventHandler<HTMLElement>
-  isOpen: boolean
+  keyboardFocusReturnElementRef?: RefObject<HTMLElement>
+}
+
+export interface MobileMainMenuSidebarRef {
+  close: () => void
+  open: () => void
+  toggle: () => void
 }
 
 export interface MobileMainMenuProps {
   className?: string
-  onCloseWithKeyboard?: () => void
-  onClose?: () => void
-  menuItemOnKeyDown?: KeyboardEventHandler<HTMLElement>
+  onClose?: (event: MouseEvent<HTMLButtonElement>) => void
 }

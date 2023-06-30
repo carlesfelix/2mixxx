@@ -1,9 +1,9 @@
+import { useKeyBoard } from '@/core/core-hooks'
 import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
 import useOverlayRootElement from '@/hooks/useOverlayRootElement'
 import classNames from 'classnames'
 import {
   AnimationEvent,
-  KeyboardEvent,
   MouseEvent,
   ReactElement,
   useRef,
@@ -21,11 +21,20 @@ export default function Sidebar (props: SidebarProps): ReactElement {
     className,
     contentClassName,
     onClose,
-    onEscape
+    onEscape,
+    onClick
   } = props
   const [status, setStatus] = useState<SidebarStatus>(isOpen ? 'opened' : 'closed')
   const overlayRootElement = useOverlayRootElement()
   const sidebarContentRef = useRef<HTMLDivElement>(null)
+
+  useKeyBoard({
+    listener () {
+      onEscape && onEscape()
+    },
+    code: 'Escape',
+    listen: isOpen
+  })
 
   function animationEndHandler (event: AnimationEvent): void {
     if (event.animationName === 'Sidebar__fadein') {
@@ -44,6 +53,7 @@ export default function Sidebar (props: SidebarProps): ReactElement {
   }
 
   function clickHandler (event: MouseEvent<HTMLDivElement>): void {
+    onClick && onClick(event)
     if (
       !sidebarContentRef.current?.contains(event.target as Node)
     ) {
@@ -51,18 +61,9 @@ export default function Sidebar (props: SidebarProps): ReactElement {
     }
   }
 
-  function keydownHandler (event: KeyboardEvent<HTMLDivElement>): void {
-    if (event.code === 'Escape') {
-      onEscape && onEscape()
-    }
-  }
-
   const rootClassName = classNames(
     'Sidebar',
-    {
-      'Sidebar--opened': isOpen,
-      'Sidebar--closed': !isOpen
-    },
+    isOpen ? 'Sidebar--opened' : 'Sidebar--closed',
     className
   )
   const sidebarContentClassName = classNames('Sidebar__content', contentClassName)
@@ -70,22 +71,20 @@ export default function Sidebar (props: SidebarProps): ReactElement {
   const showSidebar = isOpen || status !== 'closed'
   return createPortal((
     showSidebar && (
-      <FocusWithKeyboard>
-        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-        <div
-          className={rootClassName}
-          onAnimationStart={animationStartHandler}
-          onAnimationEnd={animationEndHandler}
-          onClick={clickHandler}
-          onKeyDown={keydownHandler}
-          tabIndex={-1}
-        >
+      <div
+        className={rootClassName}
+        onAnimationStart={animationStartHandler}
+        onAnimationEnd={animationEndHandler}
+        onClick={clickHandler}
+        tabIndex={-1}
+      >
+        <FocusWithKeyboard className="Sidebar__wrapper">
           <div className="Sidebar__mask" />
           <SidebarContent className={sidebarContentClassName} ref={sidebarContentRef}>
             {children}
           </SidebarContent>
-        </div>
-      </FocusWithKeyboard>
+        </FocusWithKeyboard>
+      </div>
     )
   ), overlayRootElement)
 }

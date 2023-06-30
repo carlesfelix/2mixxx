@@ -7,7 +7,7 @@ function LinkWithRef (
   props: LinkProps,
   ref: ForwardedRef<HTMLAnchorElement>
 ): ReactElement {
-  const { children, className, to, onFocus, onBlur } = props
+  const { children, className, to } = props
 
   const rootClassName = classNames('Link', className)
   return (
@@ -15,8 +15,7 @@ function LinkWithRef (
       ref={ref}
       className={rootClassName}
       to={to}
-      onFocus={onFocus}
-      onBlur={onBlur}
+      tabIndex={0}
     >
       {children}
     </ReactRouterLink>

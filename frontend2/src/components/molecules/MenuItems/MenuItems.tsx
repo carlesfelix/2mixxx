@@ -1,19 +1,11 @@
 import MenuButtonItem from '@/components/atoms/MenuButtonItem'
 import MenuLinkItem from '@/components/atoms/MenuLinkItem'
-import {
-  MouseEventHandler,
-  ReactElement,
-  useEffect, useState
-} from 'react'
+import { MouseEventHandler, ReactElement } from 'react'
 import { ButtonMenuItem, LinkMenuItem, MenuItemsProps } from './types'
 import './MenuItems.css'
 
 export default function MenuItems (props: MenuItemsProps): ReactElement {
   const { items, onClickItem } = props
-  const [ref, setRef] = useState<HTMLUListElement | null>(null)
-  useEffect(() => {
-    ref?.focus()
-  }, [ref])
 
   function clickButtonItemHandler (
     item: ButtonMenuItem
@@ -33,7 +25,7 @@ export default function MenuItems (props: MenuItemsProps): ReactElement {
   }
 
   return (
-    <ul className="MenuItems" ref={setRef} tabIndex={-1}>
+    <ul className="MenuItems">
       {
         items.map((item, iItem) => (
           <li className="MenuItems__item" key={`MenuItem__${iItem}`}>

@@ -1,6 +1,6 @@
 @import "/src/styles/utils/index.css";
 
-div.ControlPanelLayout {
+.ControlPanelLayout {
   height: 100%;
   display: flex;
   position: relative;

@@ -1,48 +1,80 @@
-import { FocusEvent, KeyboardEvent, ReactElement } from 'react'
-import { FocusableElement, tabbable } from 'tabbable'
+import { ForwardedRef, forwardRef, ReactElement, useEffect, useImperativeHandle, useRef } from 'react'
+import { FocusableElement, tabbable, isFocusable } from 'tabbable'
 import useKeyboardAccessibility from '../../hooks/useKeyboardAccessibility'
-import { FocusWithKeyboardProps } from '../../types'
+import { FocusWithKeyboardProps, FocusWithKeyboardRef } from '../../types'
+import { hasChildren } from './utils'
 
-export default function FocusWithKeyboard (props: FocusWithKeyboardProps): ReactElement {
+function FocusWithKeyboardWithRef (
+  props: FocusWithKeyboardProps,
+  ref: ForwardedRef<FocusWithKeyboardRef>
+): ReactElement {
   const {
     children,
-    disabled,
     nextCode = 'Tab',
     previousCode,
     trap = true,
-    nextElementIndexCallback
+    disabled = false,
+    className
   } = props
-  const { blur, focus } = useKeyboardAccessibility()
+  const { blur, focus, updatePointedElement } = useKeyboardAccessibility()
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  function keyDownHandler (event: KeyboardEvent<HTMLDivElement>): void {
-    if (disabled) {
-      event.preventDefault()
+  useImperativeHandle(ref, () => ({
+    focus () {
+      containerRef.current?.focus()
+    }
+  }), [containerRef])
+
+  useEffect(() => {
+    function globalPointerDownHandler (event: PointerEvent): void {
+      if (!hasChildren(containerRef)) {
+        updatePointedElement(event.target as Element)
+      }
+    }
+
+    function globalKeydownHandler (event: KeyboardEvent): void {
+      const codes = [nextCode, previousCode]
+      if (codes.includes(event.code) && !hasChildren(containerRef)) {
+        updatePointedElement(null)
+      }
+    }
+
+    if (!disabled) {
+      window.document.body.addEventListener('pointerdown', globalPointerDownHandler)
+      window.document.body.addEventListener('keydown', globalKeydownHandler)
+
+      return () => {
+        window.document.body.removeEventListener('pointerdown', globalPointerDownHandler)
+        window.document.body.removeEventListener('keydown', globalKeydownHandler)
+      }
+    }
+  }, [updatePointedElement, nextCode, previousCode, disabled, containerRef])
+
+  function keyDownHandler (event: React.KeyboardEvent<HTMLDivElement>): void {
+    if (disabled || hasChildren(containerRef)) {
       return
     }
     const codes = [nextCode, previousCode]
-    if (codes.includes(event.code) || nextElementIndexCallback) {
-      const focusableElements = tabbable(event.currentTarget)
+    if (!codes.includes('Tab') && event.code === 'Tab') {
+      preventEventEffects(event)
+      return
+    }
+    if (codes.includes(event.code)) {
+      const focusableElements = tabbable(event.currentTarget, {
+        includeContainer: false
+      })
       if (!focusableElements.length) {
-        event.preventDefault()
+        preventEventEffects(event)
         return
       }
-      const currentIndex = focusableElements.findIndex(e => e === event.target)
-      if (nextElementIndexCallback) {
-        event.preventDefault()
-        const nextCustomTabIndex = nextElementIndexCallback({
-          currentIndex,
-          elements: focusableElements,
-          event
-        })
-        const nextElement = focusableElements[nextCustomTabIndex]
-        nextElement.focus()
-        return
-      }
+      const currentIndex = focusableElements.findIndex(
+        focusableElement => focusableElement === event.target
+      )
       if (currentIndex === -1) {
         if (!trap) {
           return
         }
-        event.preventDefault()
+        preventEventEffects(event)
         const nextElement = focusableElements[0]
         nextElement.focus()
         return
@@ -60,30 +92,43 @@ export default function FocusWithKeyboard (props: FocusWithKeyboardProps): React
         }
         nextTabIndex = focusableElements.length - 1
       }
-      event.preventDefault()
+      preventEventEffects(event)
       const nextElement = focusableElements[nextTabIndex]
       nextElement.focus()
     }
   }
 
-  function blurHandler (event: FocusEvent<FocusableElement>): void {
-    blur(event)
+  function preventEventEffects (event: React.KeyboardEvent<HTMLDivElement>): void {
+    event.preventDefault()
   }
 
-  function focusHandler (event: FocusEvent<FocusableElement>): void {
-    focus(event)
+  function blurHandler (event: React.FocusEvent): void {
+    if (isFocusable(event.target)) {
+      blur(event as React.FocusEvent<FocusableElement>)
+    }
+  }
+
+  function focusHandler (event: React.FocusEvent): void {
+    if (isFocusable(event.target)) {
+      focus(event as React.FocusEvent<FocusableElement>)
+    }
   }
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
-      style={{ display: 'contents' }}
       tabIndex={-1}
       onKeyDown={keyDownHandler}
       onBlur={blurHandler}
       onFocus={focusHandler}
+      ref={containerRef}
+      data-focus-with-keyboard={!disabled}
+      className={className}
+      style={{ outline: 'none' }}
     >
       {children}
     </div>
   )
 }
+
+const FocusWithKeyboard = forwardRef(FocusWithKeyboardWithRef)
+export default FocusWithKeyboard

@@ -36,7 +36,6 @@
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:jsx-a11y/recommended",
     "eslint-config-standard-with-typescript"
   ]
 }

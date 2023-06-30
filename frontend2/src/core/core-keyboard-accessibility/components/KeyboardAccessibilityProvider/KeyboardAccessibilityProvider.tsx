@@ -1,5 +1,5 @@
-import { FocusEvent, MutableRefObject, ReactElement, useCallback, useEffect, useState } from 'react'
-import { FocusableElement } from 'tabbable'
+import { FocusEvent, MutableRefObject, ReactElement, useCallback, useRef, useState } from 'react'
+import { FocusableElement, isFocusable } from 'tabbable'
 import KeyboardAccessibilityContext from '../../contexts/KeyboardAccessibilityContext'
 import { KeyboardAccessibilityContextReturn, KeyboardAccessibilityProviderProps } from '../../types'
 
@@ -7,45 +7,30 @@ export default function KeyboardAccessibilityProvider (
   props: KeyboardAccessibilityProviderProps
 ): ReactElement {
   const { children } = props
-  const [pointerElement, setPointerElement] = useState<Element | null>(null)
+  const pointedElementRef = useRef<Element | null>(null)
   const [highlightedElement, setHighlightedElement] = useState<FocusableElement | null>(null)
 
-  useEffect(() => {
-    function pointerDownHandler (event: PointerEvent): void {
-      setPointerElement(event.target as Element)
-    }
+  const updatePointedElement = useCallback((element: Element | null) => {
+    pointedElementRef.current = element
+  }, [pointedElementRef])
 
-    function keydownHandler (event: KeyboardEvent): void {
-      if (event.code === 'Tab') {
-        setPointerElement(null)
-      }
-    }
-
-    window.document.body.addEventListener('pointerdown', pointerDownHandler)
-    window.document.body.addEventListener('keydown', keydownHandler)
-
-    return () => {
-      window.document.body.removeEventListener('pointerdown', pointerDownHandler)
-      window.document.body.removeEventListener('keydown', keydownHandler)
-    }
-  }, [setPointerElement])
-
-  const focus = useCallback((event?: FocusEvent<FocusableElement>) => {
+  const focus = useCallback((event?: FocusEvent) => {
     if (event === undefined) {
       setHighlightedElement(null)
     } else if (
-      event.target !== pointerElement &&
-      !event.target.contains(pointerElement)
+      event.target !== pointedElementRef.current &&
+      !event.target.contains(pointedElementRef.current) &&
+      isFocusable(event.target)
     ) {
-      setHighlightedElement(event.target)
+      setHighlightedElement(event.target as FocusableElement)
     }
-  }, [pointerElement])
+  }, [pointedElementRef])
 
   const highlight = useCallback((element: FocusableElement | null) => {
     setHighlightedElement(element)
   }, [setHighlightedElement])
 
-  const blur = useCallback((event?: FocusEvent<FocusableElement>) => {
+  const blur = useCallback((event?: FocusEvent) => {
     setHighlightedElement(old => {
       if (!event || old === event.target) {
         return null
@@ -54,7 +39,7 @@ export default function KeyboardAccessibilityProvider (
     })
   }, [setHighlightedElement])
 
-  const isHighlighted = useCallback((elementRef: MutableRefObject<FocusableElement | null>) => {
+  const isHighlighted = useCallback((elementRef: MutableRefObject<Element | null>) => {
     return elementRef.current !== null && highlightedElement === elementRef.current
   }, [highlightedElement])
 
@@ -62,7 +47,8 @@ export default function KeyboardAccessibilityProvider (
     blur,
     focus,
     isHighlighted,
-    pointedElement: pointerElement,
+    pointedElementRef,
+    updatePointedElement,
     highlightedElement,
     highlight
   }

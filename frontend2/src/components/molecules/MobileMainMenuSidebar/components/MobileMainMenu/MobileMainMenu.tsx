@@ -3,24 +3,17 @@ import IconButton from '@/components/atoms/IconButton'
 import MainMenuLinks from '@/components/molecules/MainMenuLinks'
 import { MAIN_MENU_LINKS } from '@/constants/links'
 import classNames from 'classnames'
-import { KeyboardEvent, ReactElement } from 'react'
+import { MouseEvent, ReactElement } from 'react'
 import { MobileMainMenuProps } from '../../types'
 import './MobileMainMenu.css'
 
 export default function MobileMainMenu (
   props: MobileMainMenuProps
 ): ReactElement {
-  const { className, onClose, onCloseWithKeyboard, menuItemOnKeyDown } = props
+  const { className, onClose } = props
 
-  function clickHandler (): void {
-    onClose && onClose()
-  }
-
-  function keyDownHandler (event: KeyboardEvent<HTMLButtonElement>): void {
-    if (event.code === 'Enter') {
-      event.preventDefault()
-      onCloseWithKeyboard && onCloseWithKeyboard()
-    }
+  function clickHandler (event: MouseEvent<HTMLButtonElement>): void {
+    onClose && onClose(event)
   }
 
   const rootClassName = classNames('MobileMainMenu', className)
@@ -32,7 +25,6 @@ export default function MobileMainMenu (
           className="MobileMainMenu__menu-btn"
           onClick={clickHandler}
           size="lg"
-          onKeyDown={keyDownHandler}
         >
           <MenuIcon />
         </IconButton>
@@ -41,7 +33,7 @@ export default function MobileMainMenu (
         </div>
       </div>
       <div className="MobileMainMenu__menu-content">
-        <MainMenuLinks linkItems={MAIN_MENU_LINKS} itemOnKeyDown={menuItemOnKeyDown} />
+        <MainMenuLinks linkItems={MAIN_MENU_LINKS} />
       </div>
     </div>
   )

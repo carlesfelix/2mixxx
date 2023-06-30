@@ -12,7 +12,6 @@ export default function DesktopMainMenu (
   const rootClassName = classNames('DesktopMainMenu', className)
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
     <div className={rootClassName} tabIndex={0}>
       <div className="DesktopMainMenu__menu-header">
         <div className="DesktopMainMenu__title-container">

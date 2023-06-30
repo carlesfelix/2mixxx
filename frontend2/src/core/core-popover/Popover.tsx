@@ -13,6 +13,7 @@ import DefaultPopoverPortal from './components/DefaultPopoverPortal'
 import './Popover.css'
 import { PopoverInstance, PopoverProps } from './types'
 import { useKeyBoard } from '../core-hooks'
+import PopoverContent from './components/PopoverContent'
 
 function PopoverWithRef (
   props: PopoverProps,
@@ -26,7 +27,7 @@ function PopoverWithRef (
     className
   } = props
 
-  const [open, setOpen] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
 
   const { styles, attributes } = usePopper(
@@ -39,23 +40,23 @@ function PopoverWithRef (
 
   useKeyBoard({
     listener () {
-      setOpen(false)
+      setIsOpen(false)
     },
     code: 'Escape',
-    listen: open
+    listen: isOpen
   })
 
   useImperativeHandle(ref, () => ({
     close () {
-      setOpen(false)
+      setIsOpen(false)
     },
     open () {
-      setOpen(true)
+      setIsOpen(true)
     },
     toggle () {
-      setOpen(old => !old)
+      setIsOpen(old => !old)
     }
-  }), [setOpen])
+  }), [setIsOpen])
 
   useEffect(() => {
     function globalClickHandler (event: MouseEvent): void {
@@ -63,14 +64,14 @@ function PopoverWithRef (
         !targetElement?.contains(event.target as Node) &&
         !popperElement?.contains(event.target as Node)
       ) {
-        setOpen(false)
+        setIsOpen(false)
       }
     }
     window.addEventListener('click', globalClickHandler)
     return () => {
       window.removeEventListener('click', globalClickHandler)
     }
-  }, [targetElement, popperElement, setOpen])
+  }, [targetElement, popperElement, setIsOpen])
 
   const rootClassName = classNames(
     'Popover',
@@ -84,14 +85,14 @@ function PopoverWithRef (
       className={rootClassName}
       {...attributes.popper}
     >
-      {children}
+      <PopoverContent>{children}</PopoverContent>
     </div>
   )
 
   return (
     <>
       {
-        open && (
+        isOpen && (
           target
             ? createPortal(popperNode, target)
             : <DefaultPopoverPortal>{popperNode}</DefaultPopoverPortal>

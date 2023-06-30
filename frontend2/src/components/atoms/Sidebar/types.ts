@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { MouseEventHandler, ReactNode } from 'react'
 
 export type SidebarStatus = 'opening' | 'closing' | 'opened' | 'closed'
 export interface SidebarProps {
@@ -8,6 +8,7 @@ export interface SidebarProps {
   contentClassName?: string
   onClose?: () => void
   onEscape?: () => void
+  onClick?: MouseEventHandler<HTMLDivElement>
 }
 
 export interface SidebarContentProps {

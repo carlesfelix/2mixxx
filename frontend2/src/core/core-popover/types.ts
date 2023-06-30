@@ -18,3 +18,7 @@ export interface PopoverProps {
 export interface DefaultPopoverPortalProps {
   children: ReactNode
 }
+
+export interface PopoverContentProps {
+  children: ReactNode
+}

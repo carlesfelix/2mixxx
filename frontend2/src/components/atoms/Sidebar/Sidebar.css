@@ -46,6 +46,11 @@ div.Sidebar {
   height: 100%;
   width: 100%;
 
+  & .Sidebar__wrapper {
+    height: 100%;
+    width: 100%;
+  }
+
   & .Sidebar__content {
     transform: translateX(-100%);
   }
