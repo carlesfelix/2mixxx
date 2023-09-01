@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import MobileMainMenu from './components/MobileMainMenu'
 import { MobileMainMenuSidebarProps, MobileMainMenuSidebarRef } from './types'
 import './MobileMainMenuSidebar.css'
-import { ForwardedRef, forwardRef, MouseEvent, MutableRefObject, ReactElement, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { ForwardedRef, forwardRef, KeyboardEvent, MouseEvent, MutableRefObject, ReactElement, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { useKeyboardAccessibility } from '@/core/core-keyboard-accessibility'
 import { usePrevious } from '@/core/core-hooks'
 import { useLocation } from 'react-router-dom'
@@ -16,7 +16,7 @@ function MobileMainMenuSidebarWithRef (
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const { pathname } = useLocation()
   const prevPathName = usePrevious(pathname)
-  const { isHighlighted } = useKeyboardAccessibility()
+  const { isHighlighted, highlight } = useKeyboardAccessibility()
   const clickedElementRef = useRef<Element | null>(null)
 
   useImperativeHandle(ref, () => ({
@@ -33,9 +33,10 @@ function MobileMainMenuSidebarWithRef (
 
   const returnFocus = useCallback(() => {
     if (keyboardFocusReturnElementRef) {
+      highlight(keyboardFocusReturnElementRef.current)
       keyboardFocusReturnElementRef.current?.focus()
     }
-  }, [keyboardFocusReturnElementRef])
+  }, [keyboardFocusReturnElementRef, highlight])
 
   const closeSidebar = useCallback((fromRef: MutableRefObject<Element | null>) => {
     setIsOpen(false)
@@ -53,10 +54,6 @@ function MobileMainMenuSidebarWithRef (
 
   const rootClassName = classNames('MobileMainMenuSidebar', className)
 
-  function sidebarClickHandler (event: MouseEvent<HTMLDivElement>): void {
-    clickedElementRef.current = event.target as Element
-  }
-
   function sidebarCloseHandler (): void {
     setIsOpen(false)
   }
@@ -70,13 +67,19 @@ function MobileMainMenuSidebarWithRef (
     returnFocus()
   }
 
+  function keydownHandler (event: KeyboardEvent<HTMLDivElement>): void {
+    if (event.key === 'Enter') {
+      clickedElementRef.current = event.target as Element
+    }
+  }
+
   return (
     <Sidebar
       className={rootClassName}
       isOpen={isOpen}
       onClose={sidebarCloseHandler}
-      onClick={sidebarClickHandler}
       onEscape={sidebarEscapeHandler}
+      onKeyDown={keydownHandler}
     >
       <MobileMainMenu
         className="MobileMainMenuSidebar__menu"

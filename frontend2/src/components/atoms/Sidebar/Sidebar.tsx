@@ -22,7 +22,8 @@ export default function Sidebar (props: SidebarProps): ReactElement {
     contentClassName,
     onClose,
     onEscape,
-    onClick
+    onClick,
+    onKeyDown
   } = props
   const [status, setStatus] = useState<SidebarStatus>(isOpen ? 'opened' : 'closed')
   const overlayRootElement = useOverlayRootElement()
@@ -76,6 +77,7 @@ export default function Sidebar (props: SidebarProps): ReactElement {
         onAnimationStart={animationStartHandler}
         onAnimationEnd={animationEndHandler}
         onClick={clickHandler}
+        onKeyDown={onKeyDown}
         tabIndex={-1}
       >
         <FocusWithKeyboard className="Sidebar__wrapper">
