@@ -21,4 +21,9 @@ export type MenuItem = ButtonMenuItem | LinkMenuItem
 export interface MenuItemsProps {
   items: MenuItem[]
   onClickItem: (item: MenuItem, event: MouseEvent<HTMLElement>) => void
+  focusIndex?: number
+}
+
+export interface MenuItemsInstance {
+  focus: () => void
 }

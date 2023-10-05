@@ -1,33 +1,24 @@
 import classNames from 'classnames'
-import {
-  ForwardedRef,
-  forwardRef,
-  ReactElement,
-  useEffect,
-  useImperativeHandle,
-  useState
-} from 'react'
+import { ReactElement, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { usePopper } from 'react-popper'
 import DefaultPopoverPortal from './components/DefaultPopoverPortal'
 import './Popover.css'
-import { PopoverInstance, PopoverProps } from './types'
+import { PopoverProps } from './types'
 import { useKeyBoard } from '../core-hooks'
 import PopoverContent from './components/PopoverContent'
+import useClick from '../core-hooks/useClick'
 
-function PopoverWithRef (
-  props: PopoverProps,
-  ref: ForwardedRef<PopoverInstance>
-): ReactElement {
+export default function Popover (props: PopoverProps): ReactElement {
   const {
     target,
     children,
     targetElement,
     placement,
-    className
+    className,
+    isOpen,
+    onChangeIsOpen
   } = props
-
-  const [isOpen, setIsOpen] = useState<boolean>(false)
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
 
   const { styles, attributes } = usePopper(
@@ -40,38 +31,22 @@ function PopoverWithRef (
 
   useKeyBoard({
     listener () {
-      setIsOpen(false)
+      onChangeIsOpen(false)
     },
     code: 'Escape',
     listen: isOpen
   })
 
-  useImperativeHandle(ref, () => ({
-    close () {
-      setIsOpen(false)
-    },
-    open () {
-      setIsOpen(true)
-    },
-    toggle () {
-      setIsOpen(old => !old)
-    }
-  }), [setIsOpen])
-
-  useEffect(() => {
-    function globalClickHandler (event: MouseEvent): void {
+  useClick({
+    listener (event) {
       if (
         !targetElement?.contains(event.target as Node) &&
         !popperElement?.contains(event.target as Node)
       ) {
-        setIsOpen(false)
+        onChangeIsOpen(false)
       }
     }
-    window.addEventListener('click', globalClickHandler)
-    return () => {
-      window.removeEventListener('click', globalClickHandler)
-    }
-  }, [targetElement, popperElement, setIsOpen])
+  })
 
   const rootClassName = classNames(
     'Popover',
@@ -101,7 +76,3 @@ function PopoverWithRef (
     </>
   )
 }
-
-const Popover = forwardRef(PopoverWithRef)
-
-export default Popover

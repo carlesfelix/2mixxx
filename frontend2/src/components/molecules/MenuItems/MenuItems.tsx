@@ -1,11 +1,24 @@
 import MenuButtonItem from '@/components/atoms/MenuButtonItem'
 import MenuLinkItem from '@/components/atoms/MenuLinkItem'
-import { MouseEventHandler, ReactElement } from 'react'
-import { ButtonMenuItem, LinkMenuItem, MenuItemsProps } from './types'
+import { ForwardedRef, forwardRef, MouseEventHandler, ReactElement, Ref, useImperativeHandle, useRef } from 'react'
+import { ButtonMenuItem, LinkMenuItem, MenuItemsInstance, MenuItemsProps } from './types'
 import './MenuItems.css'
 
-export default function MenuItems (props: MenuItemsProps): ReactElement {
-  const { items, onClickItem } = props
+function MenuItemsWithRef (
+  props: MenuItemsProps,
+  ref: ForwardedRef<MenuItemsInstance>
+): ReactElement {
+  const { items, onClickItem, focusIndex = 0 } = props
+  const menuItemRefs = useRef<Record<number, HTMLElement | null>>({})
+
+  useImperativeHandle(ref,
+    () => ({
+      focus () {
+        const element = menuItemRefs.current[focusIndex]
+        element?.focus()
+      }
+    }),
+    [focusIndex])
 
   function clickButtonItemHandler (
     item: ButtonMenuItem
@@ -24,6 +37,18 @@ export default function MenuItems (props: MenuItemsProps): ReactElement {
     }
   }
 
+  function menuButtonRefCallback (iButton: number): Ref<HTMLButtonElement> {
+    return (element) => {
+      menuItemRefs.current[iButton] = element
+    }
+  }
+
+  function menuAnchorRefCallback (iAnchor: number): Ref<HTMLAnchorElement> {
+    return (element) => {
+      menuItemRefs.current[iAnchor] = element
+    }
+  }
+
   return (
     <ul className="MenuItems">
       {
@@ -35,6 +60,7 @@ export default function MenuItems (props: MenuItemsProps): ReactElement {
                 <MenuButtonItem
                   onClick={clickButtonItemHandler(item)}
                   className="MenuItems__item"
+                  ref={menuButtonRefCallback(iItem)}
                 >
                   {item.icon}
                   <span>
@@ -47,6 +73,7 @@ export default function MenuItems (props: MenuItemsProps): ReactElement {
                   onClick={clickLinkItemHandler(item)}
                   to={item.to}
                   className="MenuItems__item"
+                  ref={menuAnchorRefCallback(iItem)}
                 >
                   {item.icon}
                   <span>
@@ -62,3 +89,7 @@ export default function MenuItems (props: MenuItemsProps): ReactElement {
     </ul>
   )
 }
+
+const MenuItems = forwardRef(MenuItemsWithRef)
+
+export default MenuItems

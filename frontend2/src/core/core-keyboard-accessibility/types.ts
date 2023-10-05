@@ -5,6 +5,16 @@ export interface KeyboardAccessibilityProviderProps {
   children: ReactNode
 }
 
+export interface InstanceRefWithFocus {
+  focus: () => void
+}
+
+export interface UseAutoHighlightWithKeyboardProps<InstanceRef extends InstanceRefWithFocus | null> {
+  targetElement: HTMLElement | null
+  isVisible: boolean
+  ref: MutableRefObject<InstanceRef>
+}
+
 export interface KeyboardAccessibilityContextReturn {
   pointedElementRef: MutableRefObject<Element | null>
   updatePointedElement: (element: Element | null) => void
