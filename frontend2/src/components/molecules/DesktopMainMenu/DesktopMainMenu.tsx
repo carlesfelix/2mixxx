@@ -15,7 +15,7 @@ export default function DesktopMainMenu (
     <div className={rootClassName} tabIndex={0}>
       <div className="DesktopMainMenu__menu-header">
         <div className="DesktopMainMenu__title-container">
-          <h3 className="_text _text--h3 DesktopMainMenu__title">2MIXX</h3>
+          <h3 className="_text _text--h3 DesktopMainMenu__title">DJnow</h3>
         </div>
       </div>
       <div className="DesktopMainMenu__menu-content">

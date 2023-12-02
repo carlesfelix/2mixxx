@@ -29,7 +29,7 @@ export default function MobileMainMenu (
           <MenuIcon />
         </IconButton>
         <div className="MobileMainMenu__title-container">
-          <h3 className="_text _text--h3 MobileMainMenu__title">2MIXX</h3>
+          <h3 className="_text _text--h3 MobileMainMenu__title">DJnow</h3>
         </div>
       </div>
       <div className="MobileMainMenu__menu-content">
