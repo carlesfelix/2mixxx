@@ -104,7 +104,7 @@ function FocusWithKeyboardWithRef (
 
   function blurHandler (event: React.FocusEvent): void {
     if (isFocusable(event.target)) {
-      blur(event as React.FocusEvent<FocusableElement>)
+      blur()
     }
   }
 
