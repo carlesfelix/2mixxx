@@ -10,7 +10,13 @@ export interface InstanceRefWithFocus {
 }
 
 export interface UseAutoHighlightWithKeyboardProps<InstanceRef extends InstanceRefWithFocus | null> {
-  targetElement: HTMLElement | null
+  targetElementRef: MutableRefObject<HTMLElement | null>
+  isVisible: boolean
+  ref: MutableRefObject<InstanceRef>
+}
+
+export interface UseHighlightReturnWithKeyboardProps<InstanceRef extends InstanceRefWithFocus | null> {
+  keyboardCodes: string[]
   isVisible: boolean
   ref: MutableRefObject<InstanceRef>
 }

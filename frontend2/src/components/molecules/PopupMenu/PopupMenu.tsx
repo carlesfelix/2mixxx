@@ -6,14 +6,19 @@ import './PopupMenu.css'
 import { PopupMenuProps } from './types'
 import classNames from 'classnames'
 import MenuItems, { MenuItemsInstance } from '@/components/molecules/MenuItems'
-import { useAutoHighlightWithKeyboard } from '@/core/core-keyboard-accessibility'
+import { useAutoHighlightWithKeyboard, useHighlightReturnWithKeyboard } from '@/core/core-keyboard-accessibility'
 
 export default function PopupMenu (props: PopupMenuProps): ReactElement {
   const { className, buttonClassName, color, size, items } = props
-  const [targetElement, setTargetElement] = useState<HTMLElement | null>(null)
+  const targetElementRef = useRef<HTMLButtonElement | null>(null)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const menuItemsRef = useRef<MenuItemsInstance | null>(null)
-  useAutoHighlightWithKeyboard({ isVisible: isOpen, ref: menuItemsRef, targetElement })
+  useAutoHighlightWithKeyboard({ isVisible: isOpen, ref: menuItemsRef, targetElementRef })
+  useHighlightReturnWithKeyboard({
+    isVisible: isOpen,
+    ref: targetElementRef,
+    keyboardCodes: ['Escape']
+  })
 
   function clickHandler (): void {
     setIsOpen(old => !old)
@@ -31,14 +36,14 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
         className={buttonClassName}
         color={color}
         size={size}
-        ref={setTargetElement}
+        ref={targetElementRef}
         onClick={clickHandler}
       >
         <MoreVertIcon />
       </IconButton>
       <Popover
         placement="bottom-end"
-        targetElement={targetElement}
+        targetElement={targetElementRef.current}
         className={rootClassName}
         isOpen={isOpen}
         onChangeIsOpen={setIsOpen}

@@ -1,4 +1,5 @@
 export { default as useKeyboardAccessibility } from './hooks/useKeyboardAccessibility'
+export { default as useHighlightReturnWithKeyboard } from './hooks/useHighlightReturnWithKeyboard'
 export { default as useAutoHighlightWithKeyboard } from './hooks/useAutoHighlightWithKeyboard'
 export { default as KeyboardAccessibilityProvider } from './components/KeyboardAccessibilityProvider'
 export { default as FocusWithKeyboard } from './components/FocusWithKeyboard'
