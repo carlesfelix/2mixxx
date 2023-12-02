@@ -17,13 +17,10 @@ import { SidebarProps, SidebarStatus } from './types'
 export default function Sidebar (props: SidebarProps): ReactElement {
   const {
     isOpen,
+    setIsOpen,
     children,
     className,
-    contentClassName,
-    onClose,
-    onEscape,
-    onClick,
-    onKeyDown
+    contentClassName
   } = props
   const [status, setStatus] = useState<SidebarStatus>(isOpen ? 'opened' : 'closed')
   const overlayRootElement = useOverlayRootElement()
@@ -31,7 +28,7 @@ export default function Sidebar (props: SidebarProps): ReactElement {
 
   useKeyBoard({
     listener () {
-      onEscape && onEscape()
+      setIsOpen(false)
     },
     code: 'Escape',
     listen: isOpen
@@ -54,11 +51,10 @@ export default function Sidebar (props: SidebarProps): ReactElement {
   }
 
   function clickHandler (event: MouseEvent<HTMLDivElement>): void {
-    onClick && onClick(event)
     if (
       !sidebarContentRef.current?.contains(event.target as Node)
     ) {
-      onClose && onClose()
+      setIsOpen(false)
     }
   }
 
@@ -77,7 +73,6 @@ export default function Sidebar (props: SidebarProps): ReactElement {
         onAnimationStart={animationStartHandler}
         onAnimationEnd={animationEndHandler}
         onClick={clickHandler}
-        onKeyDown={onKeyDown}
         tabIndex={-1}
       >
         <FocusWithKeyboard className="Sidebar__wrapper">

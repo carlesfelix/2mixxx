@@ -13,11 +13,16 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
   const targetElementRef = useRef<HTMLButtonElement | null>(null)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const menuItemsRef = useRef<MenuItemsInstance | null>(null)
-  useAutoHighlightWithKeyboard({ isVisible: isOpen, ref: menuItemsRef, targetElementRef })
+  useAutoHighlightWithKeyboard({
+    isVisible: isOpen,
+    ref: menuItemsRef,
+    targetElementRef,
+    keyboardCodes: ['Enter']
+  })
   useHighlightReturnWithKeyboard({
     isVisible: isOpen,
     ref: targetElementRef,
-    keyboardCodes: ['Escape']
+    keyboardCodes: ['Escape', 'Enter']
   })
 
   function clickHandler (): void {

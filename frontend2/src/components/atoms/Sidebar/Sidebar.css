@@ -20,21 +20,21 @@
 
 @keyframes Sidebar__mask-fadein {
   0% {
-    background-color: transparent;
+    opacity: 0;
   }
 
   100% {
-    background-color: var(--theme-surface-overlay-mask);
+    opacity: 1;
   }
 }
 
 @keyframes Sidebar__mask-fadeout {
   0% {
-    background-color: var(--theme-surface-overlay-mask);
+    opacity: 1;
   }
 
   100% {
-    background-color: transparent;
+    opacity: 0;
   }
 }
 
@@ -53,6 +53,7 @@ div.Sidebar {
 
   & .Sidebar__content {
     transform: translateX(-100%);
+    will-change: transform;
   }
 
   & .Sidebar__mask {
@@ -62,6 +63,7 @@ div.Sidebar {
     left: 0;
     position: absolute;
     background-color: var(--theme-surface-overlay-mask);
+    will-change: opacity;
   }
 
   &.Sidebar--opened {
@@ -71,7 +73,6 @@ div.Sidebar {
     }
 
     & .Sidebar__mask {
-      background-color: var(--theme-surface-overlay-mask);
       animation: Sidebar__mask-fadein 150ms;
     }
   }

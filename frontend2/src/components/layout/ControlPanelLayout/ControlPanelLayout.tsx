@@ -1,29 +1,50 @@
 import { ReactComponent as MenuIcon } from '@/assets/svg/Menu.svg'
 import IconButton from '@/components/atoms/IconButton'
 import DesktopMainMenu from '@/components/molecules/DesktopMainMenu'
-import MobileMainMenuSidebar, { MobileMainMenuSidebarRef } from '@/components/molecules/MobileMainMenuSidebar'
-import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
-import { ReactElement, useRef } from 'react'
+import MobileMainMenuSidebar from '@/components/molecules/MobileMainMenuSidebar'
+import { FocusWithKeyboard, useAutoHighlightWithKeyboard, useHighlightReturnWithKeyboard } from '@/core/core-keyboard-accessibility'
+import { ReactElement, useEffect, useRef, useState } from 'react'
 import './ControlPanelLayout.css'
 import { ControlPanelLayoutProps } from './types'
+import { usePrevious } from '@/core/core-hooks'
+import { useLocation } from 'react-router-dom'
 
 export default function ControlPanelLayout (
   props: ControlPanelLayoutProps
 ): ReactElement {
   const { children } = props
-  const btnRef = useRef<HTMLButtonElement>(null)
-  const sidebarRef = useRef<MobileMainMenuSidebarRef | null>(null)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const openButtonRef = useRef<HTMLButtonElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null)
+  const { pathname } = useLocation()
+  const prevPathName = usePrevious(pathname)
+  useAutoHighlightWithKeyboard({
+    isVisible: isOpen,
+    ref: closeButtonRef,
+    targetElementRef: openButtonRef,
+    keyboardCodes: ['Enter']
+  })
+  useHighlightReturnWithKeyboard({
+    isVisible: isOpen,
+    ref: openButtonRef,
+    keyboardCodes: ['Escape', 'Enter']
+  })
+
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname, prevPathName])
 
   function openSidebarHandler (): void {
-    sidebarRef.current?.open()
+    setIsOpen(true)
   }
 
   return (
     <FocusWithKeyboard className="ControlPanelLayout" trap={false}>
       <MobileMainMenuSidebar
         className="ControlPanelLayout__mobile-menu"
-        keyboardFocusReturnElementRef={btnRef}
-        ref={sidebarRef}
+        closeButtonRef={closeButtonRef}
+        setIsOpen={setIsOpen}
+        isOpen={isOpen}
       />
       <DesktopMainMenu className="ControlPanelLayout__desktop-menu" />
       <div className="ControlPanelLayout__main-container">
@@ -33,7 +54,7 @@ export default function ControlPanelLayout (
               size="lg"
               onClick={openSidebarHandler}
               color="primary"
-              ref={btnRef}
+              ref={openButtonRef}
             >
               <MenuIcon />
             </IconButton>

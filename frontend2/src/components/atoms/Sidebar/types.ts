@@ -1,15 +1,12 @@
-import { KeyboardEventHandler, MouseEventHandler, ReactNode } from 'react'
+import { Dispatch, ReactNode, SetStateAction } from 'react'
 
 export type SidebarStatus = 'opening' | 'closing' | 'opened' | 'closed'
 export interface SidebarProps {
-  isOpen: boolean
   children: ReactNode
   className?: string
   contentClassName?: string
-  onClose?: () => void
-  onEscape?: () => void
-  onClick?: MouseEventHandler<HTMLDivElement>
-  onKeyDown?: KeyboardEventHandler<HTMLDivElement>
+  isOpen: boolean
+  setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
 export interface SidebarContentProps {
