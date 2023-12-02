@@ -14,17 +14,15 @@ export default function useHighlightReturnWithKeyboard<
 
   useKeyBoard({
     listener (event) {
-      if (keyboardCodes.includes(event.code)) {
-        updatePointedElement(null)
-        shouldReturnFocusRef.current = true
-      }
+      shouldReturnFocusRef.current = keyboardCodes.includes(event.code)
     }
   })
 
   useEffect(() => {
     if (returnFocus) {
+      updatePointedElement(null)
       ref.current?.focus()
       shouldReturnFocusRef.current = false
     }
-  }, [returnFocus, ref])
+  }, [returnFocus, ref, updatePointedElement])
 }

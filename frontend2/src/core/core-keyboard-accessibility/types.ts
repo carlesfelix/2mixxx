@@ -27,7 +27,7 @@ export interface KeyboardAccessibilityContextReturn {
   highlightedElement: FocusableElement | null
   isHighlighted: (elementRef: MutableRefObject<Element | null>) => boolean
   focus: (event: FocusEvent) => void
-  blur: (event?: FocusEvent) => void
+  blur: () => void
   highlight: (element: FocusableElement | null) => void
 }
 

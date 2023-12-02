@@ -30,13 +30,8 @@ export default function KeyboardAccessibilityProvider (
     setHighlightedElement(element)
   }, [setHighlightedElement])
 
-  const blur = useCallback((event?: FocusEvent) => {
-    setHighlightedElement(old => {
-      if (!event || old === event.target) {
-        return null
-      }
-      return old
-    })
+  const blur = useCallback(() => {
+    setHighlightedElement(null)
   }, [setHighlightedElement])
 
   const isHighlighted = useCallback((elementRef: MutableRefObject<Element | null>) => {
