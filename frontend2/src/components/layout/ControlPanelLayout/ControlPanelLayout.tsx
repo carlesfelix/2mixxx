@@ -31,7 +31,9 @@ export default function ControlPanelLayout (
   })
 
   useEffect(() => {
-    setIsOpen(false)
+    if (prevPathName !== undefined && prevPathName !== pathname) {
+      setIsOpen(false)
+    }
   }, [pathname, prevPathName])
 
   function openSidebarHandler (): void {
