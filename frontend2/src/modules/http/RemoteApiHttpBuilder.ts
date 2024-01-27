@@ -1,6 +1,4 @@
-import { IHttp } from '@/core/core-http'
-import AxiosHttp from '@/core/core-http/AxiosHttp'
-import IHttpBuilder from '@/core/core-http/IHttpBuilder'
+import { IHttp, AxiosHttp, IHttpBuilder } from '@/core/core-http'
 
 export default class RemoteApiHttpBuilder implements IHttpBuilder {
   #baseUrl: string

@@ -1,6 +1,6 @@
 import { useQuery } from '@/core/core-query'
 import { EventEntity } from '@/query-hooks/useAllEvents/types'
-import http from '@/singletons/http'
+import http from '@/modules/http'
 import { useCallback } from 'react'
 import { UseAllEventsReturn } from './types'
 

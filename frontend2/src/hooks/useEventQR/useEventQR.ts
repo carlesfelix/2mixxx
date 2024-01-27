@@ -1,6 +1,6 @@
 import useObjectUrl from '@/core/core-hooks/useObjectUrl'
 import Async from '@/core/core-types/Async'
-import http from '@/singletons/http'
+import http from '@/modules/http'
 import { useEffect, useState } from 'react'
 
 export default function useEventQR (

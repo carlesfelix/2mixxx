@@ -1,5 +1,5 @@
 import { useOAuth2 } from '@/core/core-oauth2'
-import http from '@/singletons/http'
+import http from '@/modules/http'
 import { useEffect } from 'react'
 
 export default function useRegisteredUserAuthorizationInterceptor (): void {
