@@ -5,18 +5,33 @@ import { QueryProvider } from '@/core/core-query'
 import http from '@/singletons/http'
 import OAuth2ProviderLayout from '@/components/layout/OAuth2ProviderLayout'
 import { ReactElement } from 'react'
+import { I18nProvider } from './core/core-i18n'
+import FormConfigWrapper from './components/wrappers/FormConfigWrapper'
+import i18n from './modules/i18n'
+import Spinner from './components/atoms/Spinner'
 
 function App (): ReactElement {
   return (
-    <OAuth2ProviderLayout>
-      <QueryProvider http={http}>
-        <KeyboardAccessibilityProvider>
-          <BrowserRouter>
-            <RootLayout />
-          </BrowserRouter>
-        </KeyboardAccessibilityProvider>
-      </QueryProvider>
-    </OAuth2ProviderLayout>
+    <I18nProvider
+      i18n={i18n}
+      fallback={
+        <div className="_layout _layout--center">
+          <Spinner color="primary" />
+        </div>
+      }
+    >
+      <FormConfigWrapper>
+        <OAuth2ProviderLayout>
+          <QueryProvider http={http}>
+            <KeyboardAccessibilityProvider>
+              <BrowserRouter>
+                <RootLayout />
+              </BrowserRouter>
+            </KeyboardAccessibilityProvider>
+          </QueryProvider>
+        </OAuth2ProviderLayout>
+      </FormConfigWrapper>
+    </I18nProvider>
   )
 }
 

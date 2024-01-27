@@ -1,0 +1,4 @@
+.c-input-field {
+  display: inline-flex;
+  flex-direction: column;
+}
