@@ -7,4 +7,6 @@ export * from './hooks/useForm'
 export { default as useForm } from './hooks/useForm'
 
 export * from './contexts/form-config'
-export * from './services/SchemaValidationBuilder'
+export * from './services/FormConfigBuilder'
+export * from './services/schema'
+export { default as schema } from './services/schema'

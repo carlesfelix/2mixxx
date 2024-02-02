@@ -1,5 +1,9 @@
-import { ObjectSchema, Root } from 'joi'
-import { FieldValues, UseFormProps as UseFormLibProps, UseFormReturn as UseFormLibReturn } from 'react-hook-form'
+import {
+  FieldValues,
+  UseFormProps as UseFormLibProps,
+  UseFormReturn as UseFormLibReturn
+} from 'react-hook-form'
+import schema from '../../services/schema'
 
 export type UseFormReturn<
   TFieldValues extends FieldValues = FieldValues,
@@ -8,8 +12,7 @@ export type UseFormReturn<
   TTransformedValues extends FieldValues | undefined = undefined
 > = UseFormLibReturn<TFieldValues, TContext, TTransformedValues>
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type FormValidator<TSchema = any> = (rootSchema: Root) => ObjectSchema<TSchema>
+export type FormValidator<TSchema> = () => schema.ZodType<TSchema>
 
 export interface UseFormProps<
   TFieldValues extends FieldValues = FieldValues,

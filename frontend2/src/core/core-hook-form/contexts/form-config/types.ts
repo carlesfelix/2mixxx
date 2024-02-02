@@ -1,14 +1,11 @@
 import { ReactNode } from 'react'
-import { ISchemaValidationBuilder } from '../../services/SchemaValidationBuilder'
-import { Root } from 'joi'
+import { IFormConfigBuilder } from '../../services/FormConfigBuilder'
 
-export interface FormConfigProviderProps<TSchemaOptions> {
+export interface FormConfigProviderProps {
   children: ReactNode
-  schemaValidationBuilder: ISchemaValidationBuilder<TSchemaOptions>
-  schemaOptions: TSchemaOptions
-  fallback?: ReactNode
+  configBuilder: IFormConfigBuilder
 }
 
 export interface FormConfigContextValue {
-  schema: Root
+  configBuilder: IFormConfigBuilder
 }

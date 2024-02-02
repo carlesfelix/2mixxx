@@ -1,38 +1,25 @@
 import {
-  FormConfigProvider,
-  SchemaValidationBuilderOptions
+  FormConfigProvider
 } from '@/core/core-hook-form'
 import { useLanguage } from '@/core/core-i18n'
-import { ReactElement, useEffect, useState } from 'react'
-import schemaValidationBuilder from './services/schema-validation-builder'
+import { ReactElement, useEffect } from 'react'
 import { FormConfigWrapperProps } from './types'
 import { usePrevious } from '@/core/core-hooks'
-import Spinner from '@/components/atoms/Spinner'
+import { formConfigBuilder } from '@/modules/form'
 
 export default function FormConfigWrapper (props: FormConfigWrapperProps): ReactElement {
   const { children } = props
   const language = useLanguage()
   const previousLanguage = usePrevious(language)
-  const [schemaOptions, setSchemaOptions] = useState<SchemaValidationBuilderOptions>(() => ({
-    language
-  }))
 
   useEffect(() => {
     if (previousLanguage !== undefined && previousLanguage !== language) {
-      setSchemaOptions({ language })
+      formConfigBuilder.rebuildSchemas()
     }
   }, [language, previousLanguage])
 
   return (
-    <FormConfigProvider
-      schemaValidationBuilder={schemaValidationBuilder}
-      schemaOptions={schemaOptions}
-      fallback={
-        <div className="_layout _layout--center">
-          <Spinner color="primary" />
-        </div>
-      }
-    >
+    <FormConfigProvider configBuilder={formConfigBuilder}>
       {children}
     </FormConfigProvider>
   )

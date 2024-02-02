@@ -1,22 +1,23 @@
 import BasicButton from '@/components/atoms/BasicButton'
 import OutlinedButton from '@/components/atoms/OutlinedButton'
 import InputTextField from '@/components/molecules/InputTextField'
-import { FormValidator, useForm } from '@/core/core-hook-form'
+import { FormValidator, useForm, schema, asOptionalTextField } from '@/core/core-hook-form'
 import { useI18n, useTranslation } from '@/core/core-i18n'
 import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
-import i18nModule from '@/modules/i18n'
+import i18n from '@/modules/i18n'
 import { ReactElement, useRef, useState } from 'react'
 
-interface Aa {
+interface AaSchema {
   name: string
   fullName?: string
+  aa: Date | null
 }
-const validator: FormValidator<Aa> = (schema) => {
+
+const validator: FormValidator<AaSchema> = () => {
   return schema.object({
-    name: schema.string().optional().empty('').required().messages({
-      'any.required': i18nModule.t('aaa')
-    }),
-    fullName: schema.string().optional().empty('')
+    name: schema.string().min(1, i18n.t('aaa')),
+    fullName: asOptionalTextField(schema.string().min(1)),
+    aa: schema.date().nullable()
   })
 }
 
@@ -27,10 +28,10 @@ export default function NotFoundPage (): ReactElement {
   const {
     control,
     handleSubmit
-  } = useForm<Aa>({ validator })
+  } = useForm<AaSchema>({ validator, defaultValues: { aa: new Date() } })
   const i18n = useI18n()
 
-  function submitHandler (event: Aa): void {
+  function submitHandler (event: AaSchema): void {
     console.log(event)
   }
 

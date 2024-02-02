@@ -1,9 +1,10 @@
 import { FieldValues, Path, useForm as useFormLib } from 'react-hook-form'
 import { UseFormProps, UseFormReturn } from './types'
-import { useEffect, useMemo } from 'react'
-import { joiResolver } from '@hookform/resolvers/joi'
-import { usePrevious } from '@/core/core-hooks'
+import { useEffect, useMemo, useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useFormConfigContext } from '../../contexts/form-config'
+import { usePrevious } from '@/core/core-hooks'
+import schema from '../../services/schema'
 
 export default function UseForm<
   TFieldValues extends FieldValues = FieldValues,
@@ -14,9 +15,10 @@ export default function UseForm<
   props: UseFormProps<TFieldValues, TContext>
 ): UseFormReturn<TFieldValues, TContext, TTransformedValues> {
   const { validator, ...baseProps } = props
-  const { schema } = useFormConfigContext()
-  const prevRootSchema = usePrevious(schema)
-  const resolver = useMemo(() => joiResolver(validator(schema)), [schema, validator])
+  const [schema, setSchema] = useState<schema.ZodType<TFieldValues>>(() => validator())
+  const previousSchema = usePrevious(schema)
+  const { configBuilder } = useFormConfigContext()
+  const resolver = useMemo(() => zodResolver(schema), [schema])
   const { trigger, formState, ...methods } = useFormLib<
   TFieldValues, TContext, TTransformedValues
   >({
@@ -25,12 +27,21 @@ export default function UseForm<
   })
   const { errors } = formState
   useEffect(() => {
-    if (prevRootSchema !== schema && prevRootSchema !== undefined) {
+    const releaseOnRebuildSchemas = configBuilder.onRebuildSchemas(() => {
+      setSchema(validator())
+    })
+    return () => {
+      releaseOnRebuildSchemas()
+    }
+  }, [configBuilder, validator])
+
+  useEffect(() => {
+    if (previousSchema !== undefined && schema !== previousSchema) {
       const fieldNamesWithErrors = Object.keys(errors) as Array<Path<TFieldValues>>
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       fieldNamesWithErrors.length && trigger(fieldNamesWithErrors)
     }
-  }, [prevRootSchema, schema, trigger, errors])
+  }, [errors, trigger, schema, previousSchema])
 
   return { ...methods, formState, trigger }
 }
