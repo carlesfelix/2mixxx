@@ -19,12 +19,12 @@ function OutlinedButtonWithRef (
   const [refCallback, internalRef] = useInternalRef(ref)
 
   const rootClassName = classNames(
-    'OutlinedButton',
-    '_button',
-    '_button--outlined',
-    `_button--outlined-${color}`,
-    `_button--${size}`,
-    { '_button--highlighted': isHighlighted(internalRef) },
+    'c-outlined-button',
+    'g-button',
+    'g-button--outlined',
+    `g-button--outlined-${color}`,
+    `g-button--${size}`,
+    { 'g-button--highlighted': isHighlighted(internalRef) },
     className
   )
 

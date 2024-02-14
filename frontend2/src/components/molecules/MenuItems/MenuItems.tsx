@@ -58,16 +58,16 @@ function MenuItemsWithRef (
   }
 
   return (
-    <ul className="MenuItems">
+    <ul className="c-menu-items">
       {
         items.map((item, iItem) => (
-          <li className="MenuItems__item" key={`MenuItem__${iItem}`}>
+          <li className="c-menu-items__item" key={`MenuItem__${iItem}`}>
             {
               item.type === 'button'
                 ? (
                 <MenuButtonItem
                   onClick={clickButtonItemHandler(item)}
-                  className="MenuItems__item"
+                  className="c-menu-items__item"
                   ref={menuButtonRefCallback(iItem)}
                 >
                   {item.icon}
@@ -80,7 +80,7 @@ function MenuItemsWithRef (
                 <MenuLinkItem
                   onClick={clickLinkItemHandler(item)}
                   to={item.to}
-                  className="MenuItems__item"
+                  className="c-menu-items__item"
                   ref={menuAnchorRefCallback(iItem)}
                 >
                   {item.icon}

@@ -1,24 +1,24 @@
 @import "/src/styles/utils/index.css";
 
-section.EventCardListLayout {
+.c-event-card-list-layout {
   margin: 1.5rem;
 
-  & .EventCardListLayout__card-item {
+  & .c-event-card-list-layout__card-item {
     min-width: 0;
   }
 
-  & .EventCardListLayout__card-item:not(:first-child) {
+  & .c-event-card-list-layout__card-item:not(:first-child) {
     margin-top: 1.5rem;
   }
 }
 
 @media (--min-md-window) {
-  section.EventCardListLayout {
+  .c-event-card-list-layout {
     display: grid;
     gap: 1.5rem;
     grid-template-columns: repeat(2, 1fr);
 
-    & .EventCardListLayout__card-item:not(:first-child) {
+    & .c-event-card-list-layout__card-item:not(:first-child) {
       margin-top: 0;
     }
   }

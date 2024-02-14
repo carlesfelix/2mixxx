@@ -1,21 +1,17 @@
-.Card {
+.c-card {
   border: solid 1px #dcd8f2;
   border-radius: 5px;
 
-  & .Card__content {
+  & .c-card__content {
     padding: 0 1.5rem;
     margin: 1.25rem 0;
   }
 
-  & .Card__content:not(:first-child) {
+  & .c-card__content:not(:first-child) {
     margin-top: 0;
   }
 
-  /* & .Card__body:not(:first-child) {
-    margin-top: 1rem;
-  } */
-
-  & .Card__body {
+  & .c-card__body {
     color: #5c5a6f;
   }
 }

@@ -12,21 +12,21 @@ export default function MainMenuNavLink (
   const { isHighlighted } = useKeyboardAccessibility()
   const ref = useRef<HTMLAnchorElement | null>(null)
   const rootClassName = classNames(
-    'MainMenuNavLink',
-    { 'MainMenuNavLink--highlighted': isHighlighted(ref) }
+    'c-main-menu-nav-link',
+    { 'c-main-menu-nav-link--highlighted': isHighlighted(ref) }
   )
   return (
     <NavLink
       to={to}
       className={rootClassName}
-      activeClassName="MainMenuNavLink--active"
+      activeClassName="c-main-menu-nav-link--active"
       ref={ref}
       onKeyDown={onKeyDown}
     >
-      <span className="MainMenuNavLink__icon">
+      <span className="c-main-menu-nav-link__icon">
         {icon}
       </span>
-      <span className="MainMenuNavLink__label">
+      <span className="c-main-menu-nav-link__label">
         {label}
       </span>
     </NavLink>

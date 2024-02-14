@@ -12,7 +12,7 @@ export default function EventStatusPill (
   const { status, className } = props
 
   const rootClassName = classNames(
-    'EventStatusPill',
+    'c-event-status-pill',
     className
   )
 

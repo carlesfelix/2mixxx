@@ -16,24 +16,24 @@ export default function MobileMainMenu (
     onClose && onClose(event)
   }
 
-  const rootClassName = classNames('MobileMainMenu', className)
+  const rootClassName = classNames('c-mobile-main-menu', className)
 
   return (
     <div className={rootClassName}>
-      <div className="MobileMainMenu__menu-header">
+      <div className="c-mobile-main-menu__menu-header">
         <IconButton
-          className="MobileMainMenu__menu-btn"
+          className="c-mobile-main-menu__menu-btn"
           onClick={clickHandler}
           size="lg"
           ref={closeButtonRef}
         >
           <MenuIcon />
         </IconButton>
-        <div className="MobileMainMenu__title-container">
-          <h3 className="_text _text--h3 MobileMainMenu__title">DJnow</h3>
+        <div className="c-mobile-main-menu__title-container">
+          <h3 className="g-text g-text--h3 c-mobile-main-menu__title">DJnow</h3>
         </div>
       </div>
-      <div className="MobileMainMenu__menu-content">
+      <div className="c-mobile-main-menu__menu-content">
         <MainMenuLinks linkItems={MAIN_MENU_LINKS} />
       </div>
     </div>

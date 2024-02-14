@@ -1,4 +1,4 @@
-@keyframes Sidebar__fadeout {
+@keyframes cfx-sidebar__fadeout {
   0% {
     transform: translateX(0);
   }
@@ -8,7 +8,7 @@
   }
 }
 
-@keyframes Sidebar__fadein {
+@keyframes cfx-sidebar__fadein {
   0% {
     transform: translateX(-100%);
   }
@@ -18,7 +18,7 @@
   }
 }
 
-@keyframes Sidebar__mask-fadein {
+@keyframes cfx-sidebar__mask-fadein {
   0% {
     opacity: 0;
   }
@@ -28,7 +28,7 @@
   }
 }
 
-@keyframes Sidebar__mask-fadeout {
+@keyframes cfx-sidebar__mask-fadeout {
   0% {
     opacity: 1;
   }
@@ -38,7 +38,7 @@
   }
 }
 
-div.Sidebar {
+.c-sidebar {
   position: fixed;
   z-index: 1000;
   top: 0;
@@ -46,17 +46,17 @@ div.Sidebar {
   height: 100%;
   width: 100%;
 
-  & .Sidebar__wrapper {
+  & .c-sidebar__wrapper {
     height: 100%;
     width: 100%;
   }
 
-  & .Sidebar__content {
+  & .c-sidebar__content {
     transform: translateX(-100%);
     will-change: transform;
   }
 
-  & .Sidebar__mask {
+  & .c-sidebar__mask {
     width: 100%;
     height: 100%;
     top: 0;
@@ -66,26 +66,26 @@ div.Sidebar {
     will-change: opacity;
   }
 
-  &.Sidebar--opened {
-    & .Sidebar__content {
+  &.c-sidebar--opened {
+    & .c-sidebar__content {
       transform: translateX(0);
-      animation: Sidebar__fadein 150ms;
+      animation: cfx-sidebar__fadein 150ms;
     }
 
-    & .Sidebar__mask {
-      animation: Sidebar__mask-fadein 150ms;
+    & .c-sidebar__mask {
+      animation: cfx-sidebar__mask-fadein 150ms;
     }
   }
 
-  &.Sidebar--closed {
-    & .Sidebar__content {
+  &.c-sidebar--closed {
+    & .c-sidebar__content {
       transform: translateX(-100%);
-      animation: Sidebar__fadeout 150ms;
+      animation: cfx-sidebar__fadeout 150ms;
     }
 
-    & .Sidebar__mask {
+    & .c-sidebar__mask {
       background-color: transparent;
-      animation: Sidebar__mask-fadeout 150ms;
+      animation: cfx-sidebar__mask-fadeout 150ms;
     }
   }
 }

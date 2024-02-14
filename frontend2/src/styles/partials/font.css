@@ -1,0 +1,11 @@
+.g-font {
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+
+  &.g-font--primary {
+    font-family: Poppins, Inter, Avenir, Helvetica, Arial, sans-serif;
+  }
+}

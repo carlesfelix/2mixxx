@@ -49,7 +49,7 @@ export default function Popover (props: PopoverProps): ReactElement {
   })
 
   const rootClassName = classNames(
-    'Popover',
+    'c-popover',
     className
   )
 

@@ -9,7 +9,7 @@ export default function MobileMainMenuSidebar (
   props: MobileMainMenuSidebarProps
 ): ReactElement {
   const { className, isOpen, setIsOpen, closeButtonRef } = props
-  const rootClassName = classNames('MobileMainMenuSidebar', className)
+  const rootClassName = classNames('c-mobile-main-menu-sidebar', className)
 
   function closeHandler (): void {
     setIsOpen(false)
@@ -22,7 +22,7 @@ export default function MobileMainMenuSidebar (
       setIsOpen={setIsOpen}
     >
       <MobileMainMenu
-        className="MobileMainMenuSidebar__menu"
+        className="c-mobile-main-menu-sidebar__menu"
         onClose={closeHandler}
         closeButtonRef={closeButtonRef}
       />

@@ -11,8 +11,8 @@ export default function Pill (props: PillProps): ReactElement {
   } = props
 
   const rootClassName = classNames(
-    'Pill',
-    `Pill--${color}`,
+    'c-pill',
+    `c-pill--${color}`,
     className
   )
 

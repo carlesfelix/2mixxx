@@ -1,7 +1,7 @@
 @import "/src/styles/utils/index.css";
 
 @media (--min-lg-window) {
-  div.MobileMainMenuSidebar {
+  .c-mobile-main-menu-sidebar {
     display: none;
   }
 }

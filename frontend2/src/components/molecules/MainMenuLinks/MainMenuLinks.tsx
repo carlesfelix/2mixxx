@@ -8,7 +8,7 @@ export default function MainMenuLinks (
   props: MainMenuLinksProps
 ): ReactElement {
   const { linkItems, className } = props
-  const rootClassName = classNames('MainMenuLinks', className)
+  const rootClassName = classNames('c-main-menu-links', className)
   return (
     <ul className={rootClassName}>
       {

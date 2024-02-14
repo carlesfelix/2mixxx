@@ -49,24 +49,24 @@ export default function EventCard (props: EventCardProps): ReactElement {
     className
   } = props
 
-  const rootClassName = classNames('EventCard', className)
+  const rootClassName = classNames('c-event-card', className)
 
   return (
     <Card
       className={rootClassName}
       header={
-        <div className="EventCard__header">
-          <h3 className="_text _text--h3 EventCard__header-title">
-            <span className="EventCard__title-ellipsis">
-              <span className="EventCard__title">
+        <div className="c-event-card__header">
+          <h3 className="g-text g-text--h3 c-event-card__header-title">
+            <span className="c-event-card__title-ellipsis">
+              <span className="c-event-card__title">
                 {title}
               </span>
             </span>
           </h3>
-          <span className="EventCard__header-right">
-            <EventStatusPill status={status} className="EventCard__header-pill" />
+          <span className="c-event-card__header-right">
+            <EventStatusPill status={status} className="c-event-card__header-pill" />
             <PopupMenu
-              className="EventCard__header-menu"
+              className="c-event-card__header-menu"
               color="secondary"
               size="sm"
               items={items}

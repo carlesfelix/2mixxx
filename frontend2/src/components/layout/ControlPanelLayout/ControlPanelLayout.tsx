@@ -41,17 +41,17 @@ export default function ControlPanelLayout (
   }
 
   return (
-    <FocusWithKeyboard className="ControlPanelLayout" trap={false}>
+    <FocusWithKeyboard className="c-control-panel-layout" trap={false}>
       <MobileMainMenuSidebar
-        className="ControlPanelLayout__mobile-menu"
+        className="c-control-panel-layout__mobile-menu"
         closeButtonRef={closeButtonRef}
         setIsOpen={setIsOpen}
         isOpen={isOpen}
       />
-      <DesktopMainMenu className="ControlPanelLayout__desktop-menu" />
-      <div className="ControlPanelLayout__main-container">
-        <nav className="ControlPanelLayout__navigation-bar">
-          <div className="ControlPanelLayout__navigation-bar-left-content">
+      <DesktopMainMenu className="c-control-panel-layout__desktop-menu" />
+      <div className="c-control-panel-layout__main-container">
+        <nav className="c-control-panel-layout__navigation-bar">
+          <div className="c-control-panel-layout__navigation-bar-left-content">
             <IconButton
               size="lg"
               onClick={openSidebarHandler}
@@ -62,7 +62,7 @@ export default function ControlPanelLayout (
             </IconButton>
           </div>
         </nav>
-        <div className="ControlPanelLayout__page-container">
+        <div className="c-control-panel-layout__page-container">
           {children}
         </div>
       </div>

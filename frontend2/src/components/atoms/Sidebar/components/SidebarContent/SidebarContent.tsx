@@ -15,7 +15,7 @@ function SidebarContentWithRef (
     internalRef.current?.focus()
   }, [internalRef])
 
-  const rootClassName = classNames('SidebarContent', className)
+  const rootClassName = classNames('c-sidebar-content', className)
 
   return (
     <div className={rootClassName} ref={refCallback} tabIndex={-1} role="complementary">

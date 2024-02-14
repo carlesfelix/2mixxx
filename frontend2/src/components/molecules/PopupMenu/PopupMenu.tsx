@@ -33,7 +33,7 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
     setIsOpen(false)
   }
 
-  const rootClassName = classNames('PopupMenu', className)
+  const rootClassName = classNames('c-popup-menu', className)
 
   return (
     <>

@@ -12,7 +12,7 @@ export default function RegisteredUserMainPage (): ReactElement {
     <ControlPanelLayout>
       <Routes
         loadingElement={
-          <div className="_layout _layout--center">
+          <div className="g-layout g-layout--center">
             <Spinner color="primary" />
           </div>
         }

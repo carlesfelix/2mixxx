@@ -1,46 +1,46 @@
 @import "/src/styles/utils/index.css";
 
-._text {
-  &._text--h1 {
+.g-text {
+  &.g-text--h1 {
     font-size: 1.75rem;
     font-weight: 800;
     line-height: 2.5rem;
   }
 
   @media (--min-lg-window) {
-    &._text--h1 {
+    &.g-text--h1 {
       font-size: 2.625rem;
       line-height: 3.5rem;
     }
   }
 
-  &._text--h2 {
+  &.g-text--h2 {
     font-size: 1.5rem;
     font-weight: 800;
     line-height: 2.25rem;
   }
 
   @media (--min-lg-window) {
-    &._text--h2 {
+    &.g-text--h2 {
       font-size: 2.125rem;
       line-height: 3rem;
     }
   }
 
-  &._text--h3 {
+  &.g-text--h3 {
     font-size: 1.125rem;
     font-weight: 700;
     line-height: 1.75rem;
   }
 
   @media (--min-lg-window) {
-    &._text--h3 {
+    &.g-text--h3 {
       font-size: 1.25rem;
       line-height: 2rem;
     }
   }
 
-  &._text--h4 {
+  &.g-text--h4 {
     font-size: 1rem;
     font-weight: 600;
   }

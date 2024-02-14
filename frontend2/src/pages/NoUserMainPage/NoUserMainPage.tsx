@@ -8,7 +8,7 @@ export default function NoUserMainPage (): ReactElement {
     <div className="NoUserMainPage">
       <Routes
         loadingElement={
-          <div className="_layout _layout--center">
+          <div className="g-layout g-layout--center">
             <Spinner color="primary" />
           </div>
         }

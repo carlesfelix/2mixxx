@@ -1,4 +1,4 @@
-.MainMenuNavLink {
+.c-main-menu-nav-link {
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -8,21 +8,21 @@
   border: solid 0.063rem transparent;
   color: var(--theme-foreground-sidebar-menu-btn-inactive);
 
-  &.MainMenuNavLink--highlighted {
+  &.c-main-menu-nav-link--highlighted {
     border-color: currentcolor;
   }
 
-  &.MainMenuNavLink--active {
+  &.c-main-menu-nav-link--active {
     background-color: var(--theme-surface-sidebar-menu-btn-active);
     color: var(--theme-foreground-sidebar-menu-btn-active);
   }
 
-  & .MainMenuNavLink__icon {
+  & .c-main-menu-nav-link__icon {
     font-size: 1.625rem;
     margin-right: 1.5rem;
   }
 
-  & .MainMenuNavLink__label {
+  & .c-main-menu-nav-link__label {
     font-size: 0.875rem;
     font-size: 1rem;
   }

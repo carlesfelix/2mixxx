@@ -1,9 +1,14 @@
-import { FocusEvent, KeyboardEventHandler, LazyExoticComponent, ReactNode } from 'react'
+import { ComponentType, FocusEvent, KeyboardEventHandler, LazyExoticComponent, ReactNode } from 'react'
 
 export interface Route {
   path: string
-  Component?: LazyExoticComponent<() => JSX.Element>
+  Component?: LazyExoticComponent<ComponentType>
   activate?: boolean | { redirectTo: string }
+}
+
+export interface RouteItemProps {
+  route: Route
+  loadingElement?: ReactNode
 }
 
 export interface RoutesProps {

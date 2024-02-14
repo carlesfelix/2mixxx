@@ -1,6 +1,6 @@
 @import "/src/styles/utils/index.css";
 
-._button {
+.g-button {
   outline: none;
   border-radius: 0.25rem;
   border: none;
@@ -12,172 +12,172 @@
   }
 
   /* Global sizes */
-  &._button--sm {
+  &.g-button--sm {
     font-size: 0.875rem;
   }
 
-  &._button--md {
+  &.g-button--md {
     font-size: 0.875rem;
     line-height: 1.25rem;
   }
 
-  &._button--lg {
+  &.g-button--lg {
     font-size: 1rem;
     line-height: 1.25rem;
   }
 
   @media (--min-lg-window) {
-    &._button--sm {
+    &.g-button--sm {
       font-size: 0.875rem;
       line-height: 1.25rem;
     }
 
-    &._button--md {
+    &.g-button--md {
       font-size: 1rem;
       line-height: 1.25rem;
     }
 
-    &._button--lg {
+    &.g-button--lg {
       font-size: 1.125rem;
       line-height: 1.5rem;
     }
   }
 
   /* Text button */
-  &._button--primary-text {
+  &.g-button--primary-text {
     background-color: transparent;
     color: var(--theme-primary-400);
   }
 
   /* Outlined button */
-  &._button--outlined {
+  &.g-button--outlined {
     border: currentcolor solid 0.063rem;
     background-color: transparent;
     color: currentcolor;
   }
 
-  &._button--outlined-primary {
+  &.g-button--outlined-primary {
     border-color: var(--theme-primary-400);
     color: var(--theme-primary-400);
   }
 
-  &._button--outlined-secondary {
+  &.g-button--outlined-secondary {
     border-color: var(--theme-secondary-800);
     color: var(--theme-secondary-800);
   }
 
-  &._button--outlined._button--sm {
+  &.g-button--outlined.g-button--sm {
     padding: 0.5rem 0.875rem;
   }
 
-  &._button--outlined._button--md {
+  &.g-button--outlined.g-button--md {
     padding: 0.625rem 1.5rem;
   }
 
-  &._button--outlined._button--lg {
+  &.g-button--outlined.g-button--lg {
     padding: 0.875rem 2rem;
   }
 
   @media (--min-lg-window) {
-    &._button--outlined._button--sm {
+    &.g-button--outlined.g-button--sm {
       padding: 0.625rem 1.5rem;
     }
 
-    &._button--outlined._button--md {
+    &.g-button--outlined.g-button--md {
       padding: 0.875rem 2rem;
     }
 
-    &._button--outlined._button--lg {
+    &.g-button--outlined.g-button--lg {
       padding: 1rem 2.5rem;
     }
   }
 
-  &._button--outlined:not(:disabled)._button--highlighted {
+  &.g-button--outlined:not(:disabled).g-button--highlighted {
     border-width: 0.125rem;
 
-    &._button--sm {
+    &.g-button--sm {
       padding: 0.438rem 0.813rem;
     }
 
-    &._button--md {
+    &.g-button--md {
       padding: 0.562rem 1.437rem;
     }
 
-    &._button--lg {
+    &.g-button--lg {
       padding: 0.812rem 1.937rem;
     }
   }
 
   @media (--min-lg-window) {
-    &._button--outlined:not(:disabled)._button--highlighted {
-      &._button--sm {
+    &.g-button--outlined:not(:disabled).g-button--highlighted {
+      &.g-button--sm {
         padding: 0.562rem 1.437rem;
       }
 
-      &._button--md {
+      &.g-button--md {
         padding: 0.812rem 1.937rem;
       }
 
-      &._button--lg {
+      &.g-button--lg {
         padding: 0.937rem 2.437rem;
       }
     }
   }
 
   /* Basic button */
-  &._button--basic {
+  &.g-button--basic {
     outline: transparent solid 0.125rem;
     outline-offset: 0.125rem;
     transition-property: outline-color;
     transition-duration: 200ms;
   }
 
-  &._button--basic-primary {
+  &.g-button--basic-primary {
     background-color: var(--theme-primary-400);
     color: var(--theme-primary-contrast-400);
 
-    &._button--basic:not(:disabled)._button--highlighted {
+    &.g-button--basic:not(:disabled).g-button--highlighted {
       outline-color: var(--theme-primary-400);
     }
   }
 
-  &._button--basic-secondary {
+  &.g-button--basic-secondary {
     background-color: var(--theme-secondary-800);
     color: var(--theme-secondary-contrast-800);
 
-    &._button--basic:not(:disabled)._button--highlighted {
+    &.g-button--basic:not(:disabled).g-button--highlighted {
       outline-color: var(--theme-secondary-800);
     }
   }
 
-  &._button--basic._button--sm {
+  &.g-button--basic.g-button--sm {
     padding: 0.563rem 0.938rem;
   }
 
-  &._button--basic._button--md {
+  &.g-button--basic.g-button--md {
     padding: 0.688rem 1.563rem;
   }
 
-  &._button--basic._button--lg {
+  &.g-button--basic.g-button--lg {
     padding: 0.938rem 2.063rem;
   }
 
   @media (--min-lg-window) {
-    &._button--basic._button--sm {
+    &.g-button--basic.g-button--sm {
       padding: 0.688rem 1.563rem;
     }
 
-    &._button--basic._button--md {
+    &.g-button--basic.g-button--md {
       padding: 0.938rem 2.063rem;
     }
 
-    &._button--basic._button--lg {
+    &.g-button--basic.g-button--lg {
       padding: 1.063rem 2.563rem;
     }
   }
 
   /* Icon button */
-  &._button--icon {
+  &.g-button--icon {
     border: 0.125rem solid transparent;
     border-radius: 50%;
     aspect-ratio: 1;
@@ -191,53 +191,53 @@
     transition-duration: 200ms;
   }
 
-  &._button--icon-primary {
+  &.g-button--icon-primary {
     color: var(--theme-primary-400);
   }
 
-  &._button--icon-secondary {
+  &.g-button--icon-secondary {
     color: var(--theme-secondary-800);
   }
 
-  &._button--icon._button--sm {
+  &.g-button--icon.g-button--sm {
     width: 2rem;
     height: 2rem;
     font-size: 1rem;
   }
 
-  &._button--icon._button--md {
+  &.g-button--icon.g-button--md {
     width: 2.25rem;
     height: 2.25rem;
     font-size: 1.25rem;
   }
 
-  &._button--icon._button--lg {
+  &.g-button--icon.g-button--lg {
     width: 2.5rem;
     height: 2.5rem;
     font-size: 1.5rem;
   }
 
   @media (--min-lg-window) {
-    &._button--icon._button--sm {
+    &.g-button--icon.g-button--sm {
       width: 2.25rem;
       height: 2.25rem;
       font-size: 1.25rem;
     }
 
-    &._button--icon._button--md {
+    &.g-button--icon.g-button--md {
       width: 2.5rem;
       height: 2.5rem;
       font-size: 1.5rem;
     }
 
-    &._button--icon._button--lg {
+    &.g-button--icon.g-button--lg {
       height: 2.75rem;
       width: 2.75rem;
       font-size: 1.75rem;
     }
   }
 
-  &._button--icon:not(:disabled)._button--highlighted {
+  &.g-button--icon:not(:disabled).g-button--highlighted {
     border-color: currentcolor;
   }
 }

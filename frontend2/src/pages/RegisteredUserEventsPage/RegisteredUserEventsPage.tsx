@@ -39,13 +39,13 @@ export default function RegisteredUserEventsPage (): ReactElement {
   // console.log(events)
   return (
     <div className="RegisteredUserEventsPage">
-      <header className="_layout _layout--page-content">
-        <h2 className="_text _text--h2">
+      <header className="g-layout g-layout--page-content">
+        <h2 className="g-text g-text--h2">
           Events
         </h2>
       </header>
       <PopupMenu items={items} />
-      <EventCardListLayout className="_layout _layout--page-content" />
+      <EventCardListLayout className="g-layout g-layout--page-content" />
     </div>
   )
 }

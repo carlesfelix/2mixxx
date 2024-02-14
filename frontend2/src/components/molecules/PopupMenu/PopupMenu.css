@@ -1,4 +1,4 @@
-.PopupMenu {
+.c-popup-menu {
   background-color: var(--theme-surface-popup);
   color: var(--theme-foreground-popup);
   border-radius: 0.375rem;

@@ -1,14 +1,14 @@
-._card {
+.g-card {
   border: solid 1px #dcd8f2;
   margin: 1rem;
   border-radius: 5px;
 
-  & ._card__header,
-  & ._card__content {
+  & .g-card__header,
+  & .g-card__content {
     padding: 1.5rem;
   }
 
-  & ._card__content {
+  & .g-card__content {
     color: #5c5a6f;
   }
 }

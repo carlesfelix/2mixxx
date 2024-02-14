@@ -12,40 +12,40 @@ export default function EventCardListLayout (
   const { className } = props
   const d = useDate()
 
-  const rootClassName = classNames('EventCardListLayout', className)
+  const rootClassName = classNames('c-event-card-list-layout', className)
 
   return (
     <section className={rootClassName}>
       <EventCard
-        className="EventCardListLayout__card-item"
+        className="c-event-card-list-layout__card-item"
         placeName="Las 5 hermanas"
         startsAt={d.current}
         status={EventStatusEnum.Ended}
         title="Comunió de Carles"
       />
       <EventCard
-        className="EventCardListLayout__card-item"
+        className="c-event-card-list-layout__card-item"
         placeName="Las 5 hermanas"
         startsAt={d.current}
         status={EventStatusEnum.Started}
         title="Comunió de Alicia"
       />
       <EventCard
-        className="EventCardListLayout__card-item"
+        className="c-event-card-list-layout__card-item"
         placeName="El Palmar"
         startsAt={d.current}
         status={EventStatusEnum.NotStarted}
         title="Boda de Bea"
       />
       <EventCard
-        className="EventCardListLayout__card-item"
+        className="c-event-card-list-layout__card-item"
         placeName="El Palmar"
         startsAt={d.current}
         status={EventStatusEnum.NotStarted}
         title="Boda de Juanito"
       />
       <EventCard
-        className="EventCardListLayout__card-item"
+        className="c-event-card-list-layout__card-item"
         placeName="El Palmar"
         startsAt={d.current}
         status={EventStatusEnum.NotStarted}

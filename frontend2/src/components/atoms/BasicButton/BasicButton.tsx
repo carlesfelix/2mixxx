@@ -19,12 +19,12 @@ function BasicButtonWithRef (
   const [refCallback, internalRef] = useInternalRef(ref)
 
   const rootClassName = classNames(
-    'BasicButton',
-    '_button',
-    '_button--basic',
-    `_button--basic-${color}`,
-    `_button--${size}`,
-    { '_button--highlighted': isHighlighted(internalRef) },
+    'c-basic-button',
+    'g-button',
+    'g-button--basic',
+    `g-button--basic-${color}`,
+    `g-button--${size}`,
+    { 'g-button--highlighted': isHighlighted(internalRef) },
     className
   )
 

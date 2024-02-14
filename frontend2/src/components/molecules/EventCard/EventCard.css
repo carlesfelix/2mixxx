@@ -1,40 +1,40 @@
 @import "/src/styles/utils/index.css";
 
-.EventCard {
-  & .EventCard__header {
+.c-event-card {
+  & .c-event-card__header {
     display: flex;
     align-items: center;
     gap: 2ch;
   }
 
-  & .EventCard__header-title {
+  & .c-event-card__header-title {
     flex-grow: 1;
     margin: 0;
     display: contents;
   }
 
-  & .EventCard__title-ellipsis {
+  & .c-event-card__title-ellipsis {
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  & .EventCard__title {
+  & .c-event-card__title {
     white-space: nowrap;
   }
 
-  & .EventCard__header-right {
+  & .c-event-card__header-right {
     display: flex;
     align-items: center;
     gap: 0.5ch;
   }
 
-  & .EventCard__header-menu {
+  & .c-event-card__header-menu {
     margin-right: -0.563rem;
   }
 
   @media (--min-lg-window) {
-    & .EventCard__header-menu {
+    & .c-event-card__header-menu {
       margin-right: -0.625rem;
     }
   }

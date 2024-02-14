@@ -1,5 +1,6 @@
 @import "./reset.css";
+@import './font.css';
 @import "./button.css";
 @import "./layout.css";
 @import "./text.css";
-@import "./_card.css";
+@import "./card.css";

@@ -1,12 +1,12 @@
 @import "/src/styles/utils/index.css";
 
-div.MobileMainMenu {
+.c-mobile-main-menu {
   background-color: var(--theme-surface-sidebar-menu);
   color: var(--theme-foreground-sidebar-menu);
   height: 100%;
   width: 18.75rem;
 
-  & .MobileMainMenu__menu-header {
+  & .c-mobile-main-menu__menu-header {
     height: 3.375rem;
     padding-left: 0.75rem;
     padding-right: 1.5rem;
@@ -14,18 +14,18 @@ div.MobileMainMenu {
     align-items: center;
   }
 
-  & .MobileMainMenu__title-container {
+  & .c-mobile-main-menu__title-container {
     text-align: center;
     flex-grow: 1;
   }
 
-  & .MobileMainMenu__title {
+  & .c-mobile-main-menu__title {
     margin: 0;
   }
 }
 
 @media (--min-lg-window) {
-  div.MobileMainMenu {
+  .c-mobile-main-menu {
     display: none;
   }
 }

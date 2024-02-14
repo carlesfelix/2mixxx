@@ -15,7 +15,7 @@ function App (): ReactElement {
     <I18nProvider
       i18n={i18n}
       fallback={
-        <div className="_layout _layout--center">
+        <div className="g-layout g-layout--center">
           <Spinner color="primary" />
         </div>
       }

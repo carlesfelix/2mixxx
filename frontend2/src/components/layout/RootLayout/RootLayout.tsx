@@ -9,7 +9,7 @@ export default function RootLayout (): ReactElement {
   const { inProgress, type } = useUserType()
 
   const progressContent = (
-    <div className="_layout _layout--center">
+    <div className="g-layout g-layout--center">
       <Spinner color="primary" />
     </div>
   )

@@ -1,11 +1,11 @@
 @import "/src/styles/utils/index.css";
 
-.ControlPanelLayout {
+.c-control-panel-layout {
   height: 100%;
   display: flex;
   position: relative;
 
-  & .ControlPanelLayout__navigation-bar {
+  & .c-control-panel-layout__navigation-bar {
     background-color: var(--theme-surface-toolbar);
     color: var(--theme-surface-toolbar-contrast);
     padding-right: 1.5rem;
@@ -17,36 +17,36 @@
   }
 
   @media (--min-lg-window) {
-    & .ControlPanelLayout__navigation-bar {
+    & .c-control-panel-layout__navigation-bar {
       padding-left: 1.5rem;
     }
   }
 
-  & .ControlPanelLayout__page-container {
+  & .c-control-panel-layout__page-container {
     flex-grow: 1;
     height: 0;
     overflow: auto;
   }
 
-  & .ControlPanelLayout__navigation-bar-left-content {
+  & .c-control-panel-layout__navigation-bar-left-content {
     display: flex;
     align-items: center;
     width: 16.5rem;
   }
 
   @media (--min-lg-window) {
-    & .ControlPanelLayout__navigation-bar-left-content {
+    & .c-control-panel-layout__navigation-bar-left-content {
       display: none;
     }
   }
 
-  & .ControlPanelLayout__main-container {
+  & .c-control-panel-layout__main-container {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
   }
 
-  & .ControlPanelLayout__desktop-menu {
+  & .c-control-panel-layout__desktop-menu {
     flex-shrink: 0;
   }
 }

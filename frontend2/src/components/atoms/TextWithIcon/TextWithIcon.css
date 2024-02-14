@@ -1,4 +1,4 @@
-span.TextWithIcon {
+.c-text-with-icon {
   display: inline-flex;
   align-items: center;
   gap: 1ch;

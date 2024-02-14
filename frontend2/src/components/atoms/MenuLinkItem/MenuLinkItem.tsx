@@ -15,8 +15,10 @@ function MenuLinkItemWithRef (
   const [refCallback, internalRef] = useInternalRef(ref)
 
   const rootClassName = classNames(
-    'MenuLinkItem',
-    { 'MenuLinkItem--highlighted': isHighlighted(internalRef) },
+    'g-font',
+    'g-font--primary',
+    'c-menu-link-item',
+    { 'c-menu-link-item--highlighted': isHighlighted(internalRef) },
     className
   )
 

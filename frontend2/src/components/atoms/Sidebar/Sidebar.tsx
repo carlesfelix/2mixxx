@@ -35,17 +35,17 @@ export default function Sidebar (props: SidebarProps): ReactElement {
   })
 
   function animationEndHandler (event: AnimationEvent): void {
-    if (event.animationName === 'Sidebar__fadein') {
+    if (event.animationName === 'cfx-sidebar__fadein') {
       setStatus('opened')
-    } else if (event.animationName === 'Sidebar__fadeout') {
+    } else if (event.animationName === 'cfx-sidebar__fadeout') {
       setStatus('closed')
     }
   }
 
   function animationStartHandler (event: AnimationEvent): void {
-    if (event.animationName === 'Sidebar__fadein') {
+    if (event.animationName === 'cfx-sidebar__fadein') {
       setStatus('opening')
-    } else if (event.animationName === 'Sidebar__fadeout') {
+    } else if (event.animationName === 'cfx-sidebar__fadeout') {
       setStatus('closing')
     }
   }
@@ -59,11 +59,11 @@ export default function Sidebar (props: SidebarProps): ReactElement {
   }
 
   const rootClassName = classNames(
-    'Sidebar',
-    isOpen ? 'Sidebar--opened' : 'Sidebar--closed',
+    'c-sidebar',
+    isOpen ? 'c-sidebar--opened' : 'c-sidebar--closed',
     className
   )
-  const sidebarContentClassName = classNames('Sidebar__content', contentClassName)
+  const sidebarContentClassName = classNames('c-sidebar__content', contentClassName)
 
   const showSidebar = isOpen || status !== 'closed'
   return createPortal((
@@ -75,8 +75,8 @@ export default function Sidebar (props: SidebarProps): ReactElement {
         onClick={clickHandler}
         tabIndex={-1}
       >
-        <FocusWithKeyboard className="Sidebar__wrapper">
-          <div className="Sidebar__mask" />
+        <FocusWithKeyboard className="c-sidebar__wrapper">
+          <div className="c-sidebar__mask" />
           <SidebarContent className={sidebarContentClassName} ref={sidebarContentRef}>
             {children}
           </SidebarContent>

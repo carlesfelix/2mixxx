@@ -1,4 +1,4 @@
-@keyframes Spinner__ring-animation {
+@keyframes cfx-spinner__ring-animation {
   0% {
     transform: rotate(0deg);
   }
@@ -8,13 +8,13 @@
   }
 }
 
-div.Spinner {
+.c-spinner {
   display: inline-block;
   position: relative;
   width: 5rem;
   height: 5rem;
 
-  & div.Spinner__ring {
+  & .c-spinner__ring {
     box-sizing: border-box;
     display: block;
     position: absolute;
@@ -24,7 +24,7 @@ div.Spinner {
     margin: 0;
     border: 0.5rem solid;
     border-radius: 50%;
-    animation: Spinner__ring-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: cfx-spinner__ring-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 
     &:nth-child(1) {
       animation-delay: -0.45s;
@@ -39,20 +39,20 @@ div.Spinner {
     }
   }
 
-  &.Spinner--primary {
-    & div.Spinner__ring {
+  &.c-spinner--primary {
+    & .c-spinner__ring {
       border-color: var(--theme-primary-500) transparent transparent;
     }
   }
 
-  &.Spinner--secondary {
-    & div.Spinner__ring {
+  &.c-spinner--secondary {
+    & .c-spinner__ring {
       border-color: var(--theme-secondary-500) transparent transparent;
     }
   }
 
-  &.Spinner--current {
-    & div.Spinner__ring {
+  &.c-spinner--current {
+    & .c-spinner__ring {
       border-color: currentcolor transparent transparent;
     }
   }
