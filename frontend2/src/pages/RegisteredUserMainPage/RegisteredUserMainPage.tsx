@@ -3,7 +3,7 @@ import ControlPanelLayout from '@/components/layout/ControlPanelLayout'
 import { Routes } from '@/core/core-router'
 import useRegisteredUserAuthorizationInterceptor from '@/hooks/useRegisteredUserAuthorizationInterceptor'
 import registeredUserMainRoutes from '@/routes/registered-user-main.routes'
-import { ReactElement } from 'react'
+import { type ReactElement } from 'react'
 
 export default function RegisteredUserMainPage (): ReactElement {
   useRegisteredUserAuthorizationInterceptor()

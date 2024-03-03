@@ -1,9 +1,10 @@
 import { useKeyboardAccessibility } from '@/core/core-keyboard-accessibility'
 import classNames from 'classnames'
-import { ForwardedRef, forwardRef, ReactElement } from 'react'
-import { MenuButtonItemProps } from './types'
-import './MenuButtonItem.css'
+import type { ForwardedRef, ReactElement } from 'react'
+import { forwardRef } from 'react'
+import type { MenuButtonItemProps } from './types'
 import { useInternalRef } from '@/core/core-hooks'
+import './MenuButtonItem.css'
 
 function MenuButtonItemWithRef (
   props: MenuButtonItemProps,

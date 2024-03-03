@@ -1,6 +1,6 @@
-import { ReactElement } from 'react'
+import { type ReactElement } from 'react'
 import OAuth2InternalContext from '../../contexts/OAuth2InternalContext'
-import { OAuth2InternalProviderProps } from './types'
+import { type OAuth2InternalProviderProps } from './types'
 
 export default function OAuth2InternalProvider (
   props: OAuth2InternalProviderProps

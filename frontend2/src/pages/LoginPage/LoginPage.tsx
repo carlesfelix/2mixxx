@@ -1,6 +1,6 @@
 import BasicButton from '@/components/atoms/BasicButton'
 import useOAuth2 from '@/core/core-oauth2/hooks/useOAuth2'
-import { ReactElement } from 'react'
+import { type ReactElement } from 'react'
 
 export default function LoginPage (): ReactElement {
   const { loginWithRedirect } = useOAuth2()

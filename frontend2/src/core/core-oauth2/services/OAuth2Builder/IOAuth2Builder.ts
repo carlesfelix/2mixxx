@@ -1,4 +1,4 @@
-import { OAuth2ProviderComponent, UseOAuth2 } from '../../types'
+import { type OAuth2ProviderComponent, type UseOAuth2 } from '../../types'
 
 export default interface IOAuth2Builder {
   getOAuth2Hook: () => UseOAuth2

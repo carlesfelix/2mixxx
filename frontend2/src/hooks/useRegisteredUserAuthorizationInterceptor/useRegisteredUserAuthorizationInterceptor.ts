@@ -5,19 +5,22 @@ import { useEffect } from 'react'
 export default function useRegisteredUserAuthorizationInterceptor (): void {
   const { getAccessTokenSilently } = useOAuth2()
   useEffect(() => {
-    async function authorizationHeadersInterceptor (): Promise<Record<string, string>> {
+    // async function authorizationHeadersInterceptor () {
+    //   const accessToken = await getAccessTokenSilently()
+    //   return {
+    //     Authorization: `Bearer ${accessToken}`,
+    //     'user-type': 'registeredUser'
+    //   }
+    // }
+    const interceptorId = http.requestInterceptors().use(async function authorizationHeadersInterceptor (config) {
       const accessToken = await getAccessTokenSilently()
-      return {
-        Authorization: `Bearer ${accessToken}`,
-        'user-type': 'registeredUser'
-      }
-    }
-    const interceptorId = http.useRequestHeadersInterceptor(
-      authorizationHeadersInterceptor
-    )
+      config.headers.Authorization = `Bearer ${accessToken}`
+      config.headers['user-type'] = 'registeredUser'
+      return config
+    })
 
     return () => {
-      http.ejectRequestInterceptor(interceptorId)
+      http.requestInterceptors().eject(interceptorId)
     }
   }, [getAccessTokenSilently])
 }

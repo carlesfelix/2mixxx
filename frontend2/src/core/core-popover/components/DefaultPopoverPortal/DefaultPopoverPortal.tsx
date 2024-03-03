@@ -1,7 +1,7 @@
 import useOverlayRootElement from '@/hooks/useOverlayRootElement'
-import { ReactElement } from 'react'
+import { type ReactElement } from 'react'
 import { createPortal } from 'react-dom'
-import { DefaultPopoverPortalProps } from '../../types'
+import { type DefaultPopoverPortalProps } from '../../types'
 
 export default function DefaultPopoverPortal (
   props: DefaultPopoverPortalProps

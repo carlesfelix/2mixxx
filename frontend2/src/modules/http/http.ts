@@ -1,4 +1,4 @@
-import createHttp, { IHttpBuilder } from '@/core/core-http'
+import createHttp, { type IHttpBuilder } from '@/core/core-http'
 import ENVIRONMENT from '@/environment'
 import RemoteApiHttpBuilder from './RemoteApiHttpBuilder'
 

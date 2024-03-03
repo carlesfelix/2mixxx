@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef } from 'react'
+import { type MutableRefObject, useRef } from 'react'
 
 export default function useCreateInstance<T> (
   instanceBuilder: () => T

@@ -1,7 +1,7 @@
 import classNames from 'classnames'
-import { ForwardedRef, forwardRef, ReactElement } from 'react'
+import { type ForwardedRef, forwardRef, type ReactElement } from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { LinkProps } from './types'
+import { type LinkProps } from './types'
 
 function LinkWithRef (
   props: LinkProps,

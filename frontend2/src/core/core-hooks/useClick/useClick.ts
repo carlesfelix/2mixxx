@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { UseClickProps } from './types'
+import { type UseClickProps } from './types'
 
 export default function useClick (props: UseClickProps): void {
   const { listener, listen = true } = props

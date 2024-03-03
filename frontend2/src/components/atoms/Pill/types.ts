@@ -1,5 +1,5 @@
-import ThemeColor from '@/types/ThemeColor'
-import { ReactNode } from 'react'
+import type ThemeColor from '@/types/ThemeColor'
+import type { ReactNode } from 'react'
 
 export type PillColor = ThemeColor | 'warning' | 'danger' | 'success'
 

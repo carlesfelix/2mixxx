@@ -1,11 +1,11 @@
 import IconButton from '@/components/atoms/IconButton'
 import Popover from '@/core/core-popover'
-import { ReactElement, useRef, useState } from 'react'
-import { ReactComponent as MoreVertIcon } from '@/assets/svg/MoreVert.svg'
+import { type ReactElement, useRef, useState } from 'react'
+import MoreVertIcon from '@/assets/svg/MoreVert.svg?react'
 import './PopupMenu.css'
-import { PopupMenuProps } from './types'
+import { type PopupMenuProps } from './types'
 import classNames from 'classnames'
-import MenuItems, { MenuItemsInstance } from '@/components/molecules/MenuItems'
+import MenuItems, { type MenuItemsInstance } from '@/components/molecules/MenuItems'
 import { useAutoHighlightWithKeyboard, useHighlightReturnWithKeyboard } from '@/core/core-keyboard-accessibility'
 
 export default function PopupMenu (props: PopupMenuProps): ReactElement {

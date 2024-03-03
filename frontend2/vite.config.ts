@@ -1,9 +1,8 @@
-import svgrPlugin from 'vite-plugin-svgr';
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
-import postcssImport from 'postcss-import';
-import postcssPresetEnv from 'postcss-preset-env';
+import svgrPlugin from 'vite-plugin-svgr'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
+import postcssImport from 'postcss-import'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -18,10 +17,10 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       svgrPlugin({
+        include: '**/*.svg?react',
         svgrOptions: {
-          icon: true
           // ...svgr options (https://react-svgr.com/docs/options/)
-        },
+        }
       }),
       react()
     ],
@@ -29,14 +28,9 @@ export default defineConfig(({ mode }) => {
       devSourcemap: true,
       postcss: {
         plugins: [
-          postcssImport(),
-          postcssPresetEnv({
-            features: {
-              'nesting-rules': true
-            }
-          })
+          postcssImport()
         ]
       }
     }
-  };
-});
+  }
+})

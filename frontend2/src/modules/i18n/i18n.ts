@@ -1,4 +1,4 @@
-import { buildI18n, TranslationsImportFn } from '@/core/core-i18n'
+import { buildI18n, type TranslationsImportFn } from '@/core/core-i18n'
 
 const translationsImportFn: TranslationsImportFn = async (language: string, namespace: string) => {
   const resources: unknown = await import(`../../locales/${language}/${namespace}.json`)

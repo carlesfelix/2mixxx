@@ -1,4 +1,4 @@
-import AnyUser from './AnyUser'
+import type AnyUser from './AnyUser'
 
 export default interface RegisteredUser extends AnyUser {
   email: string

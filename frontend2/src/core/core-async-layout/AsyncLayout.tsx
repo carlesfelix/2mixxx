@@ -1,5 +1,5 @@
-import { ReactElement } from 'react'
-import { AsyncLayoutProps } from './types'
+import { type ReactElement } from 'react'
+import { type AsyncLayoutProps } from './types'
 
 export function AsyncLayout (
   props: AsyncLayoutProps

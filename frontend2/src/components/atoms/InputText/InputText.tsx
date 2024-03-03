@@ -1,5 +1,6 @@
-import { ChangeEvent, ForwardedRef, ReactElement, forwardRef } from 'react'
-import { InputTextProps } from './types'
+import type { ChangeEvent, ForwardedRef, ReactElement } from 'react'
+import { forwardRef } from 'react'
+import { type InputTextProps } from './types'
 import classNames from 'classnames'
 import './InputText.css'
 

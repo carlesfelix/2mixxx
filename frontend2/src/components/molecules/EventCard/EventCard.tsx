@@ -1,14 +1,14 @@
 import Card from '@/components/atoms/Card'
-import { ReactComponent as CalendarTodayIcon } from '@/assets/svg/CalendarToday.svg'
-import { ReactComponent as PlaceIcon } from '@/assets/svg/Place.svg'
+import CalendarTodayIcon from '@/assets/svg/CalendarToday.svg?react'
+import PlaceIcon from '@/assets/svg/Place.svg?react'
 import TextWithIcon from '@/components/atoms/TextWithIcon'
 import './EventCard.css'
-import { ReactElement } from 'react'
-import { EventCardProps } from './types'
+import { type ReactElement } from 'react'
+import { type EventCardProps } from './types'
 import EventStatusPill from '../EventStatusPill'
 import classNames from 'classnames'
 import PopupMenu from '@/components/molecules/PopupMenu'
-import { MenuItem } from '@/components/molecules/MenuItems'
+import { type MenuItem } from '@/components/molecules/MenuItems'
 
 const items: MenuItem[] = [
   {

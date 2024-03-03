@@ -1,4 +1,4 @@
-import { BaseInputProps } from '@/core/core-hook-form'
+import type { BaseInputProps } from '@/core/core-hook-form'
 
 export interface InputTextProps extends BaseInputProps<string> {
   placeholder?: string

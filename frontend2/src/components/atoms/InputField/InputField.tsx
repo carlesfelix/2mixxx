@@ -1,5 +1,6 @@
-import { ForwardedRef, ReactElement, forwardRef } from 'react'
-import { InputFieldProps } from './types'
+import type { ForwardedRef, ReactElement } from 'react'
+import { forwardRef } from 'react'
+import { type InputFieldProps } from './types'
 import classNames from 'classnames'
 import './InputField.css'
 

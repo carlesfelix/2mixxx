@@ -1,7 +1,7 @@
 import classNames from 'classnames'
-import { PillProps } from './types'
+import type { PillProps } from './types'
+import type { ReactElement } from 'react'
 import './Pill.css'
-import { ReactElement } from 'react'
 
 export default function Pill (props: PillProps): ReactElement {
   const {

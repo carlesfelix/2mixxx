@@ -1,4 +1,4 @@
-import { KeyboardEventHandler, ReactNode } from 'react'
+import type { KeyboardEventHandler, ReactNode } from 'react'
 
 export interface MainMenuNavLinkProps {
   icon: ReactNode

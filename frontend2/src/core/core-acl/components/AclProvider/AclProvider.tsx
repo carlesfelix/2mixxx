@@ -1,6 +1,6 @@
-import { ReactElement, useCallback, useState } from 'react'
+import { type ReactElement, useCallback, useState } from 'react'
 import { ACL_CONTEXT } from '../../constants'
-import { AclProviderProps } from '../../types'
+import { type AclProviderProps } from '../../types'
 
 export default function AclProvider (
   props: AclProviderProps

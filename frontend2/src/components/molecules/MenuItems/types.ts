@@ -1,4 +1,4 @@
-import { MouseEvent, MouseEventHandler, ReactNode } from 'react'
+import { type MouseEvent, type MouseEventHandler, type ReactNode } from 'react'
 
 export interface BaseMenuItem {
   type: string

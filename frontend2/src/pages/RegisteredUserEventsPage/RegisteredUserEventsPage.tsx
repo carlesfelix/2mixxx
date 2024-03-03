@@ -1,7 +1,7 @@
 import EventCardListLayout from '@/components/layout/EventCardListLayout'
-import { MenuItem } from '@/components/molecules/MenuItems'
+import { type MenuItem } from '@/components/molecules/MenuItems'
 import PopupMenu from '@/components/molecules/PopupMenu'
-import { ReactElement } from 'react'
+import { type ReactElement } from 'react'
 
 const items: MenuItem[] = [
   {

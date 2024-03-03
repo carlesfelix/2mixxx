@@ -1,5 +1,5 @@
-import { ReactNode } from 'react'
-import { IFormConfigBuilder } from '../../services/FormConfigBuilder'
+import { type ReactNode } from 'react'
+import { type IFormConfigBuilder } from '../../services/FormConfigBuilder'
 
 export interface FormConfigProviderProps {
   children: ReactNode

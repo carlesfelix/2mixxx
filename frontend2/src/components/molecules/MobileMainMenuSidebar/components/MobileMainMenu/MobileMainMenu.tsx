@@ -1,10 +1,10 @@
-import { ReactComponent as MenuIcon } from '@/assets/svg/Menu.svg'
+import MenuIcon from '@/assets/svg/Menu.svg?react'
 import IconButton from '@/components/atoms/IconButton'
 import MainMenuLinks from '@/components/molecules/MainMenuLinks'
 import { MAIN_MENU_LINKS } from '@/constants/links'
 import classNames from 'classnames'
-import { MouseEvent, ReactElement } from 'react'
-import { MobileMainMenuProps } from '../../types'
+import { type MouseEvent, type ReactElement } from 'react'
+import { type MobileMainMenuProps } from '../../types'
 import './MobileMainMenu.css'
 
 export default function MobileMainMenu (

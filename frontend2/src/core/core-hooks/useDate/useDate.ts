@@ -1,4 +1,4 @@
-import { MutableRefObject } from 'react'
+import { type MutableRefObject } from 'react'
 import useCreateInstance from '../useCreateInstance'
 
 export default function useDate (dateCallback?: () => Date | string | number): MutableRefObject<Date> {

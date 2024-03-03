@@ -1,4 +1,4 @@
-import { ComponentType, FocusEvent, KeyboardEventHandler, LazyExoticComponent, ReactNode } from 'react'
+import { type ComponentType, type FocusEvent, type KeyboardEventHandler, type LazyExoticComponent, type ReactNode } from 'react'
 
 export interface Route {
   path: string

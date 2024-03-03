@@ -1,5 +1,5 @@
-import { ReactNode } from 'react'
-import { OAuth2ProviderComponent, UseOAuth2 } from '../../types'
+import { type ReactNode } from 'react'
+import { type OAuth2ProviderComponent, type UseOAuth2 } from '../../types'
 
 export interface OAuth2ProviderProps {
   children: ReactNode

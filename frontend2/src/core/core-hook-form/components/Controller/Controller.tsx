@@ -1,10 +1,10 @@
-import { ReactElement } from 'react'
+import { type ReactElement } from 'react'
 import {
   Controller as ControllerLib,
-  FieldPath,
-  FieldValues
+  type FieldPath,
+  type FieldValues
 } from 'react-hook-form'
-import { ControllerProps, LibRenderProps } from './types'
+import { type ControllerProps, type LibRenderProps } from './types'
 
 export default function Controller<
 TFieldValues extends FieldValues = FieldValues,

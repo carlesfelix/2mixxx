@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { UseQueryOptions, UseQueryReturn } from './types'
+import { type UseQueryOptions, type UseQueryReturn } from './types'
 
 export default function useQuery<Data> (
   key: string,

@@ -1,15 +1,15 @@
 import MenuButtonItem from '@/components/atoms/MenuButtonItem'
 import MenuLinkItem from '@/components/atoms/MenuLinkItem'
 import {
-  ForwardedRef,
+  type ForwardedRef,
   forwardRef,
-  MouseEventHandler,
-  ReactElement,
-  Ref,
+  type MouseEventHandler,
+  type ReactElement,
+  type Ref,
   useImperativeHandle,
   useRef
 } from 'react'
-import { ButtonMenuItem, LinkMenuItem, MenuItemsInstance, MenuItemsProps } from './types'
+import { type ButtonMenuItem, type LinkMenuItem, type MenuItemsInstance, type MenuItemsProps } from './types'
 import './MenuItems.css'
 
 function MenuItemsWithRef (

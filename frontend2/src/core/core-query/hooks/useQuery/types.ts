@@ -1,4 +1,4 @@
-import { HttpRequestOptions } from '@/core/core-http'
+import { type HttpRequestOptions } from '@/core/core-http'
 
 export type UseQueryOptions<Data> = HttpRequestOptions & {
   defaultData?: Data

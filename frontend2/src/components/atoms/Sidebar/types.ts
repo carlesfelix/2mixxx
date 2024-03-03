@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react'
+import { type Dispatch, type ReactNode, type SetStateAction } from 'react'
 
 export type SidebarStatus = 'opening' | 'closing' | 'opened' | 'closed'
 export interface SidebarProps {

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { ACL_CONTEXT } from '../constants'
-import { AclContextValue } from '../types'
+import { type AclContextValue } from '../types'
 
 export default function useAcl (): AclContextValue {
   const context = useContext(ACL_CONTEXT)

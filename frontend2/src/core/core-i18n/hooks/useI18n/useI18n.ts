@@ -1,4 +1,4 @@
-import { i18n as LibI18n } from 'i18next'
+import { type i18n as LibI18n } from 'i18next'
 import { I18nContext } from 'react-i18next'
 import { useContext } from 'react'
 

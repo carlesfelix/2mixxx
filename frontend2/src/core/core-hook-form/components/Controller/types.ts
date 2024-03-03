@@ -1,5 +1,5 @@
-import { ReactElement } from 'react'
-import { ControllerFieldState, ControllerProps as ControllerLibProps, ControllerRenderProps, FieldPath, FieldValues, UseFormStateReturn } from 'react-hook-form'
+import { type ReactElement } from 'react'
+import { type ControllerFieldState, type ControllerProps as ControllerLibProps, type ControllerRenderProps, type FieldPath, type FieldValues, type UseFormStateReturn } from 'react-hook-form'
 
 export interface RenderProps<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> {
   field: ControllerRenderProps<TFieldValues, TName>

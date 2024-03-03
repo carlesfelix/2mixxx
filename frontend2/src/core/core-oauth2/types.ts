@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode } from 'react'
+import { type FunctionComponent, type ReactNode } from 'react'
 
 export interface LoginWithRedirectOptions {
   appState?: string

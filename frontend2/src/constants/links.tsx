@@ -1,7 +1,7 @@
-import { MainMenuLinkItem } from '@/components/molecules/MainMenuLinks'
-import { ReactComponent as HomeIcon } from '@/assets/svg/Home.svg'
-import { ReactComponent as AddCircleOutlineIcon } from '@/assets/svg/AddCircleOutline.svg'
-import { ReactComponent as ManageAccountsIcon } from '@/assets/svg/ManageAccounts.svg'
+import { type MainMenuLinkItem } from '@/components/molecules/MainMenuLinks'
+import HomeIcon from '@/assets/svg/Home.svg?react'
+import AddCircleOutlineIcon from '@/assets/svg/AddCircleOutline.svg?react'
+import ManageAccountsIcon from '@/assets/svg/ManageAccounts.svg?react'
 
 export const MAIN_MENU_LINKS: MainMenuLinkItem[] = [
   {

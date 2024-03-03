@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode } from 'react'
+import { type MouseEventHandler, type ReactNode } from 'react'
 
 export interface LinkProps {
   className?: string

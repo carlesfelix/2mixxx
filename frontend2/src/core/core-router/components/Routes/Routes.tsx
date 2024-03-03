@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { Navigate, Route, Routes as ReactRouterRoutes } from 'react-router-dom'
-import { RoutesProps } from '../../types'
+import { type RoutesProps } from '../../types'
 
 export default function Routes (props: RoutesProps): JSX.Element {
   const { routes, loadingElement } = props

@@ -1,7 +1,7 @@
-import { IHttp, AxiosHttp, IHttpBuilder } from '@/core/core-http'
+import { type IHttp, AxiosHttp, type IHttpBuilder } from '@/core/core-http'
 
 export default class RemoteApiHttpBuilder implements IHttpBuilder {
-  #baseUrl: string
+  readonly #baseUrl: string
   constructor (baseUrl: string) {
     this.#baseUrl = baseUrl
   }

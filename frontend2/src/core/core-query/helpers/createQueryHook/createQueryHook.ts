@@ -1,4 +1,4 @@
-import { CreateQueryHookProps } from './types'
+import { type CreateQueryHookProps } from './types'
 
 export default function createQueryHook<
   HookArgs extends unknown[] = [],

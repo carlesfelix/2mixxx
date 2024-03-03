@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
-import IOAuth2Builder from './IOAuth2Builder'
-import { OAuth2ProviderComponent, UseOAuth2 } from '../../types'
+import type IOAuth2Builder from './IOAuth2Builder'
+import { type OAuth2ProviderComponent, type UseOAuth2 } from '../../types'
 import {
   Auth0Provider as Auth0ProviderLib,
-  Auth0ProviderOptions
+  type Auth0ProviderOptions
 } from '@auth0/auth0-react'
 import useAuth0Adapter from '../../hooks/useAuth0Adapter'
 
 export default class Auth0Builder implements IOAuth2Builder {
-  #options: Auth0ProviderOptions
+  readonly #options: Auth0ProviderOptions
 
   constructor (options: Auth0ProviderOptions) {
     this.#options = options

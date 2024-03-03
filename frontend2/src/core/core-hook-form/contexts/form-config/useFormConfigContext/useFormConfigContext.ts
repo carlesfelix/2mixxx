@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { FormConfigContextValue } from '../types'
+import { type FormConfigContextValue } from '../types'
 import FormConfigContext from '../FormConfigContext'
 
 export default function useFormConfigContext (): FormConfigContextValue {

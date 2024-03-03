@@ -1,7 +1,7 @@
-import { ForwardedRef, forwardRef, ReactElement, useEffect, useImperativeHandle, useRef } from 'react'
-import { FocusableElement, tabbable, isFocusable } from 'tabbable'
+import { type ForwardedRef, forwardRef, type ReactElement, useEffect, useImperativeHandle, useRef } from 'react'
+import { type FocusableElement, tabbable, isFocusable } from 'tabbable'
 import useKeyboardAccessibility from '../../hooks/useKeyboardAccessibility'
-import { FocusWithKeyboardProps, FocusWithKeyboardRef } from '../../types'
+import { type FocusWithKeyboardProps, type FocusWithKeyboardRef } from '../../types'
 import { hasChildren } from './utils'
 
 function FocusWithKeyboardWithRef (

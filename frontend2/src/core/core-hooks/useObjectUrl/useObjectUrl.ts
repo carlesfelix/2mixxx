@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react'
-import { ObjectUrlItem, UseObjectUrlReturn } from './types'
+import { type ObjectUrlItem, type UseObjectUrlReturn } from './types'
 
 export default function useObjectUrl (): UseObjectUrlReturn {
   const objectUrls = useRef<ObjectUrlItem[]>([])

@@ -1,9 +1,9 @@
 import {
-  FieldValues,
-  UseFormProps as UseFormLibProps,
-  UseFormReturn as UseFormLibReturn
+  type FieldValues,
+  type UseFormProps as UseFormLibProps,
+  type UseFormReturn as UseFormLibReturn
 } from 'react-hook-form'
-import schema from '../../services/schema'
+import type schema from '../../services/schema'
 
 export type UseFormReturn<
   TFieldValues extends FieldValues = FieldValues,

@@ -1,5 +1,5 @@
-import { FocusEvent, MutableRefObject, ReactNode } from 'react'
-import { FocusableElement } from 'tabbable'
+import { type FocusEvent, type MutableRefObject, type ReactNode } from 'react'
+import { type FocusableElement } from 'tabbable'
 
 export interface KeyboardAccessibilityProviderProps {
   children: ReactNode

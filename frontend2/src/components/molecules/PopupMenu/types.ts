@@ -1,5 +1,5 @@
-import { IconButtonProps } from '@/components/atoms/IconButton'
-import { MenuItem } from '@/components/molecules/MenuItems'
+import { type IconButtonProps } from '@/components/atoms/IconButton'
+import { type MenuItem } from '@/components/molecules/MenuItems'
 
 export interface PopupMenuProps extends
   Omit<IconButtonProps, 'children' | 'ref' | 'onClick' | 'className'> {

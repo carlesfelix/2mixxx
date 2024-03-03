@@ -1,4 +1,4 @@
-import EventStatusEnum from '@/enums/EventStatusEnum'
+import type EventStatusEnum from '@/enums/EventStatusEnum'
 
 export interface EventCardProps {
   title: string

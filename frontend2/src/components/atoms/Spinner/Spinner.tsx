@@ -1,7 +1,7 @@
 import classNames from 'classnames'
-import { ReactElement } from 'react'
+import { type ReactElement } from 'react'
 import './Spinner.css'
-import { SpinnerProps } from './types'
+import { type SpinnerProps } from './types'
 
 export default function Spinner (props: SpinnerProps): ReactElement {
   const { color = 'current', className } = props

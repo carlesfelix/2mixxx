@@ -1,6 +1,6 @@
-import { ReactElement } from 'react'
+import { type ReactElement } from 'react'
 import useAcl from '../../hooks/useAcl'
-import { AclProps } from '../../types'
+import { type AclProps } from '../../types'
 
 export default function Acl (props: AclProps): ReactElement {
   const {

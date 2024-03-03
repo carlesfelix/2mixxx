@@ -1,11 +1,11 @@
 import BasicButton from '@/components/atoms/BasicButton'
 import OutlinedButton from '@/components/atoms/OutlinedButton'
 import InputTextField from '@/components/molecules/InputTextField'
-import { FormValidator, useForm, schema, asOptionalTextField } from '@/core/core-hook-form'
+import { type FormValidator, useForm, schema, asOptionalTextField } from '@/core/core-hook-form'
 import { useI18n, useTranslation } from '@/core/core-i18n'
 import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
 import i18n from '@/modules/i18n'
-import { ReactElement, useRef, useState } from 'react'
+import { type ReactElement, useRef, useState } from 'react'
 
 interface AaSchema {
   name: string
@@ -44,10 +44,10 @@ export default function NotFoundPage (): ReactElement {
   return (
     <div className="NotFoundPage">
       NotFoundPage
-      <button onClick={() => setCount(old => old + 1)}>Count {count}</button>
+      <button onClick={() => { setCount(old => old + 1) }}>Count {count}</button>
       <button>{t('test')}</button>
-      <button onClick={() => changeLanguageHandler('es')}>Español</button>
-      <button onClick={() => changeLanguageHandler('en')}>English</button>
+      <button onClick={() => { changeLanguageHandler('es') }}>Español</button>
+      <button onClick={() => { changeLanguageHandler('en') }}>English</button>
       {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={handleSubmit(submitHandler)}>
         <InputTextField

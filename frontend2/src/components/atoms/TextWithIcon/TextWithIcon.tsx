@@ -1,6 +1,6 @@
-import { TextWithIconProps } from './types'
+import { type TextWithIconProps } from './types'
 import './TextWithIcon.css'
-import { ReactElement } from 'react'
+import { type ReactElement } from 'react'
 
 export default function TextWithIcon (props: TextWithIconProps): ReactElement {
   const { children, icon } = props

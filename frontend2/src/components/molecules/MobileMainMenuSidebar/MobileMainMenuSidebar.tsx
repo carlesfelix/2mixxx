@@ -1,9 +1,9 @@
 import Sidebar from '@/components/atoms/Sidebar'
 import classNames from 'classnames'
 import MobileMainMenu from './components/MobileMainMenu'
-import { MobileMainMenuSidebarProps } from './types'
+import { type MobileMainMenuSidebarProps } from './types'
 import './MobileMainMenuSidebar.css'
-import { ReactElement } from 'react'
+import { type ReactElement } from 'react'
 
 export default function MobileMainMenuSidebar (
   props: MobileMainMenuSidebarProps

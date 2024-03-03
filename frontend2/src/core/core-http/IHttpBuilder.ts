@@ -1,4 +1,4 @@
-import IHttp from './IHttp'
+import type IHttp from './IHttp'
 
 export default interface IHttpBuilder {
   getInstance: () => IHttp

@@ -1,4 +1,4 @@
 import { createContext } from 'react'
-import { AclContextValue } from './types'
+import { type AclContextValue } from './types'
 
 export const ACL_CONTEXT = createContext<AclContextValue | undefined>(undefined)

@@ -1,10 +1,10 @@
-import { FieldValues, Path, useForm as useFormLib } from 'react-hook-form'
-import { UseFormProps, UseFormReturn } from './types'
+import { type FieldValues, type Path, useForm as useFormLib } from 'react-hook-form'
+import { type UseFormProps, type UseFormReturn } from './types'
 import { useEffect, useMemo, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useFormConfigContext } from '../../contexts/form-config'
 import { usePrevious } from '@/core/core-hooks'
-import schema from '../../services/schema'
+import type schema from '../../services/schema'
 
 export default function UseForm<
   TFieldValues extends FieldValues = FieldValues,

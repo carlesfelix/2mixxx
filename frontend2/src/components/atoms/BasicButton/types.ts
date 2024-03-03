@@ -1,6 +1,6 @@
-import ButtonSize from '@/types/ButtonSize'
-import ThemeColor from '@/types/ThemeColor'
-import { MouseEventHandler, ReactNode } from 'react'
+import type ButtonSize from '@/types/ButtonSize'
+import type ThemeColor from '@/types/ThemeColor'
+import type { MouseEventHandler, ReactNode } from 'react'
 
 export interface BasicButtonProps {
   children: ReactNode

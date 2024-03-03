@@ -1,4 +1,4 @@
-import { ReadCallback, ResourceKey } from 'i18next'
+import { type ReadCallback, type ResourceKey } from 'i18next'
 
 export type TranslationsImportFn =
 ((language: string, namespace: string, callback: ReadCallback) => void) |

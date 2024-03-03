@@ -1,9 +1,9 @@
 import { MAIN_MENU_LINKS } from '@/constants/links'
 import classNames from 'classnames'
-import { ReactElement } from 'react'
+import { type ReactElement } from 'react'
 import MainMenuLinks from '../MainMenuLinks'
 import './DesktopMainMenu.css'
-import { DesktopMainMenuProps } from './types'
+import { type DesktopMainMenuProps } from './types'
 
 export default function DesktopMainMenu (
   props: DesktopMainMenuProps

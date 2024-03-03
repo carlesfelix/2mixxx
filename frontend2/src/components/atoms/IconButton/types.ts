@@ -1,6 +1,6 @@
-import ButtonSize from '@/types/ButtonSize'
-import ThemeColor from '@/types/ThemeColor'
-import { KeyboardEventHandler, MouseEventHandler, ReactNode } from 'react'
+import type ButtonSize from '@/types/ButtonSize'
+import type ThemeColor from '@/types/ThemeColor'
+import type { KeyboardEventHandler, MouseEventHandler, ReactNode } from 'react'
 
 export interface IconButtonProps {
   children: ReactNode

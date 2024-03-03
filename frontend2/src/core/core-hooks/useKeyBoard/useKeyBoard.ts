@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { UseKeyBoardProps } from './types'
+import { type UseKeyBoardProps } from './types'
 
 export default function useKeyBoard (props: UseKeyBoardProps): void {
   const { listener, mode = 'keydown', listen = true, code } = props

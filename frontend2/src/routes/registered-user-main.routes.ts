@@ -1,4 +1,4 @@
-import { Route } from '@/core/core-router'
+import { type Route } from '@/core/core-router'
 import {
   RegisteredUserEventsPage,
   NotFoundPage,

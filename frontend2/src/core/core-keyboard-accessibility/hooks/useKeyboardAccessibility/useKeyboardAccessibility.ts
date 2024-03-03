@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import KeyboardAccessibilityContext from '../../contexts/KeyboardAccessibilityContext'
-import { KeyboardAccessibilityContextReturn } from '../../types'
+import { type KeyboardAccessibilityContextReturn } from '../../types'
 
 export default function useKeyboardAccessibility (): KeyboardAccessibilityContextReturn {
   const context = useContext(KeyboardAccessibilityContext)

@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { KeyboardAccessibilityContextReturn } from '../../types'
+import { type KeyboardAccessibilityContextReturn } from '../../types'
 
 const KeyboardAccessibilityContext = createContext<KeyboardAccessibilityContextReturn | undefined>(undefined)
 

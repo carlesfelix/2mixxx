@@ -1,5 +1,5 @@
 import { useOAuth2 } from '@/core/core-oauth2'
-import { UseUserTypeReturn } from './types'
+import { type UseUserTypeReturn } from './types'
 
 export default function useUserType (): UseUserTypeReturn {
   const { isAuthenticated, inProgress } = useOAuth2()

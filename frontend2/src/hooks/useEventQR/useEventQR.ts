@@ -1,5 +1,5 @@
 import useObjectUrl from '@/core/core-hooks/useObjectUrl'
-import Async from '@/core/core-types/Async'
+import type Async from '@/core/core-types/Async'
 import http from '@/modules/http'
 import { useEffect, useState } from 'react'
 

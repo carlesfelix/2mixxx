@@ -1,7 +1,7 @@
 import classNames from 'classnames'
-import { ForwardedRef, forwardRef, ReactElement } from 'react'
+import { type ForwardedRef, forwardRef, type ReactElement } from 'react'
 import { NavLink as ReactRouterNavLink } from 'react-router-dom'
-import { NavLinkProps } from '../../types'
+import { type NavLinkProps } from '../../types'
 
 function NavLinkWithRef (
   props: NavLinkProps,

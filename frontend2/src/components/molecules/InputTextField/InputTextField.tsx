@@ -1,12 +1,12 @@
-import { ReactElement, useId } from 'react'
-import { InputTextFieldProps } from './types'
+import { type ReactElement, useId } from 'react'
+import { type InputTextFieldProps } from './types'
 import InputField from '@/components/atoms/InputField'
 import classNames from 'classnames'
 import InputText from '@/components/atoms/InputText'
 import {
   Controller,
-  FieldValues,
-  FieldPathValue
+  type FieldValues,
+  type FieldPathValue
 } from '@/core/core-hook-form'
 
 export default function InputTextField<TFieldValues extends FieldValues> (props: InputTextFieldProps<TFieldValues>): ReactElement {

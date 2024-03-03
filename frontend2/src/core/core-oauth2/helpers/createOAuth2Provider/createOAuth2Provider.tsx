@@ -1,7 +1,7 @@
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import OAuth2Provider from '../../components/OAuth2Provider'
-import { IOAuth2Builder } from '../../services/OAuth2Builder'
-import { OAuth2ProviderComponent } from '../../types'
+import { type IOAuth2Builder } from '../../services/OAuth2Builder'
+import { type OAuth2ProviderComponent } from '../../types'
 
 export default function createOAuth2Provider (
   builder: IOAuth2Builder

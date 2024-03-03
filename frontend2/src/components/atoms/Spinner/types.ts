@@ -1,4 +1,4 @@
-import ThemeColor from '@/types/ThemeColor'
+import type ThemeColor from '@/types/ThemeColor'
 
 export interface SpinnerProps {
   className?: string

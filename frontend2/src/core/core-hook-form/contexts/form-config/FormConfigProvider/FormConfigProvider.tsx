@@ -1,5 +1,5 @@
-import { ReactElement } from 'react'
-import { FormConfigProviderProps } from '../types'
+import { type ReactElement } from 'react'
+import { type FormConfigProviderProps } from '../types'
 import FormConfigContext from '../FormConfigContext'
 
 export default function FormConfigProvider (

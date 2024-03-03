@@ -1,8 +1,8 @@
-import i18n, { i18n as LibI18n } from 'i18next'
+import i18n, { type i18n as LibI18n } from 'i18next'
 import resourcesToBackend from 'i18next-resources-to-backend'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
-import { TranslationsImportFn } from './types'
+import { type TranslationsImportFn } from './types'
 
 export function buildI18n (
   translationsImportFn: TranslationsImportFn,

@@ -1,4 +1,4 @@
-import { Dispatch, MouseEvent, MutableRefObject, SetStateAction } from 'react'
+import { type Dispatch, type MouseEvent, type MutableRefObject, type SetStateAction } from 'react'
 
 export interface MobileMainMenuSidebarProps {
   className?: string

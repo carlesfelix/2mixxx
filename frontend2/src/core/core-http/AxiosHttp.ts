@@ -1,14 +1,15 @@
 import {
-  HttpRequestOptions,
-  HttpResponse,
-  AxiosHttpConfig,
-  RequestHeadersInterceptor
+  type HttpRequestOptions,
+  type HttpResponse,
+  type AxiosHttpConfig,
+  type HttpRequestInterceptor,
+  type HttpResponseInterceptorManager
 } from './types'
-import IHttp from './IHttp'
-import axios, { AxiosInstance } from 'axios'
+import type IHttp from './IHttp'
+import axios, { type AxiosInstance } from 'axios'
 
 export default class AxiosHttp implements IHttp {
-  #axiosInstance: AxiosInstance
+  readonly #axiosInstance: AxiosInstance
   constructor (config: AxiosHttpConfig) {
     const { baseUrl } = config
     this.#axiosInstance = axios.create({
@@ -36,20 +37,11 @@ export default class AxiosHttp implements IHttp {
     return await this.#axiosInstance.delete<T>(url, options)
   }
 
-  useRequestHeadersInterceptor (interceptor: RequestHeadersInterceptor): number {
-    return this.#axiosInstance.interceptors.request.use(async (config) => {
-      const headers = await interceptor()
-      Object.entries(headers).forEach(([headerKey, headerValue]) => {
-        if (config.headers == null) {
-          config.headers = {}
-        }
-        config.headers[headerKey] = headerValue
-      })
-      return config
-    })
+  requestInterceptors (): HttpRequestInterceptor {
+    return this.#axiosInstance.interceptors.request
   }
 
-  ejectRequestInterceptor (id: number): void {
-    this.#axiosInstance.interceptors.request.eject(id)
+  responseInterceptors (): HttpResponseInterceptorManager<HttpResponse> {
+    return this.#axiosInstance.interceptors.response
   }
 }

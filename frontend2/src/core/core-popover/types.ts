@@ -1,5 +1,5 @@
-import { Placement } from '@popperjs/core'
-import { ReactNode } from 'react'
+import { type Placement } from '@popperjs/core'
+import { type ReactNode } from 'react'
 
 export interface PopoverProps {
   target?: Element | null

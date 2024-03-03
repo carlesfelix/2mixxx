@@ -1,5 +1,5 @@
-import { ForwardedRef, useCallback, useRef } from 'react'
-import { UseInternalRefReturn } from './types'
+import { type ForwardedRef, useCallback, useRef } from 'react'
+import { type UseInternalRefReturn } from './types'
 
 export default function useInternalRef<T> (ref: ForwardedRef<T>): UseInternalRefReturn<T> {
   const internalRef = useRef<T | null>(null)

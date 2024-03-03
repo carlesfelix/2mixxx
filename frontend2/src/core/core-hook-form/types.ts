@@ -1,8 +1,8 @@
 import {
-  Control,
-  FieldPath,
-  FieldPathValue as LibFieldPathValue,
-  FieldValues as LibFieldValues
+  type Control,
+  type FieldPath,
+  type FieldPathValue as LibFieldPathValue,
+  type FieldValues as LibFieldValues
 } from 'react-hook-form'
 
 export type FieldValues = LibFieldValues

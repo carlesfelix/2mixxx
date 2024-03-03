@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import OAuth2InternalContext from '../../contexts/OAuth2InternalContext'
-import { UseOAuth2Return } from '../../types'
+import { type UseOAuth2Return } from '../../types'
 
 export default function useOAuth2 (): UseOAuth2Return {
   const context = useContext(OAuth2InternalContext)

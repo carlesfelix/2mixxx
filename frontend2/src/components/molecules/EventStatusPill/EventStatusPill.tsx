@@ -1,7 +1,7 @@
-import Pill, { PillColor } from '@/components/atoms/Pill'
+import Pill, { type PillColor } from '@/components/atoms/Pill'
 import classNames from 'classnames'
-import { ReactElement } from 'react'
-import EventStatusPillProps from './types'
+import { type ReactElement } from 'react'
+import type EventStatusPillProps from './types'
 
 const statusLabels = ['Not started', 'Started', 'Ended']
 const statusColors: PillColor[] = ['warning', 'success', 'danger']

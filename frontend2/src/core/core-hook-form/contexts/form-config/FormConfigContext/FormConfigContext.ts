@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { FormConfigContextValue } from '../types'
+import { type FormConfigContextValue } from '../types'
 
 const FormConfigContext = createContext<FormConfigContextValue | undefined>(undefined)
 

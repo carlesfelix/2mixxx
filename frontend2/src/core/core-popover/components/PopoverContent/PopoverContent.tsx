@@ -1,6 +1,6 @@
-import { FocusWithKeyboard, FocusWithKeyboardRef } from '@/core/core-keyboard-accessibility'
-import { ReactElement, useEffect, useState } from 'react'
-import { PopoverContentProps } from '../../types'
+import { FocusWithKeyboard, type FocusWithKeyboardRef } from '@/core/core-keyboard-accessibility'
+import { type ReactElement, useEffect, useState } from 'react'
+import { type PopoverContentProps } from '../../types'
 
 export default function PopoverContent (props: PopoverContentProps): ReactElement {
   const { children } = props

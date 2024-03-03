@@ -1,7 +1,7 @@
 import {
-  LoginWithRedirectOptions,
-  LogoutOptions,
-  UseOAuth2Return
+  type LoginWithRedirectOptions,
+  type LogoutOptions,
+  type UseOAuth2Return
 } from '../../types'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useCallback } from 'react'
@@ -20,7 +20,7 @@ export default function useAuth0Adapter (): UseOAuth2Return {
   }, [auth0Logout])
 
   const loginWithRedirect = useCallback(async (options?: LoginWithRedirectOptions) => {
-    return await auth0LoginWithRedirect(options)
+    await auth0LoginWithRedirect(options)
   }, [auth0LoginWithRedirect])
 
   return {

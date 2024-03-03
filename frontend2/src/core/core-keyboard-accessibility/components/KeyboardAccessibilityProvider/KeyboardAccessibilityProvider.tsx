@@ -1,7 +1,7 @@
-import { FocusEvent, MutableRefObject, ReactElement, useCallback, useRef, useState } from 'react'
-import { FocusableElement, isFocusable } from 'tabbable'
+import { type FocusEvent, type MutableRefObject, type ReactElement, useCallback, useRef, useState } from 'react'
+import { type FocusableElement, isFocusable } from 'tabbable'
 import KeyboardAccessibilityContext from '../../contexts/KeyboardAccessibilityContext'
-import { KeyboardAccessibilityContextReturn, KeyboardAccessibilityProviderProps } from '../../types'
+import { type KeyboardAccessibilityContextReturn, type KeyboardAccessibilityProviderProps } from '../../types'
 
 export default function KeyboardAccessibilityProvider (
   props: KeyboardAccessibilityProviderProps

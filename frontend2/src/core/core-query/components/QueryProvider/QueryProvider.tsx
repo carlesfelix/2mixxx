@@ -1,7 +1,7 @@
-import { HttpRequestOptions } from '@/core/core-http'
-import { ReactElement } from 'react'
+import { type HttpRequestOptions } from '@/core/core-http'
+import { type ReactElement } from 'react'
 import { SWRConfig } from 'swr'
-import { QueryProviderProps } from './types'
+import { type QueryProviderProps } from './types'
 
 export default function QueryProvider (
   props: QueryProviderProps

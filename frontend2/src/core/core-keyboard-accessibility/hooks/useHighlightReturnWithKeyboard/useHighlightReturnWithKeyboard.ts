@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { InstanceRefWithFocus, UseHighlightReturnWithKeyboardProps } from '../../types'
+import { type InstanceRefWithFocus, type UseHighlightReturnWithKeyboardProps } from '../../types'
 import { useKeyBoard, usePrevious } from '@/core/core-hooks'
 import useKeyboardAccessibility from '../useKeyboardAccessibility'
 

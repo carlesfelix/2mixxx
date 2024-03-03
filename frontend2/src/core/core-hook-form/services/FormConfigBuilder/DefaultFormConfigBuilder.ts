@@ -1,8 +1,8 @@
-import IFormConfigBuilder from './IFormConfigBuilder'
+import type IFormConfigBuilder from './IFormConfigBuilder'
 
 export default class DefaultFormConfigBuilder implements IFormConfigBuilder {
   readonly #eventName = 'DefaultFormConfigBuilder__rebuildSchemas'
-  #rebuildSchemasEvent = new window.Event(this.#eventName)
+  readonly #rebuildSchemasEvent = new window.Event(this.#eventName)
 
   rebuildSchemas (): void {
     window.dispatchEvent(this.#rebuildSchemasEvent)

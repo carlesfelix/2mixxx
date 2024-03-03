@@ -1,7 +1,7 @@
-import { CardProps } from './types'
+import type { CardProps } from './types'
 import './Card.css'
 import classNames from 'classnames'
-import { ReactElement } from 'react'
+import type { ReactElement } from 'react'
 
 export default function Card (props: CardProps): ReactElement {
   const { children, header, className } = props

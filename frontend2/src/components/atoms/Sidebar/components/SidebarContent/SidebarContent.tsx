@@ -1,7 +1,7 @@
 import { useInternalRef } from '@/core/core-hooks'
 import classNames from 'classnames'
-import { ForwardedRef, forwardRef, ReactElement, useEffect } from 'react'
-import { SidebarContentProps } from '../../types'
+import { type ForwardedRef, forwardRef, type ReactElement, useEffect } from 'react'
+import { type SidebarContentProps } from '../../types'
 import './SidebarContent.css'
 
 function SidebarContentWithRef (

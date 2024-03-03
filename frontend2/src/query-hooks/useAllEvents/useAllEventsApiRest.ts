@@ -1,8 +1,8 @@
 import { useQuery } from '@/core/core-query'
-import { EventEntity } from '@/query-hooks/useAllEvents/types'
+import { type EventEntity } from '@/query-hooks/useAllEvents/types'
 import http from '@/modules/http'
 import { useCallback } from 'react'
-import { UseAllEventsReturn } from './types'
+import { type UseAllEventsReturn } from './types'
 
 export default function useAllEventsApiRest (): UseAllEventsReturn {
   const { state, mutate } = useQuery<EventEntity[]>('/rooms', {

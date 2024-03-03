@@ -2,9 +2,9 @@ import EventCard from '@/components/molecules/EventCard'
 import { useDate } from '@/core/core-hooks'
 import EventStatusEnum from '@/enums/EventStatusEnum'
 import classNames from 'classnames'
-import { ReactElement } from 'react'
+import { type ReactElement } from 'react'
 import './EventCardListLayout.css'
-import { EventCardListLayoutProps } from './types'
+import { type EventCardListLayoutProps } from './types'
 
 export default function EventCardListLayout (
   props: EventCardListLayoutProps

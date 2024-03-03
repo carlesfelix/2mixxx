@@ -1,9 +1,10 @@
 import { useKeyboardAccessibility } from '@/core/core-keyboard-accessibility'
 import { NavLink } from '@/core/core-router'
 import classNames from 'classnames'
-import { ReactElement, useRef } from 'react'
+import type { ReactElement } from 'react'
+import { useRef } from 'react'
 import './MainMenuNavLink.css'
-import { MainMenuNavLinkProps } from './types'
+import type { MainMenuNavLinkProps } from './types'
 
 export default function MainMenuNavLink (
   props: MainMenuNavLinkProps

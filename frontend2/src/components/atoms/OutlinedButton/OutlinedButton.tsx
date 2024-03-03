@@ -1,8 +1,9 @@
 import { useInternalRef } from '@/core/core-hooks'
 import { useKeyboardAccessibility } from '@/core/core-keyboard-accessibility'
 import classNames from 'classnames'
-import { ForwardedRef, forwardRef, ReactElement } from 'react'
-import { OutlinedButtonProps } from './types'
+import type { ForwardedRef, ReactElement } from 'react'
+import { forwardRef } from 'react'
+import type { OutlinedButtonProps } from './types'
 
 function OutlinedButtonWithRef (
   props: OutlinedButtonProps,

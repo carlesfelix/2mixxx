@@ -3,16 +3,16 @@ import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
 import useOverlayRootElement from '@/hooks/useOverlayRootElement'
 import classNames from 'classnames'
 import {
-  AnimationEvent,
-  MouseEvent,
-  ReactElement,
+  type AnimationEvent,
+  type MouseEvent,
+  type ReactElement,
   useRef,
   useState
 } from 'react'
 import { createPortal } from 'react-dom'
 import SidebarContent from './components/SidebarContent'
+import { type SidebarProps, type SidebarStatus } from './types'
 import './Sidebar.css'
-import { SidebarProps, SidebarStatus } from './types'
 
 export default function Sidebar (props: SidebarProps): ReactElement {
   const {
