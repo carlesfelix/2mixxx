@@ -1,7 +1,7 @@
 :root {
-  @custom-media --min-xs-window (min-width: 300px);
-  @custom-media --min-sm-window (min-width: 576px);
-  @custom-media --min-md-window (min-width: 768px);
-  @custom-media --min-lg-window (min-width: 992px);
-  @custom-media --min-xl-window (min-width: 1200px);
+  @custom-media --min-xs-window (min-width: 18.75em);
+  @custom-media --min-sm-window (min-width: 36em);
+  @custom-media --min-md-window (min-width: 48em);
+  @custom-media --min-lg-window (min-width: 62em);
+  @custom-media --min-xl-window (min-width: 75em);
 }
