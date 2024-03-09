@@ -65,6 +65,10 @@
   --theme-surface-popup: var(--theme-internal-white);
   --theme-surface-popup-shadow: rgb(0 0 0 / 10%);
 
+  /* rgb(from var(--theme-primary-600) r g b / 40%); */
+
+  /* color-mix(srgb, var(--theme-primary-600) 60%, transparent); */
+
   /* FOREGROUNDS */
   --theme-foreground-main-text: var(--theme-internal-gray-100);
   --theme-foreground-sidebar-menu: var(--theme-internal-white);

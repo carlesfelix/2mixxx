@@ -1,5 +1,3 @@
-@import "/src/styles/utils/index.css";
-
 .c-mobile-main-menu {
   background-color: var(--theme-surface-sidebar-menu);
   color: var(--theme-foreground-sidebar-menu);

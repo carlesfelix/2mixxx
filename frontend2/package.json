@@ -29,6 +29,7 @@
     "zod": "3.22.4"
   },
   "devDependencies": {
+    "@csstools/postcss-global-data": "2.1.1",
     "@types/node": "20.11.24",
     "@types/postcss-import": "14.0.3",
     "@types/react": "18.2.61",

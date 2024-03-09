@@ -1,5 +1,3 @@
-@import "/src/styles/utils/index.css";
-
 @media (--min-lg-window) {
   .c-mobile-main-menu-sidebar {
     display: none;

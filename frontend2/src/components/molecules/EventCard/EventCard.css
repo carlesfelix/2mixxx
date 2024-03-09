@@ -1,5 +1,3 @@
-@import "/src/styles/utils/index.css";
-
 .c-event-card {
   & .c-event-card__header {
     display: flex;

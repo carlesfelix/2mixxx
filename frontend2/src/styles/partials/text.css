@@ -1,5 +1,3 @@
-@import "/src/styles/utils/index.css";
-
 .g-text {
   &.g-text--h1 {
     font-size: 1.75rem;
