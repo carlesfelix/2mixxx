@@ -1,55 +1,55 @@
 /* #046aae */
 :root {
-  --theme-internal-white: #fff;
-  --theme-internal-success: #57c288;
-  --theme-internal-warning: #facc48;
-  --theme-internal-danger: #d93e26;
-  --theme-internal-gray-100: #3d3b4f;
-  --theme-internal-gray-200: #1c1b2d;
+  --theme-color-white: #fff;
+  --theme-color-success: #57c288;
+  --theme-color-warning: #facc48;
+  --theme-color-danger: #d93e26;
+  --theme-color-gray-100: #3d3b4f;
+  --theme-color-gray-200: #1c1b2d;
   --theme-color-primary-50: #eaeaf9;
-  --theme-color-primary-contrast-50: var(--theme-internal-gray-100);
+  --theme-color-primary-contrast-50: var(--theme-color-gray-100);
   --theme-color-primary-100: #c9caf0;
-  --theme-color-primary-contrast-100: var(--theme-internal-gray-100);
+  --theme-color-primary-contrast-100: var(--theme-color-gray-100);
   --theme-color-primary-200: #a5a9e5;
-  --theme-color-primary-contrast-200: var(--theme-internal-gray-100);
+  --theme-color-primary-contrast-200: var(--theme-color-gray-100);
   --theme-color-primary-300: #8287db;
-  --theme-color-primary-contrast-300: var(--theme-internal-gray-100);
+  --theme-color-primary-contrast-300: var(--theme-color-gray-100);
   --theme-color-primary-400: #676bd2;
-  --theme-color-primary-contrast-400: var(--theme-internal-white);
+  --theme-color-primary-contrast-400: var(--theme-color-white);
 
   /* Base primary */
   --theme-color-primary-500: #4e4fc9;
-  --theme-color-primary-contrast-500: var(--theme-internal-white);
+  --theme-color-primary-contrast-500: var(--theme-color-white);
   --theme-color-primary-600: #4847be;
-  --theme-color-primary-contrast-600: var(--theme-internal-white);
+  --theme-color-primary-contrast-600: var(--theme-color-white);
   --theme-color-primary-700: #403cb2;
-  --theme-color-primary-contrast-700: var(--theme-internal-white);
+  --theme-color-primary-contrast-700: var(--theme-color-white);
   --theme-color-primary-800: #3831a6;
-  --theme-color-primary-contrast-800: var(--theme-internal-white);
+  --theme-color-primary-contrast-800: var(--theme-color-white);
   --theme-color-primary-900: #2d1d8f;
-  --theme-color-primary-contrast-900: var(--theme-internal-white);
+  --theme-color-primary-contrast-900: var(--theme-color-white);
   --theme-color-secondary-50: #faf6ff;
-  --theme-color-secondary-contrast-50: var(--theme-internal-gray-100);
+  --theme-color-secondary-contrast-50: var(--theme-color-gray-100);
   --theme-color-secondary-100: #f4f0ff;
-  --theme-color-secondary-contrast-100: var(--theme-internal-gray-100);
+  --theme-color-secondary-contrast-100: var(--theme-color-gray-100);
   --theme-color-secondary-200: #ebe8ff;
-  --theme-color-secondary-contrast-200: var(--theme-internal-gray-100);
+  --theme-color-secondary-contrast-200: var(--theme-color-gray-100);
   --theme-color-secondary-300: #dcd8f2;
-  --theme-color-secondary-contrast-300: var(--theme-internal-gray-100);
+  --theme-color-secondary-contrast-300: var(--theme-color-gray-100);
   --theme-color-secondary-400: #b8b5cd;
-  --theme-color-secondary-contrast-400: var(--theme-internal-gray-100);
+  --theme-color-secondary-contrast-400: var(--theme-color-gray-100);
   --theme-color-secondary-500: #9996ad;
-  --theme-color-secondary-contrast-500: var(--theme-internal-white);
+  --theme-color-secondary-contrast-500: var(--theme-color-white);
   --theme-color-secondary-600: #706d83;
-  --theme-color-secondary-contrast-600: var(--theme-internal-white);
+  --theme-color-secondary-contrast-600: var(--theme-color-white);
   --theme-color-secondary-700: #5c5a6f;
-  --theme-color-secondary-contrast-700: var(--theme-internal-white);
+  --theme-color-secondary-contrast-700: var(--theme-color-white);
 
   /* Base secondary */
-  --theme-color-secondary-800: var(--theme-internal-gray-100);
-  --theme-color-secondary-contrast-800: var(--theme-internal-white);
-  --theme-color-secondary-900: var(--theme-internal-gray-200);
-  --theme-color-secondary-contrast-900: var(--theme-internal-white);
+  --theme-color-secondary-800: var(--theme-color-gray-100);
+  --theme-color-secondary-contrast-800: var(--theme-color-white);
+  --theme-color-secondary-900: var(--theme-color-gray-200);
+  --theme-color-secondary-contrast-900: var(--theme-color-white);
 
   /* TOOLBAR */
   --theme-color-toolbar-background: #fafaff;
@@ -58,28 +58,28 @@
   /* SIDEBAR MENU */
   --theme-color-sidebar-menu-background: #2a52a2;
   --theme-color-sidebar-menu-btn-active-background: #3e6ac8;
-  --theme-color-sidebar-menu-text: var(--theme-internal-white);
+  --theme-color-sidebar-menu-text: var(--theme-color-white);
   --theme-color-sidebar-menu-btn-inactive-text: var(--theme-color-primary-50);
-  --theme-color-sidebar-menu-btn-active-text: var(--theme-internal-white);
+  --theme-color-sidebar-menu-btn-active-text: var(--theme-color-white);
 
   /* MASK */
   --theme-color-mask-background: rgb(0 0 0 / 40%);
 
   /* PILL */
-  --theme-color-pill-success-background: var(--theme-internal-success);
-  --theme-color-pill-success-text: var(--theme-internal-gray-100);
-  --theme-color-pill-warning-background: var(--theme-internal-warning);
-  --theme-color-pill-warning-text: var(--theme-internal-gray-100);
-  --theme-color-pill-danger-background: var(--theme-internal-danger);
-  --theme-color-pill-danger-text: var(--theme-internal-white);
+  --theme-color-pill-success-background: var(--theme-color-success);
+  --theme-color-pill-success-text: var(--theme-color-gray-100);
+  --theme-color-pill-warning-background: var(--theme-color-warning);
+  --theme-color-pill-warning-text: var(--theme-color-gray-100);
+  --theme-color-pill-danger-background: var(--theme-color-danger);
+  --theme-color-pill-danger-text: var(--theme-color-white);
 
   /* OVERLAY */
-  --theme-color-overlay-background: var(--theme-internal-white);
-  --theme-color-overlay-text: var(--theme-internal-gray-100);
+  --theme-color-overlay-background: var(--theme-color-white);
+  --theme-color-overlay-text: var(--theme-color-gray-100);
   --theme-color-overlay-shadow: rgb(0 0 0 / 10%);
 
   /* GROUND */
-  --theme-color-ground-text: var(--theme-internal-gray-100);
+  --theme-color-ground-text: var(--theme-color-gray-100);
 
   /* color-mix(srgb, var(--theme-color-primary-600) 60%, transparent); */
 }
