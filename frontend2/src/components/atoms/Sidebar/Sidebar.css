@@ -62,7 +62,7 @@
     top: 0;
     left: 0;
     position: absolute;
-    background-color: var(--theme-surface-overlay-mask);
+    background-color: var(--theme-color-mask-background);
     will-change: opacity;
   }
 

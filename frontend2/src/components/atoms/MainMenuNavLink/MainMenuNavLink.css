@@ -6,15 +6,15 @@
   height: 2.5rem;
   outline: none;
   border: solid 0.063rem transparent;
-  color: var(--theme-foreground-sidebar-menu-btn-inactive);
+  color: var(--theme-color-sidebar-menu-btn-inactive-text);
 
   &.c-main-menu-nav-link--highlighted {
     border-color: currentcolor;
   }
 
   &.c-main-menu-nav-link--active {
-    background-color: var(--theme-surface-sidebar-menu-btn-active);
-    color: var(--theme-foreground-sidebar-menu-btn-active);
+    background-color: var(--theme-color-sidebar-menu-btn-active-background);
+    color: var(--theme-color-sidebar-menu-btn-active-text);
   }
 
   & .c-main-menu-nav-link__icon {

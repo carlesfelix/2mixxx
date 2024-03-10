@@ -4,11 +4,11 @@
   position: relative;
 
   & .c-control-panel-layout__navigation-bar {
-    background-color: var(--theme-surface-toolbar);
+    background-color: var(--theme-color-toolbar-background);
     color: var(--theme-surface-toolbar-contrast);
     padding-right: 1.5rem;
     padding-left: 0.75rem;
-    border-bottom: var(--theme-surface-toolbar-border) 0.063rem solid;
+    border-bottom: var(--theme-color-toolbar-border) 1px solid;
     height: 3.375rem;
     display: flex;
     align-items: center;

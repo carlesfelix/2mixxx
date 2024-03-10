@@ -14,7 +14,7 @@ function InputTextWithRef (
     onChange && onChange(event.target.value)
   }
 
-  const rootClassName = classNames('c-input-text', className)
+  const rootClassName = classNames('c-input-text g-input', className)
 
   return (
     <input

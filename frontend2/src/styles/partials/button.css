@@ -44,7 +44,7 @@
   /* Text button */
   &.g-button--primary-text {
     background-color: transparent;
-    color: var(--theme-primary-400);
+    color: var(--theme-color-primary-400);
   }
 
   /* Outlined button */
@@ -55,13 +55,13 @@
   }
 
   &.g-button--outlined-primary {
-    border-color: var(--theme-primary-400);
-    color: var(--theme-primary-400);
+    border-color: var(--theme-color-primary-400);
+    color: var(--theme-color-primary-400);
   }
 
   &.g-button--outlined-secondary {
-    border-color: var(--theme-secondary-800);
-    color: var(--theme-secondary-800);
+    border-color: var(--theme-color-secondary-800);
+    color: var(--theme-color-secondary-800);
   }
 
   &.g-button--outlined.g-button--sm {
@@ -131,20 +131,20 @@
   }
 
   &.g-button--basic-primary {
-    background-color: var(--theme-primary-400);
-    color: var(--theme-primary-contrast-400);
+    background-color: var(--theme-color-primary-400);
+    color: var(--theme-color-primary-contrast-400);
 
     &.g-button--basic:not(:disabled).g-button--highlighted {
-      outline-color: var(--theme-primary-400);
+      outline-color: var(--theme-color-primary-400);
     }
   }
 
   &.g-button--basic-secondary {
-    background-color: var(--theme-secondary-800);
-    color: var(--theme-secondary-contrast-800);
+    background-color: var(--theme-color-secondary-800);
+    color: var(--theme-color-secondary-contrast-800);
 
     &.g-button--basic:not(:disabled).g-button--highlighted {
-      outline-color: var(--theme-secondary-800);
+      outline-color: var(--theme-color-secondary-800);
     }
   }
 
@@ -190,11 +190,11 @@
   }
 
   &.g-button--icon-primary {
-    color: var(--theme-primary-400);
+    color: var(--theme-color-primary-400);
   }
 
   &.g-button--icon-secondary {
-    color: var(--theme-secondary-800);
+    color: var(--theme-color-secondary-800);
   }
 
   &.g-button--icon.g-button--sm {

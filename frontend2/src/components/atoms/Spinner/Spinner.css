@@ -41,13 +41,13 @@
 
   &.c-spinner--primary {
     & .c-spinner__ring {
-      border-color: var(--theme-primary-500) transparent transparent;
+      border-color: var(--theme-color-primary-400) transparent transparent;
     }
   }
 
   &.c-spinner--secondary {
     & .c-spinner__ring {
-      border-color: var(--theme-secondary-500) transparent transparent;
+      border-color: var(--theme-color-secondary-400) transparent transparent;
     }
   }
 

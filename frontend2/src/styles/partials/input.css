@@ -1,0 +1,7 @@
+.g-input {
+  border: 1px solid var(--theme-color-secondary-400);
+  font-size: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  outline-color: var(--theme-color-secondary-400);
+}

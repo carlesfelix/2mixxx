@@ -7,27 +7,27 @@
   white-space: nowrap;
 
   &.c-pill--primary {
-    background-color: var(--theme-primary-400);
-    color: var(--theme-primary-contrast-400);
+    background-color: var(--theme-color-primary-400);
+    color: var(--theme-color-primary-contrast-400);
   }
 
   &.c-pill--secondary {
-    background-color: var(--theme-secondary-400);
-    color: var(--theme-secondary-contrast-400);
+    background-color: var(--theme-color-secondary-400);
+    color: var(--theme-color-secondary-contrast-400);
   }
 
   &.c-pill--warning {
-    background-color: var(--theme-surface-pill-warning);
-    color: var(--theme-foreground-pill-warning);
+    background-color: var(--theme-color-pill-warning-background);
+    color: var(--theme-color-pill-warning-text);
   }
 
   &.c-pill--success {
-    background-color: var(--theme-surface-pill-success);
-    color: var(--theme-foreground-pill-success);
+    background-color: var(--theme-color-pill-success-background);
+    color: var(--theme-color-pill-success-text);
   }
 
   &.c-pill--danger {
-    background-color: var(--theme-surface-pill-danger);
-    color: var(--theme-foreground-pill-danger);
+    background-color: var(--theme-color-pill-danger-background);
+    color: var(--theme-color-pill-danger-text);
   }
 }
