@@ -43,6 +43,7 @@ export default function InputTextField<TFieldValues extends FieldValues> (props:
               disabled={field.disabled}
               error={showInputError}
               {...inputProps}
+              className={classNames(inputProps.className, 'g-form__input-field')}
             />
           </InputField>
         )

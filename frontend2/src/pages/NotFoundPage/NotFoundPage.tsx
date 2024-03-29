@@ -49,8 +49,10 @@ export default function NotFoundPage (): ReactElement {
       <button onClick={() => { changeLanguageHandler('es') }}>Español</button>
       <button onClick={() => { changeLanguageHandler('en') }}>English</button>
       {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-      <form onSubmit={handleSubmit(submitHandler)}>
+      <form onSubmit={handleSubmit(submitHandler)} className="g-form g-form--3">
+
         <InputTextField
+          className="g-form__field g-form__field--3 g-form__field--sm-2 g-form__field--lg-1"
           control={control}
           label="Nombre"
           name="name"
@@ -59,6 +61,7 @@ export default function NotFoundPage (): ReactElement {
           }}
         />
         <InputTextField
+          className="g-form__field g-form__field--3 g-form__field--sm-1 g-form__field--lg-1"
           control={control}
           label="Nombre completo"
           name='fullName'
@@ -66,7 +69,17 @@ export default function NotFoundPage (): ReactElement {
             placeholder: 'escribe nombre completo'
           }}
         />
-        <button type="submit">enviar</button>
+        <InputTextField
+          className="g-form__field g-form__field--3 g-form__field--sm-3 g-form__field--lg-1"
+          control={control}
+          label="Email"
+          name='fullName'
+          inputProps={{
+            placeholder: 'email'
+          }}
+        />
+
+        {/* <button type="submit">enviar</button> */}
       </form>
       <FocusWithKeyboard disabled>
         <div>

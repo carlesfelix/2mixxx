@@ -12,7 +12,7 @@ function InputFieldWithRef (
   const rootClassName = classNames('c-input-field', className)
   return (
     <div className={rootClassName} ref={ref}>
-      <label htmlFor={inputId}>{label}</label>
+      <label htmlFor={inputId} className="c-input-field__label">{label}</label>
       <div className="c-input-field__input-container">
         {children}
       </div>

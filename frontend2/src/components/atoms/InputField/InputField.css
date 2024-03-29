@@ -1,4 +1,9 @@
 .c-input-field {
   display: inline-flex;
   flex-direction: column;
+
+  .c-input-field__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
 }
