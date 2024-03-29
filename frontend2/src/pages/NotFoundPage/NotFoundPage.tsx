@@ -78,8 +78,7 @@ export default function NotFoundPage (): ReactElement {
             placeholder: 'email'
           }}
         />
-
-        {/* <button type="submit">enviar</button> */}
+        <button type="submit">enviar</button>
       </form>
       <FocusWithKeyboard disabled>
         <div>

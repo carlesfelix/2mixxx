@@ -1,4 +1,4 @@
-import { type ReactElement } from 'react'
+import { useId, type ReactElement } from 'react'
 import {
   Controller as ControllerLib,
   type FieldPath,
@@ -10,7 +10,9 @@ export default function Controller<
 TFieldValues extends FieldValues = FieldValues,
 TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > (props: ControllerProps<TFieldValues, TName>): ReactElement {
-  const { render, ...extraProps } = props
+  const { render, inputId, ...extraProps } = props
+  const internalInputId = useId()
+  const id = inputId ?? internalInputId
 
   function renderHandler (
     renderProps: LibRenderProps<TFieldValues, TName>
@@ -22,7 +24,8 @@ TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
       fieldState,
       formState,
       showInputError: !!inputErrorMessage,
-      inputErrorMessage
+      inputErrorMessage,
+      id
     })
   }
 

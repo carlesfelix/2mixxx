@@ -1,4 +1,4 @@
-import { type ReactElement, useId } from 'react'
+import { type ReactElement } from 'react'
 import { type InputTextFieldProps } from './types'
 import InputField from '@/components/atoms/InputField'
 import classNames from 'classnames'
@@ -17,9 +17,9 @@ export default function InputTextField<TFieldValues extends FieldValues> (props:
     name,
     control,
     defaultValue = '' as FieldPathValue<TFieldValues, typeof name>,
-    disabled
+    disabled,
+    inputId
   } = props
-  const inputId = useId()
   const rootClassName = classNames('c-input-text-field', className)
   return (
     <Controller
@@ -27,22 +27,24 @@ export default function InputTextField<TFieldValues extends FieldValues> (props:
       control={control}
       defaultValue={defaultValue}
       disabled={disabled}
-      render={({ field, showInputError, inputErrorMessage }) => {
+      inputId={inputId}
+      render={({ field, showInputError, inputErrorMessage, id }) => {
         return (
           <InputField
-            inputId={inputId}
+            inputId={id}
             label={label}
             className={rootClassName}
             error={inputErrorMessage}
           >
             <InputText
+              {...inputProps}
               onChange={field.onChange}
               ref={field.ref}
               onBlur={field.onBlur}
               value={field.value}
               disabled={field.disabled}
               error={showInputError}
-              {...inputProps}
+              id={id}
               className={classNames(inputProps.className, 'g-form__input-field')}
             />
           </InputField>

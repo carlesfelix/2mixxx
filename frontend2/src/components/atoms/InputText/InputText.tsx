@@ -8,7 +8,7 @@ function InputTextWithRef (
   props: InputTextProps,
   ref: ForwardedRef<HTMLInputElement>
 ): ReactElement {
-  const { value, onChange, disabled, className } = props
+  const { value, onChange, disabled, className, id } = props
 
   function changeHandler (event: ChangeEvent<HTMLInputElement>): void {
     onChange && onChange(event.target.value)
@@ -18,6 +18,8 @@ function InputTextWithRef (
 
   return (
     <input
+      autoComplete="off"
+      id={id}
       ref={ref}
       className={rootClassName}
       type="text"

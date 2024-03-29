@@ -15,6 +15,7 @@ export interface BaseInputProps<T> {
   onBlur?: () => void
   disabled?: boolean
   error?: boolean
+  id?: string
 }
 
 export interface BaseInputControlledProps<
@@ -29,4 +30,5 @@ export interface BaseInputControlledProps<
   control: Control<TFieldValues>
   defaultValue?: FieldPathValue<TFieldValues, TName>
   disabled?: boolean
+  inputId?: string
 }

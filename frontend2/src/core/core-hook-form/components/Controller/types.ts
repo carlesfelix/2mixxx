@@ -7,6 +7,7 @@ export interface RenderProps<TFieldValues extends FieldValues, TName extends Fie
   formState: UseFormStateReturn<TFieldValues>
   showInputError: boolean
   inputErrorMessage?: string
+  id: string
 }
 
 export interface ControllerProps<
@@ -14,6 +15,7 @@ export interface ControllerProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<ControllerLibProps<TFieldValues, TName>, 'render'> {
   render: (renderProps: RenderProps<TFieldValues, TName>) => ReactElement
+  inputId?: string
 }
 
 export interface LibRenderProps<
