@@ -24,7 +24,6 @@ export interface UseHighlightReturnWithKeyboardProps<InstanceRef extends Instanc
 
 export interface KeyboardAccessibilityContextReturn {
   pointedElementRef: MutableRefObject<Element | null>
-  updatePointedElement: (element: Element | null) => void
   highlightedElement: FocusableElement | null
   isHighlighted: (elementRef: MutableRefObject<Element | null>) => boolean
   focus: (event: FocusEvent) => void

@@ -1,4 +1,4 @@
-import { type ForwardedRef, forwardRef, type ReactElement, useEffect, useImperativeHandle, useRef } from 'react'
+import { type ForwardedRef, forwardRef, type ReactElement, useImperativeHandle, useRef } from 'react'
 import { type FocusableElement, tabbable, isFocusable } from 'tabbable'
 import useKeyboardAccessibility from '../../hooks/useKeyboardAccessibility'
 import { type FocusWithKeyboardProps, type FocusWithKeyboardRef } from '../../types'
@@ -16,7 +16,7 @@ function FocusWithKeyboardWithRef (
     disabled = false,
     className
   } = props
-  const { blur, focus, updatePointedElement } = useKeyboardAccessibility()
+  const { blur, focus } = useKeyboardAccessibility()
   const containerRef = useRef<HTMLDivElement>(null)
 
   useImperativeHandle(ref, () => ({
@@ -25,30 +25,30 @@ function FocusWithKeyboardWithRef (
     }
   }), [containerRef])
 
-  useEffect(() => {
-    function globalPointerDownHandler (event: PointerEvent): void {
-      if (!hasChildren(containerRef)) {
-        updatePointedElement(event.target as Element)
-      }
-    }
+  // useEffect(() => {
+  //   function globalPointerDownHandler (event: PointerEvent): void {
+  //     if (!hasChildren(containerRef)) {
+  //       updatePointedElement(event.target as Element)
+  //     }
+  //   }
 
-    function globalKeydownHandler (event: KeyboardEvent): void {
-      const codes = [nextCode, previousCode]
-      if (codes.includes(event.code) && !hasChildren(containerRef)) {
-        updatePointedElement(null)
-      }
-    }
+  //   function globalKeydownHandler (event: KeyboardEvent): void {
+  //     const codes = [nextCode, previousCode]
+  //     if (codes.includes(event.code) && !hasChildren(containerRef)) {
+  //       updatePointedElement(null)
+  //     }
+  //   }
 
-    if (!disabled) {
-      window.document.body.addEventListener('pointerdown', globalPointerDownHandler)
-      window.document.body.addEventListener('keydown', globalKeydownHandler)
+  //   if (!disabled) {
+  //     window.document.body.addEventListener('pointerdown', globalPointerDownHandler)
+  //     window.document.body.addEventListener('keydown', globalKeydownHandler)
 
-      return () => {
-        window.document.body.removeEventListener('pointerdown', globalPointerDownHandler)
-        window.document.body.removeEventListener('keydown', globalKeydownHandler)
-      }
-    }
-  }, [updatePointedElement, nextCode, previousCode, disabled, containerRef])
+  //     return () => {
+  //       window.document.body.removeEventListener('pointerdown', globalPointerDownHandler)
+  //       window.document.body.removeEventListener('keydown', globalKeydownHandler)
+  //     }
+  //   }
+  // }, [updatePointedElement, nextCode, previousCode, disabled, containerRef])
 
   function keyDownHandler (event: React.KeyboardEvent<HTMLDivElement>): void {
     if (disabled || hasChildren(containerRef)) {

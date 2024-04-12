@@ -1,5 +1,3 @@
-import { useInternalRef } from '@/core/core-hooks'
-import { useKeyboardAccessibility } from '@/core/core-keyboard-accessibility'
 import classNames from 'classnames'
 import type { ForwardedRef, ReactElement } from 'react'
 import { forwardRef } from 'react'
@@ -16,8 +14,6 @@ function BasicButtonWithRef (
     size = 'md',
     onClick
   } = props
-  const { isHighlighted } = useKeyboardAccessibility()
-  const [refCallback, internalRef] = useInternalRef(ref)
 
   const rootClassName = classNames(
     'c-basic-button',
@@ -25,7 +21,6 @@ function BasicButtonWithRef (
     'g-button--basic',
     `g-button--basic-${color}`,
     `g-button--${size}`,
-    { 'g-button--highlighted': isHighlighted(internalRef) },
     className
   )
 
@@ -33,7 +28,7 @@ function BasicButtonWithRef (
     <button
       onClick={onClick}
       className={rootClassName}
-      ref={refCallback}
+      ref={ref}
     >
       {children}
     </button>

@@ -12,7 +12,7 @@
   width: 100%;
   text-align: left;
 
-  &.c-menu-button-item--highlighted {
+  &:focus-visible {
     outline-color: currentcolor;
   }
 }

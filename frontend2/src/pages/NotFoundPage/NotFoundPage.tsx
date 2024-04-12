@@ -50,7 +50,6 @@ export default function NotFoundPage (): ReactElement {
       <button onClick={() => { changeLanguageHandler('en') }}>English</button>
       {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={handleSubmit(submitHandler)} className="g-form g-form--3">
-
         <InputTextField
           className="g-form__field g-form__field--3 g-form__field--sm-2 g-form__field--lg-1"
           control={control}

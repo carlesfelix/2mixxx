@@ -1,4 +1,3 @@
-import { useKeyboardAccessibility } from '@/core/core-keyboard-accessibility'
 import { NavLink } from '@/core/core-router'
 import classNames from 'classnames'
 import type { ReactElement } from 'react'
@@ -10,12 +9,8 @@ export default function MainMenuNavLink (
   props: MainMenuNavLinkProps
 ): ReactElement {
   const { icon, label, to, onKeyDown } = props
-  const { isHighlighted } = useKeyboardAccessibility()
   const ref = useRef<HTMLAnchorElement | null>(null)
-  const rootClassName = classNames(
-    'c-main-menu-nav-link',
-    { 'c-main-menu-nav-link--highlighted': isHighlighted(ref) }
-  )
+  const rootClassName = classNames('c-main-menu-nav-link')
   return (
     <NavLink
       to={to}

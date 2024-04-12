@@ -1,5 +1,3 @@
-import useInternalRef from '@/core/core-hooks/useInternalRef'
-import { useKeyboardAccessibility } from '@/core/core-keyboard-accessibility'
 import classNames from 'classnames'
 import type { ForwardedRef, ReactElement } from 'react'
 import { forwardRef } from 'react'
@@ -17,8 +15,6 @@ function IconButtonWithRef (
     onClick,
     onKeyDown
   } = props
-  const { isHighlighted } = useKeyboardAccessibility()
-  const [refCallback, internalRef] = useInternalRef(ref)
 
   const rootClassName = classNames(
     'c-icon-button',
@@ -26,7 +22,6 @@ function IconButtonWithRef (
     'g-button--icon',
     `g-button--icon-${color}`,
     `g-button--${size}`,
-    { 'g-button--highlighted': isHighlighted(internalRef) },
     className
   )
 
@@ -35,7 +30,7 @@ function IconButtonWithRef (
       onClick={onClick}
       onKeyDown={onKeyDown}
       className={rootClassName}
-      ref={refCallback}
+      ref={ref}
     >
       {children}
     </button>

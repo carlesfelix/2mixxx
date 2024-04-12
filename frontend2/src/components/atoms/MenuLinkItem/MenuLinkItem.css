@@ -10,7 +10,7 @@
   background-color: transparent;
   cursor: pointer;
 
-  &.c-menu-link-item--highlighted {
+  &:focus-visible {
     outline-color: currentcolor;
   }
 }

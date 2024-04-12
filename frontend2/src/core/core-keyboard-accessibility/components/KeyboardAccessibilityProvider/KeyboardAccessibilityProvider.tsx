@@ -10,10 +10,6 @@ export default function KeyboardAccessibilityProvider (
   const pointedElementRef = useRef<Element | null>(null)
   const [highlightedElement, setHighlightedElement] = useState<FocusableElement | null>(null)
 
-  const updatePointedElement = useCallback((element: Element | null) => {
-    pointedElementRef.current = element
-  }, [pointedElementRef])
-
   const focus = useCallback((event?: FocusEvent) => {
     if (event === undefined) {
       setHighlightedElement(null)
@@ -43,7 +39,6 @@ export default function KeyboardAccessibilityProvider (
     focus,
     isHighlighted,
     pointedElementRef,
-    updatePointedElement,
     highlightedElement,
     highlight
   }

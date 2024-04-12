@@ -8,7 +8,7 @@
   border: solid 0.063rem transparent;
   color: var(--theme-color-sidebar-menu-btn-inactive-text);
 
-  &.c-main-menu-nav-link--highlighted {
+  &:focus-visible {
     border-color: currentcolor;
   }
 
@@ -23,7 +23,6 @@
   }
 
   & .c-main-menu-nav-link__label {
-    font-size: 0.875rem;
     font-size: 1rem;
   }
 }
