@@ -1,4 +1,4 @@
-import { type ForwardedRef, forwardRef, type ReactElement, useImperativeHandle, useRef } from 'react'
+import { type ForwardedRef, forwardRef, type ReactElement, useImperativeHandle, useRef, useEffect, useState } from 'react'
 import { type FocusableElement, tabbable, isFocusable } from 'tabbable'
 import useKeyboardAccessibility from '../../hooks/useKeyboardAccessibility'
 import { type FocusWithKeyboardProps, type FocusWithKeyboardRef } from '../../types'
@@ -14,44 +14,38 @@ function FocusWithKeyboardWithRef (
     previousCode,
     trap = true,
     disabled = false,
-    className
+    className,
+    autoFocusIndex,
+    tabindex = -1
   } = props
   const { blur, focus } = useKeyboardAccessibility()
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null)
+  const componentMountedRef = useRef<boolean>(false)
 
   useImperativeHandle(ref, () => ({
     focus () {
-      containerRef.current?.focus()
+      rootElement?.focus()
     }
-  }), [containerRef])
+  }), [rootElement])
 
-  // useEffect(() => {
-  //   function globalPointerDownHandler (event: PointerEvent): void {
-  //     if (!hasChildren(containerRef)) {
-  //       updatePointedElement(event.target as Element)
-  //     }
-  //   }
-
-  //   function globalKeydownHandler (event: KeyboardEvent): void {
-  //     const codes = [nextCode, previousCode]
-  //     if (codes.includes(event.code) && !hasChildren(containerRef)) {
-  //       updatePointedElement(null)
-  //     }
-  //   }
-
-  //   if (!disabled) {
-  //     window.document.body.addEventListener('pointerdown', globalPointerDownHandler)
-  //     window.document.body.addEventListener('keydown', globalKeydownHandler)
-
-  //     return () => {
-  //       window.document.body.removeEventListener('pointerdown', globalPointerDownHandler)
-  //       window.document.body.removeEventListener('keydown', globalKeydownHandler)
-  //     }
-  //   }
-  // }, [updatePointedElement, nextCode, previousCode, disabled, containerRef])
+  useEffect(() => {
+    if (!rootElement || componentMountedRef.current) {
+      return
+    }
+    componentMountedRef.current = true
+    if (typeof autoFocusIndex === 'number') {
+      const focusableElements = tabbable(rootElement, {
+        includeContainer: false
+      })
+      const focusableElement = focusableElements[autoFocusIndex]
+      focusableElement?.focus()
+    } else {
+      rootElement.focus()
+    }
+  }, [autoFocusIndex, rootElement])
 
   function keyDownHandler (event: React.KeyboardEvent<HTMLDivElement>): void {
-    if (disabled || hasChildren(containerRef)) {
+    if (disabled || hasChildren(rootElement)) {
       return
     }
     const codes = [nextCode, previousCode]
@@ -116,11 +110,11 @@ function FocusWithKeyboardWithRef (
 
   return (
     <div
-      tabIndex={-1}
+      tabIndex={tabindex}
       onKeyDown={keyDownHandler}
       onBlur={blurHandler}
       onFocus={focusHandler}
-      ref={containerRef}
+      ref={setRootElement}
       data-focus-with-keyboard={!disabled}
       className={className}
       style={{ outline: 'none' }}

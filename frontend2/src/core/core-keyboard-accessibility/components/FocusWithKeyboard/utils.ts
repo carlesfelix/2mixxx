@@ -1,5 +1,3 @@
-import { type RefObject } from 'react'
-
-export function hasChildren (elementRef: RefObject<Element>): boolean {
-  return !!elementRef.current?.querySelector('* [data-focus-with-keyboard="true"]')
+export function hasChildren (element: Element | null): boolean {
+  return !!element?.querySelector('* [data-focus-with-keyboard="true"]')
 }

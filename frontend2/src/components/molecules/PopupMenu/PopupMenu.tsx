@@ -6,19 +6,13 @@ import './PopupMenu.css'
 import { type PopupMenuProps } from './types'
 import classNames from 'classnames'
 import MenuItems, { type MenuItemsInstance } from '@/components/molecules/MenuItems'
-import { useAutoHighlightWithKeyboard, useHighlightReturnWithKeyboard } from '@/core/core-keyboard-accessibility'
+import { useHighlightReturnWithKeyboard } from '@/core/core-keyboard-accessibility'
 
 export default function PopupMenu (props: PopupMenuProps): ReactElement {
   const { className, buttonClassName, color, size, items } = props
   const targetElementRef = useRef<HTMLButtonElement | null>(null)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const menuItemsRef = useRef<MenuItemsInstance | null>(null)
-  useAutoHighlightWithKeyboard({
-    isVisible: isOpen,
-    ref: menuItemsRef,
-    targetElementRef,
-    keyboardCodes: ['Enter']
-  })
   useHighlightReturnWithKeyboard({
     isVisible: isOpen,
     ref: targetElementRef,

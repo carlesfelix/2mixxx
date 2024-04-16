@@ -38,6 +38,8 @@ export interface FocusWithKeyboardProps {
   trap?: boolean
   disabled?: boolean
   className?: string
+  autoFocusIndex?: number
+  tabindex?: number
 }
 
 export interface FocusWithKeyboardRef {

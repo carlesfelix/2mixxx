@@ -12,7 +12,7 @@ export default function DesktopMainMenu (
   const rootClassName = classNames('c-desktop-main-menu', className)
 
   return (
-    <div className={rootClassName} tabIndex={0}>
+    <div className={rootClassName} tabIndex={-1}>
       <div className="c-desktop-main-menu__menu-header">
         <div className="c-desktop-main-menu__title-container">
           <h3 className="g-text g-text--h3 c-desktop-main-menu__title">DJnow</h3>
