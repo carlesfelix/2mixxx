@@ -19,6 +19,7 @@
     "i18next-browser-languagedetector": "7.2.0",
     "i18next-resources-to-backend": "1.2.0",
     "react": "18.2.0",
+    "react-calendar": "4.8.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.51.0",
     "react-i18next": "14.0.5",
@@ -26,6 +27,7 @@
     "react-router-dom": "6.22.2",
     "swr": "2.2.5",
     "tabbable": "6.2.0",
+    "usehooks-ts": "3.1.0",
     "zod": "3.22.4"
   },
   "devDependencies": {

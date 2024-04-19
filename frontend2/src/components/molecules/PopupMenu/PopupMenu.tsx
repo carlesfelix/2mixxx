@@ -42,7 +42,7 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
       </IconButton>
       <Popover
         placement="bottom-end"
-        targetElement={targetElementRef.current}
+        targetElementRef={targetElementRef}
         className={rootClassName}
         isOpen={isOpen}
         onChangeIsOpen={setIsOpen}

@@ -8,24 +8,29 @@ import { type PopoverProps } from './types'
 import { useKeyBoard } from '../core-hooks'
 import PopoverContent from './components/PopoverContent'
 import useClick from '../core-hooks/useClick'
+import { sameWidthModifier } from './modifiers'
 
 export default function Popover (props: PopoverProps): ReactElement {
   const {
     target,
     children,
-    targetElement,
+    targetElementRef,
     placement,
     className,
     isOpen,
+    sameWidth = false,
     onChangeIsOpen
   } = props
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
 
   const { styles, attributes } = usePopper(
-    targetElement,
+    targetElementRef.current,
     popperElement,
     {
-      placement
+      placement,
+      modifiers: [
+        { ...sameWidthModifier, enabled: sameWidth }
+      ]
     }
   )
 
@@ -40,7 +45,7 @@ export default function Popover (props: PopoverProps): ReactElement {
   useClick({
     listener (event) {
       if (
-        !targetElement?.contains(event.target as Node) &&
+        !targetElementRef.current?.contains(event.target as Node) &&
         !popperElement?.contains(event.target as Node)
       ) {
         onChangeIsOpen(false)

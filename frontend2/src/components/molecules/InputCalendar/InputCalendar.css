@@ -1,0 +1,21 @@
+.c-input-calendar {
+  & .c-input-calendar__not-visible-input {
+    width: 0;
+    height: 0;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    display: block;
+  }
+
+  & .c-input-calendar__visible-input:focus-visible {
+    outline: blue 1px solid;
+    border: solid 1px blue;
+  }
+
+  & .c-input-calendar__not-visible-input:focus-visible + .c-input-calendar__visible-input {
+    outline: blue 1px solid;
+    border: solid 1px blue;
+  }
+}

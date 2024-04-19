@@ -1,5 +1,6 @@
 import BasicButton from '@/components/atoms/BasicButton'
 import OutlinedButton from '@/components/atoms/OutlinedButton'
+import InputCalendarField from '@/components/molecules/InputCalendarField'
 import InputTextField from '@/components/molecules/InputTextField'
 import { type FormValidator, useForm, schema, asOptionalTextField } from '@/core/core-hook-form'
 import { useI18n, useTranslation } from '@/core/core-i18n'
@@ -76,6 +77,13 @@ export default function NotFoundPage (): ReactElement {
           inputProps={{
             placeholder: 'email'
           }}
+        />
+        <InputCalendarField
+          className="g-form__field g-form__field--3 g-form__field--sm-3 g-form__field--lg-1"
+          control={control}
+          label="Email"
+          name='aa'
+          inputProps={{}}
         />
         <button type="submit">enviar</button>
       </form>
