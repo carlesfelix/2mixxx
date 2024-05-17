@@ -1,6 +1,5 @@
 import { useKeyBoard } from '@/core/core-hooks'
 import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
-import useOverlayRootElement from '@/hooks/useOverlayRootElement'
 import classNames from 'classnames'
 import {
   type AnimationEvent,
@@ -10,8 +9,8 @@ import {
   useState
 } from 'react'
 import { createPortal } from 'react-dom'
-import SidebarContent from './components/SidebarContent'
 import { type SidebarProps, type SidebarStatus } from './types'
+import { popoverContainer } from '@/modules/popover'
 import './Sidebar.css'
 
 export default function Sidebar (props: SidebarProps): ReactElement {
@@ -23,7 +22,6 @@ export default function Sidebar (props: SidebarProps): ReactElement {
     contentClassName
   } = props
   const [status, setStatus] = useState<SidebarStatus>(isOpen ? 'opened' : 'closed')
-  const overlayRootElement = useOverlayRootElement()
   const sidebarContentRef = useRef<HTMLDivElement>(null)
 
   useKeyBoard({
@@ -66,22 +64,19 @@ export default function Sidebar (props: SidebarProps): ReactElement {
   const sidebarContentClassName = classNames('c-sidebar__content', contentClassName)
 
   const showSidebar = isOpen || status !== 'closed'
-  return createPortal((
-    showSidebar && (
-      <div
-        className={rootClassName}
-        onAnimationStart={animationStartHandler}
-        onAnimationEnd={animationEndHandler}
-        onClick={clickHandler}
-        tabIndex={-1}
-      >
-        <FocusWithKeyboard className="c-sidebar__wrapper">
-          <div className="c-sidebar__mask" />
-          <SidebarContent className={sidebarContentClassName} ref={sidebarContentRef}>
-            {children}
-          </SidebarContent>
-        </FocusWithKeyboard>
-      </div>
-    )
-  ), overlayRootElement)
+  return createPortal(showSidebar && (
+    <div
+      className={rootClassName}
+      onAnimationStart={animationStartHandler}
+      onAnimationEnd={animationEndHandler}
+      onClick={clickHandler}
+    >
+      <FocusWithKeyboard className="c-sidebar__wrapper">
+        <div className="c-sidebar__mask" />
+        <div className={sidebarContentClassName} ref={sidebarContentRef}>
+          {children}
+        </div>
+      </FocusWithKeyboard>
+    </div>
+  ), popoverContainer)
 }

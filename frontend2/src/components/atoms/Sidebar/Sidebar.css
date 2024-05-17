@@ -53,7 +53,8 @@
 
   & .c-sidebar__content {
     transform: translateX(-100%);
-    will-change: transform;
+    height: 100%;
+    display: inline-block;
   }
 
   & .c-sidebar__mask {
@@ -63,17 +64,18 @@
     left: 0;
     position: absolute;
     background-color: var(--theme-color-mask-background);
-    will-change: opacity;
   }
 
   &.c-sidebar--opened {
     & .c-sidebar__content {
       transform: translateX(0);
       animation: cfx-sidebar__fadein 150ms;
+      will-change: transform;
     }
 
     & .c-sidebar__mask {
       animation: cfx-sidebar__mask-fadein 150ms;
+      will-change: opacity;
     }
   }
 
@@ -81,11 +83,13 @@
     & .c-sidebar__content {
       transform: translateX(-100%);
       animation: cfx-sidebar__fadeout 150ms;
+      will-change: transform;
     }
 
     & .c-sidebar__mask {
       background-color: transparent;
       animation: cfx-sidebar__mask-fadeout 150ms;
+      will-change: opacity;
     }
   }
 }

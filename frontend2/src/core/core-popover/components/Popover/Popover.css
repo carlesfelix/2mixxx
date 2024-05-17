@@ -1,0 +1,20 @@
+.c-popover {
+  display: inline-block;
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+
+  @media(--max-md-window) {
+    &.c-popover--touch-ui {
+      top: 50% !important;
+      left: 50% !important;
+      width: 85vw !important;
+      min-width: 85vw !important;
+      max-width: 85vw !important;
+      display: block;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

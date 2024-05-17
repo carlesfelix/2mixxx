@@ -16,7 +16,8 @@ function FocusWithKeyboardWithRef (
     disabled = false,
     className,
     autoFocusIndex,
-    tabindex = -1
+    tabindex = 0,
+    autoFocus = true
   } = props
   const { blur, focus } = useKeyboardAccessibility()
   const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null)
@@ -29,7 +30,7 @@ function FocusWithKeyboardWithRef (
   }), [rootElement])
 
   useEffect(() => {
-    if (!rootElement || componentMountedRef.current) {
+    if (!rootElement || componentMountedRef.current || !autoFocus) {
       return
     }
     componentMountedRef.current = true
@@ -42,10 +43,10 @@ function FocusWithKeyboardWithRef (
     } else {
       rootElement.focus()
     }
-  }, [autoFocusIndex, rootElement])
+  }, [autoFocusIndex, disabled, rootElement, autoFocus])
 
   function keyDownHandler (event: React.KeyboardEvent<HTMLDivElement>): void {
-    if (disabled || hasChildren(rootElement)) {
+    if (disabled || hasChildren(rootElement) || !rootElement) {
       return
     }
     const codes = [nextCode, previousCode]
@@ -54,7 +55,7 @@ function FocusWithKeyboardWithRef (
       return
     }
     if (codes.includes(event.code)) {
-      const focusableElements = tabbable(event.currentTarget, {
+      const focusableElements = tabbable(rootElement, {
         includeContainer: false
       })
       if (!focusableElements.length) {
@@ -64,13 +65,13 @@ function FocusWithKeyboardWithRef (
       const currentIndex = focusableElements.findIndex(
         focusableElement => focusableElement === event.target
       )
+      // if (event.target === rootElement) {
+      //   preventEventEffects(event)
+      //   const nextElement = focusableElements[0]
+      //   nextElement.focus()
+      //   return
+      // }
       if (currentIndex === -1) {
-        if (!trap) {
-          return
-        }
-        preventEventEffects(event)
-        const nextElement = focusableElements[0]
-        nextElement.focus()
         return
       }
       const offset = event.code === previousCode || (event.shiftKey && previousCode === undefined) ? -1 : 1

@@ -1,10 +1,12 @@
-import { KeyboardEvent, MouseEvent, forwardRef, useRef, useState, type ForwardedRef, type ReactElement } from 'react'
+import { type KeyboardEvent, forwardRef, useState, type ForwardedRef, type ReactElement, useCallback, useLayoutEffect } from 'react'
 import Calendar, { type TileDisabledFunc } from 'react-calendar'
 import { type InputCalendarProps } from './types'
 import classNames from 'classnames'
-import './InputCalendar.css'
 import Popover from '@/core/core-popover'
 import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
+import { useInternalRef } from '@/core/core-hooks'
+import { popoverContainer } from '@/modules/popover'
+import './InputCalendar.css'
 
 function InputCalendarWithRef (
   props: InputCalendarProps,
@@ -15,10 +17,36 @@ function InputCalendarWithRef (
     value,
     disabled = false,
     error,
-    className
+    className,
+    id
   } = props
   const [isOpen, setIsOpen] = useState(false)
-  const inputRef = useRef<HTMLInputElement | null>(null)
+  const [inputElement, setInputElement] = useState<HTMLInputElement | null>(null)
+  const [refCallback] = useInternalRef(ref)
+
+  useLayoutEffect(() => {
+    let visibleValue = ''
+    const intl = new window.Intl.DateTimeFormat()
+    if (inputElement) {
+      if (value instanceof Date) {
+        visibleValue = intl.format(value)
+      } else if (value instanceof Array) {
+        if (value[0] instanceof Date) {
+          visibleValue = intl.format(value[0])
+        }
+        if (value[1] instanceof Date) {
+          visibleValue = visibleValue.concat(' - ').concat(intl.format(value[1]))
+        }
+      }
+      inputElement.value = visibleValue
+    }
+  }, [value, inputElement])
+
+  const inputRefCallback = useCallback((element: HTMLInputElement) => {
+    setInputElement(element)
+    refCallback(element)
+  }, [refCallback])
+
   const tileDisabledHandler: TileDisabledFunc = ({ activeStartDate, date, view }) => {
     return disabled
   }
@@ -27,7 +55,7 @@ function InputCalendarWithRef (
     setIsOpen(old => !old)
   }
 
-  function keydownHandler(event: KeyboardEvent<HTMLInputElement>): void {
+  function keydownHandler (event: KeyboardEvent<HTMLInputElement>): void {
     if (event.code === 'Enter') {
       setIsOpen(true)
     }
@@ -45,16 +73,19 @@ function InputCalendarWithRef (
         readOnly
         className={inputClassName}
         onClick={inputClickHandler}
-        ref={inputRef}
+        ref={inputRefCallback}
         onKeyDown={keydownHandler}
+        id={id}
       />
       <Popover
-        placement="top"
-        targetElementRef={inputRef}
+        placement="bottom-start"
+        referenceElement={inputElement}
         className={rootClassName}
         isOpen={isOpen}
         onChangeIsOpen={setIsOpen}
-        sameWidth
+        container={popoverContainer}
+        fillMinWidth
+        touchUI
       >
         <FocusWithKeyboard>
           <Calendar
@@ -62,7 +93,6 @@ function InputCalendarWithRef (
             onChange={onChange}
             value={value}
             tileDisabled={tileDisabledHandler}
-            inputRef={ref}
           />
         </FocusWithKeyboard>
       </Popover>

@@ -11,14 +11,14 @@ import { type ReactElement, useRef, useState } from 'react'
 interface AaSchema {
   name: string
   fullName?: string
-  aa: Date | null
+  aa: any
 }
 
 const validator: FormValidator<AaSchema> = () => {
   return schema.object({
     name: schema.string().min(1, i18n.t('aaa')),
     fullName: asOptionalTextField(schema.string().min(1)),
-    aa: schema.date().nullable()
+    aa: schema.any()
   })
 }
 
@@ -29,7 +29,7 @@ export default function NotFoundPage (): ReactElement {
   const {
     control,
     handleSubmit
-  } = useForm<AaSchema>({ validator, defaultValues: { aa: new Date() } })
+  } = useForm<AaSchema>({ validator })
   const i18n = useI18n()
 
   function submitHandler (event: AaSchema): void {
@@ -60,6 +60,13 @@ export default function NotFoundPage (): ReactElement {
             placeholder: 'escribe nombre'
           }}
         />
+        <InputCalendarField
+          className="g-form__field g-form__field--3 g-form__field--sm-3 g-form__field--lg-1"
+          control={control}
+          label="Email"
+          name='aa'
+          inputProps={{}}
+        />
         <InputTextField
           className="g-form__field g-form__field--3 g-form__field--sm-1 g-form__field--lg-1"
           control={control}
@@ -69,6 +76,7 @@ export default function NotFoundPage (): ReactElement {
             placeholder: 'escribe nombre completo'
           }}
         />
+        
         <InputTextField
           className="g-form__field g-form__field--3 g-form__field--sm-3 g-form__field--lg-1"
           control={control}
@@ -78,13 +86,7 @@ export default function NotFoundPage (): ReactElement {
             placeholder: 'email'
           }}
         />
-        <InputCalendarField
-          className="g-form__field g-form__field--3 g-form__field--sm-3 g-form__field--lg-1"
-          control={control}
-          label="Email"
-          name='aa'
-          inputProps={{}}
-        />
+        
         <button type="submit">enviar</button>
       </form>
       <FocusWithKeyboard disabled>

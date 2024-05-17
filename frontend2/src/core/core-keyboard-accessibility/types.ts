@@ -40,6 +40,7 @@ export interface FocusWithKeyboardProps {
   className?: string
   autoFocusIndex?: number
   tabindex?: number
+  autoFocus?: boolean
 }
 
 export interface FocusWithKeyboardRef {

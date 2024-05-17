@@ -1,7 +1,12 @@
 :root {
-  @custom-media --min-xs-window (min-width: 18.75em);
-  @custom-media --min-sm-window (min-width: 36em);
-  @custom-media --min-md-window (min-width: 48em);
-  @custom-media --min-lg-window (min-width: 62em);
-  @custom-media --min-xl-window (min-width: 75em);
+  @custom-media --min-xs-window (width >= 18.75em);
+  @custom-media --min-sm-window (width >= 36em);
+  @custom-media --min-md-window (width >= 48em);
+  @custom-media --min-lg-window (width >= 62em);
+  @custom-media --min-xl-window (width >= 75em);
+  @custom-media --max-xs-window (width < 18.75em);
+  @custom-media --max-sm-window (width < 36em);
+  @custom-media --max-md-window (width < 48em);
+  @custom-media --max-lg-window (width < 62em);
+  @custom-media --max-xl-window (width < 75em);
 }

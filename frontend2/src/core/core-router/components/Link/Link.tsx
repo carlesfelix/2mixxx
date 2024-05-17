@@ -15,7 +15,6 @@ function LinkWithRef (
       ref={ref}
       className={rootClassName}
       to={to}
-      tabIndex={0}
     >
       {children}
     </ReactRouterLink>

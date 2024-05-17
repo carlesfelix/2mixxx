@@ -1,4 +1,4 @@
-import Popover from './Popover'
+export { default } from './components/Popover'
+export * from './components/Popover'
 
-export * from './types'
-export default Popover
+export { default as initializePopoverContainer } from './services/initialize-popover-container'

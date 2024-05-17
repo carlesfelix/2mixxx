@@ -4,6 +4,7 @@ import { type ReactElement } from 'react'
 import MainMenuLinks from '../MainMenuLinks'
 import './DesktopMainMenu.css'
 import { type DesktopMainMenuProps } from './types'
+import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
 
 export default function DesktopMainMenu (
   props: DesktopMainMenuProps
@@ -12,7 +13,7 @@ export default function DesktopMainMenu (
   const rootClassName = classNames('c-desktop-main-menu', className)
 
   return (
-    <div className={rootClassName} tabIndex={-1}>
+    <FocusWithKeyboard className={rootClassName} trap={false}>
       <div className="c-desktop-main-menu__menu-header">
         <div className="c-desktop-main-menu__title-container">
           <h3 className="g-text g-text--h3 c-desktop-main-menu__title">DJnow</h3>
@@ -21,6 +22,6 @@ export default function DesktopMainMenu (
       <div className="c-desktop-main-menu__menu-content">
         <MainMenuLinks linkItems={MAIN_MENU_LINKS} />
       </div>
-    </div>
+    </FocusWithKeyboard>
   )
 }
