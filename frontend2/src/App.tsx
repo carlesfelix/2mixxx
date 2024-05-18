@@ -8,7 +8,7 @@ import { I18nProvider } from './core/core-i18n'
 import FormConfigWrapper from './components/wrappers/FormConfigWrapper'
 import i18n from './modules/i18n'
 import Spinner from './components/atoms/Spinner'
-import FocusProvider from './core/core-focus/components/FocusProvider/FocusProvider'
+import { FocusProvider } from './core/core-focus'
 
 function App (): ReactElement {
   return (
