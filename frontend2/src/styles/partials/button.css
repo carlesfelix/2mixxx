@@ -126,8 +126,6 @@
   &.g-button--basic {
     outline: transparent solid 0.125rem;
     outline-offset: 0.125rem;
-    transition-property: outline-color;
-    transition-duration: 200ms;
   }
 
   &.g-button--basic-primary {
@@ -185,8 +183,6 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    transition-property: border-color;
-    transition-duration: 200ms;
   }
 
   &.g-button--icon-primary {
