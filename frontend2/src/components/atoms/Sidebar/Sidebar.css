@@ -69,12 +69,12 @@
   &.c-sidebar--opened {
     & .c-sidebar__content {
       transform: translateX(0);
-      animation: cfx-sidebar__fadein 150ms;
+      animation: cfx-sidebar__fadein 250ms;
       will-change: transform;
     }
 
     & .c-sidebar__mask {
-      animation: cfx-sidebar__mask-fadein 150ms;
+      animation: cfx-sidebar__mask-fadein 250ms;
       will-change: opacity;
     }
   }
@@ -82,13 +82,13 @@
   &.c-sidebar--closed {
     & .c-sidebar__content {
       transform: translateX(-100%);
-      animation: cfx-sidebar__fadeout 150ms;
+      animation: cfx-sidebar__fadeout 250ms;
       will-change: transform;
     }
 
     & .c-sidebar__mask {
       background-color: transparent;
-      animation: cfx-sidebar__mask-fadeout 150ms;
+      animation: cfx-sidebar__mask-fadeout 250ms;
       will-change: opacity;
     }
   }
