@@ -2,9 +2,8 @@ import { MAIN_MENU_LINKS } from '@/constants/links'
 import classNames from 'classnames'
 import { type ReactElement } from 'react'
 import MainMenuLinks from '../MainMenuLinks'
-import './DesktopMainMenu.css'
 import { type DesktopMainMenuProps } from './types'
-import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
+import './DesktopMainMenu.css'
 
 export default function DesktopMainMenu (
   props: DesktopMainMenuProps
@@ -13,7 +12,7 @@ export default function DesktopMainMenu (
   const rootClassName = classNames('c-desktop-main-menu', className)
 
   return (
-    <FocusWithKeyboard className={rootClassName} trap={false}>
+    <div className={rootClassName}>
       <div className="c-desktop-main-menu__menu-header">
         <div className="c-desktop-main-menu__title-container">
           <h3 className="g-text g-text--h3 c-desktop-main-menu__title">DJnow</h3>
@@ -22,6 +21,6 @@ export default function DesktopMainMenu (
       <div className="c-desktop-main-menu__menu-content">
         <MainMenuLinks linkItems={MAIN_MENU_LINKS} />
       </div>
-    </FocusWithKeyboard>
+    </div>
   )
 }

@@ -1,5 +1,4 @@
 import { useKeyBoard } from '@/core/core-hooks'
-import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
 import classNames from 'classnames'
 import {
   type AnimationEvent,
@@ -12,6 +11,7 @@ import { createPortal } from 'react-dom'
 import { type SidebarProps, type SidebarStatus } from './types'
 import { popoverContainer } from '@/modules/popover'
 import './Sidebar.css'
+import { FocusContainer } from '@/core/core-focus'
 
 export default function Sidebar (props: SidebarProps): ReactElement {
   const {
@@ -71,12 +71,12 @@ export default function Sidebar (props: SidebarProps): ReactElement {
       onAnimationEnd={animationEndHandler}
       onClick={clickHandler}
     >
-      <FocusWithKeyboard className="c-sidebar__wrapper">
+      <FocusContainer className="c-sidebar__wrapper" trap returnFocus autoFocus={0}>
         <div className="c-sidebar__mask" />
         <div className={sidebarContentClassName} ref={sidebarContentRef}>
           {children}
         </div>
-      </FocusWithKeyboard>
+      </FocusContainer>
     </div>
   ), popoverContainer)
 }

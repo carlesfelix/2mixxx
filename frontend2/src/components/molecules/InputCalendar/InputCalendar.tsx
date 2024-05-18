@@ -3,9 +3,9 @@ import Calendar, { type TileDisabledFunc } from 'react-calendar'
 import { type InputCalendarProps } from './types'
 import classNames from 'classnames'
 import Popover from '@/core/core-popover'
-import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
 import { useInternalRef } from '@/core/core-hooks'
 import { popoverContainer } from '@/modules/popover'
+import { FocusContainer } from '@/core/core-focus'
 import './InputCalendar.css'
 
 function InputCalendarWithRef (
@@ -87,14 +87,14 @@ function InputCalendarWithRef (
         fillMinWidth
         touchUI
       >
-        <FocusWithKeyboard>
+        <FocusContainer autoFocus={0} returnFocus>
           <Calendar
             className={calendarClassName}
             onChange={onChange}
             value={value}
             tileDisabled={tileDisabledHandler}
           />
-        </FocusWithKeyboard>
+        </FocusContainer>
       </Popover>
     </>
   )

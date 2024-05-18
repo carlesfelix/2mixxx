@@ -1,5 +1,6 @@
 import Spinner from '@/components/atoms/Spinner'
 import { AsyncLayout } from '@/core/core-async-layout'
+import { useFocusController } from '@/core/core-focus'
 import { Routes } from '@/core/core-router'
 import useUserType from '@/hooks/useUserType'
 import mainRoutes from '@/routes/main.routes'
@@ -7,6 +8,7 @@ import { type ReactElement } from 'react'
 
 export default function RootLayout (): ReactElement {
   const { inProgress, type } = useUserType()
+  useFocusController(window.document.body)
 
   const progressContent = (
     <div className="g-layout g-layout--center">

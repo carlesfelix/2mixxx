@@ -5,8 +5,8 @@ import MoreVertIcon from '@/assets/svg/MoreVert.svg?react'
 import { type PopupMenuProps } from './types'
 import classNames from 'classnames'
 import MenuItems, { type MenuItemsInstance } from '@/components/molecules/MenuItems'
-import { FocusWithKeyboard, useHighlightReturnWithKeyboard } from '@/core/core-keyboard-accessibility'
 import { popoverContainer } from '@/modules/popover'
+import { FocusContainer } from '@/core/core-focus'
 import './PopupMenu.css'
 
 export default function PopupMenu (props: PopupMenuProps): ReactElement {
@@ -14,11 +14,6 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
   const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const menuItemsRef = useRef<MenuItemsInstance | null>(null)
-  useHighlightReturnWithKeyboard({
-    isVisible: isOpen,
-    ref: { current: referenceElement },
-    keyboardCodes: ['Escape', 'Enter']
-  })
 
   function clickHandler (): void {
     setIsOpen(old => !old)
@@ -49,13 +44,19 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
         isOpen={isOpen}
         onChangeIsOpen={setIsOpen}
       >
-        <FocusWithKeyboard autoFocusIndex={0} nextCode='ArrowDown' previousCode='ArrowUp'>
+        <FocusContainer
+          prevNavigationSettings={{ code: 'ArrowUp' }}
+          nextNavigationSettings={{ code: 'ArrowDown' }}
+          returnFocus
+          trap
+          autoFocus={0}
+        >
           <MenuItems
             ref={menuItemsRef}
             items={items}
             onClickItem={clickItemHandler}
           />
-        </FocusWithKeyboard>
+        </FocusContainer>
       </Popover>
     </>
   )

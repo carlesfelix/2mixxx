@@ -9,6 +9,7 @@ import { I18nProvider } from './core/core-i18n'
 import FormConfigWrapper from './components/wrappers/FormConfigWrapper'
 import i18n from './modules/i18n'
 import Spinner from './components/atoms/Spinner'
+import FocusProvider from './core/core-focus/components/FocusProvider/FocusProvider'
 
 function App (): ReactElement {
   return (
@@ -24,9 +25,11 @@ function App (): ReactElement {
         <OAuth2ProviderLayout>
           <QueryProvider http={http}>
             <KeyboardAccessibilityProvider>
-              <BrowserRouter>
-                <RootLayout />
-              </BrowserRouter>
+              <FocusProvider>
+                <BrowserRouter>
+                  <RootLayout />
+                </BrowserRouter>
+              </FocusProvider>
             </KeyboardAccessibilityProvider>
           </QueryProvider>
         </OAuth2ProviderLayout>

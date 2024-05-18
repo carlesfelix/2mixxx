@@ -2,23 +2,23 @@ import BasicButton from '@/components/atoms/BasicButton'
 import OutlinedButton from '@/components/atoms/OutlinedButton'
 import InputCalendarField from '@/components/molecules/InputCalendarField'
 import InputTextField from '@/components/molecules/InputTextField'
+import { FocusContainer } from '@/core/core-focus'
 import { type FormValidator, useForm, schema, asOptionalTextField } from '@/core/core-hook-form'
 import { useI18n, useTranslation } from '@/core/core-i18n'
-import { FocusWithKeyboard } from '@/core/core-keyboard-accessibility'
 import i18n from '@/modules/i18n'
 import { type ReactElement, useRef, useState } from 'react'
 
 interface AaSchema {
   name: string
   fullName?: string
-  aa: any
+  aa: Date
 }
 
 const validator: FormValidator<AaSchema> = () => {
   return schema.object({
     name: schema.string().min(1, i18n.t('aaa')),
     fullName: asOptionalTextField(schema.string().min(1)),
-    aa: schema.any()
+    aa: schema.date()
   })
 }
 
@@ -45,10 +45,10 @@ export default function NotFoundPage (): ReactElement {
   return (
     <div className="NotFoundPage">
       NotFoundPage
-      <button onClick={() => { setCount(old => old + 1) }}>Count {count}</button>
-      <button>{t('test')}</button>
-      <button onClick={() => { changeLanguageHandler('es') }}>Español</button>
-      <button onClick={() => { changeLanguageHandler('en') }}>English</button>
+      <button onClick={() => { setCount(old => old + 1) }} tabIndex={0}>Count {count}</button>
+      <button tabIndex={0}>{t('test')}</button>
+      <button tabIndex={0} onClick={() => { changeLanguageHandler('es') }}>Español</button>
+      <button tabIndex={0} onClick={() => { changeLanguageHandler('en') }}>English</button>
       {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={handleSubmit(submitHandler)} className="g-form g-form--3">
         <InputTextField
@@ -76,7 +76,6 @@ export default function NotFoundPage (): ReactElement {
             placeholder: 'escribe nombre completo'
           }}
         />
-        
         <InputTextField
           className="g-form__field g-form__field--3 g-form__field--sm-3 g-form__field--lg-1"
           control={control}
@@ -86,10 +85,9 @@ export default function NotFoundPage (): ReactElement {
             placeholder: 'email'
           }}
         />
-        
         <button type="submit">enviar</button>
       </form>
-      <FocusWithKeyboard disabled>
+      <FocusContainer prevNavigationSettings={{ code: 'ArrowLeft' }} nextNavigationSettings={{ code: 'ArrowRight' }}>
         <div>
           Group 1
           <BasicButton color="primary">Primary basic</BasicButton>
@@ -97,8 +95,8 @@ export default function NotFoundPage (): ReactElement {
           <OutlinedButton color="primary">Outlined primary</OutlinedButton>
           <OutlinedButton color="secondary">Outlined secondary</OutlinedButton>
         </div>
-      </FocusWithKeyboard>
-      <FocusWithKeyboard disabled>
+      </FocusContainer>
+      <FocusContainer>
         <div style={{ marginTop: 32 }}>
           Group 2
           <BasicButton ref={btnRef} color="primary">Primary basic 1</BasicButton>
@@ -106,7 +104,7 @@ export default function NotFoundPage (): ReactElement {
           <OutlinedButton color="primary">Outlined primary</OutlinedButton>
           <OutlinedButton color="secondary">Outlined secondary</OutlinedButton>
         </div>
-      </FocusWithKeyboard>
+      </FocusContainer>
     </div>
   )
 }

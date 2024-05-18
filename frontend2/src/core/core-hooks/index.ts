@@ -7,3 +7,6 @@ export * from './useInternalRef'
 
 export { default as useKeyBoard } from './useKeyBoard'
 export * from './useKeyBoard'
+
+export { default as useInternalInstance } from './useInternalInstance'
+export * from './useInternalInstance'

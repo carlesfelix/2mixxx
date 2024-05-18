@@ -2,12 +2,11 @@ import MenuIcon from '@/assets/svg/Menu.svg?react'
 import IconButton from '@/components/atoms/IconButton'
 import DesktopMainMenu from '@/components/molecules/DesktopMainMenu'
 import MobileMainMenuSidebar from '@/components/molecules/MobileMainMenuSidebar'
-import { FocusWithKeyboard, useAutoHighlightWithKeyboard, useHighlightReturnWithKeyboard } from '@/core/core-keyboard-accessibility'
 import { type ReactElement, useEffect, useRef, useState } from 'react'
-import './ControlPanelLayout.css'
 import { type ControlPanelLayoutProps } from './types'
 import { usePrevious } from '@/core/core-hooks'
 import { useLocation } from 'react-router-dom'
+import './ControlPanelLayout.css'
 
 export default function ControlPanelLayout (
   props: ControlPanelLayoutProps
@@ -18,17 +17,6 @@ export default function ControlPanelLayout (
   const closeButtonRef = useRef<HTMLButtonElement | null>(null)
   const { pathname } = useLocation()
   const prevPathName = usePrevious(pathname)
-  useAutoHighlightWithKeyboard({
-    isVisible: isOpen,
-    ref: closeButtonRef,
-    targetElementRef: openButtonRef,
-    keyboardCodes: ['Enter']
-  })
-  useHighlightReturnWithKeyboard({
-    isVisible: isOpen,
-    ref: openButtonRef,
-    keyboardCodes: ['Escape', 'Enter']
-  })
 
   useEffect(() => {
     if (prevPathName !== undefined && prevPathName !== pathname) {
@@ -49,7 +37,7 @@ export default function ControlPanelLayout (
         isOpen={isOpen}
       />
       <DesktopMainMenu className="c-control-panel-layout__desktop-menu" />
-      <FocusWithKeyboard className="c-control-panel-layout__main-container" trap={false} autoFocus={false}>
+      <div className="c-control-panel-layout__main-container">
         <nav className="c-control-panel-layout__navigation-bar">
           <div className="c-control-panel-layout__navigation-bar-left-content">
             <IconButton
@@ -65,7 +53,7 @@ export default function ControlPanelLayout (
         <div className="c-control-panel-layout__page-container">
           {children}
         </div>
-      </FocusWithKeyboard>
+      </div>
     </div>
   )
 }
