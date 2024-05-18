@@ -1,5 +1,4 @@
 import RootLayout from '@/components/layout/RootLayout'
-import { KeyboardAccessibilityProvider } from '@/core/core-keyboard-accessibility'
 import { BrowserRouter } from '@/core/core-router'
 import { QueryProvider } from '@/core/core-query'
 import http from '@/modules/http'
@@ -24,13 +23,11 @@ function App (): ReactElement {
       <FormConfigWrapper>
         <OAuth2ProviderLayout>
           <QueryProvider http={http}>
-            <KeyboardAccessibilityProvider>
-              <FocusProvider>
-                <BrowserRouter>
-                  <RootLayout />
-                </BrowserRouter>
-              </FocusProvider>
-            </KeyboardAccessibilityProvider>
+            <FocusProvider>
+              <BrowserRouter>
+                <RootLayout />
+              </BrowserRouter>
+            </FocusProvider>
           </QueryProvider>
         </OAuth2ProviderLayout>
       </FormConfigWrapper>
