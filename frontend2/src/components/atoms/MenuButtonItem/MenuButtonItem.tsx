@@ -22,7 +22,6 @@ function MenuButtonItemWithRef (
       className={rootClassName}
       ref={ref}
       onClick={onClick}
-      tabIndex={0}
     >
       {children}
     </button>

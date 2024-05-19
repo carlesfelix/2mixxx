@@ -45,10 +45,10 @@ export default function NotFoundPage (): ReactElement {
   return (
     <div className="NotFoundPage">
       NotFoundPage
-      <button onClick={() => { setCount(old => old + 1) }} tabIndex={0}>Count {count}</button>
-      <button tabIndex={0}>{t('test')}</button>
-      <button tabIndex={0} onClick={() => { changeLanguageHandler('es') }}>Español</button>
-      <button tabIndex={0} onClick={() => { changeLanguageHandler('en') }}>English</button>
+      <button onClick={() => { setCount(old => old + 1) }}>Count {count}</button>
+      <button>{t('test')}</button>
+      <button onClick={() => { changeLanguageHandler('es') }}>Español</button>
+      <button onClick={() => { changeLanguageHandler('en') }}>English</button>
       {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={handleSubmit(submitHandler)} className="g-form g-form--3">
         <InputTextField
