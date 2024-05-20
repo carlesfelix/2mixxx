@@ -112,7 +112,7 @@ function InputCalendarWithRef (
         fillMinWidth
         touchUI
       >
-        <FocusContainer autoFocus={0} returnFocus>
+        <FocusContainer autoFocus={0} returnFocus trap>
           <Calendar
             className={calendarClassName}
             onChange={onChange}
