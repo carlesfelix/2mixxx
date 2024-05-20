@@ -1,4 +1,4 @@
-import { type ComponentType, type FocusEvent, type KeyboardEventHandler, type LazyExoticComponent, type ReactNode } from 'react'
+import { type MouseEventHandler, type ComponentType, type FocusEvent, type KeyboardEventHandler, type LazyExoticComponent, type ReactNode } from 'react'
 
 export interface Route {
   path: string
@@ -25,4 +25,6 @@ export interface NavLinkProps {
   onFocus?: (event: FocusEvent<HTMLAnchorElement>) => void
   onBlur?: (event: FocusEvent<HTMLAnchorElement>) => void
   onKeyDown?: KeyboardEventHandler<HTMLAnchorElement>
+  onClick?: MouseEventHandler<HTMLAnchorElement>
+  tabIndex?: number
 }

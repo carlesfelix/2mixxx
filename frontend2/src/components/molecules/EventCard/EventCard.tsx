@@ -12,6 +12,14 @@ import { type MenuItem } from '@/components/molecules/MenuItems'
 
 const items: MenuItem[] = [
   {
+    type: 'button',
+    label: 'Update',
+    icon: <span>X</span>,
+    onClick: (event) => {
+      console.log('onClick', event)
+    }
+  },
+  {
     type: 'link',
     label: 'Details',
     to: '/events/create'

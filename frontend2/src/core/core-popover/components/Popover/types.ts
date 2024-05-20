@@ -1,5 +1,5 @@
 import { type Strategy, type Placement } from '@floating-ui/dom'
-import { type ReactNode } from 'react'
+import { type Dispatch, type SetStateAction, type ReactNode } from 'react'
 
 export interface PopoverOptions {
   placement?: Placement
@@ -15,7 +15,8 @@ export interface PopoverProps extends PopoverOptions {
   referenceElement: HTMLElement | null
   className?: string
   isOpen: boolean
-  onChangeIsOpen: (isOpen: boolean) => void
   autoUpdate?: boolean
   touchUI?: boolean
+  floatingElement: HTMLDivElement | null
+  setFloatingElement: Dispatch<SetStateAction<HTMLDivElement | null>>
 }

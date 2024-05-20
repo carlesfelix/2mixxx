@@ -10,7 +10,7 @@
   background-color: transparent;
   cursor: pointer;
 
-  &:focus-visible {
-    outline-color: currentcolor;
+  &[data-djnow-focus-visible] {
+    outline: solid 2px currentcolor;
   }
 }

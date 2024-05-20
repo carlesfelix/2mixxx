@@ -3,10 +3,11 @@ import Calendar, { type TileDisabledFunc } from 'react-calendar'
 import { type InputCalendarProps } from './types'
 import classNames from 'classnames'
 import Popover from '@/core/core-popover'
-import { useInternalRef } from '@/core/core-hooks'
+import { useInternalRef, useKeyBoard } from '@/core/core-hooks'
 import { popoverContainer } from '@/modules/popover'
-import { FocusContainer } from '@/core/core-focus'
+import { FocusContainer, useNotifyCloseEvent } from '@/core/core-focus'
 import './InputCalendar.css'
+import useClick from '@/core/core-hooks/useClick'
 
 function InputCalendarWithRef (
   props: InputCalendarProps,
@@ -21,8 +22,31 @@ function InputCalendarWithRef (
     id
   } = props
   const [isOpen, setIsOpen] = useState(false)
+  const [floatingElement, setFloatingElement] = useState<HTMLDivElement | null>(null)
   const [inputElement, setInputElement] = useState<HTMLInputElement | null>(null)
   const [refCallback] = useInternalRef(ref)
+  const notifyCloseEvent = useNotifyCloseEvent()
+
+  // TODO: Create usePopoverHelper hook
+  useKeyBoard({
+    listener (event) {
+      notifyCloseEvent(event)
+      setIsOpen(false)
+    },
+    code: 'Escape',
+    listen: isOpen
+  })
+
+  useClick({
+    listener (event) {
+      if (
+        !inputElement?.contains(event.target as Node) &&
+        !floatingElement?.contains(event.target as Node)
+      ) {
+        setIsOpen(false)
+      }
+    }
+  })
 
   useLayoutEffect(() => {
     let visibleValue = ''
@@ -82,7 +106,8 @@ function InputCalendarWithRef (
         referenceElement={inputElement}
         className={rootClassName}
         isOpen={isOpen}
-        onChangeIsOpen={setIsOpen}
+        setFloatingElement={setFloatingElement}
+        floatingElement={floatingElement}
         container={popoverContainer}
         fillMinWidth
         touchUI

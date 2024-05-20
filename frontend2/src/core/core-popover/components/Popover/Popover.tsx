@@ -1,10 +1,8 @@
 import classNames from 'classnames'
-import { type ReactElement, useState, useLayoutEffect } from 'react'
+import { type ReactElement, useLayoutEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { autoUpdate as onAutoUpdate } from '@floating-ui/dom'
 import { type PopoverProps } from './types'
-import { useKeyBoard } from '../../../core-hooks'
-import useClick from '../../../core-hooks/useClick'
 import { updatePosition } from './utils'
 import './Popover.css'
 
@@ -18,13 +16,13 @@ export default function Popover (props: PopoverProps): ReactElement {
     isOpen,
     fillMinWidth = false,
     fillWidth,
-    onChangeIsOpen,
     autoUpdate = true,
     touchUI = false,
     preventCollisions = true,
+    floatingElement,
+    setFloatingElement,
     strategy
   } = props
-  const [floatingElement, setFloatingElement] = useState<HTMLDivElement | null>(null)
 
   useLayoutEffect(() => {
     if (referenceElement && floatingElement) {
@@ -72,25 +70,6 @@ export default function Popover (props: PopoverProps): ReactElement {
     preventCollisions,
     strategy
   ])
-
-  useKeyBoard({
-    listener () {
-      onChangeIsOpen(false)
-    },
-    code: 'Escape',
-    listen: isOpen
-  })
-
-  useClick({
-    listener (event) {
-      if (
-        !referenceElement?.contains(event.target as Node) &&
-        !floatingElement?.contains(event.target as Node)
-      ) {
-        onChangeIsOpen(false)
-      }
-    }
-  })
 
   const rootClassName = classNames(
     'c-popover',

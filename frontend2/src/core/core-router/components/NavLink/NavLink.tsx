@@ -10,7 +10,8 @@ function NavLinkWithRef (
   const {
     children, to, className,
     activeClassName, end = true,
-    onBlur, onFocus, onKeyDown
+    onBlur, onFocus, onKeyDown, onClick,
+    tabIndex
   } = props
   function classNameCallback (opts: { isActive: boolean }): string {
     const { isActive } = opts
@@ -29,6 +30,8 @@ function NavLinkWithRef (
       onBlur={onBlur}
       ref={ref}
       onKeyDown={onKeyDown}
+      onClick={onClick}
+      tabIndex={tabIndex}
     >
       {children}
     </ReactRouterNavLink>

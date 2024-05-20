@@ -11,7 +11,7 @@ import { createPortal } from 'react-dom'
 import { type SidebarProps, type SidebarStatus } from './types'
 import { popoverContainer } from '@/modules/popover'
 import './Sidebar.css'
-import { FocusContainer } from '@/core/core-focus'
+import { FocusContainer, useNotifyCloseEvent } from '@/core/core-focus'
 
 export default function Sidebar (props: SidebarProps): ReactElement {
   const {
@@ -23,9 +23,11 @@ export default function Sidebar (props: SidebarProps): ReactElement {
   } = props
   const [status, setStatus] = useState<SidebarStatus>(isOpen ? 'opened' : 'closed')
   const sidebarContentRef = useRef<HTMLDivElement>(null)
+  const notifyCloseEvent = useNotifyCloseEvent()
 
   useKeyBoard({
-    listener () {
+    listener (event) {
+      notifyCloseEvent(event)
       setIsOpen(false)
     },
     code: 'Escape',
@@ -52,6 +54,7 @@ export default function Sidebar (props: SidebarProps): ReactElement {
     if (
       !sidebarContentRef.current?.contains(event.target as Node)
     ) {
+      notifyCloseEvent(event)
       setIsOpen(false)
     }
   }

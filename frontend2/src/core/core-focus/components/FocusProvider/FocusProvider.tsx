@@ -4,11 +4,12 @@ import { tabbable } from 'tabbable'
 import { type KeydownEventStackItem } from '../../types'
 import { getNextFocusableElement, matchKeyboardNavigationSetting } from './utils'
 import { type FocusProviderProps } from './types'
+import { isKeyboardEvent, setFocusVisibility } from '../../services/utils'
 
 export default function FocusProvider (props: FocusProviderProps): ReactElement {
-  const { children } = props
-  const lastFocusEventTargetRef = useRef<EventTarget | null>(null)
+  const { children, focusVisibleDataKey } = props
   const keydownEventStackRef = useRef<KeydownEventStackItem[]>([])
+  const focusFromKeyboardRef = useRef<boolean>(false)
 
   useEffect(() => {
     function keydownHandler (event: KeyboardEvent): void {
@@ -23,11 +24,10 @@ export default function FocusProvider (props: FocusProviderProps): ReactElement 
       const focusableElements = tabbable(window.document.body)
       const [prevKeyboardNavigationSettings, nextKeyboardNavigationSettings] = keyboardNavigationSettings
       if (matchKeyboardNavigationSetting(event, prevKeyboardNavigationSettings)) {
-        const { current: lastFocusEventTarget } = lastFocusEventTargetRef
+        focusFromKeyboardRef.current = true
         const nextFocusableElement = getNextFocusableElement({
           direction: -1,
           focusableElements,
-          lastFocusEventTarget,
           trapLimit
         })
         if (nextFocusableElement) {
@@ -35,44 +35,57 @@ export default function FocusProvider (props: FocusProviderProps): ReactElement 
           event.preventDefault()
         }
       } else if (matchKeyboardNavigationSetting(event, nextKeyboardNavigationSettings)) {
-        const { current: lastFocusEventTarget } = lastFocusEventTargetRef
+        focusFromKeyboardRef.current = true
         const nextFocusableElement = getNextFocusableElement({
           direction: 1,
           focusableElements,
-          lastFocusEventTarget,
           trapLimit
         })
         if (nextFocusableElement) {
           nextFocusableElement.focus()
           event.preventDefault()
         }
-      } else if (matchKeyboardNavigationSetting(event, { code: 'Tab' }) || matchKeyboardNavigationSetting(event, { code: 'Tab', shiftKey: true })) {
+      } else if (
+        matchKeyboardNavigationSetting(event, { code: 'Tab' }) ||
+        matchKeyboardNavigationSetting(event, { code: 'Tab', shiftKey: true })
+      ) {
         event.preventDefault()
       }
       keydownEventStackRef.current = []
     }
     function focusinHandler (event: FocusEvent): void {
-      lastFocusEventTargetRef.current = event.target
+      if (focusFromKeyboardRef.current) {
+        focusFromKeyboardRef.current = false
+        setFocusVisibility(event.target, true, focusVisibleDataKey)
+      }
     }
     function focusoutHandler (event: FocusEvent): void {
-      if (event.relatedTarget === null) {
-        lastFocusEventTargetRef.current = null
+      setFocusVisibility(event.target, false, focusVisibleDataKey)
+    }
+    function clickHandler (event: MouseEvent): void {
+      if (
+        isKeyboardEvent(event) &&
+        event.target === window.document.activeElement
+      ) {
+        setFocusVisibility(event.target, true, focusVisibleDataKey)
       }
     }
     window.document.addEventListener('keydown', keydownHandler)
     window.document.addEventListener('focusin', focusinHandler)
     window.document.addEventListener('focusout', focusoutHandler)
+    window.document.addEventListener('click', clickHandler)
 
     return () => {
       window.document.removeEventListener('keydown', keydownHandler)
       window.document.removeEventListener('focusin', focusinHandler)
       window.document.removeEventListener('focusout', focusoutHandler)
+      window.document.removeEventListener('click', clickHandler)
     }
-  }, [])
+  }, [focusVisibleDataKey])
 
   return (
     <FocusContext.Provider
-      value={{ keydownEventStackRef }}
+      value={{ keydownEventStackRef, focusVisibleDataKey, focusFromKeyboardRef }}
     >
       {children}
     </FocusContext.Provider>

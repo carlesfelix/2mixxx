@@ -2,12 +2,12 @@ import MenuIcon from '@/assets/svg/Menu.svg?react'
 import IconButton from '@/components/atoms/IconButton'
 import DesktopMainMenu from '@/components/molecules/DesktopMainMenu'
 import MobileMainMenuSidebar from '@/components/molecules/MobileMainMenuSidebar'
-import { type ReactElement, useEffect, useRef, useState } from 'react'
+import { type ReactElement, useEffect, useRef, useState, type MouseEvent } from 'react'
 import { type ControlPanelLayoutProps } from './types'
 import { usePrevious } from '@/core/core-hooks'
 import { useLocation } from 'react-router-dom'
+import { useNotifyCloseEvent } from '@/core/core-focus'
 import './ControlPanelLayout.css'
-
 export default function ControlPanelLayout (
   props: ControlPanelLayoutProps
 ): ReactElement {
@@ -17,15 +17,25 @@ export default function ControlPanelLayout (
   const closeButtonRef = useRef<HTMLButtonElement | null>(null)
   const { pathname } = useLocation()
   const prevPathName = usePrevious(pathname)
+  const notifyCloseEvent = useNotifyCloseEvent()
+  const lastClickEventRef = useRef<MouseEvent<HTMLAnchorElement> | null>(null)
 
   useEffect(() => {
     if (prevPathName !== undefined && prevPathName !== pathname) {
+      if (lastClickEventRef.current) {
+        notifyCloseEvent(lastClickEventRef.current)
+        lastClickEventRef.current = null
+      }
       setIsOpen(false)
     }
-  }, [pathname, prevPathName])
+  }, [pathname, prevPathName, notifyCloseEvent])
 
   function openSidebarHandler (): void {
     setIsOpen(true)
+  }
+
+  function clickHandler (event: MouseEvent<HTMLAnchorElement>): void {
+    lastClickEventRef.current = event
   }
 
   return (
@@ -35,6 +45,7 @@ export default function ControlPanelLayout (
         closeButtonRef={closeButtonRef}
         setIsOpen={setIsOpen}
         isOpen={isOpen}
+        onClick={clickHandler}
       />
       <DesktopMainMenu className="c-control-panel-layout__desktop-menu" />
       <div className="c-control-panel-layout__main-container">

@@ -8,9 +8,9 @@ import type { MainMenuNavLinkProps } from './types'
 export default function MainMenuNavLink (
   props: MainMenuNavLinkProps
 ): ReactElement {
-  const { icon, label, to, onKeyDown } = props
+  const { icon, label, to, onKeyDown, onClick } = props
   const ref = useRef<HTMLAnchorElement | null>(null)
-  const rootClassName = classNames('c-main-menu-nav-link')
+  const rootClassName = classNames('c-main-menu-nav-link', 'g-focusable')
   return (
     <NavLink
       to={to}
@@ -18,6 +18,8 @@ export default function MainMenuNavLink (
       activeClassName="c-main-menu-nav-link--active"
       ref={ref}
       onKeyDown={onKeyDown}
+      onClick={onClick}
+      tabIndex={0}
     >
       <span className="c-main-menu-nav-link__icon">
         {icon}

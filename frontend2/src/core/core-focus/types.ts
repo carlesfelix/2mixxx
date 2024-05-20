@@ -16,3 +16,5 @@ export interface KeydownEventStackItem {
   trapLimit?: TrapLimit
   eventTarget: EventTarget | null
 }
+
+export type CloseEvent<T = Element, E = MouseEvent> = MouseEvent | React.MouseEvent<T, E> | KeyboardEvent | React.KeyboardEvent<T>

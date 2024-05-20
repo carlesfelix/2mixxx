@@ -90,7 +90,7 @@
     }
   }
 
-  &.g-button--outlined:not(:disabled):focus-visible {
+  &.g-button--outlined:not(:disabled)[data-djnow-focus-visible] {
     border-width: 0.125rem;
 
     &.g-button--sm {
@@ -107,7 +107,7 @@
   }
 
   @media (--min-lg-window) {
-    &.g-button--outlined:not(:disabled):focus-visible {
+    &.g-button--outlined:not(:disabled)[data-djnow-focus-visible] {
       &.g-button--sm {
         padding: 0.562rem 1.437rem;
       }
@@ -123,7 +123,7 @@
   }
 
   /* Basic button */
-  &.g-button--basic {
+  &.g-button--basic[data-djnow-focus-visible] {
     outline: transparent solid 0.125rem;
     outline-offset: 0.125rem;
   }
@@ -132,7 +132,7 @@
     background-color: var(--theme-color-primary-400);
     color: var(--theme-color-primary-contrast-400);
 
-    &.g-button--basic:not(:disabled):focus-visible {
+    &.g-button--basic:not(:disabled)[data-djnow-focus-visible] {
       outline-color: var(--theme-color-primary-400);
     }
   }
@@ -141,7 +141,7 @@
     background-color: var(--theme-color-secondary-800);
     color: var(--theme-color-secondary-contrast-800);
 
-    &.g-button--basic:not(:disabled):focus-visible {
+    &.g-button--basic:not(:disabled)[data-djnow-focus-visible] {
       outline-color: var(--theme-color-secondary-800);
     }
   }
@@ -231,7 +231,7 @@
     }
   }
 
-  &.g-button--icon:not(:disabled):focus-visible {
+  &.g-button--icon:not(:disabled)[data-djnow-focus-visible] {
     border-color: currentcolor;
   }
 }

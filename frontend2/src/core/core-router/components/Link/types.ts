@@ -5,4 +5,5 @@ export interface LinkProps {
   children: ReactNode
   to: string
   onClick?: MouseEventHandler<HTMLAnchorElement>
+  tabIndex?: number
 }

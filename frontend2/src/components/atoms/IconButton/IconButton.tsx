@@ -22,6 +22,7 @@ function IconButtonWithRef (
     'g-button--icon',
     `g-button--icon-${color}`,
     `g-button--${size}`,
+    'g-focusable',
     className
   )
 
@@ -31,6 +32,7 @@ function IconButtonWithRef (
       onKeyDown={onKeyDown}
       className={rootClassName}
       ref={ref}
+      tabIndex={0}
     >
       {children}
     </button>

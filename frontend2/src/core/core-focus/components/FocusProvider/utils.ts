@@ -17,16 +17,17 @@ export function matchKeyboardNavigationSetting (
 export function getNextFocusableElement (
   params: GetNextFocusableElementParams
 ): FocusableElement | null {
-  const { direction, focusableElements, lastFocusEventTarget, trapLimit } = params
-  const currentFocusableElementIndex = focusableElements.findIndex(focusableElement => focusableElement === lastFocusEventTarget)
-  if (currentFocusableElementIndex !== -1 && lastFocusEventTarget !== null) {
+  const { direction, focusableElements, trapLimit } = params
+  const { activeElement } = window.document
+  const currentFocusableElementIndex = focusableElements.findIndex(focusableElement => focusableElement === activeElement)
+  if (currentFocusableElementIndex !== -1 && activeElement !== null) {
     const nextFocusableElementIndex = currentFocusableElementIndex + direction
     if (trapLimit) {
       const [minTrapLimitElement, maxTrapLimitElement] = trapLimit
-      if (direction === -1 && minTrapLimitElement === lastFocusEventTarget) {
+      if (direction === -1 && minTrapLimitElement === activeElement) {
         return maxTrapLimitElement
       }
-      if (direction === 1 && maxTrapLimitElement === lastFocusEventTarget) {
+      if (direction === 1 && maxTrapLimitElement === activeElement) {
         return minTrapLimitElement
       }
     }

@@ -21,6 +21,7 @@ function OutlinedButtonWithRef (
     'g-button--outlined',
     `g-button--outlined-${color}`,
     `g-button--${size}`,
+    'g-focusable',
     className
   )
 
@@ -29,6 +30,7 @@ function OutlinedButtonWithRef (
       onClick={onClick}
       className={rootClassName}
       ref={ref}
+      tabIndex={0}
     >
       {children}
     </button>

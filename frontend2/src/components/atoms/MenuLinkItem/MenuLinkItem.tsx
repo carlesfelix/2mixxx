@@ -15,6 +15,7 @@ function MenuLinkItemWithRef (
     'g-font',
     'g-font--primary',
     'c-menu-link-item',
+    'g-focusable',
     className
   )
 
@@ -24,6 +25,7 @@ function MenuLinkItemWithRef (
       to={to}
       ref={ref}
       onClick={onClick}
+      tabIndex={0}
     >
       {children}
     </Link>

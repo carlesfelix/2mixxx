@@ -1,33 +1,14 @@
 import MenuButtonItem from '@/components/atoms/MenuButtonItem'
 import MenuLinkItem from '@/components/atoms/MenuLinkItem'
 import {
-  type ForwardedRef,
-  forwardRef,
   type MouseEventHandler,
-  type ReactElement,
-  type Ref,
-  useImperativeHandle,
-  useRef
+  type ReactElement
 } from 'react'
-import { type ButtonMenuItem, type LinkMenuItem, type MenuItemsInstance, type MenuItemsProps } from './types'
+import { type ButtonMenuItem, type LinkMenuItem, type MenuItemsProps } from './types'
 import './MenuItems.css'
 
-function MenuItemsWithRef (
-  props: MenuItemsProps,
-  ref: ForwardedRef<MenuItemsInstance>
-): ReactElement {
-  const { items, onClickItem, focusIndex = 0 } = props
-  const menuItemRefs = useRef<Record<number, HTMLElement | null>>({})
-
-  useImperativeHandle(ref,
-    () => ({
-      focus () {
-        const element = menuItemRefs.current[focusIndex]
-        element?.focus()
-      }
-    }),
-    [focusIndex])
-
+export default function MenuItems (props: MenuItemsProps): ReactElement {
+  const { items, onClickItem } = props
   function clickButtonItemHandler (
     item: ButtonMenuItem
   ): MouseEventHandler<HTMLButtonElement> {
@@ -45,18 +26,6 @@ function MenuItemsWithRef (
     }
   }
 
-  function menuButtonRefCallback (iButton: number): Ref<HTMLButtonElement> {
-    return (element) => {
-      menuItemRefs.current[iButton] = element
-    }
-  }
-
-  function menuAnchorRefCallback (iAnchor: number): Ref<HTMLAnchorElement> {
-    return (element) => {
-      menuItemRefs.current[iAnchor] = element
-    }
-  }
-
   return (
     <ul className="c-menu-items">
       {
@@ -68,7 +37,6 @@ function MenuItemsWithRef (
                 <MenuButtonItem
                   onClick={clickButtonItemHandler(item)}
                   className="c-menu-items__item"
-                  ref={menuButtonRefCallback(iItem)}
                 >
                   {item.icon}
                   <span>
@@ -81,7 +49,6 @@ function MenuItemsWithRef (
                   onClick={clickLinkItemHandler(item)}
                   to={item.to}
                   className="c-menu-items__item"
-                  ref={menuAnchorRefCallback(iItem)}
                 >
                   {item.icon}
                   <span>
@@ -97,7 +64,3 @@ function MenuItemsWithRef (
     </ul>
   )
 }
-
-const MenuItems = forwardRef(MenuItemsWithRef)
-
-export default MenuItems

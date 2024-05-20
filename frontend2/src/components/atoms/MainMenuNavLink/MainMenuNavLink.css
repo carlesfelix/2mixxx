@@ -4,11 +4,10 @@
   text-decoration: none;
   padding: 0 1.5rem;
   height: 2.5rem;
-  outline: none;
   border: solid 0.063rem transparent;
   color: var(--theme-color-sidebar-menu-btn-inactive-text);
 
-  &:focus-visible {
+  &[data-djnow-focus-visible] {
     border-color: currentcolor;
   }
 
