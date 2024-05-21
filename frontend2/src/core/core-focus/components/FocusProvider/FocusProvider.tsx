@@ -10,6 +10,7 @@ export default function FocusProvider (props: FocusProviderProps): ReactElement 
   const { children, focusVisibleDataKey } = props
   const keydownEventStackRef = useRef<KeydownEventStackItem[]>([])
   const focusFromKeyboardRef = useRef<boolean>(false)
+  const pointerDownEventTargetRef = useRef<EventTarget | null>(null)
 
   useEffect(() => {
     function keydownHandler (event: KeyboardEvent): void {
@@ -54,10 +55,16 @@ export default function FocusProvider (props: FocusProviderProps): ReactElement 
       keydownEventStackRef.current = []
     }
     function focusinHandler (event: FocusEvent): void {
+      focusFromKeyboardRef.current = focusFromKeyboardRef.current && !!(
+        event.target &&
+        event.target !== pointerDownEventTargetRef.current &&
+        !(event.target as Node).contains(pointerDownEventTargetRef.current as Node)
+      )
       if (focusFromKeyboardRef.current) {
         focusFromKeyboardRef.current = false
         setFocusVisibility(event.target, true, focusVisibleDataKey)
       }
+      pointerDownEventTargetRef.current = null
     }
     function focusoutHandler (event: FocusEvent): void {
       setFocusVisibility(event.target, false, focusVisibleDataKey)
@@ -70,22 +77,27 @@ export default function FocusProvider (props: FocusProviderProps): ReactElement 
         setFocusVisibility(event.target, true, focusVisibleDataKey)
       }
     }
+    function pointerDownHandler (event: MouseEvent): void {
+      pointerDownEventTargetRef.current = event.target
+    }
     window.document.addEventListener('keydown', keydownHandler)
     window.document.addEventListener('focusin', focusinHandler)
     window.document.addEventListener('focusout', focusoutHandler)
     window.document.addEventListener('click', clickHandler)
+    window.document.addEventListener('pointerdown', pointerDownHandler)
 
     return () => {
       window.document.removeEventListener('keydown', keydownHandler)
       window.document.removeEventListener('focusin', focusinHandler)
       window.document.removeEventListener('focusout', focusoutHandler)
       window.document.removeEventListener('click', clickHandler)
+      window.document.removeEventListener('pointerdown', pointerDownHandler)
     }
   }, [focusVisibleDataKey])
 
   return (
     <FocusContext.Provider
-      value={{ keydownEventStackRef, focusVisibleDataKey, focusFromKeyboardRef }}
+      value={{ keydownEventStackRef, focusVisibleDataKey, focusFromKeyboardRef, pointerDownEventTargetRef }}
     >
       {children}
     </FocusContext.Provider>
