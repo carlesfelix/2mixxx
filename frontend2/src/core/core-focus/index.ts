@@ -7,10 +7,7 @@ export * from './components/FocusProvider'
 export { default as useAutoFocus } from './hooks/useAutoFocus'
 export * from './hooks/useAutoFocus'
 
-export { default as useNotifyCloseEvent } from './hooks/useNotifyCloseEvent'
-export * from './hooks/useNotifyCloseEvent'
-
-export { default as useFocusController } from './hooks/useFocusController'
-export * from './hooks/useFocusController'
+export { default as useFocusContainer } from './hooks/useFocusContainer'
+export * from './hooks/useFocusContainer'
 
 export { default as useReturnFocus } from './hooks/useReturnFocus'

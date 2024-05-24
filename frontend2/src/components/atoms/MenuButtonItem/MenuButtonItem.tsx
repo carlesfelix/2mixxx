@@ -14,7 +14,7 @@ function MenuButtonItemWithRef (
     'g-font',
     'g-font--primary',
     'c-menu-button-item',
-    'g-focusable',
+    'g-hide-default-focus-ring',
     className
   )
 
@@ -23,7 +23,6 @@ function MenuButtonItemWithRef (
       className={rootClassName}
       ref={ref}
       onClick={onClick}
-      tabIndex={0}
     >
       {children}
     </button>

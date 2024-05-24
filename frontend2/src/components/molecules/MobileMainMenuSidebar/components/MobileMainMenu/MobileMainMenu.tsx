@@ -6,16 +6,13 @@ import classNames from 'classnames'
 import { type MouseEvent, type ReactElement } from 'react'
 import { type MobileMainMenuProps } from '../../types'
 import './MobileMainMenu.css'
-import { useNotifyCloseEvent } from '@/core/core-focus'
 
 export default function MobileMainMenu (
   props: MobileMainMenuProps
 ): ReactElement {
-  const { className, onClose, closeButtonRef, onClickMenuLink } = props
-  const notifyCloseEvent = useNotifyCloseEvent()
+  const { className, onClose, closeButtonRef } = props
 
   function clickHandler (event: MouseEvent<HTMLButtonElement>): void {
-    notifyCloseEvent(event)
     onClose && onClose(event)
   }
 
@@ -37,7 +34,7 @@ export default function MobileMainMenu (
         </div>
       </div>
       <div className="c-mobile-main-menu__menu-content">
-        <MainMenuLinks linkItems={MAIN_MENU_LINKS} onClick={onClickMenuLink} />
+        <MainMenuLinks linkItems={MAIN_MENU_LINKS} />
       </div>
     </div>
   )

@@ -1,13 +1,13 @@
-import { type KeyboardEvent, forwardRef, useState, type ForwardedRef, type ReactElement, useCallback, useLayoutEffect } from 'react'
+import { type KeyboardEvent, forwardRef, useState, type ForwardedRef, type ReactElement, useLayoutEffect } from 'react'
 import Calendar, { type TileDisabledFunc } from 'react-calendar'
 import { type InputCalendarProps } from './types'
 import classNames from 'classnames'
 import Popover from '@/core/core-popover'
-import { useInternalRef, useKeyBoard } from '@/core/core-hooks'
+import { useInternalInstance, useKeyBoard } from '@/core/core-hooks'
 import { popoverContainer } from '@/modules/popover'
-import { FocusContainer, useNotifyCloseEvent } from '@/core/core-focus'
-import './InputCalendar.css'
+import { FocusContainer } from '@/core/core-focus'
 import useClick from '@/core/core-hooks/useClick'
+import './InputCalendar.css'
 
 function InputCalendarWithRef (
   props: InputCalendarProps,
@@ -23,14 +23,11 @@ function InputCalendarWithRef (
   } = props
   const [isOpen, setIsOpen] = useState(false)
   const [floatingElement, setFloatingElement] = useState<HTMLDivElement | null>(null)
-  const [inputElement, setInputElement] = useState<HTMLInputElement | null>(null)
-  const [refCallback] = useInternalRef(ref)
-  const notifyCloseEvent = useNotifyCloseEvent()
+  const [inputElementRefCallback, inputElement] = useInternalInstance(ref)
 
   // TODO: Create usePopoverHelper hook
   useKeyBoard({
-    listener (event) {
-      notifyCloseEvent(event)
+    listener () {
       setIsOpen(false)
     },
     code: 'Escape',
@@ -66,11 +63,6 @@ function InputCalendarWithRef (
     }
   }, [value, inputElement])
 
-  const inputRefCallback = useCallback((element: HTMLInputElement) => {
-    setInputElement(element)
-    refCallback(element)
-  }, [refCallback])
-
   const tileDisabledHandler: TileDisabledFunc = ({ activeStartDate, date, view }) => {
     return disabled
   }
@@ -97,7 +89,7 @@ function InputCalendarWithRef (
         readOnly
         className={inputClassName}
         onClick={inputClickHandler}
-        ref={inputRefCallback}
+        ref={inputElementRefCallback}
         onKeyDown={keydownHandler}
         id={id}
       />

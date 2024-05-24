@@ -1,5 +1,4 @@
-import { ACTIVATION_METHOD } from '../../constants'
-import { type CloseEvent } from '../../types'
+import { type KeyboardNavigationConfig } from '../../types'
 
 export function setFocusVisibility (
   element: Element | EventTarget | null,
@@ -34,24 +33,40 @@ export function getFocusVisibleElement (focusVisibleDataKey: string): Element | 
   return window.document.querySelector(`[${getFocusVisibleDataAttribute(focusVisibleDataKey)}]`)
 }
 
-export function isFocusVisible (focusVisibleDataKey: string): boolean {
-  return !!getFocusVisibleElement(focusVisibleDataKey)
-}
-
 export function clearCurrentFocusVisible (focusVisibleDataKey: string): void {
   const element = getFocusVisibleElement(focusVisibleDataKey)
   setFocusVisibility(element, false, focusVisibleDataKey)
 }
 
-export function isKeyboardEvent<T = Element, E = MouseEvent> (event: CloseEvent<T, E>): boolean {
+export function matchKeyboardConfig (
+  event: KeyboardEvent,
+  keyboardNavigationConfig: KeyboardNavigationConfig
+): boolean {
+  const {
+    code,
+    altKey = false,
+    ctrlKey = false,
+    metaKey = false,
+    shiftKey = false
+  } = keyboardNavigationConfig
+  return event.code === code &&
+    event.altKey === altKey &&
+    event.ctrlKey === ctrlKey &&
+    event.metaKey === metaKey &&
+    event.shiftKey === shiftKey
+}
+
+export function matchDefaultNextKeyboardConfig (event: KeyboardEvent): boolean {
+  return matchKeyboardConfig(event, { code: 'Tab' })
+}
+
+export function matchDefaultPrevKeyboardConfig (event: KeyboardEvent): boolean {
+  return matchKeyboardConfig(event, { code: 'Tab', shiftKey: true })
+}
+
+export function matchDefaultKeyboardConfig (event: KeyboardEvent): boolean {
   return (
-    event.detail === ACTIVATION_METHOD.KEYBOARD ||
-    (
-      ('screenX' in event) &&
-      ('screenY' in event) &&
-      event.screenX === 0 &&
-      event.screenY === 0 &&
-      event.detail !== ACTIVATION_METHOD.KEYBOARD
-    )
+    matchDefaultPrevKeyboardConfig(event) ||
+    matchDefaultNextKeyboardConfig(event)
   )
 }

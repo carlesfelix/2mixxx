@@ -1,4 +1,4 @@
-import { type MouseEventHandler, type ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 export interface MainMenuLinkItem {
   icon: ReactNode
@@ -9,5 +9,4 @@ export interface MainMenuLinkItem {
 export interface MainMenuLinksProps {
   className?: string
   linkItems: MainMenuLinkItem[]
-  onClick?: MouseEventHandler<HTMLAnchorElement>
 }

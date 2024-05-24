@@ -1,0 +1,7 @@
+.g-hide-default-focus-ring {
+  outline: none;
+
+  &:focus-visible:not([data-focus-ring]) {
+    outline: none;
+  }
+}

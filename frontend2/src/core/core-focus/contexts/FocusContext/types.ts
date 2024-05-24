@@ -1,9 +1,3 @@
-import { type MutableRefObject } from 'react'
-import { type KeydownEventStackItem } from '../../types'
+import { type UseFocusManagerReturn } from '../../hooks/useFocusManager'
 
-export interface FocusContextValue {
-  keydownEventStackRef: MutableRefObject<KeydownEventStackItem[]>
-  focusFromKeyboardRef: MutableRefObject<boolean>
-  focusVisibleDataKey: string
-  pointerDownEventTargetRef: MutableRefObject<EventTarget | null>
-}
+export type FocusContextValue = UseFocusManagerReturn

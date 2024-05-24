@@ -21,7 +21,7 @@ function BasicButtonWithRef (
     'g-button--basic',
     `g-button--basic-${color}`,
     `g-button--${size}`,
-    'g-focusable',
+    'g-hide-default-focus-ring',
     className
   )
 
@@ -30,7 +30,6 @@ function BasicButtonWithRef (
       onClick={onClick}
       className={rootClassName}
       ref={ref}
-      tabIndex={0}
     >
       {children}
     </button>

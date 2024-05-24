@@ -12,7 +12,7 @@
   width: 100%;
   text-align: left;
 
-  &[data-djnow-focus-visible] {
+  &[data-focus-ring] {
     outline: solid 2px currentcolor;
   }
 }

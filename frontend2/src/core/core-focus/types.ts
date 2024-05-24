@@ -1,6 +1,4 @@
-import { type FocusableElement } from 'tabbable'
-
-export interface KeyboardNavigationSettingsItem {
+export interface KeyboardNavigationConfig {
   code: string
   shiftKey?: boolean
   ctrlKey?: boolean
@@ -8,13 +6,8 @@ export interface KeyboardNavigationSettingsItem {
   metaKey?: boolean
 }
 
-export type KeyboardNavigationSettings = [KeyboardNavigationSettingsItem, KeyboardNavigationSettingsItem]
-export type TrapLimit = [FocusableElement, FocusableElement]
-
-export interface KeydownEventStackItem {
-  keyboardNavigationSettings: KeyboardNavigationSettings
-  trapLimit?: TrapLimit
+export interface FocusNavigationAction {
+  offset: number
+  match: boolean
   eventTarget: EventTarget | null
 }
-
-export type CloseEvent<T = Element, E = MouseEvent> = MouseEvent | React.MouseEvent<T, E> | KeyboardEvent | React.KeyboardEvent<T>

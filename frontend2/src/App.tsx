@@ -23,7 +23,7 @@ function App (): ReactElement {
       <FormConfigWrapper>
         <OAuth2ProviderLayout>
           <QueryProvider http={http}>
-            <FocusProvider focusVisibleDataKey="djnow-focus-visible">
+            <FocusProvider focusVisibleDataKey="focus-ring">
               <BrowserRouter>
                 <RootLayout />
               </BrowserRouter>

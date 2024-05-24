@@ -6,22 +6,20 @@ import { type PopupMenuProps } from './types'
 import classNames from 'classnames'
 import MenuItems, { type MenuItem } from '@/components/molecules/MenuItems'
 import { popoverContainer } from '@/modules/popover'
-import { FocusContainer, useNotifyCloseEvent } from '@/core/core-focus'
-import './PopupMenu.css'
+import { FocusContainer } from '@/core/core-focus'
 import { useKeyBoard } from '@/core/core-hooks'
 import useClick from '@/core/core-hooks/useClick'
+import './PopupMenu.css'
 
 export default function PopupMenu (props: PopupMenuProps): ReactElement {
   const { className, buttonClassName, color, size, items } = props
   const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [floatingElement, setFloatingElement] = useState<HTMLDivElement | null>(null)
-  const notifyCloseEvent = useNotifyCloseEvent()
 
   // TODO: Create usePopoverHelper hook
   useKeyBoard({
     listener (event) {
-      notifyCloseEvent(event)
       setIsOpen(false)
     },
     code: 'Escape',
@@ -34,7 +32,6 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
         !referenceElement?.contains(event.target as Node) &&
         !floatingElement?.contains(event.target as Node)
       ) {
-        notifyCloseEvent(event)
         setIsOpen(false)
       }
     }
@@ -45,7 +42,6 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
   }
 
   function clickItemHandler (item: MenuItem, event: MouseEvent): void {
-    notifyCloseEvent(event)
     setIsOpen(false)
   }
 
@@ -72,9 +68,9 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
         setFloatingElement={setFloatingElement}
       >
         <FocusContainer
-          prevNavigationSettings={{ code: 'ArrowUp' }}
-          nextNavigationSettings={{ code: 'ArrowDown' }}
-          returnFocus
+          prevNavigationConfig={{ code: 'ArrowUp' }}
+          nextNavigationConfig={{ code: 'ArrowDown' }}
+          returnFocus={referenceElement}
           trap
           autoFocus={0}
         >

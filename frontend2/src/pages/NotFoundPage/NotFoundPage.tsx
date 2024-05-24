@@ -45,10 +45,15 @@ export default function NotFoundPage (): ReactElement {
   return (
     <div className="NotFoundPage">
       NotFoundPage
-      <button onClick={() => { setCount(old => old + 1) }}>Count {count}</button>
-      <button>{t('test')}</button>
-      <button onClick={() => { changeLanguageHandler('es') }}>Español</button>
-      <button onClick={() => { changeLanguageHandler('en') }}>English</button>
+      <BasicButton
+        color="primary"
+        onClick={() => { setCount(old => old + 1) }}
+      >
+        Count {count}
+      </BasicButton>
+      <BasicButton color="primary">{t('test')}</BasicButton>
+      <BasicButton color="primary" onClick={() => { changeLanguageHandler('es') }}>Español</BasicButton>
+      <BasicButton color="primary" onClick={() => { changeLanguageHandler('en') }}>English</BasicButton>
       {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={handleSubmit(submitHandler)} className="g-form g-form--3">
         <InputTextField
@@ -87,7 +92,7 @@ export default function NotFoundPage (): ReactElement {
         />
         <button type="submit">enviar</button>
       </form>
-      <FocusContainer prevNavigationSettings={{ code: 'ArrowLeft' }} nextNavigationSettings={{ code: 'ArrowRight' }}>
+      <FocusContainer prevNavigationConfig={{ code: 'ArrowLeft' }} nextNavigationConfig={{ code: 'ArrowRight' }}>
         <div>
           Group 1
           <BasicButton color="primary">Primary basic</BasicButton>

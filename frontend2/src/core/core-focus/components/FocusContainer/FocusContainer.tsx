@@ -1,24 +1,24 @@
 import { forwardRef, type ForwardedRef, type ReactElement } from 'react'
 import { type FocusContainerProps } from './types'
-import useFocusController from '../../hooks/useFocusController'
 import { useInternalInstance } from '@/core/core-hooks'
+import useFocusContainer from '../../hooks/useFocusContainer'
 
 function FocusContainerWithRef (
   props: FocusContainerProps,
   ref: ForwardedRef<HTMLDivElement>
 ): ReactElement {
   const {
-    nextNavigationSettings,
-    prevNavigationSettings,
+    nextNavigationConfig,
+    prevNavigationConfig,
     returnFocus,
     trap,
     autoFocus,
     ...extraProps
   } = props
   const [elementRefCallback, element] = useInternalInstance(ref)
-  useFocusController(element, {
-    nextNavigationSettings,
-    prevNavigationSettings,
+  useFocusContainer(element, {
+    nextNavigationSettings: nextNavigationConfig,
+    prevNavigationSettings: prevNavigationConfig,
     returnFocus,
     trap,
     autoFocus

@@ -2,7 +2,6 @@ import type { ChangeEvent, ForwardedRef, ReactElement } from 'react'
 import { forwardRef } from 'react'
 import { type InputTextProps } from './types'
 import classNames from 'classnames'
-import './InputText.css'
 
 function InputTextWithRef (
   props: InputTextProps,
@@ -14,7 +13,7 @@ function InputTextWithRef (
     onChange && onChange(event.target.value)
   }
 
-  const rootClassName = classNames('c-input-text g-input', className)
+  const rootClassName = classNames('c-input-text', 'g-input', 'g-hide-default-focus-ring', className)
 
   return (
     <input

@@ -1,16 +1,17 @@
 .c-menu-link-item {
-  line-height: 1em;
-  padding: 0.75rem 1.25rem;
-  font-size: 0.875rem;
-  display: flex;
   text-decoration: none;
-  outline-color: transparent;
   color: currentcolor;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
 
-  &[data-djnow-focus-visible] {
-    outline: solid 2px currentcolor;
+  & .c-menu-link-item__wrapper {
+    line-height: 1em;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    display: flex;
+    border: none;
+    background-color: transparent;
+
+    &[data-focus-ring] {
+      outline: solid 2px currentcolor;
+    }
   }
 }

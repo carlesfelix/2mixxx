@@ -1,5 +1,0 @@
-.g-focusable {
-  &:focus-visible {
-    outline: none;
-  }
-}
