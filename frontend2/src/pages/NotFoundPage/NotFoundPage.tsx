@@ -107,7 +107,7 @@ export default function NotFoundPage (): ReactElement {
           <BasicButton ref={btnRef} color="primary">Primary basic 1</BasicButton>
           <BasicButton color="secondary">Secondary basic</BasicButton>
           <OutlinedButton color="primary">Outlined primary</OutlinedButton>
-          <OutlinedButton color="secondary">Outlined secondary</OutlinedButton>
+          <OutlinedButton color="secondary" onClick={() => btnRef.current?.focus()}>Outlined secondary</OutlinedButton>
         </div>
       </FocusContainer>
     </div>

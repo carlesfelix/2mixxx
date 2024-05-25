@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { type FocusableElement } from 'tabbable'
+import { isFocusable, type FocusableElement } from 'tabbable'
 
 export default function useReturnFocus (focusable: boolean | FocusableElement | null = false): void {
   const elementRef = useRef<Element | null>(null)
@@ -12,12 +12,9 @@ export default function useReturnFocus (focusable: boolean | FocusableElement | 
       if (typeof focusable === 'boolean') {
         if (
           elementRef.current &&
-          (
-            (elementRef.current instanceof HTMLElement) ||
-            (elementRef.current instanceof SVGElement)
-          )
+          isFocusable(elementRef.current)
         ) {
-          elementRef.current.focus()
+          (elementRef.current as FocusableElement).focus()
         }
         return
       }

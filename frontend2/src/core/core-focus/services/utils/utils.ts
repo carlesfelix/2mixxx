@@ -33,6 +33,10 @@ export function getFocusVisibleElement (focusVisibleDataKey: string): Element | 
   return window.document.querySelector(`[${getFocusVisibleDataAttribute(focusVisibleDataKey)}]`)
 }
 
+export function isFocusVisible (focusVisibleDataKey: string): boolean {
+  return !!getFocusVisibleElement(focusVisibleDataKey)
+}
+
 export function clearCurrentFocusVisible (focusVisibleDataKey: string): void {
   const element = getFocusVisibleElement(focusVisibleDataKey)
   setFocusVisibility(element, false, focusVisibleDataKey)

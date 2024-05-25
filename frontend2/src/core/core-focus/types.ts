@@ -6,8 +6,21 @@ export interface KeyboardNavigationConfig {
   metaKey?: boolean
 }
 
+export interface KeyboardNavigationSettings {
+  prev: KeyboardNavigationConfig
+  next: KeyboardNavigationConfig
+  top?: KeyboardNavigationConfig
+  bottom?: KeyboardNavigationConfig
+}
+
 export interface FocusNavigationAction {
   offset: number
   match: boolean
   eventTarget: EventTarget | null
+}
+
+export interface PointerDownAction {
+  element: Element
+  keyboardNavigationSettings: KeyboardNavigationSettings
+  trap: boolean
 }

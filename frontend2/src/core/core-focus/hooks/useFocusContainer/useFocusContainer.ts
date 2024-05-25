@@ -5,12 +5,13 @@ import { tabbable } from 'tabbable'
 import { matchKeyboardConfig } from '../../services/utils'
 import useAutoFocus from '../useAutoFocus'
 import useReturnFocus from '../useReturnFocus'
+import { type KeyboardNavigationSettings } from '../../types'
 
 export default function useFocusContainer (
   element: HTMLElement | null,
   options: UseFocusContainerOptions = {}
 ): void {
-  const { nextNavigationSettings, prevNavigationSettings, trap, autoFocus, returnFocus } = options
+  const { nextNavigationSettings, prevNavigationSettings, trap = false, autoFocus, returnFocus } = options
   const {
     altKey: prevAltKey,
     code: prevCode = 'Tab',
@@ -25,13 +26,29 @@ export default function useFocusContainer (
     metaKey: nextMetaKey,
     shiftKey: nextShiftKey
   } = nextNavigationSettings ?? {}
-  const { onKeyDown } = useFocusContext()
+  const { onKeyDown, onPointerDown } = useFocusContext()
   useAutoFocus(element, autoFocus)
   useReturnFocus(returnFocus)
 
   useEffect(() => {
     if (element === null) {
       return
+    }
+    const keyboardNavigationSettings: KeyboardNavigationSettings = {
+      prev: {
+        altKey: prevAltKey,
+        code: prevCode,
+        ctrlKey: prevCtrlKey,
+        metaKey: prevMetaKey,
+        shiftKey: prevShiftKey
+      },
+      next: {
+        altKey: nextAltKey,
+        code: nextCode,
+        ctrlKey: nextCtrlKey,
+        metaKey: nextMetaKey,
+        shiftKey: nextShiftKey
+      }
     }
     function keydownHandler (event: KeyboardEvent): void {
       if (element === null) {
@@ -41,24 +58,12 @@ export default function useFocusContainer (
       let match = false
       const focusableElements = tabbable(element)
       if (
-        matchKeyboardConfig(event, {
-          altKey: prevAltKey,
-          code: prevCode,
-          ctrlKey: prevCtrlKey,
-          metaKey: prevMetaKey,
-          shiftKey: prevShiftKey
-        })
+        matchKeyboardConfig(event, keyboardNavigationSettings.prev)
       ) {
         offset = -1
         match = true
       } else if (
-        matchKeyboardConfig(event, {
-          altKey: nextAltKey,
-          code: nextCode,
-          ctrlKey: nextCtrlKey,
-          metaKey: nextMetaKey,
-          shiftKey: nextShiftKey
-        })
+        matchKeyboardConfig(event, keyboardNavigationSettings.next)
       ) {
         offset = 1
         match = true
@@ -76,9 +81,21 @@ export default function useFocusContainer (
       }
       onKeyDown({ eventTarget: event.target, match, offset })
     }
+    function pointerDownHandler (): void {
+      if (element === null) {
+        return
+      }
+      onPointerDown({
+        element,
+        keyboardNavigationSettings,
+        trap
+      })
+    }
     element.addEventListener('keydown', keydownHandler)
+    element.addEventListener('pointerdown', pointerDownHandler)
     return () => {
       element.removeEventListener('keydown', keydownHandler)
+      element.removeEventListener('pointerdown', pointerDownHandler)
     }
   }, [
     element,
@@ -93,6 +110,7 @@ export default function useFocusContainer (
     nextMetaKey,
     nextShiftKey,
     trap,
-    onKeyDown
+    onKeyDown,
+    onPointerDown
   ])
 }
