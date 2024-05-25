@@ -141,6 +141,7 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
     focusNavigationActions = []
     restoreFocusAction = null
     forceFocusVisible = true
+    clearCurrentFocusVisible(focusVisibleDataKey)
     window.HTMLElement.prototype.focus = oldHTMLFocus
     window.SVGElement.prototype.focus = oldSVGFocus
   }
