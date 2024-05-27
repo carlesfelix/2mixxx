@@ -1,6 +1,6 @@
 import { type FocusableElement, tabbable } from 'tabbable'
 import { type RestoreFocusAction, type FocusManagerReturn } from './types'
-import { clearCurrentFocusVisible, isFocusVisible, matchDefaultKeyboardConfig, matchDefaultNextKeyboardConfig, matchDefaultPrevKeyboardConfig, matchKeyboardConfig, setFocusVisibility } from '../utils'
+import { clearCurrentFocusVisible, matchDefaultKeyboardConfig, matchDefaultNextKeyboardConfig, matchDefaultPrevKeyboardConfig, matchKeyboardConfig, setFocusVisibility } from '../utils'
 import { type PointerDownAction, type FocusNavigationAction } from '../../types'
 
 export default function focusManager (focusVisibleDataKey: string): FocusManagerReturn {
@@ -9,7 +9,7 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
   let focusFromKeyboard = false
   let focusNavigationActions: FocusNavigationAction[] = []
   let restoreFocusAction: RestoreFocusAction | null = null
-  let forceFocusVisible = true
+  let uncontrolledFocus = true
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const oldHTMLFocus = window.HTMLElement.prototype.focus
   // eslint-disable-next-line @typescript-eslint/unbound-method
@@ -89,7 +89,7 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
   }
   function focusinHandler (event: FocusEvent): void {
     const isFocusVisible = (
-      (focusFromKeyboard || forceFocusVisible) &&
+      (focusFromKeyboard || uncontrolledFocus) &&
       !!(
         event.target &&
         event.target !== pointerDownEventTarget &&
@@ -107,7 +107,7 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
     }
     focusFromKeyboard = false
     pointerDownEventTarget = null
-    forceFocusVisible = true
+    uncontrolledFocus = true
     restoreFocusAction = null
   }
   function onKeyDown (focusNavigationAction: FocusNavigationAction): void {
@@ -116,13 +116,16 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
   function onPointerDown (pointerDownAction: PointerDownAction): void {
     pointerDownActions.push(pointerDownAction)
   }
+  function focusInterceptor (): void {
+    uncontrolledFocus = false
+  }
   function listen (): void {
     window.HTMLElement.prototype.focus = function (...args): void {
-      forceFocusVisible = isFocusVisible(focusVisibleDataKey)
+      focusInterceptor()
       oldHTMLFocus.call(this, ...args)
     }
     window.SVGElement.prototype.focus = function (...args): void {
-      forceFocusVisible = isFocusVisible(focusVisibleDataKey)
+      focusInterceptor()
       oldSVGFocus.call(this, ...args)
     }
     window.document.addEventListener('keydown', keydownHandler)
@@ -140,7 +143,7 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
     focusFromKeyboard = false
     focusNavigationActions = []
     restoreFocusAction = null
-    forceFocusVisible = true
+    uncontrolledFocus = true
     clearCurrentFocusVisible(focusVisibleDataKey)
     window.HTMLElement.prototype.focus = oldHTMLFocus
     window.SVGElement.prototype.focus = oldSVGFocus
