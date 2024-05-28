@@ -9,6 +9,7 @@ import { popoverContainer } from '@/modules/popover'
 import { FocusContainer } from '@/core/core-focus'
 import { useKeyBoard } from '@/core/core-hooks'
 import useClick from '@/core/core-hooks/useClick'
+import { KEY_CODES } from '@/core/core-keyboard'
 import './PopupMenu.css'
 
 export default function PopupMenu (props: PopupMenuProps): ReactElement {
@@ -22,7 +23,7 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
     listener (event) {
       setIsOpen(false)
     },
-    code: 'Escape',
+    code: KEY_CODES.Escape,
     listen: isOpen
   })
 
@@ -68,8 +69,8 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
         setFloatingElement={setFloatingElement}
       >
         <FocusContainer
-          prevNavigationConfig={{ code: 'ArrowUp' }}
-          nextNavigationConfig={{ code: 'ArrowDown' }}
+          prevNavigationConfig={{ code: KEY_CODES.ArrowUp }}
+          nextNavigationConfig={{ code: KEY_CODES.ArrowDown }}
           returnFocus={referenceElement}
           trap
           autoFocus={0}

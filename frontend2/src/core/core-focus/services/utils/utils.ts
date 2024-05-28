@@ -1,3 +1,4 @@
+import { KEY_CODES } from '@/core/core-keyboard'
 import { type KeyboardNavigationConfig } from '../../types'
 
 export function setFocusVisibility (
@@ -61,11 +62,11 @@ export function matchKeyboardConfig (
 }
 
 export function matchDefaultNextKeyboardConfig (event: KeyboardEvent): boolean {
-  return matchKeyboardConfig(event, { code: 'Tab' })
+  return matchKeyboardConfig(event, { code: KEY_CODES.Tab })
 }
 
 export function matchDefaultPrevKeyboardConfig (event: KeyboardEvent): boolean {
-  return matchKeyboardConfig(event, { code: 'Tab', shiftKey: true })
+  return matchKeyboardConfig(event, { code: KEY_CODES.Tab, shiftKey: true })
 }
 
 export function matchDefaultKeyboardConfig (event: KeyboardEvent): boolean {

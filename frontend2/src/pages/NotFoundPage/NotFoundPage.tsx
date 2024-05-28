@@ -5,6 +5,7 @@ import InputTextField from '@/components/molecules/InputTextField'
 import { FocusContainer } from '@/core/core-focus'
 import { type FormValidator, useForm, schema, asOptionalTextField } from '@/core/core-hook-form'
 import { useI18n, useTranslation } from '@/core/core-i18n'
+import { KEY_CODES } from '@/core/core-keyboard'
 import i18n from '@/modules/i18n'
 import { type ReactElement, useRef, useState } from 'react'
 
@@ -92,7 +93,10 @@ export default function NotFoundPage (): ReactElement {
         />
         <button type="submit">enviar</button>
       </form>
-      <FocusContainer prevNavigationConfig={{ code: 'ArrowLeft' }} nextNavigationConfig={{ code: 'ArrowRight' }}>
+      <FocusContainer
+        prevNavigationConfig={{ code: KEY_CODES.ArrowLeft }}
+        nextNavigationConfig={{ code: KEY_CODES.ArrowRight }}
+      >
         <div>
           Group 1
           <BasicButton color="primary">Primary basic</BasicButton>

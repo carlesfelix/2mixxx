@@ -7,6 +7,7 @@ import { useInternalInstance, useKeyBoard } from '@/core/core-hooks'
 import { popoverContainer } from '@/modules/popover'
 import { FocusContainer } from '@/core/core-focus'
 import useClick from '@/core/core-hooks/useClick'
+import { KEY_CODES } from '@/core/core-keyboard'
 import './InputCalendar.css'
 
 function InputCalendarWithRef (
@@ -30,7 +31,7 @@ function InputCalendarWithRef (
     listener () {
       setIsOpen(false)
     },
-    code: 'Escape',
+    code: KEY_CODES.Escape,
     listen: isOpen
   })
 

@@ -11,6 +11,7 @@ import { createPortal } from 'react-dom'
 import { type SidebarProps, type SidebarStatus } from './types'
 import { popoverContainer } from '@/modules/popover'
 import { FocusContainer } from '@/core/core-focus'
+import { KEY_CODES } from '@/core/core-keyboard'
 import './Sidebar.css'
 
 export default function Sidebar (props: SidebarProps): ReactElement {
@@ -28,7 +29,7 @@ export default function Sidebar (props: SidebarProps): ReactElement {
     listener (event) {
       setIsOpen(false)
     },
-    code: 'Escape',
+    code: KEY_CODES.Escape,
     listen: isOpen
   })
 
