@@ -1,8 +1,8 @@
 export { default as FocusContainer } from './components/FocusContainer'
 export * from './components/FocusContainer'
 
-export { default as FocusProvider } from './components/FocusProvider'
-export * from './components/FocusProvider'
+export { default as FocusManager } from './components/FocusManager'
+export * from './components/FocusManager'
 
 export { default as useAutoFocus } from './hooks/useAutoFocus'
 export * from './hooks/useAutoFocus'

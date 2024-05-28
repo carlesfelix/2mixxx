@@ -9,23 +9,29 @@ import { type KeyboardNavigationSettings } from '../../types'
 
 export default function useFocusContainer (
   element: HTMLElement | null,
-  options: UseFocusContainerOptions = {}
+  options: UseFocusContainerOptions
 ): void {
-  const { nextNavigationSettings, prevNavigationSettings, trap = false, autoFocus, returnFocus } = options
+  const {
+    nextNavigationConfig,
+    prevNavigationConfig,
+    trap = false,
+    autoFocus,
+    returnFocus
+  } = options
   const {
     altKey: prevAltKey,
-    code: prevCode = 'Tab',
+    code: prevCode,
     ctrlKey: prevCtrlKey,
     metaKey: prevMetaKey,
-    shiftKey: prevShiftKey = prevNavigationSettings?.code === undefined
-  } = prevNavigationSettings ?? {}
+    shiftKey: prevShiftKey
+  } = prevNavigationConfig
   const {
     altKey: nextAltKey,
-    code: nextCode = 'Tab',
+    code: nextCode,
     ctrlKey: nextCtrlKey,
     metaKey: nextMetaKey,
     shiftKey: nextShiftKey
-  } = nextNavigationSettings ?? {}
+  } = nextNavigationConfig
   const { onKeyDown, onPointerDown } = useFocusContext()
   useAutoFocus(element, autoFocus)
   useReturnFocus(returnFocus)
