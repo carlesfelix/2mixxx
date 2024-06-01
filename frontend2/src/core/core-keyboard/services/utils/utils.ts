@@ -17,3 +17,10 @@ export function matchKeyboardKeyFilter (
     event.metaKey === metaKey &&
     event.shiftKey === shiftKey
 }
+
+export function matchSomeKeyboardKeyFilter (
+  event: KeyboardEvent,
+  keyboardKeyFilters: KeyboardKeyFilter[]
+): boolean {
+  return keyboardKeyFilters.some(keyboardKeyFilter => matchKeyboardKeyFilter(event, keyboardKeyFilter))
+}

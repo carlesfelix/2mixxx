@@ -1,24 +1,13 @@
-import { useEffect, useRef } from 'react'
-import { isFocusable, type FocusableElement } from '../../services/focusable-elements'
+import { useEffect } from 'react'
+import { type FocusableElement } from '../../services/focusable-elements'
 
-export default function useReturnFocus (focusable: boolean | FocusableElement | null = false): void {
-  const elementRef = useRef<Element | null>(null)
+export default function useReturnFocus (focusableElement?: FocusableElement | null): void {
   useEffect(() => {
-    elementRef.current = window.document.activeElement
     return () => {
-      if (!focusable) {
+      if (!focusableElement) {
         return
       }
-      if (typeof focusable === 'boolean') {
-        if (
-          elementRef.current &&
-          isFocusable(elementRef.current)
-        ) {
-          (elementRef.current as FocusableElement).focus()
-        }
-        return
-      }
-      focusable.focus()
+      focusableElement.focus()
     }
-  }, [focusable])
+  }, [focusableElement])
 }

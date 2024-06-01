@@ -74,7 +74,7 @@ function InputCalendarWithRef (
         id={id}
       />
       <Popover
-        placement="bottom-end"
+        placement="bottom-start"
         referenceElement={inputElement}
         className={rootClassName}
         contentClassName="c-input-calendar__content"
@@ -84,8 +84,11 @@ function InputCalendarWithRef (
         container={popoverContainer}
         fillMinWidth
         onClose={closeHandler}
-        dismissableKeyboardCodes={[KEY_CODES.Escape]}
+        dismissableKeyboardKeyFilters={[{ code: KEY_CODES.Escape }]}
         touchUI
+        autoFocus={0}
+        trap
+        returnFocus={inputElement}
       >
         <Calendar
           className={calendarClassName}

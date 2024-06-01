@@ -49,7 +49,7 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
         floatingElement={floatingElement}
         setFloatingElement={setFloatingElement}
         onClose={closeHandler}
-        dismissableKeyboardCodes={[KEY_CODES.Escape]}
+        dismissableKeyboardKeyFilters={[{ code: KEY_CODES.Escape }]}
         prevKeyboardKeyFilter={{ code: KEY_CODES.ArrowUp }}
         nextKeyboardKeyFilter={{ code: KEY_CODES.ArrowDown }}
         returnFocus={referenceElement}

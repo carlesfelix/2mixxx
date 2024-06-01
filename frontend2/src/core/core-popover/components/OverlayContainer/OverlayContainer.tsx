@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { type ReactElement } from 'react'
 import { type OverlayContainerProps } from './types'
 import { useWindowEventListener } from '@/core/core-events'
+import { matchSomeKeyboardKeyFilter } from '@/core/core-keyboard'
 import './OverlayContainer.css'
 
 export default function OverlayContainer (props: OverlayContainerProps): ReactElement {
@@ -14,13 +15,13 @@ export default function OverlayContainer (props: OverlayContainerProps): ReactEl
     contentClassName,
     className,
     touchUI = false,
-    dismissableKeyboardCodes = [],
+    dismissableKeyboardKeyFilters = [],
     dismissableMask = true,
     ...otherProps
   } = props
 
   useWindowEventListener('keydown', event => {
-    if (dismissableKeyboardCodes.includes(event.code)) {
+    if (matchSomeKeyboardKeyFilter(event, dismissableKeyboardKeyFilters)) {
       onClose?.()
     }
   })
@@ -38,10 +39,10 @@ export default function OverlayContainer (props: OverlayContainerProps): ReactEl
   )
   const internalContentClassName = classNames('c-overlay-container__content', contentClassName)
   return (
-    <FocusContainer className={internalClassName} onClick={clickHandler} {...otherProps}>
-      <div className={internalContentClassName} ref={setFloatingElement}>
+    <div className={internalClassName} onClick={clickHandler}>
+      <FocusContainer className={internalContentClassName} ref={setFloatingElement} {...otherProps}>
         {children}
-      </div>
-    </FocusContainer>
+      </FocusContainer>
+    </div>
   )
 }

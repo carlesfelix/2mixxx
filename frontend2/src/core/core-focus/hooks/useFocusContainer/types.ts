@@ -5,6 +5,6 @@ export interface UseFocusContainerOptions {
   prevKeyboardKeyFilter: KeyboardKeyFilter
   nextKeyboardKeyFilter: KeyboardKeyFilter
   trap?: boolean
-  returnFocus?: boolean | FocusableElement | null
+  returnFocus?: FocusableElement | null
   autoFocus?: number
 }

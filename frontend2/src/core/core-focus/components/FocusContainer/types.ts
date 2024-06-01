@@ -3,7 +3,7 @@ import { type FocusableElement } from '../../services/focusable-elements'
 import { type KeyboardKeyFilter } from '@/core/core-keyboard'
 
 export interface FocusContainerProps extends Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, 'autoFocus'> {
-  returnFocus?: boolean | FocusableElement | null
+  returnFocus?: FocusableElement | null
   prevKeyboardKeyFilter?: KeyboardKeyFilter
   nextKeyboardKeyFilter?: KeyboardKeyFilter
   trap?: boolean

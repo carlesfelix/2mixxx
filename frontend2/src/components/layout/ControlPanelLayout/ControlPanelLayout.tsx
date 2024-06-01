@@ -2,7 +2,7 @@ import MenuIcon from '@/assets/svg/Menu.svg?react'
 import IconButton from '@/components/atoms/IconButton'
 import DesktopMainMenu from '@/components/molecules/DesktopMainMenu'
 import MobileMainMenuSidebar from '@/components/molecules/MobileMainMenuSidebar'
-import { type ReactElement, useEffect, useRef, useState } from 'react'
+import { type ReactElement, useEffect, useState } from 'react'
 import { type ControlPanelLayoutProps } from './types'
 import { usePrevious } from '@/core/core-hooks'
 import { useLocation } from 'react-router-dom'
@@ -12,8 +12,7 @@ export default function ControlPanelLayout (
 ): ReactElement {
   const { children } = props
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const openButtonRef = useRef<HTMLButtonElement>(null)
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null)
+  const [openButtonElement, setOpenButtonElement] = useState<HTMLButtonElement | null>(null)
   const { pathname } = useLocation()
   const prevPathName = usePrevious(pathname)
 
@@ -31,9 +30,9 @@ export default function ControlPanelLayout (
     <div className="c-control-panel-layout">
       <MobileMainMenuSidebar
         className="c-control-panel-layout__mobile-menu"
-        closeButtonRef={closeButtonRef}
         setIsOpen={setIsOpen}
         isOpen={isOpen}
+        returnFocus={openButtonElement}
       />
       <DesktopMainMenu className="c-control-panel-layout__desktop-menu" />
       <div className="c-control-panel-layout__main-container">
@@ -43,7 +42,7 @@ export default function ControlPanelLayout (
               size="lg"
               onClick={openSidebarHandler}
               color="primary"
-              ref={openButtonRef}
+              ref={setOpenButtonElement}
             >
               <MenuIcon />
             </IconButton>

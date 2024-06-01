@@ -10,7 +10,7 @@ import './MobileMainMenu.css'
 export default function MobileMainMenu (
   props: MobileMainMenuProps
 ): ReactElement {
-  const { className, onClose, closeButtonRef } = props
+  const { className, onClose } = props
 
   function clickHandler (event: MouseEvent<HTMLButtonElement>): void {
     onClose && onClose(event)
@@ -25,7 +25,6 @@ export default function MobileMainMenu (
           className="c-mobile-main-menu__menu-btn"
           onClick={clickHandler}
           size="lg"
-          ref={closeButtonRef}
         >
           <MenuIcon />
         </IconButton>

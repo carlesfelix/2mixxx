@@ -1,14 +1,14 @@
-import { type Dispatch, type MouseEvent, type MutableRefObject, type SetStateAction } from 'react'
+import { type FocusableElement } from '@/core/core-focus'
+import { type Dispatch, type MouseEvent, type SetStateAction } from 'react'
 
 export interface MobileMainMenuSidebarProps {
   className?: string
-  closeButtonRef?: MutableRefObject<HTMLButtonElement | null>
   isOpen: boolean
   setIsOpen: Dispatch<SetStateAction<boolean>>
+  returnFocus?: FocusableElement | null
 }
 
 export interface MobileMainMenuProps {
   className?: string
   onClose?: (event: MouseEvent<HTMLButtonElement>) => void
-  closeButtonRef?: MutableRefObject<HTMLButtonElement | null>
 }

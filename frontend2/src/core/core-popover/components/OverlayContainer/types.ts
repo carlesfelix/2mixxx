@@ -1,4 +1,5 @@
 import { type FocusContainerProps } from '@/core/core-focus'
+import { type KeyboardKeyFilter } from '@/core/core-keyboard'
 
 export interface OverlayContainerProps extends FocusContainerProps {
   contentClassName?: string
@@ -6,5 +7,5 @@ export interface OverlayContainerProps extends FocusContainerProps {
   setFloatingElement?: React.Dispatch<React.SetStateAction<HTMLDivElement | null>>
   touchUI?: boolean
   dismissableMask?: boolean
-  dismissableKeyboardCodes?: string[]
+  dismissableKeyboardKeyFilters?: KeyboardKeyFilter[]
 }

@@ -17,7 +17,8 @@ export default function Sidebar (props: SidebarProps): ReactElement {
     setIsOpen,
     children,
     className,
-    contentClassName
+    contentClassName,
+    returnFocus
   } = props
   const [status, setStatus] = useState<SidebarStatus>(isOpen ? 'opened' : 'closed')
 
@@ -56,9 +57,9 @@ export default function Sidebar (props: SidebarProps): ReactElement {
       onAnimationStart={animationStartHandler}
       onAnimationEnd={animationEndHandler}
       onClose={closeHandler}
-      dismissableKeyboardCodes={[KEY_CODES.Escape]}
+      dismissableKeyboardKeyFilters={[{ code: KEY_CODES.Escape }]}
       trap
-      returnFocus
+      returnFocus={returnFocus}
       autoFocus={0}
     >
       {children}
