@@ -1,17 +1,4 @@
-export interface KeyboardNavigationConfig {
-  code: string
-  shiftKey?: boolean
-  ctrlKey?: boolean
-  altKey?: boolean
-  metaKey?: boolean
-}
-
-export interface KeyboardNavigationSettings {
-  prev: KeyboardNavigationConfig
-  next: KeyboardNavigationConfig
-  top?: KeyboardNavigationConfig
-  bottom?: KeyboardNavigationConfig
-}
+import { type FocusableElement } from './services/focusable-elements'
 
 export interface FocusNavigationAction {
   offset: number
@@ -19,8 +6,14 @@ export interface FocusNavigationAction {
   eventTarget: EventTarget | null
 }
 
+export type RestoreFocusCallbackReturn = FocusableElement | number | null | undefined
+
+export type RestoreFocusCallback = (
+  event: KeyboardEvent,
+  allFocusableElements: FocusableElement[]
+) => RestoreFocusCallbackReturn
+
 export interface PointerDownAction {
   element: Element
-  keyboardNavigationSettings: KeyboardNavigationSettings
-  trap: boolean
+  restoreFocusCallback: RestoreFocusCallback
 }

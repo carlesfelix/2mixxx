@@ -8,8 +8,8 @@ export default function FocusRoot (props: FocusRootProps): ReactElement {
   useFocusContainer(
     window.document.body,
     {
-      nextNavigationConfig: { code: KEY_CODES.Tab },
-      prevNavigationConfig: { code: KEY_CODES.Tab, shiftKey: true }
+      nextKeyboardKeyFilter: { code: KEY_CODES.Tab },
+      prevKeyboardKeyFilter: { code: KEY_CODES.Tab, shiftKey: true }
     }
   )
   return <>{children}</>

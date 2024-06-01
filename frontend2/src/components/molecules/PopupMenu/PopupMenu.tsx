@@ -50,8 +50,8 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
         setFloatingElement={setFloatingElement}
         onClose={closeHandler}
         dismissableKeyboardCodes={[KEY_CODES.Escape]}
-        prevNavigationConfig={{ code: KEY_CODES.ArrowUp }}
-        nextNavigationConfig={{ code: KEY_CODES.ArrowDown }}
+        prevKeyboardKeyFilter={{ code: KEY_CODES.ArrowUp }}
+        nextKeyboardKeyFilter={{ code: KEY_CODES.ArrowDown }}
         returnFocus={referenceElement}
         trap
         autoFocus={0}

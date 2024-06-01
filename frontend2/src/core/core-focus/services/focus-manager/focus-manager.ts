@@ -1,21 +1,15 @@
-import { type FocusableElement, tabbable } from 'tabbable'
-import { type RestoreFocusAction, type FocusManagerReturn } from './types'
-import {
-  clearCurrentFocusVisible,
-  matchDefaultKeyboardConfig,
-  matchDefaultNextKeyboardConfig,
-  matchDefaultPrevKeyboardConfig,
-  matchKeyboardConfig,
-  setFocusVisibility
-} from '../utils'
-import { type PointerDownAction, type FocusNavigationAction } from '../../types'
+import { type FocusManagerReturn } from './types'
+import { type PointerDownAction, type FocusNavigationAction, type RestoreFocusCallback } from '../../types'
+import { type FocusableElement, getFocusableElements } from '../focusable-elements'
+import { clearCurrentFocusVisible, setFocusVisibility } from './utils'
+import { matchDefaultKeyboardFilter, matchDefaultNextKeyboardKeyFilter, matchDefaultPrevKeyboardKeyFilter } from '../utils'
 
 export default function focusManager (focusVisibleDataKey: string): FocusManagerReturn {
   let pointerDownEventTarget: EventTarget | null = null
   let pointerDownActions: PointerDownAction[] = []
   let focusFromKeyboard = false
   let focusNavigationActions: FocusNavigationAction[] = []
-  let restoreFocusAction: RestoreFocusAction | null = null
+  let restoreFocusCallback: RestoreFocusCallback | null = null
   function focusElement (event: KeyboardEvent, focusableElement?: FocusableElement): void {
     if (focusableElement) {
       focusableElement.focus()
@@ -26,22 +20,24 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
     focusFromKeyboard = true
     const currentFocusNavigationActions = focusNavigationActions
     focusNavigationActions = []
-    const focusableElements = tabbable(window.document.body)
+    const focusableElements = getFocusableElements(window.document.body)
     const currentFocusIndex = focusableElements.findIndex((focusableElement) => focusableElement === window.document.activeElement)
     if (currentFocusIndex === -1) {
-      if (restoreFocusAction) {
-        if (matchKeyboardConfig(event, restoreFocusAction.keyboardNavigationSettings.next)) {
-          focusElement(event, focusableElements.at(restoreFocusAction.index.next))
-          restoreFocusAction = null
-        } else if (matchKeyboardConfig(event, restoreFocusAction.keyboardNavigationSettings.prev)) {
-          focusElement(event, focusableElements.at(restoreFocusAction.index.prev))
-          restoreFocusAction = null
+      if (restoreFocusCallback) {
+        const restoreFocusAction = restoreFocusCallback(event, focusableElements)
+        if (typeof restoreFocusAction === 'number') {
+          focusElement(event, focusableElements.at(restoreFocusAction))
+        } else if (restoreFocusAction) {
+          focusElement(event, restoreFocusAction)
         } else {
           event.preventDefault()
         }
-      } else if (matchDefaultNextKeyboardConfig(event)) {
+        if (restoreFocusAction) {
+          restoreFocusCallback = null
+        }
+      } else if (matchDefaultNextKeyboardKeyFilter(event)) {
         focusElement(event, focusableElements.at(0))
-      } else if (matchDefaultPrevKeyboardConfig(event)) {
+      } else if (matchDefaultPrevKeyboardKeyFilter(event)) {
         focusElement(event, focusableElements.at(-1))
       }
       return
@@ -51,7 +47,7 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
       return
     }
     if (!focusNavigationAction.match) {
-      if (matchDefaultKeyboardConfig(event)) {
+      if (matchDefaultKeyboardFilter(event)) {
         event.preventDefault()
       }
       return
@@ -60,7 +56,6 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
     focusElement(event, focusableElements.at(offset))
   }
   function focusoutHandler (event: FocusEvent): void {
-    clearCurrentFocusVisible(focusVisibleDataKey)
     setFocusVisibility(event.target, false, focusVisibleDataKey)
   }
   function pointerDownHandler (event: MouseEvent): void {
@@ -69,23 +64,7 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
     const currentPointerDownAction = currentPointerDownActions.find(
       (eachCurrentPointerDownAction) => eachCurrentPointerDownAction.element.contains(event.target as Node)
     )
-    if (currentPointerDownAction) {
-      const focusableElements = tabbable(window.document.body)
-      const childFocusableElements = tabbable(currentPointerDownAction.element)
-      const firstChildFocusableElement = childFocusableElements.at(0)
-      const lastChildFocusableElement = childFocusableElements.at(-1)
-      const firstChildFocusableElementIndex = focusableElements.findIndex(focusableElement => focusableElement === firstChildFocusableElement)
-      const lastChildFocusableElementIndex = focusableElements.findIndex(focusableElement => focusableElement === lastChildFocusableElement)
-      if (firstChildFocusableElementIndex !== -1 && lastChildFocusableElementIndex !== -1) {
-        restoreFocusAction = {
-          index: {
-            next: firstChildFocusableElementIndex,
-            prev: currentPointerDownAction.trap ? lastChildFocusableElementIndex : firstChildFocusableElementIndex - 1
-          },
-          keyboardNavigationSettings: currentPointerDownAction.keyboardNavigationSettings
-        }
-      }
-    }
+    restoreFocusCallback = currentPointerDownAction?.restoreFocusCallback ?? null
     pointerDownEventTarget = event.target
     focusFromKeyboard = false
   }
@@ -108,7 +87,7 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
     }
     focusFromKeyboard = false
     pointerDownEventTarget = null
-    restoreFocusAction = null
+    restoreFocusCallback = null
   }
   function onKeyDown (focusNavigationAction: FocusNavigationAction): void {
     focusNavigationActions.push(focusNavigationAction)
@@ -131,7 +110,7 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
     pointerDownActions = []
     focusFromKeyboard = false
     focusNavigationActions = []
-    restoreFocusAction = null
+    restoreFocusCallback = null
     clearCurrentFocusVisible(focusVisibleDataKey)
   }
   return {

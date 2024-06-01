@@ -94,8 +94,8 @@ export default function NotFoundPage (): ReactElement {
         <button type="submit">enviar</button>
       </form>
       <FocusContainer
-        prevNavigationConfig={{ code: KEY_CODES.ArrowLeft }}
-        nextNavigationConfig={{ code: KEY_CODES.ArrowRight }}
+        prevKeyboardKeyFilter={{ code: KEY_CODES.ArrowLeft }}
+        nextKeyboardKeyFilter={{ code: KEY_CODES.ArrowRight }}
       >
         <div>
           Group 1

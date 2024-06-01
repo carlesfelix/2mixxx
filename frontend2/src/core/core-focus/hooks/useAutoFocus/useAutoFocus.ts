@@ -1,5 +1,5 @@
-import { tabbable } from 'tabbable'
 import { useEffect } from 'react'
+import { getFocusableElements } from '../../services/focusable-elements'
 
 export default function useAutoFocus (
   element: Element | null,
@@ -7,7 +7,7 @@ export default function useAutoFocus (
 ): void {
   useEffect(() => {
     if (element !== null && typeof autoFocus === 'number') {
-      const focusableElements = tabbable(element)
+      const focusableElements = getFocusableElements(element)
       const focusableElement = focusableElements.at(autoFocus)
       focusableElement?.focus()
     }

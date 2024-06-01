@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { isFocusable, type FocusableElement } from 'tabbable'
+import { isFocusable, type FocusableElement } from '../../services/focusable-elements'
 
 export default function useReturnFocus (focusable: boolean | FocusableElement | null = false): void {
   const elementRef = useRef<Element | null>(null)

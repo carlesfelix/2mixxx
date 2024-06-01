@@ -1,11 +1,10 @@
-import { type FocusableElement } from 'tabbable'
-import { type KeyboardNavigationConfig } from '../../types'
+import { type KeyboardKeyFilter } from '@/core/core-keyboard'
+import { type FocusableElement } from '../../services/focusable-elements'
 
 export interface UseFocusContainerOptions {
-  prevNavigationConfig: KeyboardNavigationConfig
-  nextNavigationConfig: KeyboardNavigationConfig
+  prevKeyboardKeyFilter: KeyboardKeyFilter
+  nextKeyboardKeyFilter: KeyboardKeyFilter
   trap?: boolean
   returnFocus?: boolean | FocusableElement | null
   autoFocus?: number
-  columns?: boolean
 }

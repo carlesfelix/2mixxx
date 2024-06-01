@@ -1,19 +1,19 @@
 import { useEffect } from 'react'
 import useFocusContext from '../useFocusContext'
 import { type UseFocusContainerOptions } from './types'
-import { tabbable } from 'tabbable'
-import { matchKeyboardConfig } from '../../services/utils'
 import useAutoFocus from '../useAutoFocus'
 import useReturnFocus from '../useReturnFocus'
-import { type KeyboardNavigationSettings } from '../../types'
+import { type RestoreFocusCallbackReturn } from '../../types'
+import { type FocusableElement, getFocusableElements } from '../../services/focusable-elements'
+import { type KeyboardKeyFilter, matchKeyboardKeyFilter } from '@/core/core-keyboard'
 
 export default function useFocusContainer (
   element: HTMLElement | null,
   options: UseFocusContainerOptions
 ): void {
   const {
-    nextNavigationConfig,
-    prevNavigationConfig,
+    nextKeyboardKeyFilter,
+    prevKeyboardKeyFilter,
     trap = false,
     autoFocus,
     returnFocus
@@ -24,14 +24,14 @@ export default function useFocusContainer (
     ctrlKey: prevCtrlKey,
     metaKey: prevMetaKey,
     shiftKey: prevShiftKey
-  } = prevNavigationConfig
+  } = prevKeyboardKeyFilter
   const {
     altKey: nextAltKey,
     code: nextCode,
     ctrlKey: nextCtrlKey,
     metaKey: nextMetaKey,
     shiftKey: nextShiftKey
-  } = nextNavigationConfig
+  } = nextKeyboardKeyFilter
   const { onKeyDown, onPointerDown } = useFocusContext()
   useAutoFocus(element, autoFocus)
   useReturnFocus(returnFocus)
@@ -40,21 +40,19 @@ export default function useFocusContainer (
     if (element === null) {
       return
     }
-    const keyboardNavigationSettings: KeyboardNavigationSettings = {
-      prev: {
-        altKey: prevAltKey,
-        code: prevCode,
-        ctrlKey: prevCtrlKey,
-        metaKey: prevMetaKey,
-        shiftKey: prevShiftKey
-      },
-      next: {
-        altKey: nextAltKey,
-        code: nextCode,
-        ctrlKey: nextCtrlKey,
-        metaKey: nextMetaKey,
-        shiftKey: nextShiftKey
-      }
+    const prevKeyboardKeyFilter: KeyboardKeyFilter = {
+      altKey: prevAltKey,
+      code: prevCode,
+      ctrlKey: prevCtrlKey,
+      metaKey: prevMetaKey,
+      shiftKey: prevShiftKey
+    }
+    const nextKeyboardKeyFilter: KeyboardKeyFilter = {
+      altKey: nextAltKey,
+      code: nextCode,
+      ctrlKey: nextCtrlKey,
+      metaKey: nextMetaKey,
+      shiftKey: nextShiftKey
     }
     function keydownHandler (event: KeyboardEvent): void {
       if (element === null) {
@@ -62,14 +60,14 @@ export default function useFocusContainer (
       }
       let offset = 0
       let match = false
-      const focusableElements = tabbable(element)
+      const focusableElements = getFocusableElements(element)
       if (
-        matchKeyboardConfig(event, keyboardNavigationSettings.prev)
+        matchKeyboardKeyFilter(event, prevKeyboardKeyFilter)
       ) {
         offset = -1
         match = true
       } else if (
-        matchKeyboardConfig(event, keyboardNavigationSettings.next)
+        matchKeyboardKeyFilter(event, nextKeyboardKeyFilter)
       ) {
         offset = 1
         match = true
@@ -87,14 +85,35 @@ export default function useFocusContainer (
       }
       onKeyDown({ eventTarget: event.target, match, offset })
     }
+    function restoreFocusCallback (
+      event: KeyboardEvent,
+      allFocusableElements: FocusableElement[]
+    ): RestoreFocusCallbackReturn {
+      if (!element) {
+        return null
+      }
+      const focusableElements = getFocusableElements(element)
+      const firstFocusableElement = focusableElements.at(0)
+      const lastFocusableElement = focusableElements.at(-1)
+      if (matchKeyboardKeyFilter(event, prevKeyboardKeyFilter)) {
+        if (trap) {
+          return lastFocusableElement
+        }
+        const focusableElementIndex = allFocusableElements.findIndex(eachAllFocusableElement => eachAllFocusableElement === firstFocusableElement) - 1
+        return focusableElementIndex === -1 ? null : focusableElementIndex
+      }
+      if (matchKeyboardKeyFilter(event, nextKeyboardKeyFilter)) {
+        return firstFocusableElement
+      }
+      return null
+    }
     function pointerDownHandler (): void {
       if (element === null) {
         return
       }
       onPointerDown({
         element,
-        keyboardNavigationSettings,
-        trap
+        restoreFocusCallback
       })
     }
     element.addEventListener('keydown', keydownHandler)

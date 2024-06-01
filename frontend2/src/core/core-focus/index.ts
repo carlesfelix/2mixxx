@@ -11,3 +11,9 @@ export { default as useFocusContainer } from './hooks/useFocusContainer'
 export * from './hooks/useFocusContainer'
 
 export { default as useReturnFocus } from './hooks/useReturnFocus'
+
+export * from './services/focusable-elements'
+
+export * from './services/utils'
+
+export * from './types'

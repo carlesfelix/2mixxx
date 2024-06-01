@@ -8,8 +8,8 @@ function FocusContainerWithRef (
   ref: ForwardedRef<HTMLDivElement>
 ): ReactElement {
   const {
-    nextNavigationConfig,
-    prevNavigationConfig,
+    nextKeyboardKeyFilter,
+    prevKeyboardKeyFilter,
     returnFocus,
     trap,
     autoFocus,
@@ -20,25 +20,25 @@ function FocusContainerWithRef (
     code: prevCode = 'Tab',
     ctrlKey: prevCtrlKey,
     metaKey: prevMetaKey,
-    shiftKey: prevShiftKey = prevNavigationConfig?.code === undefined
-  } = prevNavigationConfig ?? {}
+    shiftKey: prevShiftKey = prevKeyboardKeyFilter?.code === undefined
+  } = prevKeyboardKeyFilter ?? {}
   const {
     altKey: nextAltKey,
     code: nextCode = 'Tab',
     ctrlKey: nextCtrlKey,
     metaKey: nextMetaKey,
     shiftKey: nextShiftKey
-  } = nextNavigationConfig ?? {}
+  } = nextKeyboardKeyFilter ?? {}
   const [elementRefCallback, element] = useInternalInstance(ref)
   useFocusContainer(element, {
-    nextNavigationConfig: {
+    nextKeyboardKeyFilter: {
       altKey: nextAltKey,
       code: nextCode,
       ctrlKey: nextCtrlKey,
       metaKey: nextMetaKey,
       shiftKey: nextShiftKey
     },
-    prevNavigationConfig: {
+    prevKeyboardKeyFilter: {
       altKey: prevAltKey,
       code: prevCode,
       ctrlKey: prevCtrlKey,
