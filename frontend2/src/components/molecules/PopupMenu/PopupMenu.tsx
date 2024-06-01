@@ -1,14 +1,11 @@
 import IconButton from '@/components/atoms/IconButton'
-import Popover from '@/core/core-popover'
+import { Popover } from '@/core/core-popover'
 import { type ReactElement, useState, type MouseEvent } from 'react'
 import MoreVertIcon from '@/assets/svg/MoreVert.svg?react'
 import { type PopupMenuProps } from './types'
 import classNames from 'classnames'
 import MenuItems, { type MenuItem } from '@/components/molecules/MenuItems'
 import { popoverContainer } from '@/modules/popover'
-import { FocusContainer } from '@/core/core-focus'
-import { useKeyBoard } from '@/core/core-hooks'
-import useClick from '@/core/core-hooks/useClick'
 import { KEY_CODES } from '@/core/core-keyboard'
 import './PopupMenu.css'
 
@@ -18,26 +15,9 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [floatingElement, setFloatingElement] = useState<HTMLDivElement | null>(null)
 
-  // TODO: Create usePopoverHelper hook
-  useKeyBoard({
-    listener (event) {
-      setIsOpen(false)
-    },
-    code: KEY_CODES.Escape,
-    listen: isOpen
-  })
-
-  useClick({
-    listener (event) {
-      if (
-        !referenceElement?.contains(event.target as Node) &&
-        !floatingElement?.contains(event.target as Node)
-      ) {
-        setIsOpen(false)
-      }
-    }
-  })
-
+  function closeHandler (): void {
+    setIsOpen(false)
+  }
   function clickHandler (): void {
     setIsOpen(old => !old)
   }
@@ -64,22 +44,22 @@ export default function PopupMenu (props: PopupMenuProps): ReactElement {
         placement="bottom-end"
         referenceElement={referenceElement}
         className={rootClassName}
+        contentClassName="c-popup-menu__content"
         isOpen={isOpen}
         floatingElement={floatingElement}
         setFloatingElement={setFloatingElement}
+        onClose={closeHandler}
+        dismissableKeyboardCodes={[KEY_CODES.Escape]}
+        prevNavigationConfig={{ code: KEY_CODES.ArrowUp }}
+        nextNavigationConfig={{ code: KEY_CODES.ArrowDown }}
+        returnFocus={referenceElement}
+        trap
+        autoFocus={0}
       >
-        <FocusContainer
-          prevNavigationConfig={{ code: KEY_CODES.ArrowUp }}
-          nextNavigationConfig={{ code: KEY_CODES.ArrowDown }}
-          returnFocus={referenceElement}
-          trap
-          autoFocus={0}
-        >
-          <MenuItems
-            items={items}
-            onClickItem={clickItemHandler}
-          />
-        </FocusContainer>
+        <MenuItems
+          items={items}
+          onClickItem={clickItemHandler}
+        />
       </Popover>
     </>
   )

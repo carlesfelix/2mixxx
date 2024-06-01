@@ -1,17 +1,14 @@
-import { useKeyBoard } from '@/core/core-hooks'
 import classNames from 'classnames'
 import {
   type AnimationEvent,
-  type MouseEvent,
   type ReactElement,
-  useRef,
   useState
 } from 'react'
 import { createPortal } from 'react-dom'
 import { type SidebarProps, type SidebarStatus } from './types'
 import { popoverContainer } from '@/modules/popover'
-import { FocusContainer } from '@/core/core-focus'
 import { KEY_CODES } from '@/core/core-keyboard'
+import { OverlayContainer } from '@/core/core-popover'
 import './Sidebar.css'
 
 export default function Sidebar (props: SidebarProps): ReactElement {
@@ -23,15 +20,6 @@ export default function Sidebar (props: SidebarProps): ReactElement {
     contentClassName
   } = props
   const [status, setStatus] = useState<SidebarStatus>(isOpen ? 'opened' : 'closed')
-  const sidebarContentRef = useRef<HTMLDivElement>(null)
-
-  useKeyBoard({
-    listener (event) {
-      setIsOpen(false)
-    },
-    code: KEY_CODES.Escape,
-    listen: isOpen
-  })
 
   function animationEndHandler (event: AnimationEvent): void {
     if (event.animationName === 'cfx-sidebar__fadein') {
@@ -49,12 +37,8 @@ export default function Sidebar (props: SidebarProps): ReactElement {
     }
   }
 
-  function clickHandler (event: MouseEvent<HTMLDivElement>): void {
-    if (
-      !sidebarContentRef.current?.contains(event.target as Node)
-    ) {
-      setIsOpen(false)
-    }
+  function closeHandler (): void {
+    setIsOpen(false)
   }
 
   const rootClassName = classNames(
@@ -66,18 +50,18 @@ export default function Sidebar (props: SidebarProps): ReactElement {
 
   const showSidebar = isOpen || status !== 'closed'
   return createPortal(showSidebar && (
-    <div
+    <OverlayContainer
       className={rootClassName}
+      contentClassName={sidebarContentClassName}
       onAnimationStart={animationStartHandler}
       onAnimationEnd={animationEndHandler}
-      onClick={clickHandler}
+      onClose={closeHandler}
+      dismissableKeyboardCodes={[KEY_CODES.Escape]}
+      trap
+      returnFocus
+      autoFocus={0}
     >
-      <FocusContainer className="c-sidebar__wrapper" trap returnFocus autoFocus={0}>
-        <div className="c-sidebar__mask" />
-        <div className={sidebarContentClassName} ref={sidebarContentRef}>
-          {children}
-        </div>
-      </FocusContainer>
-    </div>
+      {children}
+    </OverlayContainer>
   ), popoverContainer)
 }

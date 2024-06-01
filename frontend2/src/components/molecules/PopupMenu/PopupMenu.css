@@ -1,7 +1,9 @@
 .c-popup-menu {
-  background-color: var(--theme-color-overlay-background);
-  color: var(--theme-color-overlay-text);
-  border-radius: 0.375rem;
-  box-shadow: 0 0.125rem 0.75rem 0 var(--theme-color-overlay-shadow);
-  font-size: 0.875rem;
+  & .c-popup-menu__content {
+    background-color: var(--theme-color-overlay-background);
+    color: var(--theme-color-overlay-text);
+    border-radius: 0.375rem;
+    box-shadow: 0 0.125rem 0.75rem 0 var(--theme-color-overlay-shadow);
+    font-size: 0.875rem;
+  }
 }

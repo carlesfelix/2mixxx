@@ -1,13 +1,22 @@
-.c-popover {
-  display: inline-block;
+.c-overlay-container {
+  position: fixed;
   z-index: 999;
-  position: absolute;
   top: 0;
   left: 0;
-  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+
+  & .c-overlay-container__content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+  }
+  
 
   @media(--max-md-window) {
-    &.c-popover--touch-ui {
+    &.c-overlay-container--touch-ui .c-overlay-container__content {
       top: 50% !important;
       left: 50% !important;
       width: 85vw !important;

@@ -1,27 +1,23 @@
-import classNames from 'classnames'
 import { type ReactElement, useLayoutEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { autoUpdate as onAutoUpdate } from '@floating-ui/dom'
 import { type PopoverProps } from './types'
 import { updatePosition } from './utils'
-import './Popover.css'
+import OverlayContainer from '../OverlayContainer'
 
 export default function Popover (props: PopoverProps): ReactElement {
   const {
     container,
-    children,
     referenceElement,
     placement,
-    className,
     isOpen,
     fillMinWidth = false,
     fillWidth,
-    autoUpdate = true,
-    touchUI = false,
+    autoUpdatePosition: autoUpdate = true,
     preventCollisions = true,
     floatingElement,
-    setFloatingElement,
-    strategy
+    strategy,
+    ...overlayContainerProps
   } = props
 
   useLayoutEffect(() => {
@@ -71,20 +67,7 @@ export default function Popover (props: PopoverProps): ReactElement {
     strategy
   ])
 
-  const rootClassName = classNames(
-    'c-popover',
-    { 'c-popover--touch-ui': touchUI },
-    className
-  )
-
-  const popperNode = (
-    <div
-      ref={setFloatingElement}
-      className={rootClassName}
-    >
-      {children}
-    </div>
-  )
-
-  return createPortal(isOpen && popperNode, container)
+  return createPortal(isOpen && (
+    <OverlayContainer {...overlayContainerProps} />
+  ), container)
 }

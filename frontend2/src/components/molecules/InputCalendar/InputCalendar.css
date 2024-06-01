@@ -1,5 +1,7 @@
 .c-input-calendar {
-  width: 20rem;
+  & .c-input-calendar__content {
+    width: 20rem;
+  }
 
   & .c-input-calendar--calendar {
     width: 100%;

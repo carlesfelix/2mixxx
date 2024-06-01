@@ -1,5 +1,5 @@
 import { type Strategy, type Placement } from '@floating-ui/dom'
-import { type Dispatch, type SetStateAction, type ReactNode } from 'react'
+import { type OverlayContainerProps } from '../OverlayContainer'
 
 export interface PopoverOptions {
   placement?: Placement
@@ -9,14 +9,11 @@ export interface PopoverOptions {
   preventCollisions?: boolean
 }
 
-export interface PopoverProps extends PopoverOptions {
+export interface PopoverProps extends PopoverOptions, OverlayContainerProps {
   container: Element
-  children: ReactNode
   referenceElement: HTMLElement | null
   className?: string
   isOpen: boolean
-  autoUpdate?: boolean
-  touchUI?: boolean
+  autoUpdatePosition?: boolean
   floatingElement: HTMLDivElement | null
-  setFloatingElement: Dispatch<SetStateAction<HTMLDivElement | null>>
 }

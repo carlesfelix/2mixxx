@@ -20,76 +20,52 @@
 
 @keyframes cfx-sidebar__mask-fadein {
   0% {
-    opacity: 0;
+    background-color: transparent;
   }
 
   100% {
-    opacity: 1;
+    background-color: var(--theme-color-mask-background);
   }
 }
 
 @keyframes cfx-sidebar__mask-fadeout {
   0% {
-    opacity: 1;
+    background-color: var(--theme-color-mask-background);
   }
 
   100% {
-    opacity: 0;
+    background-color: transparent;
   }
 }
 
 .c-sidebar {
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-
-  & .c-sidebar__wrapper {
-    height: 100%;
-    width: 100%;
-  }
+  background-color: var(--theme-color-mask-background);
+  will-change: background-color;
 
   & .c-sidebar__content {
     transform: translateX(-100%);
     height: 100%;
     display: inline-block;
-  }
-
-  & .c-sidebar__mask {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: absolute;
-    background-color: var(--theme-color-mask-background);
+    position: relative;
+    will-change: transform;
   }
 
   &.c-sidebar--opened {
+    animation: cfx-sidebar__mask-fadein 250ms;
+
     & .c-sidebar__content {
       transform: translateX(0);
       animation: cfx-sidebar__fadein 250ms;
-      will-change: transform;
-    }
-
-    & .c-sidebar__mask {
-      animation: cfx-sidebar__mask-fadein 250ms;
-      will-change: opacity;
     }
   }
 
   &.c-sidebar--closed {
+    background-color: transparent;
+    animation: cfx-sidebar__mask-fadeout 250ms;
+
     & .c-sidebar__content {
       transform: translateX(-100%);
       animation: cfx-sidebar__fadeout 250ms;
-      will-change: transform;
-    }
-
-    & .c-sidebar__mask {
-      background-color: transparent;
-      animation: cfx-sidebar__mask-fadeout 250ms;
-      will-change: opacity;
     }
   }
 }
