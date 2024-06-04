@@ -18,6 +18,7 @@ export function updatePosition (
   const middleware: Middleware[] = []
   if (preventCollisions) {
     middleware.push(flip())
+    middleware.push(shift({ limiter: limitShift() }))
   }
   middleware.push(size({
     apply ({ rects, elements }) {
@@ -33,18 +34,16 @@ export function updatePosition (
       }
     }
   }))
-  if (preventCollisions) {
-    middleware.push(shift({ limiter: limitShift() }))
-  }
   computePosition(referenceEl, floatingEl, {
     placement,
     strategy,
     middleware
-  }).then(({ x, y }) => {
+  }).then(({ x, y, placement }) => {
     Object.assign(floatingEl.style, {
       left: `${x}px`,
       top: `${y}px`
     })
+    Object.assign(floatingEl.dataset, { placement })
   }).catch(error => {
     window.console.error(error)
   })

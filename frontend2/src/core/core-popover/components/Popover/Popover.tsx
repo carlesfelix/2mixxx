@@ -1,4 +1,4 @@
-import { type ReactElement, useLayoutEffect } from 'react'
+import { type ReactElement, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { autoUpdate as onAutoUpdate } from '@floating-ui/dom'
 import { type PopoverProps } from './types'
@@ -20,29 +20,8 @@ export default function Popover (props: PopoverProps): ReactElement {
     ...overlayContainerProps
   } = props
 
-  useLayoutEffect(() => {
-    if (referenceElement && floatingElement) {
-      updatePosition(referenceElement, floatingElement, {
-        preventCollisions,
-        placement,
-        fillMinWidth,
-        fillWidth,
-        strategy
-      })
-    }
-  }, [
-    referenceElement,
-    floatingElement,
-    placement,
-    fillMinWidth,
-    fillWidth,
-    preventCollisions,
-    strategy
-  ])
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (autoUpdate && referenceElement && floatingElement) {
-      // When the floating element is open on the screen
       const cleanup = onAutoUpdate(referenceElement, floatingElement, () => {
         updatePosition(referenceElement, floatingElement, {
           preventCollisions,
@@ -51,7 +30,7 @@ export default function Popover (props: PopoverProps): ReactElement {
           fillWidth,
           strategy
         })
-      })
+      }, { layoutShift: false })
       return () => {
         cleanup()
       }
