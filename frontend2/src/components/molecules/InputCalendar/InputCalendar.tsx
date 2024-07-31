@@ -1,11 +1,11 @@
-import { type KeyboardEvent, forwardRef, useState, type ForwardedRef, type ReactElement, useLayoutEffect } from 'react'
+import { type KeyboardEvent, forwardRef, useState, type ForwardedRef, type ReactElement, useEffect } from 'react'
 import { type InputCalendarProps } from './types'
 import classNames from 'classnames'
 import { Popover } from '@/core/core-popover'
 import { useInternalInstance } from '@/core/core-hooks'
 import { popoverContainer } from '@/modules/popover'
 import { Calendar } from '@/modules/calendar'
-import { KEY_CODES } from '@/core/core-keyboard'
+import { KEY_CODES, matchKeyboardKeyFilter } from '@/core/core-keyboard'
 import './InputCalendar.css'
 
 function InputCalendarWithRef (
@@ -18,29 +18,29 @@ function InputCalendarWithRef (
     disabled = false,
     error,
     className,
-    id
+    id,
+    range
   } = props
   const [isOpen, setIsOpen] = useState(false)
   const [floatingElement, setFloatingElement] = useState<HTMLDivElement | null>(null)
+  const [inputTextValue, setInputTextValue] = useState<string>('')
   const [inputElementRefCallback, inputElement] = useInternalInstance(ref)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let visibleValue = ''
     const intl = new window.Intl.DateTimeFormat()
-    if (inputElement) {
-      if (value instanceof Date) {
-        visibleValue = intl.format(value)
-      } else if (value instanceof Array) {
-        if (value[0] instanceof Date) {
-          visibleValue = intl.format(value[0])
-        }
-        if (value[1] instanceof Date) {
-          visibleValue = visibleValue.concat(' - ').concat(intl.format(value[1]))
-        }
+    if (value instanceof Date) {
+      visibleValue = intl.format(value)
+    } else if (value instanceof Array) {
+      if (value[0] instanceof Date) {
+        visibleValue = intl.format(value[0])
       }
-      inputElement.value = visibleValue
+      if (value[1] instanceof Date) {
+        visibleValue = visibleValue.concat(' - ').concat(intl.format(value[1]))
+      }
     }
-  }, [value, inputElement])
+    setInputTextValue(visibleValue)
+  }, [value])
 
   function inputClickHandler (): void {
     setIsOpen(old => !old)
@@ -50,8 +50,13 @@ function InputCalendarWithRef (
     setIsOpen(false)
   }
 
+  function inputTextChangeHandler (event: React.ChangeEvent<HTMLInputElement>): void {
+    setInputTextValue(event.target.value)
+  }
+
   function inputKeydownHandler (event: KeyboardEvent<HTMLInputElement>): void {
-    if (event.code === 'Enter') {
+    if (matchKeyboardKeyFilter(event, { code: KEY_CODES.Enter })) {
+      event.preventDefault()
       setIsOpen(true)
     }
   }
@@ -70,6 +75,8 @@ function InputCalendarWithRef (
         className={inputClassName}
         onClick={inputClickHandler}
         onKeyDown={inputKeydownHandler}
+        value={inputTextValue}
+        onChange={inputTextChangeHandler}
         ref={inputElementRefCallback}
         id={id}
       />
@@ -86,14 +93,15 @@ function InputCalendarWithRef (
         onClose={closeHandler}
         dismissableKeyboardKeyFilters={[{ code: KEY_CODES.Escape }]}
         touchUI
-        autoFocus={0}
         trap
+        autoFocus={false}
         returnFocus={inputElement}
       >
         <Calendar
           className={calendarClassName}
           onChange={onChange}
           value={value}
+          range={range}
         />
       </Popover>
     </>

@@ -3,7 +3,7 @@ import { getFocusableElements } from '../../services/focusable-elements'
 
 export default function useAutoFocus (
   element: Element | null,
-  autoFocus?: number
+  autoFocus?: number | false
 ): void {
   useEffect(() => {
     if (element !== null && typeof autoFocus === 'number') {

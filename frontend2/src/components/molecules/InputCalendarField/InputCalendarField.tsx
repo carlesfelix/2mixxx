@@ -16,7 +16,7 @@ export default function InputCalendarField<TFieldValues extends FieldValues> (pr
     className,
     name,
     control,
-    defaultValue = '' as FieldPathValue<TFieldValues, typeof name>,
+    defaultValue = null as FieldPathValue<TFieldValues, typeof name>,
     disabled,
     inputId
   } = props

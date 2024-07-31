@@ -4,7 +4,8 @@ const KEY_CODES = {
   ArrowUp: 'ArrowUp',
   ArrowDown: 'ArrowDown',
   ArrowLeft: 'ArrowLeft',
-  ArrowRight: 'ArrowRight'
+  ArrowRight: 'ArrowRight',
+  Enter: 'Enter'
 }
 
 export default KEY_CODES

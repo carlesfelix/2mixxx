@@ -7,5 +7,5 @@ export interface FocusContainerProps extends Omit<DetailedHTMLProps<HTMLAttribut
   prevKeyboardKeyFilter?: KeyboardKeyFilter
   nextKeyboardKeyFilter?: KeyboardKeyFilter
   trap?: boolean
-  autoFocus?: number
+  autoFocus?: number | false
 }

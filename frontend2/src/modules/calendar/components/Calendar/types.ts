@@ -6,4 +6,5 @@ export interface CalendarProps {
   initialActiveStartDate?: Date
   value: CalendarValue
   onChange: (value: CalendarValue) => void
+  range?: boolean
 }

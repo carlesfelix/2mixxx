@@ -1,21 +1,48 @@
 import { useLanguage } from '@/core/core-i18n'
-import { type MouseEvent, useState, type ReactElement, type ForwardedRef, forwardRef } from 'react'
+import { type MouseEvent, useState, type ReactElement, useRef } from 'react'
 import CalendarLib, { type OnArgs } from 'react-calendar'
 import { type CalendarProps } from './types'
 import { type Value, type View } from 'react-calendar/dist/cjs/shared/types'
 import classNames from 'classnames'
+import useFocusCalendar from '../../hooks/useFocusCalendar'
+import { getDaysOfMonth } from '@/core/core-date'
+import './Calendar.css'
 
-function CalendarWithRef (
-  props: CalendarProps,
-  ref: ForwardedRef<HTMLDivElement>
-): ReactElement {
-  const { initialActiveStartDate, value, onChange, className } = props
+// TODO: Refactor
+export default function Calendar (props: CalendarProps): ReactElement {
+  const { initialActiveStartDate, value, onChange, className, range } = props
+  const [calendarElement, setCalendarElement] = useState<HTMLDivElement | null>(null)
   const [view, setView] = useState<View>('month')
-  const [activeStartDate, setActiveStartDate] = useState<Date | undefined>(() => initialActiveStartDate ?? new Date())
+  const [activeStartDate, setActiveStartDate] = useState<Date>(() => (value instanceof Array ? value?.[0] : value) ?? (initialActiveStartDate ?? new Date()))
   const locale = useLanguage()
+  const calendarRef = useRef(null)
+  useFocusCalendar({
+    container: calendarElement,
+    activeStartDate,
+    view,
+    onActiveStartDateChange: nextActiveStartDate => {
+      setActiveStartDate(nextActiveStartDate)
+    }
+  })
 
   function activeStartDateChangeHandler (activeStartDateData: OnArgs): void {
-    setActiveStartDate(activeStartDateData.activeStartDate ?? undefined)
+    setActiveStartDate(oldActiveStartDate => {
+      if (!activeStartDateData.activeStartDate) {
+        return oldActiveStartDate
+      }
+      const nextActiveStartDate = new Date(oldActiveStartDate)
+      const daysOfMonthActive = getDaysOfMonth(activeStartDateData.activeStartDate)
+      const dayActive = oldActiveStartDate.getDate()
+      const day = daysOfMonthActive < dayActive ? daysOfMonthActive : dayActive
+      nextActiveStartDate.setDate(day)
+      if (activeStartDateData.view === 'month') {
+        nextActiveStartDate.setMonth(activeStartDateData.activeStartDate.getMonth())
+        nextActiveStartDate.setFullYear(activeStartDateData.activeStartDate.getFullYear())
+        return nextActiveStartDate
+      }
+      nextActiveStartDate.setFullYear(activeStartDateData.activeStartDate.getFullYear())
+      return nextActiveStartDate
+    })
   }
 
   function viewChangeHandler (viewChangeData: OnArgs): void {
@@ -25,39 +52,9 @@ function CalendarWithRef (
     date: Date,
     event: MouseEvent<HTMLButtonElement>
   ): void {
+    setActiveStartDate(date)
+  }
 
-  }
-  function clickDecadeHandler (
-    date: Date,
-    event: MouseEvent<HTMLButtonElement>
-  ): void {
-    setActiveStartDate(date)
-  }
-  function clickMonthHandler (
-    date: Date,
-    event: MouseEvent<HTMLButtonElement>
-  ): void {
-    setActiveStartDate(date)
-  }
-  function clickWeekNumberHandler (
-    weekNumber: number,
-    date: Date,
-    event: MouseEvent<HTMLButtonElement>
-  ): void {
-    console.log('clickWeekNumberHandler', date, weekNumber)
-  }
-  function clickYearHandler (
-    date: Date,
-    event: MouseEvent<HTMLButtonElement>
-  ): void {
-    setActiveStartDate(date)
-  }
-  function drillDownHandler (drillDownData: OnArgs): void {
-    console.log('drillDownHandler', drillDownData)
-  }
-  function drillUpHandler (drillUpData: OnArgs): void {
-    console.log('drillUpHandler', drillUpData)
-  }
   function changeHandler (nextValue: Value): void {
     onChange(nextValue)
   }
@@ -65,27 +62,19 @@ function CalendarWithRef (
   const rootClassName = classNames('c-calendar', className)
   return (
     <CalendarLib
+      selectRange={range}
+      ref={calendarRef}
       className={rootClassName}
-      ref={ref}
+      inputRef={setCalendarElement}
       locale={locale}
       onActiveStartDateChange={activeStartDateChangeHandler}
       activeStartDate={activeStartDate}
       view={view}
       showNeighboringMonth={false}
       onClickDay={clickDayHandler}
-      onClickDecade={clickDecadeHandler}
-      onClickMonth={clickMonthHandler}
-      onClickWeekNumber={clickWeekNumberHandler}
-      onClickYear={clickYearHandler}
-      onDrillDown={drillDownHandler}
-      onDrillUp={drillUpHandler}
       onViewChange={viewChangeHandler}
       value={value}
       onChange={changeHandler}
     />
   )
 }
-
-const Calendar = forwardRef(CalendarWithRef)
-
-export default Calendar

@@ -1,7 +1,7 @@
 import { type KeyboardKeyFilter } from './types'
 
 export function matchKeyboardKeyFilter (
-  event: KeyboardEvent,
+  event: KeyboardEvent | React.KeyboardEvent,
   keyboardKeyFilter: KeyboardKeyFilter
 ): boolean {
   const {
@@ -19,7 +19,7 @@ export function matchKeyboardKeyFilter (
 }
 
 export function matchSomeKeyboardKeyFilter (
-  event: KeyboardEvent,
+  event: KeyboardEvent | React.KeyboardEvent,
   keyboardKeyFilters: KeyboardKeyFilter[]
 ): boolean {
   return keyboardKeyFilters.some(keyboardKeyFilter => matchKeyboardKeyFilter(event, keyboardKeyFilter))
