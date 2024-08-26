@@ -1,5 +1,6 @@
 import BasicButton from '@/components/atoms/BasicButton'
 import OutlinedButton from '@/components/atoms/OutlinedButton'
+import Title from '@/components/atoms/Title'
 import InputCalendarField from '@/components/molecules/InputCalendarField'
 import InputTextField from '@/components/molecules/InputTextField'
 import { FocusContainer } from '@/core/core-focus'
@@ -8,6 +9,9 @@ import { useI18n, useTranslation } from '@/core/core-i18n'
 import { KEY_CODES } from '@/core/core-keyboard'
 import i18n from '@/modules/i18n'
 import { type ReactElement, useRef, useState } from 'react'
+import HomeIcon from '@/assets/svg/Home.svg?react'
+import Text from '@/components/atoms/Text'
+import MenuIcon from '@/assets/svg/Menu.svg?react'
 
 interface AaSchema {
   name: string
@@ -46,12 +50,23 @@ export default function NotFoundPage (): ReactElement {
   return (
     <div className="NotFoundPage">
       NotFoundPage
+      <Title size="h1" className='pepito'><HomeIcon /> <span>Title 1</span></Title>
+      <Title size="h2">Title 2</Title>
+      <Title size="h3">Title 3</Title>
+      <Title size="h4">Title 4</Title>
+      <Title size="h5">Title 5</Title>
+      <Title size="h6">Title 6</Title>
+      <Text>Text 6 standard</Text>
+      <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui animi quo laudantium dignissimos temporibus similique vel, laborum odit earum architecto nam placeat, fugiat aperiam deserunt atque officiis odio ipsa incidunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse labore voluptatibus harum eum nostrum aut, at quas animi reprehenderit quod dolore soluta quis. Suscipit, id dolores consequuntur neque dolorum aut!</Text>
       <BasicButton
         color="primary"
         onClick={() => { setCount(old => old + 1) }}
       >
-        Count {count}
+        <Text weight="bold">Count {count}</Text>
       </BasicButton>
+      <MenuIcon />
+      <BasicButton color="primary" size="lg">Large</BasicButton>
+      <BasicButton color="primary" size="sm">small</BasicButton>
       <BasicButton color="primary">{t('test')}</BasicButton>
       <BasicButton color="primary" onClick={() => { changeLanguageHandler('es') }}>Español</BasicButton>
       <BasicButton color="primary" onClick={() => { changeLanguageHandler('en') }}>English</BasicButton>

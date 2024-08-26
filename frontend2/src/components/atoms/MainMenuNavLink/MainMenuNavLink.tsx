@@ -4,6 +4,7 @@ import type { KeyboardEvent, ReactElement } from 'react'
 import { useRef } from 'react'
 import type { MainMenuNavLinkProps } from './types'
 import './MainMenuNavLink.css'
+import Text from '../Text'
 
 export default function MainMenuNavLink (
   props: MainMenuNavLinkProps
@@ -26,19 +27,20 @@ export default function MainMenuNavLink (
       ref={ref}
       tabIndex={-1}
     >
-      <span
-        tabIndex={0}
-        role="link"
-        className="c-main-menu-nav-link__wrapper g-hide-default-focus-ring"
-        onKeyDown={keydownHandler}
+      <Text
+        className='c-main-menu-nav-link__wrapper g-hide-default-focus-ring'
+        size='medium'
+        asProps={{
+          tabIndex: 0,
+          role: 'link',
+          onKeyDown: keydownHandler
+        }}
       >
-        <span className="c-main-menu-nav-link__icon">
-          {icon}
-        </span>
+        {icon}
         <span className="c-main-menu-nav-link__label">
           {label}
         </span>
-      </span>
+      </Text>
     </NavLink>
   )
 }

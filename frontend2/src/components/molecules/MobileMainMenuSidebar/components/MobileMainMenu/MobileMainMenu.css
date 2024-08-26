@@ -1,6 +1,6 @@
 .c-mobile-main-menu {
-  background-color: var(--theme-color-sidebar-menu-background);
-  color: var(--theme-color-sidebar-menu-text);
+  background-color: var(--theme-color-mobile-sidebar-menu-background);
+  color: var(--theme-color-mobile-sidebar-menu-text);
   height: 100%;
   width: 18.75rem;
 
@@ -19,6 +19,10 @@
 
   & .c-mobile-main-menu__title {
     margin: 0;
+  }
+
+  & .c-mobile-main-menu__menu-content {
+    padding-top: 0.5rem;
   }
 }
 

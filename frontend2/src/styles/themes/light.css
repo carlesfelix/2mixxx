@@ -1,85 +1,146 @@
 /* #046aae */
 :root {
-  --theme-color-white: #fff;
-  --theme-color-success: #57c288;
-  --theme-color-warning: #facc48;
-  --theme-color-danger: #d93e26;
-  --theme-color-gray-100: #3d3b4f;
-  --theme-color-gray-200: #1c1b2d;
-  --theme-color-primary-50: #eaeaf9;
-  --theme-color-primary-contrast-50: var(--theme-color-gray-100);
-  --theme-color-primary-100: #c9caf0;
-  --theme-color-primary-contrast-100: var(--theme-color-gray-100);
-  --theme-color-primary-200: #a5a9e5;
-  --theme-color-primary-contrast-200: var(--theme-color-gray-100);
-  --theme-color-primary-300: #8287db;
-  --theme-color-primary-contrast-300: var(--theme-color-gray-100);
-  --theme-color-primary-400: #676bd2;
-  --theme-color-primary-contrast-400: var(--theme-color-white);
+  /* TITLE FONT SIZES */
+  --theme-font-size-h1: 2rem;        /* 32px */
+  --theme-font-size-h2: 1.75rem;     /* 28px */
+  --theme-font-size-h3: 1.5rem;      /* 24px */
+  --theme-font-size-h4: 1.25rem;     /* 20px */
+  --theme-font-size-h5: 1.125rem;    /* 18px */
+  --theme-font-size-h6: 1rem;        /* 16px */
 
-  /* Base primary */
-  --theme-color-primary-500: #4e4fc9;
-  --theme-color-primary-contrast-500: var(--theme-color-white);
-  --theme-color-primary-600: #4847be;
-  --theme-color-primary-contrast-600: var(--theme-color-white);
-  --theme-color-primary-700: #403cb2;
-  --theme-color-primary-contrast-700: var(--theme-color-white);
-  --theme-color-primary-800: #3831a6;
-  --theme-color-primary-contrast-800: var(--theme-color-white);
-  --theme-color-primary-900: #2d1d8f;
-  --theme-color-primary-contrast-900: var(--theme-color-white);
-  --theme-color-secondary-50: #faf6ff;
-  --theme-color-secondary-contrast-50: var(--theme-color-gray-100);
-  --theme-color-secondary-100: #f4f0ff;
-  --theme-color-secondary-contrast-100: var(--theme-color-gray-100);
-  --theme-color-secondary-200: #ebe8ff;
-  --theme-color-secondary-contrast-200: var(--theme-color-gray-100);
-  --theme-color-secondary-300: #dcd8f2;
-  --theme-color-secondary-contrast-300: var(--theme-color-gray-100);
-  --theme-color-secondary-400: #b8b5cd;
-  --theme-color-secondary-contrast-400: var(--theme-color-gray-100);
-  --theme-color-secondary-500: #9996ad;
-  --theme-color-secondary-contrast-500: var(--theme-color-white);
-  --theme-color-secondary-600: #706d83;
-  --theme-color-secondary-contrast-600: var(--theme-color-white);
-  --theme-color-secondary-700: #5c5a6f;
-  --theme-color-secondary-contrast-700: var(--theme-color-white);
+  /* LINE HEIGHTS FOR TITLES */
+  --theme-line-height-h1: 2.5rem;    /* 40px */
+  --theme-line-height-h2: 2.25rem;   /* 36px */
+  --theme-line-height-h3: 2rem;      /* 32px */
+  --theme-line-height-h4: 1.75rem;   /* 28px */
+  --theme-line-height-h5: 1.625rem;  /* 26px */
+  --theme-line-height-h6: 1.5rem;    /* 24px */
 
-  /* Base secondary */
-  --theme-color-secondary-800: var(--theme-color-gray-100);
-  --theme-color-secondary-contrast-800: var(--theme-color-white);
-  --theme-color-secondary-900: var(--theme-color-gray-200);
-  --theme-color-secondary-contrast-900: var(--theme-color-white);
+  /* BODY FONT SIZES */
+  --theme-font-size-body-extra-large: 1.25rem;
+  --theme-font-size-body-large: 1.125rem;    /* 18px */
+  --theme-font-size-body-medium: 1rem;       /* 16px */
+  --theme-font-size-body-small: 0.875rem;    /* 14px */
+  --theme-font-size-body-extra-small: 0.75rem;
+
+  /* LINE HEIGHTS FOR TEXT BODIES */
+  --theme-line-height-body-extra-large: 1.875rem;
+  --theme-line-height-body-large: 1.625rem;  /* 26px */
+  --theme-line-height-body-medium: 1.5rem;   /* 24px */
+  --theme-line-height-body-small: 1.25rem;   /* 20px */
+  --theme-line-height-body-extra-small: 1rem;
+  --theme-font-weight-normal: normal;
+  --theme-font-weight-semi-bold: 600;
+  --theme-font-weight-bold: bold;
+  --theme-font-weight-extra-bold: 900;
+
+  /* BOX SHADOWS */  
+  --theme-shadow-elevation-1: 0 1px 2px var(--g-color-opacity-black-3), 0 0px 2px var(--g-color-opacity-black-2);
+
+  /* PRIMARY COLORS */
+  --theme-color-primary-50: var(--g-color-blue-50);
+  --theme-color-primary-contrast-50: var(--g-color-grey-900);
+  --theme-color-primary-100: var(--g-color-blue-100);
+  --theme-color-primary-contrast-100: var(--g-color-grey-900);
+  --theme-color-primary-200: var(--g-color-blue-200);
+  --theme-color-primary-contrast-200: var(--g-color-grey-900);
+  --theme-color-primary-300: var(--g-color-blue-300);
+  --theme-color-primary-contrast-300: var(--g-color-grey-900);
+  --theme-color-primary-400: var(--g-color-blue-400);
+  --theme-color-primary-contrast-400: var(--g-color-white);
+  --theme-color-primary-500: var(--g-color-blue-500);
+  --theme-color-primary-contrast-500: var(--g-color-white);
+  --theme-color-primary-600: var(--g-color-blue-600);
+  --theme-color-primary-contrast-600: var(--g-color-white);
+  --theme-color-primary-700: var(--g-color-blue-700);
+  --theme-color-primary-contrast-700: var(--g-color-white);
+  --theme-color-primary-800: var(--g-color-blue-800);
+  --theme-color-primary-contrast-800: var(--g-color-white);
+  --theme-color-primary-900: var(--g-color-blue-900);
+  --theme-color-primary-contrast-900: var(--g-color-white);
+
+  /* SECONDARY COLORS */
+  --theme-color-secondary-50: var(--g-color-grey-50);
+  --theme-color-secondary-contrast-50: var(--g-color-grey-900);
+  --theme-color-secondary-100: var(--g-color-grey-100);
+  --theme-color-secondary-contrast-100: var(--g-color-grey-900);
+  --theme-color-secondary-200: var(--g-color-grey-200);
+  --theme-color-secondary-contrast-200: var(--g-color-grey-900);
+  --theme-color-secondary-300: var(--g-color-grey-300);
+  --theme-color-secondary-contrast-300: var(--g-color-grey-900);
+  --theme-color-secondary-400: var(--g-color-grey-400);
+  --theme-color-secondary-contrast-400: var(--g-color-grey-900);
+  --theme-color-secondary-500: var(--g-color-grey-500);
+  --theme-color-secondary-contrast-500: var(--g-color-white);
+  --theme-color-secondary-600: var(--g-color-grey-600);
+  --theme-color-secondary-contrast-600: var(--g-color-white);
+  --theme-color-secondary-700: var(--g-color-grey-700);
+  --theme-color-secondary-contrast-700: var(--g-color-white);
+  --theme-color-secondary-800: var(--g-color-grey-800);
+  --theme-color-secondary-contrast-800: var(--g-color-white);
+  --theme-color-secondary-900: var(--g-color-grey-900);
+  --theme-color-secondary-contrast-900: var(--g-color-white);
+
+  /* APP RE-USABLE VARIABLES */
+
+  /* SPINNER */
+  --theme-color-spinner-primary: var(--theme-color-primary-700);
+  --theme-color-spinner-secondary: var(--theme-color-secondary-800);
+
+  /* BUTTON */
+  --theme-color-button-primary: var(--theme-color-primary-700);
+  --theme-color-button-primary-contrast: var(--theme-color-primary-contrast-700);
+  --theme-color-button-secondary: var(--theme-color-secondary-800);
+  --theme-color-button-secondary-contrast: var(--theme-color-secondary-contrast-800);
 
   /* TOOLBAR */
-  --theme-color-toolbar-background: #fafaff;
-  --theme-color-toolbar-border: #f1effb;
+  --theme-color-toolbar-background: var(--g-color-white);
+  --theme-color-toolbar-text: var(--g-color-grey-800);
 
-  /* SIDEBAR MENU */
-  --theme-color-sidebar-menu-background: #2a52a2;
-  --theme-color-sidebar-menu-btn-active-background: #3e6ac8;
-  --theme-color-sidebar-menu-text: var(--theme-color-white);
-  --theme-color-sidebar-menu-btn-inactive-text: var(--theme-color-primary-50);
-  --theme-color-sidebar-menu-btn-active-text: var(--theme-color-white);
+  /* BOX */
+  --theme-color-box-border: var(--g-color-grey-300);
+  --theme-color-box-background: var(--g-color-white);
+  --theme-color-box-text-1: var(--g-color-grey-800);
+  --theme-color-box-text-2: var(--g-color-grey-700);
+
+  /* DESKTOP SIDEBAR MENU */
+  --theme-color-desktop-sidebar-menu-background: var(--g-color-grey-100);
+  --theme-color-desktop-sidebar-menu-btn-active-background: var(--g-color-grey-200);
+  --theme-color-desktop-sidebar-menu-text: var(--g-color-grey-800);
+  --theme-color-desktop-sidebar-menu-btn-inactive-text: var(--g-color-grey-800);
+  --theme-color-desktop-sidebar-menu-btn-active-text: var(--g-color-grey-900);
+
+  /* MOBILE SIDEBAR MENU */
+  --theme-color-mobile-sidebar-menu-background: var(--g-color-white);
+  --theme-color-mobile-sidebar-menu-btn-active-background: var(--g-color-blue-grey-50);
+  --theme-color-mobile-sidebar-menu-text: var(--g-color-grey-800);
+  --theme-color-mobile-sidebar-menu-btn-inactive-text: var(--g-color-grey-800);
+  --theme-color-mobile-sidebar-menu-btn-active-text: var(--g-color-white);
 
   /* MASK */
-  --theme-color-mask-background: rgb(0 0 0 / 40%);
+  --theme-color-mask-background: var(--g-color-opacity-black-7);
 
-  /* PILL */
-  --theme-color-pill-success-background: var(--theme-color-success);
-  --theme-color-pill-success-text: var(--theme-color-gray-100);
-  --theme-color-pill-warning-background: var(--theme-color-warning);
-  --theme-color-pill-warning-text: var(--theme-color-gray-100);
-  --theme-color-pill-danger-background: var(--theme-color-danger);
-  --theme-color-pill-danger-text: var(--theme-color-white);
+  /* STATUS */
+  --theme-color-status-success-background: var(--g-color-green-A400);
+  --theme-color-status-success-text: var(--g-color-grey-900);
+  --theme-color-status-warning-background: var(--g-color-yellow-A400);
+  --theme-color-status-warning-text: var(--g-color-grey-900);
+  --theme-color-status-danger-background: var(--g-color-red-A400);
+  --theme-color-status-danger-text: var(--g-color-white);
 
   /* OVERLAY */
-  --theme-color-overlay-background: var(--theme-color-white);
-  --theme-color-overlay-text: var(--theme-color-gray-100);
+  --theme-color-overlay-background: var(--g-color-white);
+  --theme-color-overlay-text: var(--g-color-gray-800);
   --theme-color-overlay-shadow: rgb(0 0 0 / 10%);
 
   /* GROUND */
-  --theme-color-ground-text: var(--theme-color-gray-100);
+  --theme-color-ground-text: var(--g-color-grey-800);
+  --theme-color-ground-background: var(--g-color-grey-50);
 
-  /* color-mix(srgb, var(--theme-color-primary-600) 60%, transparent); */
+  /* FIELD */
+  --theme-color-field-input-box-border: var(--g-color-grey-400);
+  --theme-color-field-input-box-background: var(--g-color-white);
+  --theme-color-field-input-box-label: var(--g-color-grey-800);
+
+  /* color-mix(srgb, var(--theme-color-primary-500) 60%, transparent); */
 }

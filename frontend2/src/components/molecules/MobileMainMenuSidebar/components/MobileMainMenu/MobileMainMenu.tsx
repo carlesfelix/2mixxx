@@ -6,6 +6,7 @@ import classNames from 'classnames'
 import { type MouseEvent, type ReactElement } from 'react'
 import { type MobileMainMenuProps } from '../../types'
 import './MobileMainMenu.css'
+import Title from '@/components/atoms/Title'
 
 export default function MobileMainMenu (
   props: MobileMainMenuProps
@@ -29,7 +30,7 @@ export default function MobileMainMenu (
           <MenuIcon />
         </IconButton>
         <div className="c-mobile-main-menu__title-container">
-          <h3 className="g-text g-text--h3 c-mobile-main-menu__title">DJnow</h3>
+          <Title size="h3" as="h1" className="c-mobile-main-menu__title">DJnow</Title>
         </div>
       </div>
       <div className="c-mobile-main-menu__menu-content">

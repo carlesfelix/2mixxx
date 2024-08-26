@@ -2,8 +2,7 @@
   display: inline-flex;
   flex-direction: column;
 
-  .c-input-field__label {
-    font-size: 0.875rem;
-    font-weight: 600;
+  .c-input-field__label {    
+    color: var(--theme-color-field-input-box-label);
   }
 }

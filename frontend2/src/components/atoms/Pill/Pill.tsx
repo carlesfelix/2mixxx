@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import type { PillProps } from './types'
 import type { ReactElement } from 'react'
 import './Pill.css'
+import Text from '../Text'
 
 export default function Pill (props: PillProps): ReactElement {
   const {
@@ -17,8 +18,8 @@ export default function Pill (props: PillProps): ReactElement {
   )
 
   return (
-    <span className={rootClassName}>
+    <Text size="extra-small" weight='bold' className={rootClassName}>
       {children}
-    </span>
+    </Text>
   )
 }

@@ -31,6 +31,10 @@
     margin-right: -0.563rem;
   }
 
+  & .c-event-card__description-text {
+    margin: 0.5rem 0;
+  }
+
   @media (--min-lg-window) {
     & .c-event-card__header-menu {
       margin-right: -0.625rem;

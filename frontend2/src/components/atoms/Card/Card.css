@@ -1,6 +1,11 @@
 .c-card {
-  border: solid 1px #dcd8f2;
+  border: solid 1px var(--theme-color-box-border);
   border-radius: 5px;
+  background-color: var(--theme-color-box-background);
+
+  & .c-card__header {
+    color: var(--theme-color-box-text-1);
+  }
 
   & .c-card__content {
     padding: 0 1.5rem;
@@ -12,6 +17,6 @@
   }
 
   & .c-card__body {
-    color: #5c5a6f;
+    color: var(--theme-color-box-text-2);
   }
 }

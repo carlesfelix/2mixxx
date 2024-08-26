@@ -3,48 +3,41 @@
   border-radius: 0.25rem;
   border: none;
   text-align: center;
-  font-weight: 600;
+  font-weight: var(--theme-font-weight-bold);
 
   &:not(:disabled) {
     cursor: pointer;
   }
 
+  &[data-focus-ring] {
+    outline: transparent solid 0.125rem;
+    outline-offset: 0.125rem;
+  }
+
   /* Global sizes */
   &.g-button--sm {
-    font-size: 0.875rem;
+    font-size: var(--theme-font-size-body-small);
+    line-height: var(--theme-line-height-body-small);
   }
 
   &.g-button--md {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+    font-size: var(--theme-font-size-body-medium);
+    line-height: var(--theme-line-height-body-medium);
   }
 
   &.g-button--lg {
-    font-size: 1rem;
-    line-height: 1.25rem;
-  }
-
-  @media (--min-lg-window) {
-    &.g-button--sm {
-      font-size: 0.875rem;
-      line-height: 1.25rem;
-    }
-
-    &.g-button--md {
-      font-size: 1rem;
-      line-height: 1.25rem;
-    }
-
-    &.g-button--lg {
-      font-size: 1.125rem;
-      line-height: 1.5rem;
-    }
+    font-size: var(--theme-font-size-body-large);
+    line-height: var(--theme-line-height-body-large);
   }
 
   /* Text button */
   &.g-button--primary-text {
     background-color: transparent;
-    color: var(--theme-color-primary-400);
+    color: var(--theme-color-button-primary);
+  }
+
+  &.g-button--primary-text[data-focus-ring] {
+    outline-color: currentcolor;
   }
 
   /* Outlined button */
@@ -55,128 +48,71 @@
   }
 
   &.g-button--outlined-primary {
-    border-color: var(--theme-color-primary-400);
-    color: var(--theme-color-primary-400);
+    border-color: var(--theme-color-button-primary);
+    color: var(--theme-color-button-primary);
+  }
+
+  &.g-button--outlined-primary[data-focus-ring] {
+    outline-color: var(--theme-color-button-primary);
   }
 
   &.g-button--outlined-secondary {
-    border-color: var(--theme-color-secondary-800);
-    color: var(--theme-color-secondary-800);
+    border-color: var(--theme-color-button-secondary);
+    color: var(--theme-color-button-secondary);
+  }
+
+  &.g-button--outlined-secondary[data-focus-ring] {
+    outline-color: var(--theme-color-button-secondary);
   }
 
   &.g-button--outlined.g-button--sm {
-    padding: 0.5rem 0.875rem;
+    padding: 0.25rem 0.75rem;
   }
 
   &.g-button--outlined.g-button--md {
-    padding: 0.625rem 1.5rem;
+    padding: 0.5rem 1rem;
   }
 
   &.g-button--outlined.g-button--lg {
-    padding: 0.875rem 2rem;
-  }
-
-  @media (--min-lg-window) {
-    &.g-button--outlined.g-button--sm {
-      padding: 0.625rem 1.5rem;
-    }
-
-    &.g-button--outlined.g-button--md {
-      padding: 0.875rem 2rem;
-    }
-
-    &.g-button--outlined.g-button--lg {
-      padding: 1rem 2.5rem;
-    }
-  }
-
-  &.g-button--outlined:not(:disabled)[data-focus-ring] {
-    border-width: 0.125rem;
-
-    &.g-button--sm {
-      padding: 0.438rem 0.813rem;
-    }
-
-    &.g-button--md {
-      padding: 0.562rem 1.437rem;
-    }
-
-    &.g-button--lg {
-      padding: 0.812rem 1.937rem;
-    }
-  }
-
-  @media (--min-lg-window) {
-    &.g-button--outlined:not(:disabled)[data-focus-ring] {
-      &.g-button--sm {
-        padding: 0.562rem 1.437rem;
-      }
-
-      &.g-button--md {
-        padding: 0.812rem 1.937rem;
-      }
-
-      &.g-button--lg {
-        padding: 0.937rem 2.437rem;
-      }
-    }
+    padding: 0.75rem 1.5rem;
   }
 
   /* Basic button */
-  &.g-button--basic[data-focus-ring] {
-    outline: transparent solid 0.125rem;
-    outline-offset: 0.125rem;
+  &.g-button--basic-primary {
+    background-color: var(--theme-color-button-primary);
+    color: var(--theme-color-button-primary-contrast);
   }
 
-  &.g-button--basic-primary {
-    background-color: var(--theme-color-primary-400);
-    color: var(--theme-color-primary-contrast-400);
-
-    &.g-button--basic:not(:disabled)[data-focus-ring] {
-      outline-color: var(--theme-color-primary-400);
-    }
+  &.g-button--basic-primary[data-focus-ring] {
+    outline-color: var(--theme-color-button-primary);
   }
 
   &.g-button--basic-secondary {
-    background-color: var(--theme-color-secondary-800);
-    color: var(--theme-color-secondary-contrast-800);
+    background-color: var(--theme-color-button-secondary);
+    color: var(--theme-color-button-secondary-contrast);
+  }
 
-    &.g-button--basic:not(:disabled)[data-focus-ring] {
-      outline-color: var(--theme-color-secondary-800);
-    }
+  &.g-button--basic-secondary[data-focus-ring] {
+    outline-color: var(--theme-color-button-secondary);
   }
 
   &.g-button--basic.g-button--sm {
-    padding: 0.563rem 0.938rem;
+    padding: 0.25rem 0.75rem;
   }
 
   &.g-button--basic.g-button--md {
-    padding: 0.688rem 1.563rem;
+    padding: 0.5rem 1rem;
   }
 
   &.g-button--basic.g-button--lg {
-    padding: 0.938rem 2.063rem;
-  }
-
-  @media (--min-lg-window) {
-    &.g-button--basic.g-button--sm {
-      padding: 0.688rem 1.563rem;
-    }
-
-    &.g-button--basic.g-button--md {
-      padding: 0.938rem 2.063rem;
-    }
-
-    &.g-button--basic.g-button--lg {
-      padding: 1.063rem 2.563rem;
-    }
+    padding: 0.75rem 1.5rem;
   }
 
   /* Icon button */
   &.g-button--icon {
     border: 0.125rem solid transparent;
     border-radius: 50%;
-    aspect-ratio: 1;
+    padding: 0.25rem;
     background-color: transparent;
     color: currentcolor;
     display: inline-flex;
@@ -186,49 +122,11 @@
   }
 
   &.g-button--icon-primary {
-    color: var(--theme-color-primary-400);
+    color: var(--theme-color-button-primary);
   }
 
   &.g-button--icon-secondary {
-    color: var(--theme-color-secondary-800);
-  }
-
-  &.g-button--icon.g-button--sm {
-    width: 2rem;
-    height: 2rem;
-    font-size: 1rem;
-  }
-
-  &.g-button--icon.g-button--md {
-    width: 2.25rem;
-    height: 2.25rem;
-    font-size: 1.25rem;
-  }
-
-  &.g-button--icon.g-button--lg {
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1.5rem;
-  }
-
-  @media (--min-lg-window) {
-    &.g-button--icon.g-button--sm {
-      width: 2.25rem;
-      height: 2.25rem;
-      font-size: 1.25rem;
-    }
-
-    &.g-button--icon.g-button--md {
-      width: 2.5rem;
-      height: 2.5rem;
-      font-size: 1.5rem;
-    }
-
-    &.g-button--icon.g-button--lg {
-      height: 2.75rem;
-      width: 2.75rem;
-      font-size: 1.75rem;
-    }
+    color: var(--theme-color-button-secondary);
   }
 
   &.g-button--icon:not(:disabled)[data-focus-ring] {

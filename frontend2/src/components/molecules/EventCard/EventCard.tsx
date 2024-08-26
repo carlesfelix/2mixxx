@@ -9,6 +9,8 @@ import EventStatusPill from '../EventStatusPill'
 import classNames from 'classnames'
 import PopupMenu from '@/components/molecules/PopupMenu'
 import { type MenuItem } from '@/components/molecules/MenuItems'
+import Title from '@/components/atoms/Title'
+import Text from '@/components/atoms/Text'
 
 const items: MenuItem[] = [
   {
@@ -64,13 +66,13 @@ export default function EventCard (props: EventCardProps): ReactElement {
       className={rootClassName}
       header={
         <div className="c-event-card__header">
-          <h3 className="g-text g-text--h3 c-event-card__header-title">
+          <Title size='h4' className="c-event-card__header-title">
             <span className="c-event-card__title-ellipsis">
               <span className="c-event-card__title">
                 {title}
               </span>
             </span>
-          </h3>
+          </Title>
           <span className="c-event-card__header-right">
             <EventStatusPill status={status} className="c-event-card__header-pill" />
             <PopupMenu
@@ -83,18 +85,16 @@ export default function EventCard (props: EventCardProps): ReactElement {
         </div>
       }
     >
-      <p>
+      <Text as="p" className="c-event-card__description-text">
         <TextWithIcon icon={<CalendarTodayIcon />}>
           {startsAt.toLocaleDateString()}
         </TextWithIcon>
-      </p>
-      <p>
+      </Text>
+      <Text as="p" className="c-event-card__description-text">
         <TextWithIcon icon={<PlaceIcon />}>
           {placeName}
         </TextWithIcon>
-      </p>
-      {/* <p>Code</p>
-      <p>Assigned deejays</p> */}
+      </Text>
     </Card>
   )
 }

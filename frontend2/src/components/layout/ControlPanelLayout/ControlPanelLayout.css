@@ -5,18 +5,20 @@
 
   & .c-control-panel-layout__navigation-bar {
     background-color: var(--theme-color-toolbar-background);
-    color: var(--theme-surface-toolbar-contrast);
+    color: var(--theme-color-toolbar-text);
     padding-right: 1.5rem;
     padding-left: 0.75rem;
-    border-bottom: var(--theme-color-toolbar-border) 1px solid;
     height: 3.375rem;
     display: flex;
     align-items: center;
+    z-index: 1;
+    box-shadow: var(--theme-shadow-elevation-1);
   }
 
   @media (--min-lg-window) {
     & .c-control-panel-layout__navigation-bar {
       padding-left: 1.5rem;
+      box-shadow: none
     }
   }
 

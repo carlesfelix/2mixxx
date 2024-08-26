@@ -2,6 +2,7 @@ import { type MainMenuLinkItem } from '@/components/molecules/MainMenuLinks'
 import HomeIcon from '@/assets/svg/Home.svg?react'
 import AddCircleOutlineIcon from '@/assets/svg/AddCircleOutline.svg?react'
 import ManageAccountsIcon from '@/assets/svg/ManageAccounts.svg?react'
+import MenuIcon from '@/assets/svg/Menu.svg?react'
 
 export const MAIN_MENU_LINKS: MainMenuLinkItem[] = [
   {
@@ -16,6 +17,11 @@ export const MAIN_MENU_LINKS: MainMenuLinkItem[] = [
   },
   {
     icon: <ManageAccountsIcon />,
+    label: 'Manage Users',
+    to: '/users'
+  },
+  {
+    icon: <MenuIcon />,
     label: 'Manage Users',
     to: '/users'
   }

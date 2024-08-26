@@ -1,25 +1,42 @@
 .c-desktop-main-menu {
-  background-color: var(--theme-color-sidebar-menu-background);
-  color: var(--theme-color-sidebar-menu-text);
+  background-color: var(--theme-color-desktop-sidebar-menu-background);
+  color: var(--theme-color-desktop-sidebar-menu-text);
   height: 100%;
   display: none;
   width: 15.625rem;
   z-index: 1;
+  box-shadow: var(--theme-shadow-elevation-1);
 
   & .c-desktop-main-menu__menu-header {
+    position: relative;
     height: 3.375rem;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     display: flex;
     align-items: center;
+    background-color: var(--theme-color-toolbar-background);
+    color: var(--theme-color-toolbar-text);
+  }
+
+  & .c-desktop-main-menu__menu-header::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    box-shadow: var(--theme-shadow-elevation-1);
+    width: 100vw;
   }
 
   & .c-desktop-main-menu__title-container {
-    text-align: center;
     flex-grow: 1;
   }
 
   & .c-desktop-main-menu__title {
     margin: 0;
+  }
+
+  & .c-desktop-main-menu__menu-content {
+    padding-top: 0.5rem;
   }
 }
 

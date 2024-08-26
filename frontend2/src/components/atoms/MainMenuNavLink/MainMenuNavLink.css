@@ -7,7 +7,8 @@
     padding: 0 1.5rem;
     height: 2.5rem;
     border: solid 0.063rem transparent;
-    color: var(--theme-color-sidebar-menu-btn-inactive-text); 
+    color: var(--theme-color-desktop-sidebar-menu-btn-inactive-text); 
+    gap: 1ch;
   
     &[data-focus-ring] {
       border-color: currentcolor;
@@ -16,17 +17,17 @@
 
   &.c-main-menu-nav-link--active {
     & .c-main-menu-nav-link__wrapper {
-      background-color: var(--theme-color-sidebar-menu-btn-active-background);
-      color: var(--theme-color-sidebar-menu-btn-active-text);
+      background-color: var(--theme-color-desktop-sidebar-menu-btn-active-background);
+      color: var(--theme-color-desktop-sidebar-menu-btn-active-text);
     }
   }
 
   & .c-main-menu-nav-link__icon {
-    font-size: 1.625rem;
+    /* font-size: 1.625rem; */
     margin-right: 1.5rem;
   }
 
-  & .c-main-menu-nav-link__label {
+  /* & .c-main-menu-nav-link__label {
     font-size: 1rem;
-  }
+  } */
 }

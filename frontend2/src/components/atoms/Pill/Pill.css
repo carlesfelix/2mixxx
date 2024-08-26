@@ -1,33 +1,20 @@
 .c-pill {
-  border-radius: 0.625rem;
-  padding: 0 0.5rem;
-  font-size: 0.77rem;
-  font-weight: bold;
-  line-height: 1.5rem;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.75rem;
   white-space: nowrap;
 
-  &.c-pill--primary {
-    background-color: var(--theme-color-primary-400);
-    color: var(--theme-color-primary-contrast-400);
-  }
-
-  &.c-pill--secondary {
-    background-color: var(--theme-color-secondary-400);
-    color: var(--theme-color-secondary-contrast-400);
-  }
-
   &.c-pill--warning {
-    background-color: var(--theme-color-pill-warning-background);
-    color: var(--theme-color-pill-warning-text);
+    background-color: var(--theme-color-status-warning-background);
+    color: var(--theme-color-status-warning-text);
   }
 
   &.c-pill--success {
-    background-color: var(--theme-color-pill-success-background);
-    color: var(--theme-color-pill-success-text);
+    background-color: var(--theme-color-status-success-background);
+    color: var(--theme-color-status-success-text);
   }
 
   &.c-pill--danger {
-    background-color: var(--theme-color-pill-danger-background);
-    color: var(--theme-color-pill-danger-text);
+    background-color: var(--theme-color-status-danger-background);
+    color: var(--theme-color-status-danger-text);
   }
 }

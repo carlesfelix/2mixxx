@@ -3,6 +3,7 @@ import { forwardRef } from 'react'
 import { type InputFieldProps } from './types'
 import classNames from 'classnames'
 import './InputField.css'
+import Text from '../Text'
 
 function InputFieldWithRef (
   props: InputFieldProps,
@@ -12,7 +13,9 @@ function InputFieldWithRef (
   const rootClassName = classNames('c-input-field', className)
   return (
     <div className={rootClassName} ref={ref}>
-      <label htmlFor={inputId} className="c-input-field__label">{label}</label>
+      <Text size="small" as="span" weight="semi-bold">
+        <label htmlFor={inputId} className="c-input-field__label">{label}</label>
+      </Text>
       <div className="c-input-field__input-container">
         {children}
       </div>
