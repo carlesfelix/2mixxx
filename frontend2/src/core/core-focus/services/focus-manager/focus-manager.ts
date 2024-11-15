@@ -1,7 +1,7 @@
 import { type FocusManagerReturn } from './types'
 import { type PointerDownAction, type FocusNavigationAction, type RestoreFocusCallback } from '../../types'
 import { type FocusableElement, getFocusableElements } from '../focusable-elements'
-import { clearCurrentFocusVisible, setFocusVisibility } from './utils'
+import { clearCurrentFocusVisible, getFocusVisibleDataAttribute, setFocusableElementVisibility, setFocusVisibility } from './utils'
 import { matchDefaultKeyboardFilter, matchDefaultNextKeyboardKeyFilter, matchDefaultPrevKeyboardKeyFilter } from '../utils'
 
 export default function focusManager (focusVisibleDataKey: string): FocusManagerReturn {
@@ -10,6 +10,15 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
   let focusFromKeyboard = false
   let focusNavigationActions: FocusNavigationAction[] = []
   let restoreFocusCallback: RestoreFocusCallback | null = null
+  const observer = new MutationObserver(mutationCallback)
+
+  function mutationCallback (mutations: MutationRecord[]): void {
+    mutations.forEach(mutation => {
+      if (mutation.target instanceof HTMLElement && mutation.target.hasAttribute(getFocusVisibleDataAttribute(focusVisibleDataKey)) && 'disabled' in mutation.target && mutation.target.disabled) {
+        setFocusableElementVisibility(mutation.target, false, focusVisibleDataKey)
+      }
+    })
+  }
   function focusElement (event: KeyboardEvent, focusableElement?: FocusableElement): void {
     if (focusableElement) {
       focusableElement.focus()
@@ -96,12 +105,17 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
     pointerDownActions.push(pointerDownAction)
   }
   function listen (): void {
+    observer.observe(window.document.body, {
+      attributeFilter: ['disabled'],
+      subtree: true
+    })
     window.addEventListener('keydown', keydownHandler)
     window.addEventListener('focusin', focusinHandler)
     window.addEventListener('focusout', focusoutHandler)
     window.addEventListener('pointerdown', pointerDownHandler)
   }
   function unlisten (): void {
+    observer.disconnect()
     window.removeEventListener('keydown', keydownHandler)
     window.removeEventListener('focusin', focusinHandler)
     window.removeEventListener('focusout', focusoutHandler)
