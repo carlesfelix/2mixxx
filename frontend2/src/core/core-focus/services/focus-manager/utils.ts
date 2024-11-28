@@ -5,6 +5,13 @@ export function setFocusVisibility (
   visibility: boolean,
   focusVisibleDataKey: string
 ): void {
+  if ((
+    element instanceof HTMLButtonElement ||
+    element instanceof HTMLInputElement ||
+    element instanceof HTMLTextAreaElement
+  ) && element.disabled) {
+    return
+  }
   if (element instanceof Element && isFocusable(element)) {
     setFocusableElementVisibility(element as FocusableElement, visibility, focusVisibleDataKey)
   }
