@@ -7,10 +7,19 @@ import classNames from 'classnames'
 import useFocusCalendar from '../../hooks/useFocusCalendar'
 import { getDaysOfMonth } from '@/core/core-date'
 import './Calendar.css'
+import { tileIsDisabled } from './helpers'
 
 // TODO: Refactor
 export default function Calendar (props: CalendarProps): ReactElement {
-  const { initialActiveStartDate, value, onChange, className, range } = props
+  const {
+    initialActiveStartDate,
+    value,
+    onChange,
+    className,
+    range,
+    max,
+    min
+  } = props
   const [calendarElement, setCalendarElement] = useState<HTMLDivElement | null>(null)
   const [view, setView] = useState<View>('month')
   const [activeStartDate, setActiveStartDate] = useState<Date>(() => (value instanceof Array ? value?.[0] : value) ?? (initialActiveStartDate ?? new Date()))
@@ -46,6 +55,18 @@ export default function Calendar (props: CalendarProps): ReactElement {
   }
 
   function viewChangeHandler (viewChangeData: OnArgs): void {
+    if (
+      viewChangeData.action === 'drillDown' &&
+      viewChangeData.activeStartDate &&
+      tileIsDisabled({
+        date: viewChangeData.activeStartDate,
+        view,
+        max,
+        min
+      })
+    ) {
+      return
+    }
     setView(viewChangeData.view)
   }
   function clickDayHandler (
@@ -55,10 +76,22 @@ export default function Calendar (props: CalendarProps): ReactElement {
     setActiveStartDate(date)
   }
 
-  function changeHandler (nextValue: Value): void {
-    onChange(nextValue)
+  function changeHandler (nextValue: Value, event: React.MouseEvent<HTMLButtonElement>): void {
+    if (!event.currentTarget.classList.contains('tile-disabled')) {
+      onChange(nextValue)
+    }
   }
 
+  function tileClassName (date: Date, tileView: View): string {
+    return tileIsDisabled({
+      date,
+      view: tileView,
+      max,
+      min
+    })
+      ? 'tile-disabled'
+      : ''
+  }
   const rootClassName = classNames('c-calendar', className)
   return (
     <CalendarLib
@@ -70,6 +103,7 @@ export default function Calendar (props: CalendarProps): ReactElement {
       onActiveStartDateChange={activeStartDateChangeHandler}
       activeStartDate={activeStartDate}
       view={view}
+      tileClassName={({ date, view: tileView }) => tileClassName(date, tileView)}
       showNeighboringMonth={false}
       onClickDay={clickDayHandler}
       onViewChange={viewChangeHandler}

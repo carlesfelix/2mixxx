@@ -142,5 +142,18 @@
   --theme-color-field-input-box-background: var(--g-color-white);
   --theme-color-field-input-box-label: var(--g-color-grey-800);
 
+  /* CALENDAR */
+  --theme-color-calendar-date-now-background: var(--theme-color-secondary-200);
+  --theme-color-calendar-date-now-text: var(--g-color-grey-800);
+  --theme-color-calendar-date-highlight: var(--theme-color-secondary-300);
+  --theme-color-calendar-date-hover-background: var(--theme-color-secondary-50);
+  --theme-color-calendar-date-hover-text: var(--g-color-grey-800);
+  --theme-color-calendar-date-selected-background: var(--theme-color-button-primary);
+  --theme-color-calendar-date-selected-text: var(--theme-color-button-primary-contrast);
+  --theme-color-calendar-line-separator: var(--g-color-grey-100);
+  --theme-color-calendar-navigation-arrow: var(--g-color-grey-600);
+  --theme-color-calendar-navigation-arrow-hover-background: var(--theme-color-secondary-50);
+  --theme-color-calendar-navigation-arrow-hover-text: var(--g-color-grey-600);
+
   /* color-mix(srgb, var(--theme-color-primary-500) 60%, transparent); */
 }
