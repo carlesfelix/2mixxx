@@ -1,7 +1,14 @@
 .g-form {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -0.5rem;
+  padding: 0.5rem;
+  overflow: hidden;
+
+  & .g-form__fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -1rem;
+    margin-bottom: 2.5rem;
+    margin-top: 0.5rem;
+  }
 
   & .g-form__input-field {
     width: 100%;
@@ -11,7 +18,7 @@
   & .g-form__field {
     width: 100%;
     box-sizing: border-box;
-    padding: 0.35rem 0.5rem;
+    padding: 0.5rem;
   }
 
   &.g-form--2 {

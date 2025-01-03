@@ -1,0 +1,11 @@
+.c-input-multi-select-box {
+  padding: 0.5rem 0;
+
+  .c-input-multi-select-box__checkbox-option {
+    padding: 0 1.25rem;
+  }
+
+  .c-input-multi-select-box__checkbox-option-label {
+    padding: 0.5rem 0;
+  }
+}

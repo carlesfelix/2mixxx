@@ -92,7 +92,7 @@ export default function Calendar (props: CalendarProps): ReactElement {
       ? 'tile-disabled'
       : ''
   }
-  const rootClassName = classNames('c-calendar', className)
+  const rootClassName = classNames('c-calendar', 'g-overlay', className)
   return (
     <CalendarLib
       selectRange={range}

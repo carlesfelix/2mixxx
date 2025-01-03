@@ -7,7 +7,6 @@ import { popoverContainer } from '@/modules/popover'
 import { Calendar } from '@/modules/calendar'
 import { KEY_CODES, matchKeyboardKeyFilter } from '@/core/core-keyboard'
 import './InputCalendar.css'
-import { startDay } from '@/core/core-date'
 
 function InputCalendarWithRef (
   props: InputCalendarProps,
@@ -20,7 +19,9 @@ function InputCalendarWithRef (
     error,
     className,
     id,
-    range
+    range,
+    min,
+    max
   } = props
   const [isOpen, setIsOpen] = useState(false)
   const [floatingElement, setFloatingElement] = useState<HTMLDivElement | null>(null)
@@ -103,8 +104,8 @@ function InputCalendarWithRef (
           onChange={onChange}
           value={value}
           range={range}
-          min={startDay(new Date('11/29/2020'))}
-          max={startDay(new Date('11/05/2021'))}
+          min={min}
+          max={max}
         />
       </Popover>
     </>

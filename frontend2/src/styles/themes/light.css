@@ -93,6 +93,12 @@
   --theme-color-button-secondary: var(--theme-color-secondary-800);
   --theme-color-button-secondary-contrast: var(--theme-color-secondary-contrast-800);
 
+  /* CHECKBOX */
+  --theme-color-checkbox-primary: var(--theme-color-primary-700);
+  --theme-color-checkbox-primary-contrast: var(--theme-color-primary-contrast-700);
+  --theme-color-checkbox-secondary: var(--theme-color-secondary-800);
+  --theme-color-checkbox-secondary-contrast: var(--theme-color-secondary-contrast-800);
+
   /* TOOLBAR */
   --theme-color-toolbar-background: var(--g-color-white);
   --theme-color-toolbar-text: var(--g-color-grey-800);
@@ -127,6 +133,8 @@
   --theme-color-status-warning-text: var(--g-color-grey-900);
   --theme-color-status-danger-background: var(--g-color-red-A400);
   --theme-color-status-danger-text: var(--g-color-white);
+  --theme-color-status-info-background: var(--g-color-blue-A400);
+  --theme-color-status-info-text: var(--g-color-white);
 
   /* OVERLAY */
   --theme-color-overlay-background: var(--g-color-white);
@@ -142,6 +150,10 @@
   --theme-color-field-input-box-background: var(--g-color-white);
   --theme-color-field-input-box-label: var(--g-color-grey-800);
 
+  /* FIELDSET */
+  --theme-color-fieldset-legend-border: var(--g-color-grey-400);
+  --theme-color-fieldset-legend-label: var(--g-color-grey-600);
+
   /* CALENDAR */
   --theme-color-calendar-date-now-background: var(--theme-color-secondary-200);
   --theme-color-calendar-date-now-text: var(--g-color-grey-800);
@@ -154,6 +166,11 @@
   --theme-color-calendar-navigation-arrow: var(--g-color-grey-600);
   --theme-color-calendar-navigation-arrow-hover-background: var(--theme-color-secondary-50);
   --theme-color-calendar-navigation-arrow-hover-text: var(--g-color-grey-600);
+
+  /* INPUT OPTION TOOLBAR */
+  --theme-color-input-option-toolbar-background: var(--g-color-grey-50);
+  --theme-color-input-option-toolbar-text: var(--g-color-grey-800);
+  --theme-color-input-option-toolbar-border: var(--g-color-grey-200)
 
   /* color-mix(srgb, var(--theme-color-primary-500) 60%, transparent); */
 }

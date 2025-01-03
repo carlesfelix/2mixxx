@@ -1,0 +1,14 @@
+.c-fieldset {
+  &.c-fieldset--with-legend {
+    border-width: 1px;
+    border-color: var(--theme-color-fieldset-legend-border);
+    border-top-style: solid;
+  }
+
+  & .c-fieldset__legend {
+    text-align: center;
+    margin: 0 auto;
+    padding: 2rem;
+    color: var(--theme-color-fieldset-legend-label);
+  }
+}

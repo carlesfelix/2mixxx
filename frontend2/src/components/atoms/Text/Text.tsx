@@ -13,12 +13,14 @@ export default function Text <
     size = 'medium',
     weight = 'normal',
     as: elementType = 'span',
+    heightOnEmpty,
     asProps = {}
   } = props
   const rootClassName = classNames(
     'c-text',
     `c-text--${size}`,
     `c-text--weight-${weight}`,
+    { 'c-text--height-on-empty': heightOnEmpty },
     className
   )
   return createElement(elementType, { ...asProps, className: rootClassName }, children)

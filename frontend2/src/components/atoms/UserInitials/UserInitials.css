@@ -1,0 +1,11 @@
+.c-user-initials {
+  display: inline-flex;
+  border-radius: 50%;
+  background-color: var(--theme-color-status-info-background);
+  color: var(--theme-color-status-info-text);
+  font-weight: bold;
+  width: 2.25em;
+  height: 2.25em;
+  justify-content: center;
+  align-items: center;
+}

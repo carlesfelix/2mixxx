@@ -12,6 +12,7 @@ import { type ReactElement, useRef, useState } from 'react'
 import HomeIcon from '@/assets/svg/Home.svg?react'
 import Text from '@/components/atoms/Text'
 import MenuIcon from '@/assets/svg/Menu.svg?react'
+import UserInfoCompact from '@/components/molecules/UserInfoCompact'
 
 interface AaSchema {
   name: string
@@ -129,6 +130,16 @@ export default function NotFoundPage (): ReactElement {
           <OutlinedButton color="secondary" onClick={() => btnRef.current?.focus()}>Outlined secondary</OutlinedButton>
         </div>
       </FocusContainer>
+      <UserInfoCompact
+        user={{
+          displayName: 'Carles Fèlix Tur',
+          initials: 'CF',
+          email: 'carles@email.com',
+          permissions: [],
+          role: 'owner',
+          type: 'registered'
+        }}
+      />
     </div>
   )
 }

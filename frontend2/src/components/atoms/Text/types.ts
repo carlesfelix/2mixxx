@@ -9,4 +9,5 @@ export interface TextProps <THTMLAttributes extends HTMLAttributes<THTMLElement>
   weight?: TitleWeight
   as?: keyof ReactHTML
   asProps?: ClassAttributes<THTMLElement> & THTMLAttributes | null
+  heightOnEmpty?: boolean
 }

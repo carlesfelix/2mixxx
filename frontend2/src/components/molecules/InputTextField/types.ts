@@ -4,4 +4,5 @@ import { type ReactNode } from 'react'
 
 export interface InputTextFieldProps<TFieldValues extends FieldValues> extends BaseInputControlledProps<InputTextProps, TFieldValues> {
   label?: ReactNode
+  required?: boolean
 }

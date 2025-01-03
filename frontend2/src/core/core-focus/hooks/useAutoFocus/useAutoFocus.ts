@@ -7,9 +7,11 @@ export default function useAutoFocus (
 ): void {
   useEffect(() => {
     if (element !== null && typeof autoFocus === 'number') {
-      const focusableElements = getFocusableElements(element)
-      const focusableElement = focusableElements.at(autoFocus)
-      focusableElement?.focus()
+      setTimeout(() => {
+        const focusableElements = getFocusableElements(element)
+        const focusableElement = focusableElements.at(autoFocus)
+        focusableElement?.focus()
+      }, 0)
     }
   }, [element, autoFocus])
 }

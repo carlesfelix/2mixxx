@@ -1,0 +1,15 @@
+.c-input-time-duration {
+  display: flex;
+  gap: 1rem;
+
+  .c-input-time-duration__layer {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .c-input-time-duration__partial-input {
+    width: 100%;
+  }
+}

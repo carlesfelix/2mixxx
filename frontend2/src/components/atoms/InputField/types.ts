@@ -6,4 +6,5 @@ export interface InputFieldProps {
   inputId: string
   label: ReactNode
   error?: ReactNode
+  required?: boolean
 }

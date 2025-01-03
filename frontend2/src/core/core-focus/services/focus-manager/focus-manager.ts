@@ -5,6 +5,7 @@ import { clearCurrentFocusVisible, getFocusVisibleDataAttribute, setFocusableEle
 import { matchDefaultKeyboardFilter, matchDefaultNextKeyboardKeyFilter, matchDefaultPrevKeyboardKeyFilter } from '../utils'
 
 export default function focusManager (focusVisibleDataKey: string): FocusManagerReturn {
+  const focusAlwaysInputTypes = ['text', 'password', 'email', 'date', 'datetime-local', 'month', 'number']
   let pointerDownEventTarget: EventTarget | null = null
   let pointerDownActions: PointerDownAction[] = []
   let focusFromKeyboard = false
@@ -87,7 +88,10 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
         )
       ) ||
       (
-        (event.target instanceof HTMLInputElement) ||
+        (
+          event.target instanceof HTMLInputElement &&
+          focusAlwaysInputTypes.includes(event.target.type)
+        ) ||
         (event.target instanceof HTMLTextAreaElement)
       )
     )

@@ -18,7 +18,8 @@ export default function InputTextField<TFieldValues extends FieldValues> (props:
     control,
     defaultValue = '' as FieldPathValue<TFieldValues, typeof name>,
     disabled,
-    inputId
+    inputId,
+    required
   } = props
   const rootClassName = classNames('c-input-text-field', className)
   return (
@@ -35,6 +36,7 @@ export default function InputTextField<TFieldValues extends FieldValues> (props:
             label={label}
             className={rootClassName}
             error={inputErrorMessage}
+            required={required}
           >
             <InputText
               {...inputProps}

@@ -28,7 +28,8 @@
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/prefer-optional-chain": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
-    "@typescript-eslint/prefer-nullish-coalescing": "off"
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/no-confusing-void-expression": "off"
   },
   "extends": [
     "eslint:recommended",

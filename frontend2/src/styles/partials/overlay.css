@@ -1,0 +1,8 @@
+.g-overlay {
+  border-radius: 5px;
+  font: inherit;
+  box-shadow: 0 0.125rem 0.75rem 0 var(--theme-color-overlay-shadow);
+  background-color: var(--theme-color-overlay-background);
+  color: var(--theme-color-overlay-text);
+  overflow: hidden;
+}

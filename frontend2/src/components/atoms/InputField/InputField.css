@@ -5,4 +5,21 @@
   .c-input-field__label {    
     color: var(--theme-color-field-input-box-label);
   }
+
+  &.c-input-field--required .c-input-field__label::after {
+    content: "*";
+    margin-left: 0.25ch;
+    display: inline;
+  }
+
+  .c-input-field__input-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .c-input-field__text-label + .c-input-field__input-container {
+    margin-top: 0.125rem;
+  }
 }
