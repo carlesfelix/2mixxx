@@ -10,7 +10,12 @@ export default function DesktopMainMenu (
   props: DesktopMainMenuProps
 ): ReactElement {
   const { className } = props
-  const rootClassName = classNames('c-desktop-main-menu', className)
+  const rootClassName = classNames(
+    'c-desktop-main-menu',
+    'g-elevation',
+    'g-elevation--1',
+    className
+  )
 
   return (
     <div className={rootClassName}>

@@ -1,4 +1,5 @@
-import Title from '@/components/atoms/Title'
+import BasicButton from '@/components/atoms/BasicButton'
+import PageLayout from '@/components/layout/PageLayout'
 import Fieldset from '@/components/molecules/Fieldset'
 import InputCalendarField from '@/components/molecules/InputCalendarField'
 import InputMultiSelectField from '@/components/molecules/InputMultiSelectField'
@@ -7,6 +8,7 @@ import InputTextField from '@/components/molecules/InputTextField'
 import InputTimeDurationField from '@/components/molecules/InputTimeDurationField'
 import { type FormValidator, useForm, schema } from '@/core/core-hook-form'
 import i18n from '@/modules/i18n'
+import './RegisteredUserCreateEventPage.css'
 
 import { type ReactElement } from 'react'
 
@@ -20,7 +22,7 @@ interface CreateEventFormSchema {
   status: EventStatus
   maxTimeOnline?: number
   maxParticipantsOnline?: number
-  moderators: string []
+  moderators: string[]
 }
 
 const validator: FormValidator<CreateEventFormSchema> = () => {
@@ -50,109 +52,116 @@ export default function RegisteredUserCreateEventPage (): ReactElement {
   }
 
   return (
-    <div className="RegisteredUserCreateEventPage">
-      <header className="g-layout g-layout--page-content">
-        <Title size="h2">
-          Create a new event
-        </Title>
-      </header>
+    <PageLayout
+      className="c-registered-user-create-event-page"
+      title="Create a new event"
+      centerContent
+      footer={
+        <div className='g-layout g-layout--page-content c-registered-user-create-event-page__footer'>
+          <BasicButton color="primary">Crear</BasicButton>
+        </div>
+      }
+    >
       <section className='g-layout g-layout--page-content'>
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <form onSubmit={handleSubmit(submitHandler)} className="g-form g-form--4">
-          <Fieldset legend="Basic info" className="g-form__fieldset">
-            <InputTextField
-              className="g-form__field g-form__field--4 g-form__field--sm-2 g-form__field--lg-2"
-              control={control}
-              label="Titulo"
-              name="title"
-              inputProps={{}}
-              required
-            />
-            <InputTextField
-              className="g-form__field g-form__field--4 g-form__field--sm-2 g-form__field--lg-2"
-              control={control}
-              label="Lugar"
-              name="placeName"
-              inputProps={{}}
-            />
-            <InputCalendarField
-              className="g-form__field g-form__field--4 g-form__field--sm-2 g-form__field--lg-1"
-              control={control}
-              label="Fecha"
-              name="startsAt"
-              inputProps={{}}
-            />
-            <InputTextField
-              className="g-form__field g-form__field--4 g-form__field--sm-2 g-form__field--lg-1"
-              control={control}
-              label="Código de acceso"
-              name="accessCode"
-              inputProps={{}}
-            />
-            <InputNumberField
-              className="g-form__field g-form__field--4 g-form__field--sm-4 g-form__field--lg-2"
-              control={control}
-              label="Límite de participantes"
-              name="maxParticipantsOnline"
-              inputProps={{}}
-            />
-            <InputTimeDurationField
-              className="g-form__field g-form__field--4 g-form__field--sm-4 g-form__field--lg-2"
-              control={control}
-              label="Duración máxima en línea"
-              name="maxTimeOnline"
-              defaultValue={2 * 60 * 60 * 1000}
-              inputProps={{
-                precisions: ['hours', 'minutes']
-              }}
-            />
-            <InputMultiSelectField
-              className="g-form__field g-form__field--4 g-form__field--sm-4 g-form__field--lg-2"
-              control={control}
-              label="Moderadores"
-              name="moderators"
-              inputProps={{
-                placeholder: 'Selecciona moderadores',
-                options: [
-                  {
-                    label: 'Carles Fèlix Tur',
-                    value: 'option1'
-                  },
-                  {
-                    label: 'Juan García Pérez',
-                    value: 'option2'
-                  },
-                  {
-                    label: 'Carles Fèlix Tur 2',
-                    value: 'option3'
-                  },
-                  {
-                    label: 'Juan García Pérez 2',
-                    value: 'option4'
-                  },
-                  {
-                    label: 'Carles Fèlix Tur',
-                    value: 'option5'
-                  },
-                  {
-                    label: 'Juan García Pérez',
-                    value: 'option6'
-                  },
-                  {
-                    label: 'Carles Fèlix Tur 2',
-                    value: 'option7'
-                  },
-                  {
-                    label: 'Juan García Pérez 2',
-                    value: 'option8'
-                  }
-                ]
-              }}
-            />
-          </Fieldset>
+          <div>
+            <Fieldset className="g-form__fieldset">
+              <InputTextField
+                className="g-form__field g-form__field--4 g-form__field--sm-2 g-form__field--lg-2"
+                control={control}
+                label="Titulo"
+                name="title"
+                inputProps={{}}
+                required
+              />
+              <InputTextField
+                className="g-form__field g-form__field--4 g-form__field--sm-2 g-form__field--lg-2"
+                control={control}
+                label="Lugar"
+                name="placeName"
+                inputProps={{}}
+              />
+              <InputCalendarField
+                className="g-form__field g-form__field--4 g-form__field--sm-2 g-form__field--lg-1"
+                control={control}
+                label="Fecha"
+                name="startsAt"
+                inputProps={{}}
+              />
+              <InputTextField
+                className="g-form__field g-form__field--4 g-form__field--sm-2 g-form__field--lg-1"
+                control={control}
+                label="Código de acceso"
+                name="accessCode"
+                inputProps={{}}
+              />
+              <InputNumberField
+                className="g-form__field g-form__field--4 g-form__field--sm-4 g-form__field--lg-2"
+                control={control}
+                label="Límite de participantes"
+                name="maxParticipantsOnline"
+                inputProps={{}}
+              />
+              <InputTimeDurationField
+                className="g-form__field g-form__field--4 g-form__field--sm-4 g-form__field--lg-2"
+                control={control}
+                label="Duración máxima en línea"
+                name="maxTimeOnline"
+                defaultValue={2 * 60 * 60 * 1000}
+                inputProps={{
+                  precisions: ['hours', 'minutes']
+                }}
+              />
+              <InputMultiSelectField
+                className="g-form__field g-form__field--4 g-form__field--sm-4 g-form__field--lg-2"
+                control={control}
+                label="Moderadores"
+                name="moderators"
+                inputProps={{
+                  placeholder: 'Selecciona moderadores',
+                  options: [
+                    {
+                      label: 'Carles Fèlix Tur',
+                      value: 'option1'
+                    },
+                    {
+                      label: 'Juan García Pérez',
+                      value: 'option2'
+                    },
+                    {
+                      label: 'Carles Fèlix Tur 2',
+                      value: 'option3'
+                    },
+                    {
+                      label: 'Juan García Pérez 2',
+                      value: 'option4'
+                    },
+                    {
+                      label: 'Carles Fèlix Tur',
+                      value: 'option5'
+                    },
+                    {
+                      label: 'Juan García Pérez',
+                      value: 'option6'
+                    },
+                    {
+                      label: 'Carles Fèlix Tur 2',
+                      value: 'option7'
+                    },
+                    {
+                      label: 'Juan García Pérez 2',
+                      value: 'option8'
+                    }
+                  ]
+                }}
+              />
+            </Fieldset>
+          </div>
+
           {/* <button type="submit">Enviar</button> */}
         </form>
       </section>
-    </div>
+    </PageLayout>
   )
 }

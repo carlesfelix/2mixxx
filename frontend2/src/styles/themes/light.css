@@ -36,6 +36,10 @@
 
   /* BOX SHADOWS */  
   --theme-shadow-elevation-1: 0 1px 2px var(--g-color-opacity-black-3), 0 0px 2px var(--g-color-opacity-black-2);
+  --theme-shadow-elevation-2: 0 1px 2px var(--g-color-opacity-black-4), 0 0px 2px var(--g-color-opacity-black-3);
+  --theme-shadow-elevation-3: 0 1px 2px var(--g-color-opacity-black-5), 0 0px 2px var(--g-color-opacity-black-4);
+  --theme-shadow-elevation-4: 0 1px 2px var(--g-color-opacity-black-6), 0 0px 2px var(--g-color-opacity-black-5);
+  --theme-shadow-elevation-5: 0 1px 2px var(--g-color-opacity-black-7), 0 0px 2px var(--g-color-opacity-black-6);
 
   /* PRIMARY COLORS */
   --theme-color-primary-50: var(--g-color-blue-50);
@@ -103,11 +107,13 @@
   --theme-color-toolbar-background: var(--g-color-white);
   --theme-color-toolbar-text: var(--g-color-grey-800);
 
-  /* BOX */
-  --theme-color-box-border: var(--g-color-grey-300);
-  --theme-color-box-background: var(--g-color-white);
-  --theme-color-box-text-1: var(--g-color-grey-800);
-  --theme-color-box-text-2: var(--g-color-grey-700);
+  /* CARD */
+  --theme-color-card-border: var(--g-color-grey-300);
+  --theme-color-card-background: var(--g-color-white);
+  --theme-color-card-text-1: var(--g-color-grey-800);
+  --theme-color-card-text-2: var(--g-color-grey-700);
+
+  /* SECTION */
 
   /* DESKTOP SIDEBAR MENU */
   --theme-color-desktop-sidebar-menu-background: var(--g-color-grey-100);

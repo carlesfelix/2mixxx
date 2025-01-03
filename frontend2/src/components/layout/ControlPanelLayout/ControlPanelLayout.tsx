@@ -36,7 +36,7 @@ export default function ControlPanelLayout (
       />
       <DesktopMainMenu className="c-control-panel-layout__desktop-menu" />
       <div className="c-control-panel-layout__main-container">
-        <nav className="c-control-panel-layout__navigation-bar">
+        <nav className="c-control-panel-layout__navigation-bar g-elevation g-elevation--1">
           <div className="c-control-panel-layout__navigation-bar-left-content">
             <IconButton
               size="lg"

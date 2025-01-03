@@ -4,8 +4,6 @@
   height: 100%;
   display: none;
   width: 15.625rem;
-  z-index: 1;
-  box-shadow: var(--theme-shadow-elevation-1);
 
   & .c-desktop-main-menu__menu-header {
     position: relative;

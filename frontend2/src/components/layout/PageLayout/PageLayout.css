@@ -1,0 +1,24 @@
+.c-page-layout {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .c-page-layout__scroll-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  .c-page-layout__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.c-page-layout--center-content {
+    .c-page-layout__content {
+      justify-content: center;
+    }
+  }
+}

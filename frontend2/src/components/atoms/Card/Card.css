@@ -1,10 +1,10 @@
 .c-card {
-  border: solid 1px var(--theme-color-box-border);
+  border: solid 1px var(--theme-color-card-border);
   border-radius: 5px;
-  background-color: var(--theme-color-box-background);
+  background-color: var(--theme-color-card-background);
 
   & .c-card__header {
-    color: var(--theme-color-box-text-1);
+    color: var(--theme-color-card-text-1);
   }
 
   & .c-card__content {
@@ -17,6 +17,6 @@
   }
 
   & .c-card__body {
-    color: var(--theme-color-box-text-2);
+    color: var(--theme-color-card-text-2);
   }
 }

@@ -1,0 +1,26 @@
+.g-elevation {
+  &.g-elevation--1 {
+    box-shadow: var(--theme-shadow-elevation-1);
+    z-index: 1;
+  }
+
+  &.g-elevation--2 {
+    box-shadow: var(--theme-shadow-elevation-2);
+    z-index: 2;
+  }
+
+  &.g-elevation--3 {
+    box-shadow: var(--theme-shadow-elevation-3);
+    z-index: 3;
+  }
+
+  &.g-elevation--4 {
+    box-shadow: var(--theme-shadow-elevation-4);
+    z-index: 4;
+  }
+
+  &.g-elevation--5 {
+    box-shadow: var(--theme-shadow-elevation-5);
+    z-index: 5;
+  }
+}
