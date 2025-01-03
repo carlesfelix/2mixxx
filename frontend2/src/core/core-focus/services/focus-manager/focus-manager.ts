@@ -52,7 +52,7 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
       }
       return
     }
-    const focusNavigationAction = currentFocusNavigationActions.find(eachFocusNavigationAction => eachFocusNavigationAction.eventTarget === event.target)
+    const [focusNavigationAction, ...parentFocusNavigationActions] = currentFocusNavigationActions.filter(eachFocusNavigationAction => eachFocusNavigationAction.eventTarget === event.target)
     if (focusNavigationAction === undefined) {
       return
     }
@@ -63,7 +63,19 @@ export default function focusManager (focusVisibleDataKey: string): FocusManager
       return
     }
     const offset = currentFocusIndex + focusNavigationAction.offset
-    focusElement(event, focusableElements.at(offset))
+    const elementToFocus = focusableElements.at(offset)
+
+    if (!elementToFocus && parentFocusNavigationActions.length) {
+      const parentFocusNavigationAction = parentFocusNavigationActions.find(
+        eachParentFocusNavigationAction => eachParentFocusNavigationAction.limits
+      )
+      if (parentFocusNavigationAction?.limits) {
+        const [startElement, endElement] = parentFocusNavigationAction.limits
+        focusElement(event, focusNavigationAction.offset < 0 ? endElement : startElement)
+        return
+      }
+    }
+    focusElement(event, elementToFocus)
   }
   function focusoutHandler (event: FocusEvent): void {
     setFocusVisibility(event.target, false, focusVisibleDataKey)

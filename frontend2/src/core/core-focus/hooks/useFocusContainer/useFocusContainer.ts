@@ -3,7 +3,7 @@ import useFocusContext from '../useFocusContext'
 import { type UseFocusContainerOptions } from './types'
 import useAutoFocus from '../useAutoFocus'
 import useReturnFocus from '../useReturnFocus'
-import { type RestoreFocusCallbackReturn } from '../../types'
+import { type FocusNavigationLimits, type RestoreFocusCallbackReturn } from '../../types'
 import { type FocusableElement, getFocusableElements } from '../../services/focusable-elements'
 import { type KeyboardKeyFilter, matchKeyboardKeyFilter } from '@/core/core-keyboard'
 
@@ -55,6 +55,7 @@ export default function useFocusContainer (
       shiftKey: nextShiftKey
     }
     function keydownHandler (event: KeyboardEvent): void {
+      let limits: FocusNavigationLimits | undefined
       if (element === null) {
         return
       }
@@ -75,6 +76,7 @@ export default function useFocusContainer (
       if (trap) {
         const firstFocusableElement = focusableElements.at(0)
         const lastFocusableElement = focusableElements.at(-1)
+        limits = [firstFocusableElement, lastFocusableElement]
         if (offset === -1 && window.document.activeElement === firstFocusableElement) {
           offset = focusableElements.length - 1
         } else if (
@@ -83,7 +85,7 @@ export default function useFocusContainer (
           offset = 1 - focusableElements.length
         }
       }
-      onKeyDown({ eventTarget: event.target, match, offset })
+      onKeyDown({ eventTarget: event.target, match, offset, limits })
     }
     function restoreFocusCallback (
       event: KeyboardEvent,
